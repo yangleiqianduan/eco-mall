@@ -2,12 +2,11 @@ import { createStore, combineReducers, applyMiddleware, compose } from 'redux'
 import thunkMiddleware from 'redux-thunk'
 
 import * as reducers from 'reducers'
-import routerReducer from 'reducers/routes'
+
 const devtools = window.devToolsExtension || (() => noop => noop)
 
 const rootReducer = combineReducers({
-  ...reducers,
-  routing: routerReducer
+  ...reducers
 })
 
 let middlewares = [
