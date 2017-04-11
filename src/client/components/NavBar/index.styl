@@ -1,0 +1,14 @@
+@import "~common/global.styl"
+
+.wrap
+  display-flex()
+  background $color-dark
+.tab
+  flex 1
+  text-align center
+  background $color-bright
+  padding 5px 0
+  border-right 1px solid transparent
+  transition all .1s
+  &:active
+    background $color-bright + 40%

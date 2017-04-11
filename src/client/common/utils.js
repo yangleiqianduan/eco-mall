@@ -1,0 +1,81 @@
+import pathToRegexp from 'path-to-regexp'
+
+export const createArray = (length, rule = 1) => {
+  let newArray = []
+  for (let i = 0; i < length; i++) {
+    newArray.push(typeof rule === 'function' ? rule(i) : rule)
+  }
+  return newArray
+}
+
+export const formatTime = (time) => {
+  if (typeof time !== 'number') return '-'
+  const Time = new Date(time)
+  return `${Time.getFullYear()}-${Time.getMonth() + 1}-${joinNumber(Time.getDate())} ${joinNumber(Time.getHours())}:${joinNumber(Time.getMinutes())}:${joinNumber(Time.getSeconds())}`
+}
+
+export const joinNumber = (numb) => numb < 10 ? '0' + numb : numb
+
+export const sliceArr = (arr, len) => {
+  const newArray = arr.slice()
+  const finalArray = []
+  const trans = Math.floor(newArray.length / len)
+  const length = trans === (newArray.length / len) ? trans : (trans + 1)
+  for (let i = 0; i < length; i++) {
+    finalArray.push(newArray.splice(0, len))
+  }
+  return finalArray
+}
+
+export const subStrByByte = (str, limit, showMore = true) => {
+  let newStr = ''
+  let len = 0
+  for (let i = 0; i < str.length; i++) {
+    if ((/[^\x00-\xff]/g).test(str[i])) {
+      len += 2
+    } else {
+      len += 1
+    }
+    if (len > limit) {
+      newStr = str.substr(0, i)
+      return showMore ? newStr + '...' : newStr
+    }
+  }
+  return str
+}
+
+export const isEmpty = function () {
+  const checkEmpty = (a) => {
+    switch (typeof a) {
+      case 'number':
+        return !Number.isFinite(a)
+      case 'string':
+        return !a.trim()
+      default:
+        return !a
+    }
+  }
+  for (let i = 0; i < arguments.length; i++) {
+    if (checkEmpty(arguments[i])) {
+      return true
+    }
+  }
+  return false
+}
+
+export const updateTitle = (location = window.location, routes) => {
+  const cheeckCurrent = (routes) => {
+    if (!Array.isArray(routes)) return
+    for (let i = 0; i < routes.length; i++) {
+      if (comparePath(routes[i].path, location.pathname)) {
+        document.title = routes[i].title
+        return
+      } else if (routes[i].routes) {
+        cheeckCurrent(routes[i].routes)
+      }
+    }
+  }
+  const comparePath = (a = '', b = '') => pathToRegexp(a).exec(b)
+
+  cheeckCurrent(routes)
+}

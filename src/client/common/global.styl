@@ -1,0 +1,48 @@
+$font-size = 12px
+$color-white = #fff
+$color-gray = #f6f6f6
+$color-dark = #333333
+$color-bright = #FFD819
+$border = 1px solid #E5E5E5
+
+transition()
+  transition arguments
+  -o-transition arguments
+  -moz-transition arguments
+  -webkit-transition arguments
+
+flex()
+  flex arguments
+  -o-flex arguments
+  -moz-flex arguments
+  -webkit-flex arguments
+  
+display-flex()
+  width 100%
+  display flex
+  display -o-flex
+  display -moz-flex
+  display -webkit-flex
+
+btn()
+  text-align center
+  cursor pointer
+  user-select none
+  transition all .1s
+
+.brightBtn
+  background #ffeded
+  color $color-bright
+  &:active
+    background $color-bright + 60%
+  &.disabled
+    background #f1f1f1
+    color #666
+  btn()
+
+.darkBtn
+  background $color-dark
+  color #fff
+  &:active
+    background $color-dark + 40%
+  btn()
