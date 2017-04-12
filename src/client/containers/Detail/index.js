@@ -1,4 +1,5 @@
 import React, { PureComponent } from 'react'
+import { connect } from 'react-redux'
 import { createArray } from 'common/utils'
 
 import CSSModules from 'react-css-modules'
@@ -22,4 +23,8 @@ export class Detail extends PureComponent {
   }
 }
 
-export default Detail
+const mapStateToProps = state => ({
+  shared: state.shared
+})
+
+export default connect(mapStateToProps)(Detail)

@@ -1,5 +1,6 @@
 import pathToRegexp from 'path-to-regexp'
 
+// 创建一个数组，params: 数组长度{number}；规则{function{i}}
 export const createArray = (length, rule = 1) => {
   let newArray = []
   for (let i = 0; i < length; i++) {
@@ -8,6 +9,7 @@ export const createArray = (length, rule = 1) => {
   return newArray
 }
 
+// 格式化时间，目前只能YYYY-MM-DD HH:mm:ss
 export const formatTime = (time) => {
   if (typeof time !== 'number') return '-'
   const Time = new Date(time)
@@ -16,6 +18,7 @@ export const formatTime = (time) => {
 
 export const joinNumber = (numb) => numb < 10 ? '0' + numb : numb
 
+// 将一个数组按指定长度分成几个数组
 export const sliceArr = (arr, len) => {
   const newArray = arr.slice()
   const finalArray = []
@@ -27,6 +30,7 @@ export const sliceArr = (arr, len) => {
   return finalArray
 }
 
+// 按字节截断字符串
 export const subStrByByte = (str, limit, showMore = true) => {
   let newStr = ''
   let len = 0
@@ -44,6 +48,7 @@ export const subStrByByte = (str, limit, showMore = true) => {
   return str
 }
 
+// 为空判断
 export const isEmpty = function () {
   const checkEmpty = (a) => {
     switch (typeof a) {
@@ -63,6 +68,7 @@ export const isEmpty = function () {
   return false
 }
 
+// location变化时，更新页面title
 export const updateTitle = (location = window.location, routes) => {
   const cheeckCurrent = (routes) => {
     if (!Array.isArray(routes)) return

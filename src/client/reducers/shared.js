@@ -28,8 +28,10 @@ export default (state = initState, action) => {
         modal: action.payload
       })
 
-    case actions.UPDATE_ORDER_COUNT:
-      return state.update('orderCounts', h => h.map(o => o.set('count', (action.payload.filter(bo => bo.code === o.get('status'))[0] || {count: 0}).count)))
+    case actions.UPDATE_CATEGORY:
+      return state.merge({
+        categoryList: action.payload
+      })
 
     case actions.UPDATE_SHOPCART_COUNT:
       return state.set('shoppingCartCount', action.payload)
@@ -53,6 +55,11 @@ const initState = fromJS({
     title: '提示',
     text: ''
   },
+  categoryList: [
+    {'categoryId': 101, 'categoryName': '个人成长'},
+    {'categoryId': 101, 'categoryName': '个人成长'},
+    {'categoryId': 122, 'categoryName': '报买普商'}
+  ],
   transRoute: {
     to: ''
   }

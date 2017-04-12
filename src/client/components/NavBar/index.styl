@@ -2,13 +2,10 @@
 
 .wrap
   display-flex()
-  background $color-dark
-.tab
-  flex 1
-  text-align center
-  background $color-bright
-  padding 5px 0
-  border-right 1px solid transparent
-  transition all .1s
-  &:active
-    background $color-bright + 40%
+  .tab
+    flex 1
+    text-align center
+    padding 10px 0
+    a
+      color $color-normal
+      font-size $font-size1
