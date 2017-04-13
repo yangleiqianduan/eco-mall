@@ -25,7 +25,7 @@ export class Home extends PureComponent {
         主题banner
       </div>
       <div styleName='navOuter'>
-        <NavBar data={categoryList.map(item => ({path: `/search?category=${item.categoryId}`, title: item.categoryName}))} />
+        <NavBar data={categoryList.map(item => ({path: `/search?categoryId=${item.categoryId}`, title: item.categoryName}))} />
       </div>
       <div styleName='label'>
         <h2 styleName='title'>你的专享</h2>

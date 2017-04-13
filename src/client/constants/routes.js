@@ -2,27 +2,45 @@ import Home from 'containers/Home/'
 import Detail from 'containers/Detail/'
 import Subject from 'containers/Subject/'
 import Result from 'containers/Result/'
+import Collocation from 'containers/Collocation/'
+import Want from 'containers/Want/'
+import Success from 'containers/Success/'
 
 export default [
   {
     path: '/',
     exact: true,
     component: Home,
-    title: '链家Mall'
+    title: '链家·优品'
+  }, {
+    path: '/search',
+    exact: true,
+    component: Result,
+    title: '优品目录'
   }, {
     path: '/item',
     exact: true,
     component: Detail,
     title: '商品详情'
   }, {
+    path: '/collocation',
+    exact: true,
+    component: Collocation,
+    title: '搭配详情'
+  }, {
     path: '/subject',
     exact: true,
     component: Subject,
     title: '专题'
   }, {
-    path: '/search',
+    path: '/want',
     exact: true,
-    component: Result,
-    title: '商品列表'
+    component: Want,
+    title: '需求登记'
+  }, {
+    path: '/success',
+    exact: true,
+    component: Success,
+    title: '预约成功'
   }
 ]
