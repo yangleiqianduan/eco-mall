@@ -3,9 +3,10 @@ import { Link } from 'react-router-dom'
 import CSSModules from 'react-css-modules'
 import styles from './index.styl'
 
-export default CSSModules(({ data = {} }) => <div styleName='wrap'>
-  <Link
-    to={`/item?id=${data.id}`}>
-    <div>{data.title}</div>
-  </Link>
-</div>, styles, {allowMultiple: true})
+export default CSSModules(({ data = {} }) => <Link
+  styleName='wrap'
+  to={data.wantItem ? '/want' : `/item?id=${data.id}`}>
+  <div><img styleName='img' src={data.src} /></div>
+  <div styleName='text'>{data.title}</div>
+  <div styleName='text'>{data.wantItem ? '' : '￥'}{data.price}</div>
+</Link>, styles, {allowMultiple: true})

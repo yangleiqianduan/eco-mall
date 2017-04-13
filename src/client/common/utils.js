@@ -85,3 +85,20 @@ export const updateTitle = (location = window.location, routes) => {
 
   cheeckCurrent(routes)
 }
+
+// 将?search=123 解析成 {search: 123}; 以后可以做完善一点
+export const parseQueryString = (search = '') => {
+  const query = {}
+  let string = search[0] === '?' ? search.slice(1) : search
+  if (string[string.length] === '&') {
+    string = string.slice(0, search.length - 1)
+  }
+  const strArr = string.split('&')
+  strArr.map(pair => {
+    const pairArr = pair.split('=')
+    if (pairArr[1]) {
+      query[pairArr[0]] = decodeURIComponent(pairArr[1])
+    }
+  })
+  return query
+}

@@ -1,8 +1,32 @@
 @import "~common/global.styl"
 
+$left-width=8.75rem
+
 .wrap
-  color red
+  G-layout-box()
+  background $color-white
+.left
+  width $left-width
+  background $color-white
+  border-right $border
+.leftFix
+  position fixed
+  top 0
+  left 0
+  padding-top 1rem
+  width $left-width - 1px
+.right
+  flex 1
+  padding 1rem
 .content
   background $color-white
-  padding 20px
   margin-bottom 10px
+  width 50%
+  display inline-block
+  text-align center
+  &:nth-child(odd)
+    .inner
+      padding-right 0.5rem
+  &:nth-child(even)
+    .inner
+      padding-left 0.5rem

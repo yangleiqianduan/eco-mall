@@ -56,7 +56,7 @@ const initState = fromJS({
     text: ''
   },
   categoryList: [
-    {'categoryId': 101, 'categoryName': '个人成长'},
+    {'categoryId': 100, 'categoryName': '个人成长'},
     {'categoryId': 101, 'categoryName': '个人成长'},
     {'categoryId': 122, 'categoryName': '报买普商'}
   ],

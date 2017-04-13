@@ -1,6 +1,6 @@
 $font-size = 12px
-$font-size1 = 14px
-$font-size2 = 20px
+$font-size1 = 1.16rem
+$font-size2 = 1.6rem
 $color-white = #fff
 $color-gray = #f6f6f6
 $color-dark = #333333
@@ -8,26 +8,7 @@ $color-normal = #6B7072
 $color-light = #BBBBBB
 $color-bright = #FFD819
 $border = 1px solid #E5E5E5
-
-transition()
-  transition arguments
-  -o-transition arguments
-  -moz-transition arguments
-  -webkit-transition arguments
-
-flex()
-  flex arguments
-  -o-flex arguments
-  -moz-flex arguments
-  -webkit-flex arguments
-
-display-flex()
-  width 100%
-  display flex
-  display -o-flex
-  display -moz-flex
-  display -webkit-flex
-
+  
 btn()
   text-align center
   cursor pointer
@@ -51,27 +32,36 @@ btn()
     background $color-dark + 40%
   btn()
 
+transition()
+  transition arguments
+  -o-transition arguments
+  -moz-transition arguments
+  -webkit-transition arguments
+
 // 原子类 - 布局
-.G-layout-box
+
+G-layout-box()
   display -webkit-box
-	display -webkit-flex
-	display -ms-flexbox
-	display flex
-.G-box-col
-	-webkit-box-flex: 1
-	-webkit-flex 1
-	-ms-flex 1
-	flex 1
-.G-center-v
-	-ms-flex-align center
-	-webkit-box-align center
-	-webkit-align-items center
-	align-items center
-.G-center-h
-	-ms-flex-pack center
-	-webkit-box-pack center
-	-webkit-justify-content center
-	justify-content center
+  display -webkit-flex
+  display -ms-flexbox
+  display flex
+
+flex(arguments = 1)
+	-webkit-box-flex arguments
+	-webkit-flex arguments
+	-ms-flex arguments
+	flex arguments
+
+align-items(arguments = center)
+	-ms-flex-align arguments
+	-webkit-box-align arguments
+	-webkit-align-items arguments
+	align-items arguments
+justify-content(arguments = center)
+	-ms-flex-pack arguments
+	-webkit-box-pack arguments
+	-webkit-justify-content arguments
+	justify-content arguments
 // 截字
 .G-cut-txt
   text-overflow ellipsis

@@ -2,7 +2,7 @@ import React, { PureComponent } from 'react'
 import { Route, Redirect } from 'react-router-dom'
 import { withRouter, Prompt } from 'react-router'
 import { connect } from 'react-redux'
-import { updateTitle } from 'common/utils'
+import { updateTitle, parseQueryString } from 'common/utils'
 
 // import {
 //   changeRouter
@@ -25,8 +25,8 @@ export class Main extends PureComponent {
   }
 
   render () {
-    console.log(this.props.shared.toJS(), 'sss')
-    const { routes } = this.props
+    console.log(this.props, 'sss')
+    const { routes, location } = this.props
     const { transRoute } = this.props.shared.toJS()
     return <div styleName='wrap'>
       {
@@ -34,12 +34,12 @@ export class Main extends PureComponent {
         ? <Redirect {...transRoute} />
         : null
       }
-      <div>
+      {
+        routes.map((route, i) => <Route key={i} {...route} location={Object.assign({}, location, {query: parseQueryString(location.search)})} />)
+      }
+      <div style={{position: 'fixed', bottom: 0, width: '100%'}}>
         <NavBar data={routes} />
       </div>
-      {
-        routes.map((route, i) => <Route key={i} {...route} />)
-      }
       <Prompt message={(location) => updateTitle(location, routes)} />
     </div>
   }
