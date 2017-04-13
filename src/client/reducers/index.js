@@ -1,4 +1,4 @@
 export shared from './shared'
 export home from './home'
 export result from './result'
-export result from './success'
+export success from './success'
