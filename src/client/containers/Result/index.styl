@@ -3,12 +3,13 @@
 $left-width=8.75rem
 
 .wrap
-  G-layout-box()
+  box()
   background $color-white
 .left
   width $left-width
   background $color-white
-  border-right $border
+  border(right)
+  animation(mymove 5s infinite)
 .leftFix
   position fixed
   top 0

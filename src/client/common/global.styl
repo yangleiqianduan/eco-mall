@@ -1,20 +1,63 @@
-$font-size = 12px
-$font-size1 = 1.16rem
-$font-size2 = 1.6rem
+$root-size = 10px
+$font-size12 = 1.2rem
+$font-size14 = 1.4rem
+$font-size16 = 1.6rem
+$font-size20 = 2rem
+
+// 通用色
 $color-white = #fff
 $color-gray = #f6f6f6
 $color-dark = #333333
 $color-normal = #6B7072
 $color-light = #BBBBBB
 $color-bright = #FFD819
-$border = 1px solid #E5E5E5
-  
+// 边框色
+$color-border = #E5E5E5
+
+// 处理浏览器私有前缀
+prefixed(prop,args)
+  -o-{prop} args
+  -ms-{prop} args
+  -moz-{prop} args
+  -webkit-{prop} args
+  {prop} args
+// 过渡、动画、变形
+transition()
+  prefixed(transition,arguments)
+animation()
+  prefixed(animation,arguments)
+transform()
+  prefixed(transform,arguments)
+
+// 处理border
+border(path=all,width=1px,color=$color-border,style=solid)
+  if path==all
+    border width style color
+    if width==1px
+      border .5px style color
+  else if path==top
+    border-top width style color
+    if width==1px
+      border-top .5px style color
+  else if path==right
+    border-right width style color
+    if width==1px
+      border-right .5px style color
+  else if path==bottom
+    border-bottom width style color
+    if width==1px
+      border-bottom .5px style color
+  else if path==left
+    border-left width style color
+    if width==1px
+      border-left .5px style color
+
+// 按钮
 btn()
   text-align center
   cursor pointer
   user-select none
   transition all .1s
-
 .brightBtn
   background #ffeded
   color $color-bright
@@ -24,7 +67,6 @@ btn()
     background #f1f1f1
     color #666
   btn()
-
 .darkBtn
   background $color-dark
   color #fff
@@ -32,26 +74,17 @@ btn()
     background $color-dark + 40%
   btn()
 
-transition()
-  transition arguments
-  -o-transition arguments
-  -moz-transition arguments
-  -webkit-transition arguments
-
-// 原子类 - 布局
-
-G-layout-box()
+// 布局
+box()
   display -webkit-box
   display -webkit-flex
   display -ms-flexbox
   display flex
-
 flex(arguments = 1)
 	-webkit-box-flex arguments
 	-webkit-flex arguments
 	-ms-flex arguments
 	flex arguments
-
 align-items(arguments = center)
 	-ms-flex-align arguments
 	-webkit-box-align arguments
@@ -62,15 +95,16 @@ justify-content(arguments = center)
 	-webkit-box-pack arguments
 	-webkit-justify-content arguments
 	justify-content arguments
+
 // 截字
-.G-cut-txt
+G-cut-txt()
   text-overflow ellipsis
   overflow hidden
   white-space nowrap
-G-cut-p()
-		display:-webkit-box !important;
-		overflow:hidden;
-		text-overflow:ellipsis;
-		word-break:break-all;
-		-webkit-box-orient:vertical;
-		-webkit-line-clamp:arguments;
+G-cut-p(arguments = 2)
+		display -webkit-box !important
+		overflow hidden
+		text-overflow ellipsis
+		word-break break-all
+		-webkit-box-orient vertical
+		-webkit-line-clamp arguments
