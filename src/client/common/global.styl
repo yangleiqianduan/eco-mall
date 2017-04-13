@@ -2,6 +2,7 @@ $root-size = 10px
 $font-size12 = 1.2rem
 $font-size14 = 1.4rem
 $font-size16 = 1.6rem
+$font-size18 = 1.8rem
 $font-size20 = 2rem
 
 // 通用色
@@ -11,8 +12,10 @@ $color-dark = #333333
 $color-normal = #6B7072
 $color-light = #BBBBBB
 $color-bright = #FFD819
-// 边框色
+$color-spc = #FF5848
+
 $color-border = #E5E5E5
+$color-tag = #394043
 
 // 将 px 转换成 rem
 px2rem(arguments=12)
@@ -27,11 +30,13 @@ prefixed(prop,args)
   {prop} args
 // 过渡、动画、变形
 transition()
-  prefixed(transition,arguments)
+  prefixed(transition, arguments)
 animation()
-  prefixed(animation,arguments)
+  prefixed(animation, arguments)
 transform()
-  prefixed(transform,arguments)
+  prefixed(transform, arguments)
+transform-origin(arguments = 0 0)
+  prefixed(transform-origin, arguments)
 
 // 处理border
 border(path=all,width=1px,color=$color-border,style=solid)
