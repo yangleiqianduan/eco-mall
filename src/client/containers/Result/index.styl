@@ -1,32 +1,32 @@
 @import "~common/global.styl"
 
-$left-width = px2rem(87)
+$left-width=px2rem(87)
 
 .wrap
   box()
   background $color-white
 .left
-  width $left-width
+  min-width $left-width
   background $color-white
   border(right)
 .leftFix
   position fixed
   top 0
   left 0
-  padding-top 1rem
+  padding-top px2rem(10px)
   width $left-width - px2rem(1)
 .right
-  flex 1
-  padding 1rem
+  flex(1)
+  padding px2rem(10)
 .content
   background $color-white
-  margin-bottom 10px
+  margin-bottom px2rem(10)
   width 50%
   display inline-block
   text-align center
   &:nth-child(odd)
     .inner
-      padding-right 0.5rem
+      padding-right px2rem(5)
   &:nth-child(even)
     .inner
-      padding-left 0.5rem
+      padding-left px2rem(5)
