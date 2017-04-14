@@ -21,7 +21,7 @@ export class Want extends PureComponent {
         <div>
           上传商品截图
           <div styleName='uploadOuter'>
-            <Upload list={testList.map(item => ({src: item.img_url}))} onDelete={() => 1} url='123' size={{width: '6.2rem', height: '6.2rem'}} />
+            <Upload list={testList.map(item => ({src: item.img_url}))} onDelete={() => 1} url='123' size={{width: '0.7rem', height: '0.7rem'}} />
           </div>
         </div>
         <div styleName='footer'>

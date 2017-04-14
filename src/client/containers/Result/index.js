@@ -7,11 +7,27 @@ import styles from './index.styl'
 import NavBar from 'components/NavBar/'
 import ProductItem from 'components/ProductItem/'
 
+import { getItems } from 'actions/result'
+
 @CSSModules(styles, {allowMultiple: true})
 export class Result extends PureComponent {
   componentDidMount () {
-    console.log('componentDidMount')
+    const query = this.props.location.query
+    this.getItems(query)
   }
+
+  componentWillReceiveProps (np) {
+    const nQ = np.location.query
+    const tQ = this.props.location.query
+    if (nQ.categoryId !== tQ.categoryId) {
+      this.getItems(nQ)
+    }
+  }
+
+  getItems = (query) => {
+    this.props.dispatch(getItems(query))
+  }
+
   render () {
     const { list } = this.props.data.toJS()
     const { categoryList } = this.props.shared.toJS()

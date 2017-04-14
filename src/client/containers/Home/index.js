@@ -25,12 +25,11 @@ export class Home extends PureComponent {
     const { hotItems, banner, collocation } = this.props.data.toJS()
     const { currentCollocation } = this.state
     const collocationList = collocation.map(item => ({img_url: item.picture, title: item.productMixName, desc: item.productMixDescription, redirect_url: `/collocation?id=${item.productMixId}`}))
-    const hotItemsList = hotItems.map(item => ({src: item.firstPageUrl, title: item.productName, price: item.marketPrice}))
-    hotItemsList.push({
+    hotItems.push({
       wantItem: true,
-      src: wantItem,
-      title: '可能低价出现在这里哦',
-      price: '立即登记'
+      firstPageUrl: wantItem,
+      productName: '可能低价出现在这里哦',
+      marketPrice: '立即登记'
     })
 
     return <div styleName='wrap'>
@@ -51,7 +50,7 @@ export class Home extends PureComponent {
         <h2 styleName='title'>为你推荐</h2>
       </div>
       <div styleName='plat'>
-        <HotItems data={hotItemsList} />
+        <HotItems data={hotItems} />
       </div>
     </div>
   }

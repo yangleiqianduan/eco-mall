@@ -5,8 +5,8 @@ import styles from './index.styl'
 
 export default CSSModules(({ data = {} }) => <Link
   styleName='wrap'
-  to={data.wantItem ? '/want' : `/item?id=${data.id}`}>
-  <div><img styleName='img' src={data.src} /></div>
-  <div styleName='text'>{data.title}</div>
-  <div styleName='text'>{data.wantItem ? '' : '￥'}{data.price}</div>
+  to={data.wantItem ? '/want' : `/item?id=${data.productId}`}>
+  <div><img styleName='img' src={data.firstPageUrl} /></div>
+  <div styleName='text'>{data.productName}</div>
+  <div styleName={data.wantItem ? 'price normal' : 'price'}>{data.wantItem ? '' : '￥'}{data.marketPrice}</div>
 </Link>, styles, {allowMultiple: true})

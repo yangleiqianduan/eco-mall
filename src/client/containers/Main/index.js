@@ -9,21 +9,25 @@ import CSSModules from 'react-css-modules'
 import styles from './index.styl'
 
 import NavBar from 'components/NavBar/'
+import Toast from 'components/Toast/'
+import Loading from 'components/Loading/'
+
+import { getCateoryList } from 'actions/'
 
 @CSSModules(styles, { allowMultiple: true })
 export class Main extends PureComponent {
-  // componentDidMount () {
-  //   new Obersve(this.props.history)
-  // }
+  componentDidMount () {
+    this.props.dispatch(getCateoryList())
+  }
   componentWillMount () {
     const { location, routes } = this.props
     updateTitle(location, routes)
   }
 
   render () {
-    console.log(this.props, 'sss')
+    console.log(this.props.shared.toJS(), 'sss')
     const { routes, location } = this.props
-    const { transRoute } = this.props.shared.toJS()
+    const { transRoute, loading } = this.props.shared.toJS()
     return <div styleName='wrap'>
       {
         transRoute.to
@@ -36,6 +40,7 @@ export class Main extends PureComponent {
       <div style={{position: 'fixed', bottom: 0, width: '100%', display: 'none'}}>
         <NavBar data={routes} />
       </div>
+      {loading ? <Toast><Loading color='#ccc' /></Toast> : null}
       <Prompt message={(location) => updateTitle(location, routes)} />
     </div>
   }
