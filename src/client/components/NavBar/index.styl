@@ -1,19 +1,19 @@
 @import "~common/global.styl"
 
 .wrap
-  G-layout-box()
+  box()
   .tab
     flex 1
     text-align center
-    margin 10px 0
+    margin px2rem(10) 0
     a
       color $color-normal
-      font-size $font-size1
+      font-size $font-size14
   .active
-    border-left 3px solid $color-dark
+    border(left,3px,$color-dark)
     a
       color $color-dark
-      font-size 1.3rem
+      font-size $font-size16
       font-weight bold
 .vertical
   flex-direction column
