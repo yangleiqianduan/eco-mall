@@ -11,7 +11,6 @@ export default class extends PureComponent {
     let selected = this.props.selected;
     let bool = selected.includes(item);
     if((this.props.limited != this.props.selected.length) || bool) {
-    //   let value = bool ? selected.filter(i => i != item) : [...selected, item]
       this.props.onChange(item);
     }
   }

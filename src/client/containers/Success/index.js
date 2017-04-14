@@ -9,9 +9,7 @@ import * as actions from 'actions/success'
 export class Success extends PureComponent {
 
   changeItem = (value) => {
-    console.log(value, 'sss')
     this.props.dispatch(actions.selectItem(value));
-    console.log(this.props.data.toJS().selected)
   };
   render () {
     const { reason, selected } = this.props.data.toJS();
@@ -20,9 +18,14 @@ export class Success extends PureComponent {
       <div styleName='title'>恭喜你预约成功</div>
       <div styleName='tip'>开卖前会短信通知</div>
       <div styleName='reason'>
+        <div styleName='line left'></div>
         <div styleName='head'>商品的什么特点吸引了你？</div>
+        <div styleName='line right'></div>
         <div styleName='tip'>最多可以选3个</div>
         <SelectItems list={reason} selected={selected} limited={limited} onChange={this.changeItem.bind(this)}/>
+        <div styleName='tip'>以上皆不是，有其他理由</div>
+        <textarea/>
+        <div styleName='submit'>提交</div>
       </div>
     </div>
   }

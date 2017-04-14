@@ -3,8 +3,8 @@ import * as actionType from 'actions/success'
 
 export default (state = fromJS(initState), action) => {
   switch (action.type) {
-    case actionType.selectItem:
-      return state.updateIn(selected, list => list.includes(action.payload) ? list.filter(i => i != action.payload) : [...list, action.payload])
+    case actionType.SELECT_ITEM:
+      return state.updateIn(['selected'], list => list.includes(action.payload) ? list.filter(i => i != action.payload) : list.push(action.payload))
     default:
       return state
   }
