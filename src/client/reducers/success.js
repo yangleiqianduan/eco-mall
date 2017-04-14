@@ -1,10 +1,10 @@
 import { fromJS } from 'immutable'
-import * as actions from 'actions/home'
+import * as actionType from 'actions/success'
 
 export default (state = fromJS(initState), action) => {
   switch (action.type) {
-    case actions.SELECT_ITEM:
-      return state.set({'select': action.payload})
+    case actionType.selectItem:
+      return state.updateIn(selected, list => list.includes(action.payload) ? list.filter(i => i != action.payload) : [...list, action.payload])
     default:
       return state
   }
@@ -21,6 +21,6 @@ const initState = {
     '商品性质',
     '有实际需要'
   ],
-  selected: '',
+  selected: ['价格'],
   other: ''
 }
