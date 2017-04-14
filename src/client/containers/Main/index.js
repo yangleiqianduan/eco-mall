@@ -4,10 +4,6 @@ import { withRouter, Prompt } from 'react-router'
 import { connect } from 'react-redux'
 import { updateTitle, parseQueryString } from 'common/utils'
 
-// import {
-//   changeRouter
-// } from 'actions/'
-
 import 'fe-reset'
 import CSSModules from 'react-css-modules'
 import styles from './index.styl'
@@ -37,7 +33,7 @@ export class Main extends PureComponent {
       {
         routes.map((route, i) => <Route key={i} {...route} location={Object.assign({}, location, {query: parseQueryString(location.search)})} />)
       }
-      <div style={{position: 'fixed', bottom: 0, width: '100%'}}>
+      <div style={{position: 'fixed', bottom: 0, width: '100%', display: 'none'}}>
         <NavBar data={routes} />
       </div>
       <Prompt message={(location) => updateTitle(location, routes)} />

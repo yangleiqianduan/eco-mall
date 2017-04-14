@@ -4,11 +4,11 @@
   overflow hidden
   transform translateZ(0)
   .empty
-    min-height 10rem
+    min-height px2rem(10)
 .title
   color $color-dark
-  font-size 1.4rem
-  padding 1rem 0 0.5rem
+  font-size $font-size14
+  padding px2rem(10) 0 px2rem(5)
 .desc
   color $color-light
 
@@ -18,15 +18,15 @@
   position absolute
   width 100%
   left 0
-  bottom 1rem
+  bottom px2rem(10)
   text-align center
   li
     display inline-block
-    margin 0 0.2rem
+    margin 0 px2rem(2)
     a
       display inline-block
-      width 0.8rem
-      height 0.2rem
+      width px2rem(8)
+      height px2rem(2)
       border none
       overflow hidden
       background rgba(255, 255, 255, 0.5)
@@ -35,5 +35,3 @@
     a
       background #fff
       color transparent
-    
-
