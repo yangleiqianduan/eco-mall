@@ -1,14 +1,26 @@
 @import "~common/global.styl"
 
 .wrap
-  G-layout-box()
-  margin 0 10px
+  box()
+  margin 0 50px
   flex-wrap wrap
   >div
-    width 50%
+    width 40%
+    margin 5px
+    height 30px
+    line-height 30px
 
   .selected
-    border 1px
-    color red
+    border(all, 1px, $color-dark)
+    color $color-dark
+  .selected::before
+    content ''
+    position absolute
+    display block
+    width 0
+    height 0
+    border-top 10px solid $color-dark
+    border-right 10px solid transparent
   .unselected
-    border 2px
+    border(all, 1px, $color-light)
+    color $color-light
