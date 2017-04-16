@@ -19,7 +19,7 @@ $color-tag = #394043
 
 // 将 px 转换成 rem
 px2rem(arguments=12)
-  (arguments+0rem) / $root-size
+  (arguments / $root-size)rem
 
 // 处理浏览器私有前缀
 prefixed(prop,args)
@@ -60,7 +60,7 @@ border(path=all,width=1px,color=$color-border,style=solid)
     border-left width style color
     if width==1px
       border-left .5px style color
-      
+
 // 按钮
 btn()
   text-align center
