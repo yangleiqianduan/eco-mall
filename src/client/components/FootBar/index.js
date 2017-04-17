@@ -2,19 +2,16 @@ import React, { PureComponent, PropTypes } from 'react'
 import CSSModules from 'react-css-modules'
 import styles from './index.styl'
 
+import Button from 'components/Button/'
+
 @CSSModules(styles, {allowMultiple: true})
 export default class extends PureComponent {
-  static propTypes = {
-    onChange: PropTypes.func,
-  }
-  handleClick = (e) => {
-    this.props.onClick(e)
-  }
   render () {
+    const { onBuy } = this.props
     return <div styleName='wrap'>
-      <div styleName='content' onClick={this.handleClick.bind(this)}>
-        <div>{this.props.icon}</div>
-        <div>{this.props.text}</div>
+      <div styleName='content'>
+        <div styleName='callUs'>icon</div>
+        <div styleName='buyArea'><Button bright onClick={onBuy}>立即预约</Button></div>
       </div>
     </div>
   }

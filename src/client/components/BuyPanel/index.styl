@@ -1,10 +1,12 @@
 @import "~common/global.styl"
 
 .wrap
+  removeShape()
   display-flex()
   position fixed
   bottom 0
   width 100%
+  z-index 5
   .infoContainer
     height 75%
     width 100%
@@ -32,8 +34,6 @@
       margin-right px2rem(30)
       margin-top px2rem(8)
       word-break break-all
-      transform(scale(.8))
-      transform-origin()
     .close
       position absolute
       top 0
@@ -62,6 +62,15 @@
         font-size px2rem(15)
       .subContainer.focus
         border(bottom, 1px, #394043)
+    .btnArea
+      position fixed
+      bottom 0
+      width 100%
+      font-size $font-size14
+      .container
+        width px2rem(355)
+        height px2rem(55)
+        margin 0 auto 10px auto
   .cover
     opacity .7
     height 100%

@@ -7,6 +7,7 @@
     "server": "NODE_ENV=production redskull build --noHash true"
   },
   "dependencies": {
+    "classnames": "^2.2.5",
     "fe-reset": "^1.0.9",
     "history": "^4.3.0",
     "immutable": "^3.8.1",

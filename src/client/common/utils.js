@@ -102,3 +102,8 @@ export const parseQueryString = (search = '') => {
   })
   return query
 }
+
+// 延时函数
+export const delay = (t) => new Promise((resolve) => {
+  setTimeout(() => resolve(), t * 1000)
+})

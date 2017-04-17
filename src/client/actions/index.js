@@ -1,3 +1,6 @@
+import fetch from 'common/fetch'
+import * as api from 'constants/api'
+import { delay } from 'common/utils'
 
 // 更新Loading遮罩状态
 export const UPDATE_LOADING = 'UPDATE_LOADING'
@@ -39,4 +42,30 @@ export const alert = data => dispatch => {
     type: 'alert',
     title: '提示'
   }, typeof data === 'string' ? {text: data, show: true} : data)))
+}
+
+export const UPDATE_CATEGPRYLIST = 'UPDATE_CATEGPRYLIST_SHARED'
+export const UPDATE_CATEGPRYLIST_ACTION = (payload) => ({
+  type: UPDATE_CATEGPRYLIST,
+  payload
+})
+
+// 获取类目列表
+export const getCateoryList = () => dispatch => {
+  fetch(api.getCategoryList)
+  .then(res => {
+    dispatch(UPDATE_CATEGPRYLIST_ACTION((res || {}).data || []))
+  })
+}
+
+export const UPDATE_TOAST = 'UPDATE_TOAST_SHARED'
+export const UPDATE_TOAST_ACTION = (payload) => ({
+  type: UPDATE_TOAST,
+  payload
+})
+
+export const showToast = data => async dispatch => {
+  await dispatch(UPDATE_TOAST_ACTION({show: true, text: data}))
+  await delay(1)
+  await dispatch(UPDATE_TOAST_ACTION({show: false, text: ''}))
 }

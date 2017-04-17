@@ -1,17 +1,21 @@
 import React, { PureComponent } from 'react'
 import { connect } from 'react-redux'
-import { createArray } from 'common/utils'
 
 import CSSModules from 'react-css-modules'
 import styles from './index.styl'
+
+import { Link } from 'react-router-dom'
 import FootBar from 'components/FootBar/'
 import Slider from 'components/Slider/'
 import BuyPanel from 'components/BuyPanel'
 
+import * as actions from 'actions/detail'
+
 @CSSModules(styles, {allowMultiple: true})
 export class Detail extends PureComponent {
   state={
-    show: false
+    show: false,
+    currentImage: 0
   }
   handleBuyItem = () => {
     this.setState({show: true})
@@ -19,11 +23,29 @@ export class Detail extends PureComponent {
   handleCover = () => {
     this.setState({show: false})
   }
+  handleSubmit = () => {
+    let data = this.props.data.toJS().buyInfo.content
+    let param = {
+      telNo: data[0].value,
+      sysNo: data[0].value
+    }
+    console.log(param)
+  }
+  handleChangeBuyInfo = (map, e) => {
+    let value = e.target.value
+    this.props.dispatch(actions.UPDATE_ORDER_INFO_ACTION(['buyInfo'].concat(map), value))
+  }
   render () {
-    const { banner, baseInfo, choose, detailInfo, goodsStandard ,ensureInfo , telUs} = this.props.data.toJS()
+    const { banner, baseInfo, choose, detailInfo, goodsStandard, ensureInfo, telUs, buyInfo } = this.props.data.toJS()
+    const { currentImage } = this.state
     return <div styleName='wrap'>
       <section styleName='banner'>
-        <Slider data={banner} />
+        <Slider data={banner} setting={{dots: false, autoplay: false, afterChange: (e) => this.setState({currentImage: e})}} />
+        {
+          banner.length > 0
+          ? <div styleName='page'><strong>{currentImage + 1}</strong>/{banner.length}</div>
+          : null
+        }
       </section>
       <section styleName='card baseInfo'>
         <header>
@@ -32,13 +54,13 @@ export class Detail extends PureComponent {
             {
               baseInfo.tags
               ? <div styleName='tags'>
-                  {
-                    baseInfo.tags.map((item,i) => {
-                      return <span styleName='item' key={i}>{item} ></span>
-                    })
-                  }
-                </div>
-              : <div styleName='tags'></div>
+                {
+                  baseInfo.tags.map((item, i) => {
+                    return <span styleName='item' key={i}>{item} ></span>
+                  })
+                }
+              </div>
+              : <div styleName='tags' />
             }
           </div>
           <div styleName='right'>
@@ -54,9 +76,7 @@ export class Detail extends PureComponent {
         <footer>
           <ul>
             {
-              baseInfo.tips.map((item,i) => {
-                return <li key={i} styleName='item'>{item}</li>
-              })
+              baseInfo.tips.map((item, i) => <li key={i} styleName='item'>{item}</li>)
             }
           </ul>
         </footer>
@@ -68,7 +88,7 @@ export class Detail extends PureComponent {
 
       <section styleName='card detailInfo'>
         <h2>商品详情</h2>
-        <img src={detailInfo.pic} alt=""/>
+        <img src={detailInfo.pic} alt='' />
       </section>
 
       <section styleName='card goodsStandard'>
@@ -89,31 +109,32 @@ export class Detail extends PureComponent {
         <h2>售后保障</h2>
         <ul>
           {
-            ensureInfo.map((item, i) => {
-              return  <li key={i}>
-                <div styleName='picWrap'><img src={item.icon} alt=""/></div>
-                <div>
-                  <p styleName='tit'>{item.tit}</p>
-                  <p styleName='info'>{item.info}</p>
-                </div>
-              </li>
-            })
+            ensureInfo.map((item, i) => <li key={i}>
+              <div styleName='picWrap'><img src={item.icon} /></div>
+              <div>
+                <p styleName='tit'>{item.tit}</p>
+                <p styleName='info'>{item.info}</p>
+              </div>
+            </li>)
           }
         </ul>
       </section>
 
       <section styleName='card telUs'>
-        <a href="#"><img src={telUs.pic} alt=""/></a>
+        <Link to='/want'><img src={telUs.pic} /></Link>
       </section>
       <BuyPanel 
         show={this.state.show} 
+        price={'￥'+buyInfo.price}
+        info={buyInfo.info}
+        content={buyInfo.content}
+        onChange={this.handleChangeBuyInfo.bind(this)}
+        onSubmit={this.handleSubmit.bind(this)}
         onClickCover={this.handleCover.bind(this)}
-        price={'￥2310'}
-        info={'预定111111111111112222222222333333'}
-        content={[{label: '手机号', type: 'text'}, {label: '系统号', type: 'text'}]}
       >
       </BuyPanel>
-      <FootBar icon={null} text={'确认购买'} onClick={this.handleBuyItem.bind(this)}/>
+
+      <FootBar onBuy={this.handleBuyItem.bind(this)} />
     </div>
   }
 }
