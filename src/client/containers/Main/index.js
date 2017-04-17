@@ -38,7 +38,7 @@ export class Main extends PureComponent {
         routes.map((route, i) => <Route key={i} {...route} location={Object.assign({}, location, {query: parseQueryString(location.search)})} />)
       }
       <div style={{position: 'fixed', bottom: 0, width: '100%'}}>
-        <NavBar data={routes} />
+        
       </div>
       <Prompt message={(location) => updateTitle(location, routes)} />
     </div>

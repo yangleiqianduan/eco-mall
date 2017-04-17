@@ -2,16 +2,23 @@ import React, { PureComponent } from 'react'
 import { connect } from 'react-redux'
 import { createArray } from 'common/utils'
 
-import Slider from 'components/Slider/'
-
 import CSSModules from 'react-css-modules'
 import styles from './index.styl'
 import FootBar from 'components/FootBar/'
+import Slider from 'components/Slider/'
+import BuyPanel from 'components/BuyPanel'
 
 @CSSModules(styles, {allowMultiple: true})
 export class Detail extends PureComponent {
-
-
+  state={
+    show: false
+  }
+  handleBuyItem = () => {
+    this.setState({show: true})
+  } 
+  handleCover = () => {
+    this.setState({show: false})
+  }
   render () {
     const { banner, baseInfo, choose, detailInfo, goodsStandard ,ensureInfo , telUs} = this.props.data.toJS()
     return <div styleName='wrap'>
@@ -98,8 +105,15 @@ export class Detail extends PureComponent {
       <section styleName='card telUs'>
         <a href="#"><img src={telUs.pic} alt=""/></a>
       </section>
-
-      <FootBar icon={null} button={null} />
+      <BuyPanel 
+        show={this.state.show} 
+        onClickCover={this.handleCover.bind(this)}
+        price={'￥2310'}
+        info={'预定111111111111112222222222333333'}
+        content={[{label: '手机号', type: 'text'}, {label: '系统号', type: 'text'}]}
+      >
+      </BuyPanel>
+      <FootBar icon={null} text={'确认购买'} onClick={this.handleBuyItem.bind(this)}/>
     </div>
   }
 }

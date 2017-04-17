@@ -8,6 +8,7 @@ $font-size20 = 2rem
 // 通用色
 $color-white = #fff
 $color-gray = #f6f6f6
+$color-red =#ff5b5b
 $color-dark = #333333
 $color-normal = #6B7072
 $color-light = #BBBBBB
@@ -40,7 +41,9 @@ transform-origin(arguments = 0 0)
 
 // 处理border
 border(path=all,width=1px,color=$color-border,style=solid)
-  if path==all
+  if path==none
+    border none
+  else if path==all
     border width style color
     if width==1px
       border .5px style color
