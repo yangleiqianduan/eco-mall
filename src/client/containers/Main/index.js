@@ -27,7 +27,7 @@ export class Main extends PureComponent {
   render () {
     console.log(this.props.shared.toJS(), 'sss')
     const { routes, location } = this.props
-    const { transRoute, loading } = this.props.shared.toJS()
+    const { transRoute, loading, toast } = this.props.shared.toJS()
     return <div styleName='wrap'>
       {
         transRoute.to
@@ -40,6 +40,7 @@ export class Main extends PureComponent {
       <div style={{position: 'fixed', bottom: 0, width: '100%', display: 'none'}}>
         <NavBar data={routes} />
       </div>
+      {toast.show ? <Toast>{toast.text}</Toast> : null}
       {loading ? <Toast><Loading color='#ccc' /></Toast> : null}
       <Prompt message={(location) => updateTitle(location, routes)} />
     </div>

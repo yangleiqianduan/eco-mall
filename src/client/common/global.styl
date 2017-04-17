@@ -71,8 +71,8 @@ btn()
   user-select none
   transition all .1s
 .brightBtn
-  background #ffeded
-  color $color-bright
+  background $color-bright
+  color $color-dark
   &:active
     background $color-bright + 60%
   &.disabled
@@ -82,6 +82,8 @@ btn()
 .darkBtn
   background $color-dark
   color #fff
+  &.disabled
+    background $color-dark + 40%
   &:active
     background $color-dark + 40%
   btn()

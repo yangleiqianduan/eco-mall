@@ -36,6 +36,11 @@ export default (state = initState, action) => {
     case actions.UPDATE_SHOPCART_COUNT:
       return state.set('shoppingCartCount', action.payload)
 
+    case actions.UPDATE_TOAST:
+      return state.merge({
+        toast: action.payload
+      })
+
     default:
       return state
   }
@@ -44,6 +49,10 @@ export default (state = initState, action) => {
 const initState = fromJS({
   loading: false,
   loaded: {},
+  toast: {
+    show: false,
+    text: ''
+  },
   userInfo: {},
   modal: {
     show: false,

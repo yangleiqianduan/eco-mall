@@ -9,6 +9,10 @@ export const getCategoryList = '/web/category/list'                         // �
 // 商品列表页
 export const getItems = '/web/product/search/list'                          // 获取商品列表
 
+// 需要页面
+export const upload = '/web/product/image/upload'                           // 图片上传
+export const submitRequire = '/web/product/want/create'                     // 提交想要买什么
+
 export const host = {
   dev: 'http://10.33.70.102:8060',
   // dev: 'http://lmall.lianjia.com:8070',

@@ -1,5 +1,6 @@
 import fetch from 'common/fetch'
 import * as api from 'constants/api'
+import { delay } from 'common/utils'
 
 // 更新Loading遮罩状态
 export const UPDATE_LOADING = 'UPDATE_LOADING'
@@ -55,4 +56,16 @@ export const getCateoryList = () => dispatch => {
   .then(res => {
     dispatch(UPDATE_CATEGPRYLIST_ACTION((res || {}).data || []))
   })
+}
+
+export const UPDATE_TOAST = 'UPDATE_TOAST_SHARED'
+export const UPDATE_TOAST_ACTION = (payload) => ({
+  type: UPDATE_TOAST,
+  payload
+})
+
+export const showToast = data => async dispatch => {
+  await dispatch(UPDATE_TOAST_ACTION({show: true, text: data}))
+  await delay(1)
+  await dispatch(UPDATE_TOAST_ACTION({show: false, text: ''}))
 }
