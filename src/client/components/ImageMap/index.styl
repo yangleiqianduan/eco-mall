@@ -1,0 +1,44 @@
+@import "~common/global.styl"
+
+.wrap
+  background $color-white
+  .imgOuter
+    position relative
+  .tag
+    position absolute
+    box()
+    align-items center
+  .tagPoint
+    width px2rem(9)
+    height px2rem(9)
+    border-radius 50%
+    background $color-dark
+    border all px2rem(1) $color-bright
+  .tagContainer
+    margin-left px2rem(10)
+    color $color-white
+    background rgba(0,0,0 .6)
+    border-radius px2rem(4)
+    padding px2rem(5) px2rem(10)
+    position relative
+    align-items center
+    box()
+    &:before
+      position absolute
+      right 100%
+      width 0
+      height 0
+      border-top px2rem(3) solid transparent
+      border-right px2rem(6) solid rgba(0,0,0 .6)
+      border-bottom px2rem(3) solid transparent
+      content ' '
+      height px2rem(5)
+      width px2rem(5)
+      background transparent
+  .img
+    width 100%
+  section
+    padding px2rem(20) px2rem(16)
+    h2
+      font-size $font-size18
+      padding-bottom px2rem(10)

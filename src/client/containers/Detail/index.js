@@ -1,12 +1,12 @@
 import React, { PureComponent } from 'react'
 import { connect } from 'react-redux'
 
-import Slider from 'components/Slider/'
-
 import CSSModules from 'react-css-modules'
 import styles from './index.styl'
+import wantPic from 'common/img/want.png'
 
 import { Link } from 'react-router-dom'
+import Slider from 'components/Slider/'
 import FootBar from 'components/FootBar/'
 
 @CSSModules(styles, {allowMultiple: true})
@@ -16,7 +16,7 @@ export class Detail extends PureComponent {
   }
 
   render () {
-    const { banner, baseInfo, choose, detailInfo, goodsStandard, ensureInfo, telUs } = this.props.data.toJS()
+    const { banner, baseInfo, choose, detailInfo, goodsStandard, ensureInfo } = this.props.data.toJS()
     const { currentImage } = this.state
     return <div styleName='wrap'>
       <section styleName='banner'>
@@ -101,7 +101,7 @@ export class Detail extends PureComponent {
       </section>
 
       <section styleName='card telUs'>
-        <Link to='/want'><img src={telUs.pic} /></Link>
+        <Link to='/want'><img src={wantPic} /></Link>
       </section>
 
       <FootBar />
