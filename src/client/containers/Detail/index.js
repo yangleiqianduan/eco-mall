@@ -104,7 +104,7 @@ export class Detail extends PureComponent {
         <Link to='/want'><img src={telUs.pic} /></Link>
       </section>
 
-      <FootBar icon={null} button={null} />
+      <FootBar />
     </div>
   }
 }
