@@ -11,7 +11,9 @@ export default class extends PureComponent {
   propstypes = {
     data: PropTypes.array,
     settings: PropTypes.object,
-    slideStyle: PropTypes.object
+    slideStyle: PropTypes.object,
+    needDesc: PropTypes.bool,
+    onClick: PropTypes.func
   }
   defaultProps = {
     data: [],
@@ -20,15 +22,14 @@ export default class extends PureComponent {
   }
 
   render () {
-    const { data, setting, slideStyle, needDesc } = this.props
+    const { data, setting, slideStyle, needDesc, onClick } = this.props
     const settings = Object.assign({
       dots: true,
       customPaging: () => <a />,
-      infinite: true,
+      infinite: false,
       speed: 800,
       slidesToShow: 1,
       slidesToScroll: 1,
-      lazyLoad: true,
       arrows: false,
       autoplay: data.length > 1,
       autoplaySpeed: 5000
@@ -42,7 +43,7 @@ export default class extends PureComponent {
           : <Slider {...settings}>
             {
               data.map((item, i) => <div key={i} style={slideStyle}>
-                <Link to={item.redirect_url ? item.redirect_url : ''}>
+                <Link onClick={onClick} to={item.redirect_url ? item.redirect_url : ''}>
                   <img className='slick-img' src={item.img_url} />
                   {
                     needDesc

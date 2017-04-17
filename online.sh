@@ -33,7 +33,6 @@ rm -rf ${FE_DEST_PATH}
 
 mkdir -p ${FE_DEST_PATH}
 cp -R -f ${FE_SOURCE_PATH}dist/client/* ${FE_DEST_PATH}
-cp ${FE_SOURCE_PATH}/src/client/config.js  ${FE_DEST_PATH}/
 
 end=$(date +%s)
 time=$(( $end - $start ))

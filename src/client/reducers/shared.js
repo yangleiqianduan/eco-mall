@@ -28,7 +28,7 @@ export default (state = initState, action) => {
         modal: action.payload
       })
 
-    case actions.UPDATE_CATEGORY:
+    case actions.UPDATE_CATEGPRYLIST:
       return state.merge({
         categoryList: action.payload
       })

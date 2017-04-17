@@ -13,6 +13,7 @@ $color-normal = #6B7072
 $color-light = #BBBBBB
 $color-bright = #FFD819
 $color-spc = #FF5848
+$color-red = #FF5A5A
 
 $color-border = #E5E5E5
 $color-tag = #394043
@@ -40,7 +41,9 @@ transform-origin(arguments = 0 0)
 
 // 处理border
 border(path=all,width=1px,color=$color-border,style=solid)
-  if path==all
+  if path==none
+    border none
+  else if path==all
     border width style color
     if width==1px
       border .5px style color
@@ -112,9 +115,9 @@ G-cut-txt()
   overflow hidden
   white-space nowrap
 G-cut-p(arguments = 2)
-		display -webkit-box !important
-		overflow hidden
-		text-overflow ellipsis
-		word-break break-all
-		-webkit-box-orient vertical
-		-webkit-line-clamp arguments
+	display -webkit-box !important
+	overflow hidden
+	text-overflow ellipsis
+	word-break break-all
+	-webkit-box-orient vertical
+	-webkit-line-clamp arguments

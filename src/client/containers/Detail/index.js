@@ -1,22 +1,31 @@
 import React, { PureComponent } from 'react'
 import { connect } from 'react-redux'
-import { createArray } from 'common/utils'
 
 import Slider from 'components/Slider/'
 
 import CSSModules from 'react-css-modules'
 import styles from './index.styl'
+
+import { Link } from 'react-router-dom'
 import FootBar from 'components/FootBar/'
 
 @CSSModules(styles, {allowMultiple: true})
 export class Detail extends PureComponent {
-
+  state = {
+    currentImage: 0
+  }
 
   render () {
-    const { banner, baseInfo, choose, detailInfo, goodsStandard ,ensureInfo , telUs} = this.props.data.toJS()
+    const { banner, baseInfo, choose, detailInfo, goodsStandard, ensureInfo, telUs } = this.props.data.toJS()
+    const { currentImage } = this.state
     return <div styleName='wrap'>
       <section styleName='banner'>
-        <Slider data={banner} />
+        <Slider data={banner} setting={{dots: false, autoplay: false, afterChange: (e) => this.setState({currentImage: e})}} />
+        {
+          banner.length > 0
+          ? <div styleName='page'><strong>{currentImage + 1}</strong>/{banner.length}</div>
+          : null
+        }
       </section>
       <section styleName='card baseInfo'>
         <header>
@@ -25,13 +34,13 @@ export class Detail extends PureComponent {
             {
               baseInfo.tags
               ? <div styleName='tags'>
-                  {
-                    baseInfo.tags.map((item,i) => {
-                      return <span styleName='item' key={i}>{item} ></span>
-                    })
-                  }
-                </div>
-              : <div styleName='tags'></div>
+                {
+                  baseInfo.tags.map((item, i) => {
+                    return <span styleName='item' key={i}>{item} ></span>
+                  })
+                }
+              </div>
+              : <div styleName='tags' />
             }
           </div>
           <div styleName='right'>
@@ -47,9 +56,7 @@ export class Detail extends PureComponent {
         <footer>
           <ul>
             {
-              baseInfo.tips.map((item,i) => {
-                return <li key={i} styleName='item'>{item}</li>
-              })
+              baseInfo.tips.map((item, i) => <li key={i} styleName='item'>{item}</li>)
             }
           </ul>
         </footer>
@@ -61,7 +68,7 @@ export class Detail extends PureComponent {
 
       <section styleName='card detailInfo'>
         <h2>商品详情</h2>
-        <img src={detailInfo.pic} alt=""/>
+        <img src={detailInfo.pic} alt='' />
       </section>
 
       <section styleName='card goodsStandard'>
@@ -82,21 +89,19 @@ export class Detail extends PureComponent {
         <h2>售后保障</h2>
         <ul>
           {
-            ensureInfo.map((item, i) => {
-              return  <li key={i}>
-                <div styleName='picWrap'><img src={item.icon} alt=""/></div>
-                <div>
-                  <p styleName='tit'>{item.tit}</p>
-                  <p styleName='info'>{item.info}</p>
-                </div>
-              </li>
-            })
+            ensureInfo.map((item, i) => <li key={i}>
+              <div styleName='picWrap'><img src={item.icon} /></div>
+              <div>
+                <p styleName='tit'>{item.tit}</p>
+                <p styleName='info'>{item.info}</p>
+              </div>
+            </li>)
           }
         </ul>
       </section>
 
       <section styleName='card telUs'>
-        <a href="#"><img src={telUs.pic} alt=""/></a>
+        <Link to='/want'><img src={telUs.pic} /></Link>
       </section>
 
       <FootBar icon={null} button={null} />
