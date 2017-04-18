@@ -17,7 +17,7 @@ export const submitRequire = '/web/product/want/create'                     // �
 export const collocation = '/web/product/mix/details'                       // 获取搭配详情
 
 export const host = {
-  dev: 'http://10.33.70.102:8060',
+  dev: 'http://10.33.78.126:8050',
   // dev: 'http://lmall.lianjia.com:8070',
   prod: ''
 }

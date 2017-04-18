@@ -7,7 +7,7 @@ import Icon from 'components/Icon/'
 @CSSModules(styles, {allowMultiple: true})
 export default class extends PureComponent {
   render () {
-    const items = [1, 2, 3]
+    const items = this.props.data.productInfo || []
     return <div styleName='wrap'>
       <div styleName='card'>
         <div>
