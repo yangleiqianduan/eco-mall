@@ -27,17 +27,19 @@ export default class extends PureComponent {
       ? <div styleName='cover' onClick={this.handleClick.bind(this)}></div>
       : null
     }
-    {
-      this.props.show
-      ? <div styleName='infoContainer'>
-          <div styleName='picContainer'>
+    
+      <div styleName={this.props.show ? 'infoContainer show' : 'infoContainer hide'}>
+          <div styleName='skuContainer'>
+            <div styleName='skuImg'>
+              <p><img src='https://gw.alicdn.com/imgextra/i1/833274142/TB2IaQTX00opuFjSZFxXXaDNVXa_!!833274142.jpg_970x970q50s150.jpg_.webp' /></p>
+            </div>
+            <div styleName='skuInfo'>
+              <div styleName='price'>{this.props.price}</div>
+              <div styleName='info'>{this.props.info}</div>
+              <div styleName='close' onClick={this.handleClick.bind(this)}>&times;</div>
+            </div>
           </div>
-          <div>
-          <div styleName='price'>{this.props.price}</div>
-          <div styleName='info'>{this.props.info}</div>
-          <div styleName='close' onClick={this.handleClick.bind(this)}>&times;</div>
           <div styleName='line'></div>
-          </div>
           {
             this.props.content.map((item, i) => {
             return <div key={i} styleName='subContainer focus'>
@@ -53,10 +55,7 @@ export default class extends PureComponent {
               <Button onClick={this.handleBuy.bind(this)}>确定预约</Button>
             </div>
           </div>
-        </div>
-      : null
-    }
-    
+        </div>    
     </div>
   }
 }

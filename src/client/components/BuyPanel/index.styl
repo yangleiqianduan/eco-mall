@@ -1,5 +1,15 @@
 @import "~common/global.styl"
 
+@keyframes show
+{
+  from {top: 300px;}
+  to {top: 25%;}
+}
+@keyframes hide
+{
+  from {top: 25%;}
+  to {top: 300;}
+}
 .wrap
   removeShape()
   display-flex()
@@ -7,41 +17,51 @@
   bottom 0
   width 100%
   z-index 5
+
   .infoContainer
+    transform opacity 0
     height 75%
     width 100%
     position fixed
-    bottom 0
     left 0
     z-index 101
     background-color $color-white
-    .picContainer
-      height 28%
-      width 35%
-      position absolute
-      z-index 102
-      top -10%
-      left 7%
-      background-color $color-gray
-    .price
-      color $color-red
-      font-size $font-size20
-      margin-top px2rem(20)
-      margin-left 44%
-    .info
-      color #9c9fa1
-      margin-left 45%
-      margin-right px2rem(30)
-      margin-top px2rem(8)
-      word-break break-all
+    transition transform .3s ease-out
+    .skuContainer
+      box() 
+      .skuImg
+        height px2rem(80)
+        width px2rem(110)
+        position relative
+        margin-right px2rem(10)
+        margin-left px2rem(25)
+        background-color $color-gray
+        p
+          position absolute
+          color white
+          height px2rem(110)
+          width px2rem(110)
+          overflow hidden
+          bottom 0
+      .skuInfo
+        .price
+          color $color-red
+          font-size $font-size20
+          margin-top px2rem(20)
+        .info
+          color #9c9fa1
+          width px2rem(165)
+          margin-right px2rem(30)
+          margin-top px2rem(8)
+          word-break break-all
     .close
       position absolute
-      top 0
-      right px2rem(10)
+      top px2rem(20)
+      right px2rem(25)
       width px2rem(20)
       height px2rem(20)
       color #9c9fa1
-      font-size px2rem(40)
+      font-size px2rem(20)
     .line
       border(bottom, 1px, $color-border)
       margin 40px auto
@@ -71,6 +91,15 @@
         width px2rem(355)
         height px2rem(55)
         margin 0 auto 10px auto
+  .show
+    visibility visible
+    opacity 1
+    transform translate(0, -100%)
+  .hide
+    transform translate(0, 0)
+    .skuImg
+      p
+        opacity 0
   .cover
     opacity .7
     height 100%
