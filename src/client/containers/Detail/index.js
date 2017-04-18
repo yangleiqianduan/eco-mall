@@ -9,17 +9,25 @@ import FootBar from 'components/FootBar/'
 import Slider from 'components/Slider/'
 import BuyPanel from 'components/BuyPanel'
 
-import * as actions from 'actions/detail'
+import { getItemDetail } from 'actions/detail'
 
 @CSSModules(styles, {allowMultiple: true})
 export class Detail extends PureComponent {
+  componentDidMount () {
+    console.log(this.props)
+    // const query = this.props.location.query
+    this.getItemDetail(123)
+  }
+  getItemDetail = (query) => {
+    this.props.dispatch(getItemDetail(query))
+  }
   state={
     show: false,
     currentImage: 0
   }
   handleBuyItem = () => {
     this.setState({show: true})
-  } 
+  }
   handleCover = () => {
     this.setState({show: false})
   }
@@ -123,8 +131,8 @@ export class Detail extends PureComponent {
       <section styleName='card telUs'>
         <Link to='/want'><img src={telUs.pic} /></Link>
       </section>
-      <BuyPanel 
-        show={this.state.show} 
+      <BuyPanel
+        show={this.state.show}
         price={'￥'+buyInfo.price}
         info={buyInfo.info}
         content={buyInfo.content}
