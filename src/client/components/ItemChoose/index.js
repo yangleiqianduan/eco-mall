@@ -4,10 +4,26 @@ import styles from './index.styl'
 
 @CSSModules(styles, {allowMultiple: true})
 export default class extends PureComponent {
+
+  formatData = (reqData) => {
+    let chooseInfo = []
+    reqData.product_attribute_info.sku_attribute_info.map(item => {
+      item.sku_attribute_value_info.map(subItem => {
+        chooseInfo.push(subItem.value)
+      })
+    })
+    return chooseInfo.join('，')
+  }
+
   render () {
-    const choose = this.props.data || []
-    return <div styleName='wrap'>
-        已选：<span>{choose.standard}</span>
-    </div>
+    const { reqData } = this.props.data || {}
+    let chooseInfo = ''
+    reqData && (chooseInfo = this.formatData(reqData))
+
+    if (chooseInfo) {
+      return <div styleName='wrap'>已选：<span> {chooseInfo} </span></div>
+    } else {
+      return <div styleName='wrap'>已选：</div>
+    }
   }
 }
