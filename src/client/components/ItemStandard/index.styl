@@ -1,0 +1,15 @@
+@import "~common/global.styl"
+
+.wrap
+  @extend .G-card
+  li
+    line-height px2rem(20)
+    padding px2rem(5)
+    display inline-block
+    width 50%
+    &:not(:last-child)
+      border(bottom,,,dashed)
+    &.long
+      width 100%
+  .tit
+    color $color-light
