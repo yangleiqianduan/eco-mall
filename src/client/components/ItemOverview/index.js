@@ -10,15 +10,14 @@ export default class extends PureComponent {
     baseInfo.title = reqData.product_name
     baseInfo.tags = []
     reqData.product_attribute_info.sku_attribute_info.map(item => {
-      item.sku_attribute_value_info.map(subItem => {
-        baseInfo.tags.push(subItem.value)
-      })
+      baseInfo.tags.push(item.sku_attribute_value_info[0].value)
     })
     baseInfo.salePrice = reqData.product_price_info[-1].sale_price
     baseInfo.marketPrice = reqData.product_price_info[-1].market_price
-    baseInfo.dirverMsg = reqData.dirver_msg || '暂无'
-    baseInfo.skuStore = reqData.product_price_info[-1].sku_store || '暂无'
-    baseInfo.dirverCity = reqData.dirver_city || '暂无'
+    baseInfo.deliveryMsg = reqData.delivery_msg || '暂无'
+    // baseInfo.skuStore = reqData.product_price_info[-1].sku_store || '暂无'
+    baseInfo.skuStore = reqData.product_inv_info.sku_inv[-1][-1] || '暂无'
+    baseInfo.deliveryCity = reqData.delivery_city || '暂无'
     baseInfo.tips = []
     reqData.service_assurance_info.map(item => {
       baseInfo.tips.push(item.service_assurance_name)
@@ -29,7 +28,6 @@ export default class extends PureComponent {
   render () {
     const { reqData } = this.props.data || {}
     let baseInfo = null
-    console.log('baseinfo::::::',reqData)
     reqData && (baseInfo = this.formatData(reqData))
 
     if(baseInfo) {
@@ -55,9 +53,9 @@ export default class extends PureComponent {
           </div>
         </header>
         <section styleName='main'>
-          <div>快递：{baseInfo.dirverMsg}</div>
+          <div>快递：{baseInfo.deliveryMsg}</div>
           <div>库存：{baseInfo.skuStore}</div>
-          <div>发货：{baseInfo.dirverCity}</div>
+          <div>发货：{baseInfo.deliveryCity}</div>
         </section>
         <footer>
           <ul>

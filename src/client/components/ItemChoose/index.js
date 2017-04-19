@@ -8,10 +8,9 @@ export default class extends PureComponent {
   formatData = (reqData) => {
     let chooseInfo = []
     reqData.product_attribute_info.sku_attribute_info.map(item => {
-      item.sku_attribute_value_info.map(subItem => {
-        chooseInfo.push(subItem.value)
-      })
+      chooseInfo.push(item.sku_attribute_value_info[0].value)
     })
+
     return chooseInfo.join('，')
   }
 

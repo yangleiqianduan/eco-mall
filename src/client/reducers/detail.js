@@ -11,35 +11,6 @@ export default (state = fromJS(initState), action) => {
 }
 
 const initState = {
-  goodsStandard: [
-    {
-      key: '编号',
-      value: 'HBmns32'
-    },
-    {
-      key: '发货地',
-      value: '北京'
-    },
-    {
-      key: '毛重',
-      value: '10KG'
-    },
-    {
-      key: '是否可定制',
-      value: '是',
-
-    },
-    {
-      key: '尺寸',
-      value: '1.8m x 2m x 0.6m',
-      long: true
-    },
-    {
-      key: '其它说明',
-      value: '暂无暂无暂无暂无暂无暂无暂无暂无暂无暂无暂无暂无暂无暂无暂无暂无暂无暂无暂无暂无暂无暂无暂无',
-      long: true
-    }
-  ],
   buyInfo: {
     price: '2310',
     info: '预定111111111111112222222222333333',
@@ -55,7 +26,7 @@ const initState = {
       tit: '7天发货',
       info: '链家承诺，非定制商品，下订单次日起7日内发货'
     },
-    { 
+    {
       type: 2,
       icon: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACoAAAAoCAYAAACIC2hQAAAABGdBTUEAALGPC/xhBQAABWFJREFUWAntWHlMXEUY/+1jFxKuIsVCS7kpyL0cai2l3Ec5lmKiprGmjTURm5JUo+n/xn9MjWI0pn9oxJjGHhrKcl8tR7lqy5EWWmmRq6QLFITlEMgudWaaJcuebx+HmvTbbN6bme/75jfz5rtG9JQQeNLKygrab/6OhwMD4DgOgQEBeDkmGmIrK54ahLOJ+ACla2lt70B5VTWUSiWcduyAenUVc3NzcHZ2hizzMGKio4Sj4CFpFmhv3z1cLS3DY4UC/n6+yM3Jho+XF1Pd/+AhGxsZHYWnhwfycnOwz8+Px7SWsxgFOvpoDMVyOSgY1127CMAshIeGGpzh1u1OyCsqMT09jbCQEByRZTMZg8wCO/WA/jUzA3l5Bejk9nZ2yMxIR+xr+9mZNDWHSq1GQ2MTaurqsbS8jAP7X0UWkXVwcDAlxntsDejS0hKqySQNTc0QiYDE+HikJSfBxsaGtzLKuLC4iKqaWjTdaIFYLEZKUiKSE+JhbW1tkR5dZgZUoRjHN+fPE+OYxysxMcjOzGAGo8tsSfvJ1BTkZeXo7O6Bi8tOFHyQj53E8ISSiCh8eu7LQtja2uLkieNw37NbqC6DcoPDw/ih6CeIyO/sxx+x42SQ0Uwn19Laxj5Xwan8TQdJ56YeIv+9k6Bnv4P4YKHEKSYm4ObmihecnITqMCu3190djsSoJiYnzfIaY+BWieO2lkjWjdNP9cvlK5ifn1/Xz6cxPDKCwm+/Y9avzS8hc6iJZxBKYkOCL7q4oKb+Gm51diElMQHJ5G/OaqemplFSToynq5sFBhocNpMMApVlZyEsNAQlZRUsbDa3tBJ/mkZ8o74/XVz8G1W1z9wR/bzvHn8HUVLpZmJkugwCpSM+3t44c/oU7t3/gwWAi1d+w/XGZuRkZUIaHgbq4JuabzCfqVKrkJ6STHxmEiQSoyo3BN6s1qCXAkH/nd3dKK+sxvc/FsHby5P53CkSMqMjI5FHQqbTFhojXaFZoJptoJ9TGh7O0rxieSkc7O3xYcFp+Pn6aFi29MkbKEVBc1Aaw1va2tmubhSkYnwcFy5eMrtAjrPiv6NmtQlgWF5eweDQMEteTHkVESf6d4Fq1nboYCzsSKZmijhTg/+lMc7G2gazpLzYSqLRb35hweKUURsTRw1iZmYWXT092v2b+t7a3o5lkkxvxPjE1Irv9Pai6OcLGBt7jNTkxA2tXHuFNGpV1tSwZDwqUorIiAjtYYveSRIuxvskDbt4+VeS4dehhaw+y0i41GjmiBWKaBlghGjUaiSVQnVtHStLEg7F4fVcmUkZI6rWupkfpXX5saNvIT4uFsUlpdCEyyOk4qQxX5ciwsKMFm80kaE1Fy30QkOCQXW4ubrqqrC4vVYzaUve7evDVXkZqEOmWVCeTAYvTw9tFr33B+RSgi7yWem8l8ns8zddOg+PjOLcV4X4/LNPzbong5EpNDgYIUFBa5cOXxR+TWK6lCUkunXPOEm86aLoOaeXESeOvb12GUFzAVM0q5w1NbxuzOCOanPQa5y6a9dR39DIEt+42APEKMKhUqlxu6sLbR03mfHR7ImeRXrmKalUKpz55Ky2KqPvfHbULFCNdqVyjuSmVSwp0WTqEgLqIAGekZYKO1IcapMGqD+5OQkKDNAe0ntPIuU0rQBMkcFPb0jA0dEBR998A9mHM/Dn0BA4EQdf4oN1AerK+vl4Iz01Rbfb4jZvoBrN9OaDWv120/8n1m/3zgid7/mOCt05Y3LPd9TYzgjtt9g9aSa6c7cXA4ODmqbekybLm0mCgd7v70cjuYDYLuIdQnUBPRobw+TkE91uvbYrSfH27HbT67e04x/3u/yZ0e8TmwAAAABJRU5ErkJggg==',
       tit: '送货入户',

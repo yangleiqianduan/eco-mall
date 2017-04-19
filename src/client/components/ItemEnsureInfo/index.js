@@ -6,10 +6,12 @@ import styles from './index.styl'
 export default class extends PureComponent {
   render () {
     // 所有的保障类型List（在FE维护）
-    const { ensureInfo } = this.props.data || []
-    // 具体产品拥有的（接口暂未提供，此处模拟）
-    let choose = [1,2,3]
-
+    const { ensureInfo, reqData } = this.props.data || []
+    // 具体产品拥有的
+    let choose = []
+    reqData.service_assurance_info.map(item => {
+      choose.push(item.service_assurance_code)
+    })
     let curEnsureInfo = []
     choose.map((chooseType, i) => {
       const chooseItem = ensureInfo.filter(item => item.type === chooseType)

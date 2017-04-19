@@ -15,7 +15,6 @@ import ItemStandard from 'components/ItemStandard/'
 import ItemEnsureInfo from 'components/ItemEnsureInfo/'
 import TelUs from 'components/TelUs/'
 import wantPic from 'common/img/want.png'
-import goodsDetailPic from 'common/img/goodsDetail.png'
 
 import { getItemDetail } from 'actions/detail'
 
@@ -67,7 +66,7 @@ export class Detail extends PureComponent {
 
   render () {
     const data = this.props.data.toJS() || {}
-    const { goodsStandard, buyInfo } = this.props.data.toJS()
+    const { buyInfo } = this.props.data.toJS()
     const { currentImage, showFullscreen } = this.state
     let banner = []
     data.reqData && (banner = this.formatData(data.reqData))
@@ -86,8 +85,8 @@ export class Detail extends PureComponent {
       </section>
       <section><ItemOverview data = { data } /></section>
       <section><ItemChoose data = { data } /></section>
-      <section><ItemDeatil data = { {pic: goodsDetailPic} } /></section>
-      <section><ItemStandard data = { goodsStandard } /></section>
+      <section><ItemDeatil data = { data } /></section>
+      <section><ItemStandard data = { data } /></section>
       <section><ItemEnsureInfo data = { data } /></section>
       <section><TelUs data={ {link: '/want', pic: wantPic} }/></section>
 
