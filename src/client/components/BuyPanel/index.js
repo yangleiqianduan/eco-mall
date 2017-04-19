@@ -31,7 +31,7 @@ export default class extends PureComponent {
       <div styleName={this.props.show ? 'infoContainer show' : 'infoContainer hide'}>
           <div styleName='skuContainer'>
             <div styleName='skuImg'>
-              <p><img src='https://gw.alicdn.com/imgextra/i1/833274142/TB2IaQTX00opuFjSZFxXXaDNVXa_!!833274142.jpg_970x970q50s150.jpg_.webp' /></p>
+              <p><img src={this.props.img} /></p>
             </div>
             <div styleName='skuInfo'>
               <div styleName='price'>{this.props.price}</div>

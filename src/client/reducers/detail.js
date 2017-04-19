@@ -69,6 +69,7 @@ const initState = {
   buyInfo: {
     price: '2310',
     info: '预定111111111111112222222222333333',
+    img: 'https://gw.alicdn.com/imgextra/i1/833274142/TB2IaQTX00opuFjSZFxXXaDNVXa_!!833274142.jpg_970x970q50s150.jpg_.webp',
     content: [
         {label: '手机号', type: 'text', value: ''}, 
         {label: '系统号', type: 'text', value: ''}

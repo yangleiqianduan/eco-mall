@@ -1,15 +1,4 @@
 @import "~common/global.styl"
-
-@keyframes show
-{
-  from {top: 300px;}
-  to {top: 25%;}
-}
-@keyframes hide
-{
-  from {top: 25%;}
-  to {top: 300;}
-}
 .wrap
   removeShape()
   display-flex()
@@ -24,6 +13,7 @@
     width 100%
     position fixed
     left 0
+    padding .14rem
     z-index 101
     background-color $color-white
     transition transform .3s ease-out
@@ -32,10 +22,8 @@
       .skuImg
         height px2rem(80)
         width px2rem(110)
+        margin .1rem
         position relative
-        margin-right px2rem(10)
-        margin-left px2rem(25)
-        background-color $color-gray
         p
           position absolute
           color white
@@ -44,13 +32,13 @@
           overflow hidden
           bottom 0
       .skuInfo
+        flex 1
         .price
           color $color-red
           font-size $font-size20
           margin-top px2rem(20)
         .info
           color #9c9fa1
-          width px2rem(165)
           margin-right px2rem(30)
           margin-top px2rem(8)
           word-break break-all
@@ -64,33 +52,32 @@
       font-size px2rem(20)
     .line
       border(bottom, 1px, $color-border)
-      margin 40px auto
-      width 355px
+      margin px2rem(20) auto px2rem(40) auto
     .subContainer
-      width 355px
       border(bottom, 1px, $color-border)
-      margin 40px auto
+      margin px2rem(10) auto
       .title
         font-size px2rem(15)
         color #9C9FA1
       input
         width 100%
-        height 35px
+        height px2rem(35)
         border(none)
-        margin-top 30px
+        margin-top px2rem(30)
         color #394043
         font-size px2rem(15)
       .subContainer.focus
         border(bottom, 1px, #394043)
     .btnArea
       position fixed
-      bottom 0
+      bottom 10rem
+      left 0
       width 100%
       font-size $font-size14
       .container
-        width px2rem(355)
+        width 3.55rem
         height px2rem(55)
-        margin 0 auto 10px auto
+        margin 0 auto px2rem(10) auto
   .show
     visibility visible
     opacity 1

@@ -127,6 +127,7 @@ export class Detail extends PureComponent {
         show={this.state.show} 
         price={'￥'+buyInfo.price}
         info={buyInfo.info}
+        img={buyInfo.img}
         content={buyInfo.content}
         onChange={this.handleChangeBuyInfo.bind(this)}
         onSubmit={this.handleSubmit.bind(this)}
