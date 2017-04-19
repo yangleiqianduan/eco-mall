@@ -69,7 +69,8 @@ btn()
   text-align center
   cursor pointer
   user-select none
-/*   transition all .1s */
+  -webkit-tap-highlight-color transparent
+  transition all .1s
 .brightBtn
   background $color-bright
   color $color-dark
@@ -85,7 +86,7 @@ btn()
   &.disabled
     background $color-dark + 40%
   &:active
-    background $color-dark + 40%
+    /* background $color-dark + 40% */
   btn()
 
 // 布局

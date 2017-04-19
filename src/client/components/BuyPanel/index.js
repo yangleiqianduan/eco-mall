@@ -10,15 +10,19 @@ export default class extends PureComponent {
     onChange: PropTypes.func,
     show: PropTypes.bool,
   }
-  
+  state = {
+    result: {}
+  }
   handleClick = (e) => {
     this.props.onClickCover(e)
   }
-  handleBuy = (e) => {
-    this.props.onSubmit(e)
+  handleSubmit = (e) => {
+    this.props.onSubmit(this.state.result, e)
   }
-  handleChange = (map, e) => {
-    this.props.onChange(map, e)
+  handleChange = (key, i, e) => {
+    let obj = {}
+    obj[key] = e.target.value
+    Object.assign(this.state.result, obj)
   }
   render () {
     return <div styleName='wrap'>
@@ -45,14 +49,14 @@ export default class extends PureComponent {
             return <div key={i} styleName='subContainer focus'>
               <div styleName='title'>{item.label}</div>
               <div>
-                <input type={item.type} placeholder={'请输入'+item.label} value={item.value} onChange={this.handleChange.bind(this, ['content', i, 'value'])} />
+                <input type={item.type} placeholder={'请输入'+item.label} onChange={this.handleChange.bind(this, item.key, i)} />
               </div>
             </div>
           })
           }
           <div styleName='btnArea'>
             <div styleName='container'>
-              <Button onClick={this.handleBuy.bind(this)}>确定预约</Button>
+              <Button onClick={this.handleSubmit.bind(this)}>确定预约</Button>
             </div>
           </div>
         </div>    
