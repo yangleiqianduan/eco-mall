@@ -29,7 +29,7 @@ export class Collocation extends PureComponent {
     this.setState({show: false})
   }
   handleSubmit = (result) => {
-    result.type_id = 1
+    result.type_id = 2
     result.appoint_id = this.props.location.query.id
     this.props.dispatch(confirmOrder(result))
   }
