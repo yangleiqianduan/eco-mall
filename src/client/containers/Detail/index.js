@@ -14,6 +14,8 @@ import ItemDeatil from 'components/ItemDeatil/'
 import ItemStandard from 'components/ItemStandard/'
 import ItemEnsureInfo from 'components/ItemEnsureInfo/'
 import TelUs from 'components/TelUs/'
+import wantPic from 'common/img/want.png'
+import goodsDetailPic from 'common/img/goodsDetail.png'
 
 import { getItemDetail } from 'actions/detail'
 
@@ -53,25 +55,41 @@ export class Detail extends PureComponent {
     e.preventDefault()
     this.setState({showFullscreen: true})
   }
+  formatData = (reqData) => {
+    let banner = []
+    reqData.product_image_info && reqData.product_image_info[-1].map(item => {
+      banner.push({
+        img_url: item.img_url
+      })
+    })
+    return banner
+  }
+
   render () {
-    const { banner, baseInfo, choose, detailInfo, goodsStandard, ensureInfo, buyInfo, reqData } = this.props.data.toJS()
+    const data = this.props.data.toJS() || {}
+    const { goodsStandard, buyInfo } = this.props.data.toJS()
     const { currentImage, showFullscreen } = this.state
+    let banner = []
+    data.reqData && (banner = this.formatData(data.reqData))
+
     return <div styleName='wrap'>
       <section styleName='banner'>
-        <Slider data={banner} onClick={this.handleShowFullscreen} setting={{dots: false, autoplay: false, afterChange: (e) => this.setState({currentImage: e})}} />
+        <Slider
+          data={banner}
+          onClick={this.handleShowFullscreen}
+          setting={{dots: false, autoplay: false, afterChange: (e) => this.setState({currentImage: e})}} />
         {
           banner.length > 0
           ? <div styleName='page'><strong>{currentImage + 1}</strong>/{banner.length}</div>
           : null
         }
       </section>
-
-      <section><ItemOverview data = { baseInfo } /></section>
-      <section><ItemChoose data = { choose } /></section>
-      <section><ItemDeatil data = { detailInfo } /></section>
+      <section><ItemOverview data = { data } /></section>
+      <section><ItemChoose data = { data } /></section>
+      <section><ItemDeatil data = { {pic: goodsDetailPic} } /></section>
       <section><ItemStandard data = { goodsStandard } /></section>
-      <section><ItemEnsureInfo data = { ensureInfo } /></section>
-      <section><TelUs data = {{}} /></section>
+      <section><ItemEnsureInfo data = { data } /></section>
+      <section><TelUs data={ {link: '/want', pic: wantPic} }/></section>
 
       <BuyPanel
         show={this.state.show}
