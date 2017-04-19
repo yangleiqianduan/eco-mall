@@ -13,11 +13,16 @@ export const getItems = '/web/product/search/list'                          // �
 export const upload = '/web/product/image/upload'                           // 图片上传
 export const submitRequire = '/web/product/want/create'                     // 提交想要买什么
 
+
 // 商品详情
 export const itemDetail= '/web/product/detail'                             // 商品详情
 
+// 搭配详情
+export const collocation = '/web/product/mix/details'                       // 获取搭配详情
+
 export const host = {
-  dev: 'http://10.33.70.102:8060',
+  // dev: 'http://10.33.78.126:8050',
+  dev: 'http://mall.lj-web-30.lianjia.com',
   // dev: 'http://lmall.lianjia.com:8070',
   prod: ''
 }

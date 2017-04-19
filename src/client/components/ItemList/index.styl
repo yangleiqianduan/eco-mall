@@ -1,0 +1,55 @@
+@import "~common/global.styl"
+
+.wrap
+  background $color-white
+  font-size $font-size16
+  .card
+    padding px2rem(16)
+    padding-bottom 0
+    box()
+    &:last-child
+      padding-bottom px2rem(16)
+  .radio
+    display inline-block
+    transition all .1s
+    width px2rem(15)
+    height px2rem(15)
+    text-align center
+    border-radius 50%
+    border all px2rem(1) $color-tag + 50%
+    color $color-white
+    text-align center
+    margin-right px2rem(15)
+    >span
+      box()
+      width 100%
+      height 100%
+      align-items center
+      justify-content center
+  .radio-checked
+    background $color-dark
+    border-color $color-dark
+  .priceOuter
+    flex 1
+    text-align right
+  .item
+    box()
+    flex 1
+    border top px2rem(1)
+    padding-top px2rem(16)
+  .light
+    font-weight 300
+  .red
+    color $color-red
+  .itemImg
+    width px2rem(100)
+    height px2rem(100)
+    margin-right px2rem(10)
+  .itemDesc
+    flex 1
+    line-height px2rem(25)
+  .itemText
+    color $color-light
+    font-weight 300
+    font-size px2rem(13)
+    

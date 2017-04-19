@@ -1,6 +1,7 @@
 import React, { PureComponent, PropTypes } from 'react'
 import CSSModules from 'react-css-modules'
 import styles from './index.styl'
+import classNames from 'classnames/bind'
 
 import { Link } from 'react-router-dom'
 import Slider from 'react-slick'
@@ -22,7 +23,7 @@ export default class extends PureComponent {
   }
 
   render () {
-    const { data, setting, slideStyle, needDesc, onClick } = this.props
+    const { data, setting, slideStyle, needDesc, onClick, fullScreen, onClose } = this.props
     const settings = Object.assign({
       dots: true,
       customPaging: () => <a />,
@@ -34,30 +35,32 @@ export default class extends PureComponent {
       autoplay: data.length > 1,
       autoplaySpeed: 5000
     }, setting)
-    console.log(data, settings, 'ssssss')
+    const bg = classNames({bg: fullScreen})
     return (
-      <div styleName='wrap'>
-        {
-          !data.length
-          ? <div styleName='empty'>loading...</div>
-          : <Slider {...settings}>
-            {
-              data.map((item, i) => <div key={i} style={slideStyle}>
-                <Link onClick={onClick} to={item.redirect_url ? item.redirect_url : ''}>
-                  <img className='slick-img' src={item.img_url} />
-                  {
-                    needDesc
-                    ? <div>
-                      <h3 styleName='title'>{item.title}</h3>
-                      <p styleName='desc'>{item.desc}</p>
-                    </div>
-                    : null
-                  }
-                </Link>
-              </div>)
-            }
-          </Slider>
-        }
+      <div styleName={bg} onClick={onClose}>
+        <div styleName='wrap' onClick={(e) => e.stopPropagation()}>
+          {
+            !data.length
+            ? <div styleName='empty'>loading...</div>
+            : <Slider {...settings}>
+              {
+                data.map((item, i) => <div key={i} style={slideStyle}>
+                  <Link onClick={onClick} to={item.redirect_url ? item.redirect_url : ''}>
+                    <img className='slick-img' src={item.img_url} />
+                    {
+                      needDesc
+                      ? <div>
+                        <h3 styleName='title'>{item.title}</h3>
+                        <p styleName='desc'>{item.desc}</p>
+                      </div>
+                      : null
+                    }
+                  </Link>
+                </div>)
+              }
+            </Slider>
+          }
+        </div>
       </div>
     )
   }
