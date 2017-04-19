@@ -1,0 +1,61 @@
+@import "~common/global.styl"
+
+.wrap
+  @extend .G-card
+  header
+    box()
+    margin-bottom px2rem(10)
+  .left
+    max-width 66%
+    h1
+      font-size $font-size20
+      color $color-dark
+      margin-bottom px2rem(3)
+  .right
+    flex()
+    text-align right
+    padding-top px2rem(4)
+    .curPrice
+      color $color-spc
+      font-size $font-size18
+      margin-bottom px2rem(2)
+      word-spacing no-wrap
+    .normalPrice
+      color $color-light
+      word-spacing no-wrap
+  .tags
+    .item
+      display inline-block
+      border(all,1px,$color-tag)
+      padding px2rem(2) px2rem(5) px2rem(2) px2rem(5)
+      transform(scale(.8))
+      transform-origin()
+      color $color-tag
+  .main
+    color $color-light
+    box()
+    margin-bottom px2rem(15)
+    padding-bottom px2rem(15)
+    border(bottom)
+    & > div
+      flex()
+      text-align center
+      &:first-child
+        text-align left
+      &:last-child
+        text-align right
+  footer
+    .item
+      display inline-block
+      min-width 33%
+      position relative
+      text-indent 1em
+      &:before
+        content ''
+        position absolute
+        left 0
+        top px2rem(6)
+        width px2rem(5)
+        height px2rem(5)
+        background-color $color-dark
+        border-radius 50%
