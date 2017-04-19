@@ -69,3 +69,14 @@ export const showToast = data => async dispatch => {
   await delay(1)
   await dispatch(UPDATE_TOAST_ACTION({show: false, text: ''}))
 }
+
+export const confirmOrder = data => dispatch => {
+  dispatch(UPDATE_LOADING_ACTION(true))
+  fetch(api.conformOrder, {method: 'post', param: data})
+  .then(res => {
+    if (res.code === '1' && res.success) {
+      dispatch(UPDATE_LOADING_ACTION(false))
+      dispatch(changeRouter('success'))
+    } 
+  })
+}

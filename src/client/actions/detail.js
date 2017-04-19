@@ -2,7 +2,8 @@ import fetch from 'common/fetch'
 import * as api from 'constants/api'
 
 import {
-  UPDATE_LOADING_ACTION
+  UPDATE_LOADING_ACTION,
+  changeRouter
 } from './index'
 
 // 更新商品信息
@@ -29,3 +30,4 @@ export const getItemDetail = data => dispatch => {
     dispatch(UPDATE_LOADING_ACTION(false))
   })
 }
+
