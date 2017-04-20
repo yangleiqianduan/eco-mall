@@ -10,6 +10,12 @@ let internalModules = fs.readdirSync(modules)
 module.exports = function (webpackConfig, redSkull) {
   // const linkPath = path.join(redSkull.libraries, 'link')
   webpackConfig.module.loaders.splice(4, 1)
+
+  webpackConfig.entry['common'] = ['react', 'react-dom', 'redux', 'react-redux', 'redux-thunk', 'immutable', 'history', 'react-css-modules', 'react-router', 'react-router-dom']
+  webpackConfig.output['filename'] = 'js/[name].js'
+  webpackConfig.output['chunkFilename'] = 'js/[name].js'
+  webpackConfig.plugins[1].filename = 'css/[name].css'
+
   webpackConfig.module.loaders.push({
     test: /\.styl$/,
     loader: 'style!css!stylus',

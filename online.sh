@@ -29,10 +29,13 @@ redskull install
 echo "build source"
 
 npm run build -- --publicPath=${FE_PUBLIC_PATH}
-rm -rf ${FE_DEST_PATH}
+test -d ${FE_DEST_PATH} && rm -rf ${FE_DEST_PATH}
 
 mkdir -p ${FE_DEST_PATH}
 cp -R -f ${FE_SOURCE_PATH}dist/client/* ${FE_DEST_PATH}
+tar -czvf ${FE_DEST_PATH}.tar.gz ${FE_DEST_PATH}
+test -d releases && rm -rf releases
+mkdir releases && mv ${FE_DEST_PATH}.tar.gz releases/
 
 end=$(date +%s)
 time=$(( $end - $start ))

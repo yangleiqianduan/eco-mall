@@ -1,5 +1,6 @@
 var path = require('path')
 var fs = require('fs')
+// var webpack = require('webpack')
 
 const base = path.join(__dirname, '..')
 const modules = `${base}/node_modules`
@@ -13,7 +14,18 @@ module.exports = function (webpackConfig, redSkull, plugins) {
   const publicPath = redSkull.publicPath
   redSkull.envFile = `${publicPath[publicPath.length - 1] === '/' ? publicPath : (publicPath + '/')}${redSkull.envFile}`
 
-  const linkPath = path.join(redSkull.libraries, 'link')
+  // const linkPath = path.join(redSkull.libraries, 'link')
+  // console.log(webpackConfig)
+
+  webpackConfig.entry['common'] = ['react', 'react-dom', 'redux', 'react-redux', 'redux-thunk', 'immutable', 'history', 'react-css-modules', 'react-router', 'react-router-dom']
+  webpackConfig.output['filename'] = 'js/[name].js'
+  webpackConfig.output['chunkFilename'] = 'js/[name].js'
+  webpackConfig.plugins[1].filename = 'css/[name].css'
+  webpackConfig.plugins.push(new plugins.CommonsChunkPlugin({
+    name: 'common',
+    filename: 'js/common.min.js'
+  }))
+
   webpackConfig.module.loaders.splice(4, 1)
   webpackConfig.module.loaders.push({
     test: /\.styl$/,
@@ -78,9 +90,9 @@ module.exports = function (webpackConfig, redSkull, plugins) {
     }
   })
 
-  webpackConfig.resolve.alias.react = path.join(linkPath, 'node_modules', 'react')
-  webpackConfig.resolve.alias['react-dom'] = path.join(linkPath, 'node_modules', 'react-dom')
-  webpackConfig.resolve.modules.push(fs.realpathSync(path.join(linkPath, 'themes', 'red')))
+  // webpackConfig.resolve.alias.react = path.join(linkPath, 'node_modules', 'react')
+  // webpackConfig.resolve.alias['react-dom'] = path.join(linkPath, 'node_modules', 'react-dom')
+  // webpackConfig.resolve.modules.push(fs.realpathSync(path.join(linkPath, 'themes', 'red')))
 
   // webpackConfig.plugins[0].options.envFile = redSkull.envFile
 
