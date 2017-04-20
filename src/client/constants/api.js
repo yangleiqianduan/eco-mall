@@ -19,6 +19,10 @@ export const itemDetail = '/web/product/detail'                             // �
 // 搭配详情
 export const collocation = '/web/product/mix/details'                       // 获取搭配详情
 
+// 确定预约
+export const conformOrder = '/web/product/appoint/create'                   //确定预约
+
+
 export const host = {
   dev: 'http://mall.lj-web-30.lianjia.com',
   // dev: 'http://lmall.lianjia.com:8070',

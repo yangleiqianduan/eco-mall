@@ -38,6 +38,8 @@ transform()
   prefixed(transform, arguments)
 transform-origin(arguments = 0 0)
   prefixed(transform-origin, arguments)
+box-shadow()
+  prefixed(box-shadow, arguments)
 
 // 处理border
 border(path=all,width=1px,color=$color-border,style=solid)
@@ -69,12 +71,13 @@ btn()
   text-align center
   cursor pointer
   user-select none
+  -webkit-tap-highlight-color transparent
   transition all .1s
 .brightBtn
   background $color-bright
   color $color-dark
   &:active
-    background $color-bright + 60%
+    /* background $color-bright + 60% */
   &.disabled
     background #f1f1f1
     color #666
@@ -85,7 +88,7 @@ btn()
   &.disabled
     background $color-dark + 40%
   &:active
-    background $color-dark + 40%
+    /* background $color-dark + 40% */
   btn()
 
 // 布局

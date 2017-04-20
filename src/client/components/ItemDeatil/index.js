@@ -5,10 +5,10 @@ import styles from './index.styl'
 @CSSModules(styles, {allowMultiple: true})
 export default class extends PureComponent {
   render () {
-    const detailInfo = this.props.data || []
+    const { reqData } = this.props.data || []
     return <div styleName='wrap'>
         <h2>商品详情</h2>
-        <img src={detailInfo.pic} alt='' />
+        <div dangerouslySetInnerHTML={{__html: reqData.product_desc}}></div>
     </div>
   }
 }
