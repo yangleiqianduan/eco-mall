@@ -10,7 +10,7 @@ export default class extends PureComponent {
       let opt = {
         key: item.spu_attribute_key_name,
         value: item.spu_attribute_value_info[0].value,
-        long: 0
+        long: item.spu_attribute_row_num
       }
       goodsStandard.push(opt)
     })

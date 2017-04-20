@@ -11,14 +11,6 @@ export default (state = fromJS(initState), action) => {
 }
 
 const initState = {
-  buyInfo: {
-    price: '2310',
-    info: '预定111111111111112222222222333333',
-    content: [
-      {label: '手机号', type: 'text', value: ''},
-      {label: '系统号', type: 'text', value: ''}
-    ]
-  },
   ensureInfo: [
     {
       type: 1,

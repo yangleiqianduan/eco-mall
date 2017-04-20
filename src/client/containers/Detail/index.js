@@ -17,6 +17,7 @@ import TelUs from 'components/TelUs/'
 import wantPic from 'common/img/want.png'
 
 import { getItemDetail } from 'actions/detail'
+import { confirmOrder } from 'actions/index'
 
 @CSSModules(styles, {allowMultiple: true})
 export class Detail extends PureComponent {
@@ -30,7 +31,7 @@ export class Detail extends PureComponent {
   state={
     show: false,
     currentImage: 0,
-    showFullscreen: false
+    showFullscreen: false,
   }
   handleBuyItem = () => {
     this.setState({show: true})
@@ -38,18 +39,12 @@ export class Detail extends PureComponent {
   handleCover = () => {
     this.setState({show: false})
   }
-  handleSubmit = () => {
-    let data = this.props.data.toJS().buyInfo.content
-    let param = {
-      telNo: data[0].value,
-      sysNo: data[0].value
-    }
-    console.log(param)
+  handleSubmit = (result) => {
+    result.type_id = 1
+    result.appoint_id = this.props.location.query.id
+    this.props.dispatch(confirmOrder(result))
   }
-  handleChangeBuyInfo = (map, e) => {
-    let value = e.target.value
-    this.props.dispatch(actions.UPDATE_ORDER_INFO_ACTION(['buyInfo'].concat(map), value))
-  }
+
   handleShowFullscreen = (e) => {
     e.preventDefault()
     this.setState({showFullscreen: true})
@@ -66,7 +61,7 @@ export class Detail extends PureComponent {
 
   render () {
     const data = this.props.data.toJS() || {}
-    const { buyInfo } = this.props.data.toJS()
+    const { orderInfo } = this.props.shared.toJS()
     const { currentImage, showFullscreen } = this.state
     let banner = []
     data.reqData && (banner = this.formatData(data.reqData))
@@ -92,10 +87,10 @@ export class Detail extends PureComponent {
 
       <BuyPanel
         show={this.state.show}
-        price={'￥' + buyInfo.price}
-        info={buyInfo.info}
-        content={buyInfo.content}
-        onChange={this.handleChangeBuyInfo.bind(this)}
+        price={'￥' + orderInfo.price}
+        info={orderInfo.info}
+        img={orderInfo.img}
+        content={orderInfo.content}
         onSubmit={this.handleSubmit.bind(this)}
         onClickCover={this.handleCover.bind(this)} />
       <FootBar onBuy={this.handleBuyItem.bind(this)} />
@@ -109,7 +104,7 @@ export class Detail extends PureComponent {
 
 const mapStateToProps = state => ({
   shared: state.shared,
-  data: state.detail
+  data: state.detail,
 })
 
 export default connect(mapStateToProps)(Detail)
