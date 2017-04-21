@@ -7,6 +7,7 @@ export default class extends PureComponent {
 
   formatData = (reqData) => {
     let baseInfo = {}
+    const { service_assurance_info } = reqData || {service_assurance_info: []}
     baseInfo.title = reqData.product_name
     baseInfo.tags = []
     reqData.product_attribute_info.sku_attribute_info.map(item => {
@@ -15,11 +16,11 @@ export default class extends PureComponent {
     baseInfo.salePrice = reqData.product_price_info[-1].sale_price
     baseInfo.marketPrice = reqData.product_price_info[-1].market_price
     baseInfo.deliveryMsg = reqData.delivery_msg || '暂无'
-    // baseInfo.skuStore = reqData.product_price_info[-1].sku_store || '暂无'
     baseInfo.skuStore = reqData.product_inv_info.sku_inv[-1][-1] || '暂无'
     baseInfo.deliveryCity = reqData.delivery_city || '暂无'
     baseInfo.tips = []
-    reqData.service_assurance_info.map(item => {
+
+    service_assurance_info.map(item => {
       baseInfo.tips.push(item.service_assurance_name)
     })
     return baseInfo
