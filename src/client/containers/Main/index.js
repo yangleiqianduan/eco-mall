@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react'
-import { Route, Redirect } from 'react-router-dom'
+import { Route, Redirect, Miss } from 'react-router-dom'
 import { withRouter, Prompt } from 'react-router'
 import { connect } from 'react-redux'
 import { updateTitle, parseQueryString } from 'common/utils'
@@ -13,6 +13,8 @@ import Toast from 'components/Toast/'
 import Loading from 'components/Loading/'
 
 import { getCateoryList } from 'actions/'
+
+// console.log(Miss, 'check miss')
 
 @CSSModules(styles, { allowMultiple: true })
 export class Main extends PureComponent {
@@ -45,6 +47,14 @@ export class Main extends PureComponent {
       {loading ? <Toast><Loading color='#ccc' /></Toast> : null}
       <Prompt message={(location) => updateTitle(location, routes)} />
     </div>
+  }
+}
+
+export class InitPath extends PureComponent {
+  render () {
+    const location = this.props.location || window.location || {pathname: ''}
+    console.log(location, 'ssssss')
+    return <Redirect to='/' />
   }
 }
 
