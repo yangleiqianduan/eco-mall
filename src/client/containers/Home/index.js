@@ -37,7 +37,7 @@ export class Home extends PureComponent {
         <Slider data={banner} setting={{infinite: true}} />
       </div>
       <div styleName='navOuter'>
-        <NavBar data={categoryList.map(item => ({path: `/search?categoryId=${item.categoryId}`, title: item.categoryName}))} />
+        <NavBar data={categoryList.map(item => ({path: `/search?categoryId=${item.categoryId}`, title: item.categoryName, icon: item.icon}))} />
       </div>
       <div styleName='label'>
         <h2 styleName='title'>精选搭配</h2>

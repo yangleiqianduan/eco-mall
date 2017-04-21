@@ -65,9 +65,9 @@ const initState = fromJS({
     text: ''
   },
   categoryList: [
-    {'categoryId': 100, 'categoryName': '个人成长'},
-    {'categoryId': 101, 'categoryName': '个人成长'},
-    {'categoryId': 122, 'categoryName': '报买普商'}
+    {'categoryId': 100, 'categoryName': '卧室床品', 'icon': 'bedroom' },
+    {'categoryId': 101, 'categoryName': '木作家具', 'icon': 'wooden' },
+    {'categoryId': 122, 'categoryName': '客厅沙发', 'icon': 'sofa' }
   ],
   transRoute: {
     to: ''
