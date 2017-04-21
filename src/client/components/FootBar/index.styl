@@ -7,18 +7,43 @@
   width 100%
   .content
     box()
-    width px2rem(355)
+    // width px2rem(355)
     height px2rem(55)
     background $color-dark
     color $color-white
     margin 0 auto 10px
     overflow hidden
-    >div
+    > div
       box()
       align-items center
       justify-content center
-    .callUs
-      width px2rem(100)
+    .icons
+      box()
+      .item
+        min-width px2rem(50)
+        line-height px2rem(55)
+        text-align center
+        position relative
+        &:not(:last-child):after
+          content ''
+          position absolute
+          right 0
+          top px2rem(16)
+          width px2rem(1)
+          height px2rem(24)
+          background-color #787c7e
+      .cart
+        em
+          width px2rem(18)
+          line-height px2rem(18)
+          text-align center
+          background-color #FF5A5A
+          position absolute
+          right px2rem(5)
+          top px2rem(12)
+          border-radius 50%
+      .addCart
+        padding 0 px2rem(20)
     .buyArea
       flex 1
       font-size $font-size14
