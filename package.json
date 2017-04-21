@@ -8,7 +8,7 @@
   },
   "dependencies": {
     "classnames": "2.2.5",
-    "fe-reset": "^1.0.9",
+    "fe-reset": "1.0.9",
     "history": "4.3.0",
     "immutable": "3.8.1",
     "react": "15.3.2",
@@ -18,11 +18,11 @@
     "react-redux": "4.4.6",
     "react-router": "4.0.0",
     "react-router-dom": "4.0.0",
-    "react-slick": "^0.14.5",
+    "react-slick": "0.14.5",
     "redux": "3.6.0",
     "redux-logger": "2.7.4",
     "redux-thunk": "2.1.0",
-    "slick-carousel": "^1.6.0"
+    "slick-carousel": "1.6.0"
   },
   "devDependencies": {
     "babel-eslint": "^7.0.0",
