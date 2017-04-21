@@ -10,33 +10,38 @@ export default class extends Component {
     return <div styleName='wrap'>
 
       <section>
-        <h2>1.首页:</h2>
-        <Icon icon = {'bedroom'} />
-        <Icon icon = {'wooden'} />
-        <Icon icon = {'wooden'} />
+        <h2>首页:</h2>
+        <Icon icon = {'bedroom'} width={30} />
+        <Icon icon = {'wooden'} width={30} height={29}/>
+        <Icon icon = {'sofa'} width={30} height={29}/>
+        <br/> <br/>
+        <h2>售后保障</h2>
+        <Icon icon = {'ensureTag1'} width={38} style = {{color: '#6B7072'}} />
+        <Icon icon = {'ensureTag2'} width={38} style = {{color: '#6B7072'}} />
+        <Icon icon = {'ensureTag3'} width={38} style = {{color: '#6B7072'}} />
+        <br/><br/>
+        <h2>支付</h2>
+        <Icon icon = {'weixin'} width={28} fill={'#3ACB00'}/>
+        <Icon icon = {'zhifubao'} width={28} fill={'#369FEC'} />
+        <br/><br/>
+        <h2>辅助 icon</h2>
+        <Icon icon = {'personal'} width = {14} stroke = {'#FFF'} />
+        <Icon icon = {'cart'} width={18} stroke = {'#FFF'}/>
+        <Icon icon = {'listener'} width={18} stroke = {'#FFF'}/>
 
         <br/><br/>
-
-        <Icon icon = {'personal'} size = {14} stroke = {'#FFF'} />
-        <Icon icon = {'cart'} size={18} stroke = {'#FFF'}/>
-
-        <br/><br/>
-        <h2>2.专题页:</h2>
-        <Icon icon = {'arrow'} size={6} style = {{color: '#000'}}/>
-        <Icon icon = {'arrow'} size={6} style = {{color: '#bbbdbe'}}/>
+        <h2>方向</h2>
+        <Icon icon = {'arrow'} width={6} style = {{color: '#000'}}/>
+        <Icon icon = {'arrow'} width={6} style = {{color: '#bbbdbe'}}/>
         <br/> <br/>
-        <h2>3.商品详情页</h2>
-        <Icon icon = {'ensureTag1'} size={38} style = {{color: '#6B7072'}} />
-        <Icon icon = {'ensureTag2'} size={38} style = {{color: '#6B7072'}} />
-        <Icon icon = {'ensureTag3'} size={38} style = {{color: '#6B7072'}} />
-        <br/> <br/>
-        <h2>4.其它</h2>
-        <Icon icon = {'checked'} size={15} style = {{color: '#394043'}} />
-        <Icon icon = {'unChecked'} size={15} style = {{color: '#394043'}} />
-        <Icon icon = {'quotes'} size={24} fill = {'#394043'} />
-        <Icon icon = {'switchBtn'} size={21} fill={'#FFF'}/>
-        <Icon icon = {'location'} size={12} style = {{color: '#000'}} />
-        <Icon icon = {'successBig'} size = {'45px'} fill = {'#00AE66'} />
+
+        <h2>其它</h2>
+        <Icon icon = {'checked'} width={15} style = {{color: '#394043'}} />
+        <Icon icon = {'unChecked'} width={15} style = {{color: '#394043'}} />
+        <Icon icon = {'quotes'} width={24} fill = {'#394043'} />
+        <Icon icon = {'switchBtn'} width={21} fill={'#FFF'}/>
+        <Icon icon = {'location'} width={12} style = {{color: '#000'}} />
+        <Icon icon = {'successBig'} width = {'45px'} fill = {'#00AE66'} />
       </section>
 
 

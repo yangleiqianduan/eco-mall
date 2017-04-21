@@ -8,8 +8,8 @@ export const iconsInfo = {
     height: 30
   },
   sofa: {
-    width: 0,
-    height: 0
+    width: 30,
+    height: 30
   },
   personal: {
     width: 14,
@@ -18,6 +18,10 @@ export const iconsInfo = {
   cart: {
     width: 18,
     height: 18
+  },
+  listener:{
+    width: 18,
+    height: 20
   },
   arrow: {
     width: 6,
@@ -54,6 +58,14 @@ export const iconsInfo = {
   switchBtn: {
     width: 21,
     height: 20
+  },
+  weixin: {
+    width: 28,
+    height: 27
+  },
+  zhifubao: {
+    width: 27,
+    height: 21
   },
   successBig: {
     width: 45,

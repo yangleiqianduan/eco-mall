@@ -31,11 +31,10 @@ export default class extends Component {
   }
 
   static defaultProps = {
-    size: 24
+    width: 24
   }
 
-  formatInfo (iconInfo, size) {
-    const rootSize = 100
+  formatInfo (iconInfo, size, rootSize) {
     const width = parseInt(size) && (parseInt(size) / rootSize + 'rem') || iconInfo.width / rootSize + 'rem'
     const height = parseInt(size) && ((parseInt(size) / iconInfo.width) * iconInfo.height / rootSize + 'rem') || iconInfo.height / rootSize + 'rem'
     let result = {
@@ -49,12 +48,14 @@ export default class extends Component {
 
   render () {
     const Icon = icons[this.props.icon] || this.props.icon || ''
-    let iconInfo = this.formatInfo(iconsInfo[this.props.icon], this.props.size)
+    const rootSize =100
+    let iconInfo = this.formatInfo(iconsInfo[this.props.icon], this.props.width, rootSize)
     let style = Object.assign({}, defaultStyle)
-    if (this.props.fill) style.fill = this.props.fill
-    if (this.props.stroke) style.stroke = this.props.stroke
     style.width = iconInfo.width
-    style.height = iconInfo.height
+    style.height = (parseInt(this.props.height) && (parseInt(this.props.height)/rootSize + 'rem')) || iconInfo.height
+    this.props.fill && (style.fill = this.props.fill)
+    this.props.stroke && (style.stroke = this.props.stroke)
+
 
     return <span style={Object.assign({}, this.props.style)}>
       {this.props.dir === 'right' ? this.props.children : ''}
