@@ -5,6 +5,7 @@ import Result from 'containers/Result/'
 import Collocation from 'containers/Collocation/'
 import Want from 'containers/Want/'
 import Success from 'containers/Success/'
+import Vote from 'containers/Vote/'
 
 import Icons from 'components/Icons/demo/'
 
@@ -43,6 +44,12 @@ export default [
     path: '/success',
     exact: true,
     component: Success,
+    title: '预约成功'
+  },
+  {
+    path: '/vote',
+    exact: true,
+    component: Vote,
     title: '预约成功'
   },
   {
