@@ -4,17 +4,41 @@ import styles from './index.styl'
 
 import MenuTitle from 'components/MenuTitle'
 import Icon from 'components/Icons'
+import Slider from 'components/Slider/'
+
 
 @CSSModules(styles, {allowMultiple: true})
 export default class extends PureComponent {
-  picShow = () => {
-    alert('展示大图')
+  picShow = (i) => {
+    let pics = []
+    this.props.menu.items[i].pics.map(item => pics.push({img_url: item}))
+    this.setState({
+      show: true,
+      pics
+    })
+  }
+  closePicShow = () => {
+    this.setState({
+      show: false
+    }, () => console.log('5555555555', this.state))
+  }
+
+  handleShowFullscreen = (e) => {
+    e.preventDefault()
+    this.setState({showFullscreen: true})
+  }
+
+  state = {
+    pics: [],
+    show: false,
+    currentImage: 0,
+    showFullscreen: false,
   }
 
   render () {
     const { menu, selected, noTit } = this.props || {}
-    // console.log('singleItem:', menu, selected)
-
+    // console.log('singleItem:', menu, selected, this.state)
+    const { currentImage, showFullscreen, pics, show } = this.state
     return <div styleName='wrap'>
       {
         !noTit &&
@@ -24,7 +48,7 @@ export default class extends PureComponent {
         {
           menu.items.map((item, i) => {
             return <li key={i} styleName='item'>
-              <div styleName='picWrap' onClick={ this.picShow }>
+              <div styleName='picWrap' onClick={ this.picShow.bind(this, i) }>
                 <img src={ item.pics[0] } alt='' />
                 {
                   item.pics.length > 1 &&
@@ -38,12 +62,29 @@ export default class extends PureComponent {
               <div onClick={ this.props.onChange(i) }>
                 <Icon icon = { selected.includes(i) ? 'checked' : 'unChecked' } width={15} fill = '#394043' />
               </div>
+
             </li>
           })
         }
       </ul>
+      {
+        this.state.pics.length > 0 && show &&
+        <section styleName='showPic'>
+          <i styleName='close' onClick={this.closePicShow}>X</i>
+          <div styleName='sliderWrap'>
+            <Slider
+              data={ pics }
+              onClick={this.handleShowFullscreen}
+              setting={{dots: false, autoplay: false, afterChange: (e) => this.setState({currentImage: e})}} />
+            </div>
+          {
+            pics.length > 0
+            ? <div styleName='page'><strong>{currentImage + 1}</strong>/{this.state.pics.length}</div>
+            : null
+          }
+        </section>
+      }
     </div>
-
   }
 
 }
