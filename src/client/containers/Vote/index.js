@@ -4,10 +4,13 @@ import * as actions from 'actions/vote'
 
 import CSSModules from 'react-css-modules'
 import styles from './index.styl'
-import telUsPic from 'common/img/telUs.png'
-import whatILikePic from 'common/img/whatILike.png'
 
 import SelectItems2 from 'components/SelectItems2'
+import Button from 'components/Button/'
+import TelUs from 'components/TelUs'
+
+import telUsPic from 'common/img/telUs.png'
+import whatILikePic from 'common/img/whatILike.png'
 
 @CSSModules(styles, { allowMultiple: true })
 export class Vote extends PureComponent {
@@ -15,6 +18,9 @@ export class Vote extends PureComponent {
   changeItem = (menuIndex, itemIndex) => {
     // console.log('menuIndex:',menuIndex,'itemIndex',itemIndex)
     this.props.dispatch(actions.selectItem({menuIndex, itemIndex}))
+  }
+  handleSubmit = () => {
+    alert(1)
   }
 
   render () {
@@ -32,7 +38,11 @@ export class Vote extends PureComponent {
           })
         : null
       }
+      <div styleName="G-card">
+        <Button onClick={ this.handleSubmit }>确定预约</Button>
+      </div>
 
+      <TelUs data={ {link: '/want', pic: telUsPic} }/>
     </div>
   }
 }
