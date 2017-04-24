@@ -1,0 +1,40 @@
+@import "~common/global.styl"
+
+.wrap
+  .item
+    box()
+    align-items()
+    justify-content()
+    padding px2rem(16) 0
+    margin 0 px2rem(16)
+    &:not(:last-child)
+      border(bottom)
+  .picWrap
+    width px2rem(80)
+    min-width px2rem(80)
+    height px2rem(80)
+    line-height px2rem(80)
+    margin-right px2rem(20)
+    background-color #F4F4F4
+    position relative
+    text-align center
+    img
+      width 80%
+    .tag
+      position absolute
+      bottom px2rem(8)
+      right px2rem(2)
+      line-height 1
+      border-radius px2rem(8)
+      padding px2rem(1) px2rem(8)
+      background-color #F1ECE1
+      color #898989
+      transform(scale(.8))
+  .detail
+    margin-right px2rem(20)
+    .tit
+      font-size $font-size16
+      margin-bottom px2rem(10)
+    .desc
+      color #9C9FA1
+      G-cut-p()
