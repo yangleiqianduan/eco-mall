@@ -20,7 +20,7 @@ export class Vote extends PureComponent {
     this.props.dispatch(actions.selectItem({menuIndex, itemIndex}))
   }
   handleSubmit = () => {
-    alert(1)
+    this.props.dispatch(actions.sendChoose(this.props.vote.toJS().selected))
   }
 
   render () {
