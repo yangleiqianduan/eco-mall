@@ -32,11 +32,10 @@ export class Vote extends PureComponent {
         <img src={ whatILikePic } alt="" />
       </section>
       {
-        list
-        ? list.map((menu, i) => {
-            return <SelectItems2 key={i} menu={ menu } selected={ selected[i] } onChange={(itemIndex) => this.changeItem.bind(this, i, itemIndex)}/>
-          })
-        : null
+        list &&
+        list.map((menu, i) => {
+          return <SelectItems2 key={i} menu={ menu } selected={ selected[i] } noTit={ list.length===1 && true } onChange={(itemIndex) => this.changeItem.bind(this, i, itemIndex)}/>
+        })
       }
       <div styleName="G-card">
         <Button onClick={ this.handleSubmit }>确定预约</Button>

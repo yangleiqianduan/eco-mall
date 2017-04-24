@@ -1,0 +1,67 @@
+@import "~common/global.styl"
+
+.wrap
+  background #FFF
+  .item
+    box()
+    align-items()
+    justify-content()
+    padding px2rem(16) 0
+    margin 0 px2rem(16)
+    &:not(:last-child)
+      border(bottom)
+  .picWrap
+    width px2rem(80)
+    min-width px2rem(80)
+    height px2rem(80)
+    line-height px2rem(80)
+    margin-right px2rem(20)
+    background-color #F4F4F4
+    position relative
+    text-align center
+    img
+      width 80%
+    // .tag
+    //   position absolute
+    //   bottom px2rem(8)
+    //   right px2rem(2)
+    //   line-height 1
+    //   border-radius px2rem(8)
+    //   padding px2rem(1) px2rem(8)
+    //   background-color #F1ECE1
+    //   color #898989
+    //   transform(scale(.8))
+  .detail
+    header
+      box()
+      margin-bottom px2rem(10)
+    .left
+      margin-right px2rem(20)
+      .tit
+        font-size $font-size16
+        margin-bottom px2rem(10)
+      .desc
+        color #9C9FA1
+        G-cut-p()
+    .right
+      text-align right
+      .prec
+        color #FF5A5A
+        font-size $font-size20
+      .count
+        color #9C9FA1
+    .progressBar
+      background-color #EAEAEA
+      height px2rem(2)
+      position relative
+      font-size 0
+      border-radius px2rem(1)
+      span
+        background-color #394043
+        border-radius px2rem(1)
+        width 0
+        transition all 1s ease
+        height px2rem(2)
+        position absolute
+        left 0
+        top 0

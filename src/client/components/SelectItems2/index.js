@@ -12,11 +12,14 @@ export default class extends PureComponent {
   }
 
   render () {
-    const { menu, selected } = this.props || {}
+    const { menu, selected, noTit } = this.props || {}
     // console.log('singleItem:', menu, selected)
 
     return <div styleName='wrap'>
-      <MenuTitle text={ menu.type } />
+      {
+        !noTit &&
+        <MenuTitle text={ menu.type } />
+      }
       <ul>
         {
           menu.items.map((item, i) => {
