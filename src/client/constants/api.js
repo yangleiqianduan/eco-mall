@@ -28,8 +28,9 @@ export const voteResult = '/m/vote/stats_vote_result'     // 投票结果
 export const voteSave= '/m/vote/user/record/save'         // 投票提交
 
 export const host = {
-  dev: 'http://10.33.69.91:8050',
-  // dev: 'http://10.33.69.182:8050/m',
+  // dev: 'http://10.33.69.91:8050',
+  // dev: 'http://10.33.69.182:8050',
   // dev: 'http://lmall.lianjia.com:8070',
-  prod: ''
+  dev: 'http://mall.lj-web-30.lianjia.com',
+  prod: 'http://mall.lj-web-30.lianjia.com'
 }
