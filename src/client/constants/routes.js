@@ -11,42 +11,51 @@ import VoteResult from 'containers/VoteResult/'
 import Icons from 'components/Icons/demo/'
 
 export default [
+  // {
+  //   path: '/',
+  //   exact: true,
+  //   component: Home,
+  //   title: '链家·优品'
+  // },
   {
     path: '/',
     exact: true,
-    component: Home,
-    title: '链家·优品'
-  }, {
-    path: '/search',
-    exact: true,
-    component: Result,
-    title: '优品目录'
-  }, {
-    path: '/item',
-    exact: true,
-    component: Detail,
-    title: '商品详情'
-  }, {
-    path: '/collocation',
-    exact: true,
-    component: Collocation,
-    title: '搭配详情'
-  }, {
-    path: '/subject',
-    exact: true,
-    component: Subject,
-    title: '专题'
-  }, {
+    component: Vote,
+    title: '投票'
+  },
+  // {
+  //   path: '/search',
+  //   exact: true,
+  //   component: Result,
+  //   title: '优品目录'
+  // }, {
+  //   path: '/item',
+  //   exact: true,
+  //   component: Detail,
+  //   title: '商品详情'
+  // }, {
+  //   path: '/collocation',
+  //   exact: true,
+  //   component: Collocation,
+  //   title: '搭配详情'
+  // }, {
+  //   path: '/subject',
+  //   exact: true,
+  //   component: Subject,
+  //   title: '专题'
+  // },
+  {
     path: '/want',
     exact: true,
     component: Want,
     title: '需求登记'
-  }, {
-    path: '/success',
-    exact: true,
-    component: Success,
-    title: '预约成功'
   },
+  // {
+  //   path: '/success',
+  //   exact: true,
+  //   component: Success,
+  //   title: '预约成功'
+  // },
   {
     path: '/vote',
     exact: true,
@@ -59,10 +68,10 @@ export default [
     component: VoteResult,
     title: '投票结果'
   },
-  {
-    path: '/icon',
-    exact: true,
-    component: Icons,
-    title: 'icon示例'
-  }
+  // {
+  //   path: '/icon',
+  //   exact: true,
+  //   component: Icons,
+  //   title: 'icon示例'
+  // }
 ]

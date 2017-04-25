@@ -71,9 +71,13 @@ export class Vote extends PureComponent {
           return <SelectItems2 key={i} menu={ menu } selected={ selected[i] } noTit={ list.length===1 && true } onChange={(itemIndex) => this.changeItem.bind(this, i, itemIndex)}/>
         })
       }
-      <div styleName="G-card">
-        <Button onClick={ this.handleSubmit } disabled = {this.state.selected.length > 0 ? false : true}>投票</Button>
-      </div>
+      {
+        list &&
+        <div styleName="G-card">
+          <Button onClick={ this.handleSubmit } disabled = {this.state.selected.length > 0 ? false : true}>投票</Button>
+        </div>
+      }
+
 
       <TelUs data={ {link: '/want', pic: telUsPic} }/>
     </div>

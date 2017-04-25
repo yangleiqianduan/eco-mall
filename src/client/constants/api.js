@@ -11,7 +11,7 @@ export const getItems = '/web/product/search/list'                          // �
 
 // 需要页面
 export const upload = '/web/product/image/upload'                           // 图片上传
-export const submitRequire = '/web/product/want/create'                     // 提交想要买什么
+export const submitRequire = '/m/product/want/commit'                     // 提交想要买什么
 
 // 商品详情
 export const itemDetail = '/web/product/detail'                             // 商品详情
