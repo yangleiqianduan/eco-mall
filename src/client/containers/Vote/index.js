@@ -15,7 +15,8 @@ import telUsPic from 'common/img/telUs.png'
 @CSSModules(styles, { allowMultiple: true })
 export class Vote extends PureComponent {
   componentDidMount () {
-    this.props.dispatch(actions.getVoteOptions())
+    const query = this.props.location.query.vote_id
+    this.props.dispatch(actions.getVoteOptions(query))
   }
   componentWillReceiveProps (nextProps) {
     const { list, selected } = nextProps.vote.toJS() || {}
