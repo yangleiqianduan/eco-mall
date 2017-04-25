@@ -15,12 +15,14 @@ export class VoteResult extends PureComponent {
     this.props.dispatch(actions.getVoteResult())
   }
   render () {
-    const { list, coverImage } = this.props.vote.toJS() || {}
+    const { list, coverImage, title, description } = this.props.vote.toJS() || {}
     // const data = this.props.vote.toJS() || {}
     // console.log('end of redux Dataaaaaaa :', data, list)
 
     return <div styleName='wrap'>
       <section styleName='banner'>
+        <h1>{ title }</h1>
+        <h2>{ description }</h2>
         {
           coverImage && <img src={ coverImage } alt="" />
         }

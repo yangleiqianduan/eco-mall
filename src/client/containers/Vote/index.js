@@ -19,7 +19,7 @@ export class Vote extends PureComponent {
     this.props.dispatch(actions.getVoteOptions(query))
   }
   componentWillReceiveProps (nextProps) {
-    const { list, selected } = nextProps.vote.toJS() || {}
+    const { list, selected,} = nextProps.vote.toJS() || {}
     if (list) {
       let curSelected  = []
       selected.length>0 && selected[0].length > 0 &&
@@ -56,12 +56,14 @@ export class Vote extends PureComponent {
   }
 
   render () {
-    const { list, selected, coverImage } = this.props.vote.toJS() || {}
+    const { list, selected, coverImage, title, description } = this.props.vote.toJS() || {}
     // const data = this.props.vote.toJS() || {}
     console.log('end of redux Dataaaaaaa :', list, selected)
 
     return <div styleName='wrap'>
       <section styleName='banner'>
+        <h1>{ title }</h1>
+        <h2>{ description }</h2>
         {
           coverImage && <img src={ coverImage } alt="" />
         }

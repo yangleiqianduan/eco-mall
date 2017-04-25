@@ -3,7 +3,8 @@ import * as api from 'constants/api'
 
 import {
   UPDATE_LOADING_ACTION,
-  changeRouter
+  changeRouter,
+  showToast
 } from './index'
 
 // 更新投票选项
@@ -43,12 +44,16 @@ export const sendChoose = data => dispatch => {
   dispatch(UPDATE_LOADING_ACTION(true))
   fetch(api.voteSave, {method: 'post', param: data})
   .then(res => {
-    if (!res) return dispatch(UPDATE_LOADING_ACTION(false))
-    dispatch(changeRouter('/voteResult'))
     dispatch(UPDATE_LOADING_ACTION(false))
+    if (res.code === '1') {
+      dispatch(showToast('提交成功'))
+      dispatch(changeRouter('/voteResult'))
+    } else {
+      dispatch(showToast(res.msg))
+    }
   })
   .catch(e => {
-    console.log('返回数据格式错误')
+    dispatch(showToast('返回数据格式错误'))
     dispatch(UPDATE_LOADING_ACTION(false))
   })
 }

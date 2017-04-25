@@ -6,6 +6,8 @@ export default (state = fromJS(initState), action) => {
     case actions.UPDATE_VOTE_RESULT:
       return state.merge({
         coverImage: action.payload.coverImage,
+        title: action.payload.title,
+        description: action.payload.description,
         list: action.payload.voteQuestion
       })
     default:

@@ -29,8 +29,8 @@ export default class extends PureComponent {
                     <p styleName='desc'>{item.description}</p>
                   </div>
                   <div styleName='right'>
-                    <p styleName='prec'>{ (item.totalVoteRate || 0) * 100 }%</p>
-                    <p styleName='count'>{ item.totalVoteCount }票</p>
+                    <p styleName='prec'>{ parseInt((item.totalVoteRate || 0) * 100) }%</p>
+                    <p styleName='count'>{ item.totalVoteCount || 0 }票</p>
                   </div>
                 </header>
                 <footer styleName='progressBar'>

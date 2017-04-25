@@ -9,6 +9,8 @@ export default (state = fromJS(initState), action) => {
       return state.merge({
         coverImage: action.payload.coverImage,
         voteId: action.payload.voteId,
+        title: action.payload.title,
+        description: action.payload.description,
         selected,
         list: action.payload.voteQuestion
       })
