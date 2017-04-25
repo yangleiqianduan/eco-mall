@@ -1,8 +1,31 @@
-// import fetch from 'common/fetch'
-// import * as api from 'constants/api'
-//
-// export const SELECT_ITEM = 'SELECT_ITEM'
-// export const selectItem = (payload) => ({
-//   type: SELECT_ITEM,
-//   payload
-// })
+import fetch from 'common/fetch'
+import * as api from 'constants/api'
+
+import {
+  UPDATE_LOADING_ACTION,
+  changeRouter
+} from './index'
+
+// 更新投票结果选项
+export const UPDATE_VOTE_RESULT = 'UPDATE_VOTE_RESULT'
+export const UPDATE_VOTE_RESULT_ACTION = (payload) => ({
+  type: UPDATE_VOTE_RESULT,
+  payload
+})
+
+// 获取数据
+export const getVoteResult = () => dispatch => {
+  dispatch(UPDATE_LOADING_ACTION(true))
+  fetch(api.voteResult, {param: {
+    vote_id: 1
+  }})
+  .then(res => {
+    if (!res) return dispatch(UPDATE_LOADING_ACTION(false))
+    dispatch(UPDATE_VOTE_RESULT_ACTION(res.data || null))
+    dispatch(UPDATE_LOADING_ACTION(false))
+  })
+  .catch(e => {
+    console.log('返回数据格式错误')
+    dispatch(UPDATE_LOADING_ACTION(false))
+  })
+}

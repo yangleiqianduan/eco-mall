@@ -6,22 +6,29 @@ import CSSModules from 'react-css-modules'
 import styles from './index.styl'
 
 import ResultList from 'components/ResultList'
-import whatILikePic from 'common/img/whatILike.png'
+// import whatILikePic from 'common/img/whatILike.png'
 
 
 @CSSModules(styles, { allowMultiple: true })
 export class VoteResult extends PureComponent {
+  componentDidMount () {
+    this.props.dispatch(actions.getVoteResult())
+  }
   render () {
-    const { list } = this.props.vote.toJS() || {}
+    const { list, coverImage } = this.props.vote.toJS() || {}
+    // const data = this.props.vote.toJS() || {}
+    // console.log('end of redux Dataaaaaaa :', data, list)
 
     return <div styleName='wrap'>
       <section styleName='banner'>
-        <img src={ whatILikePic } alt="" />
+        {
+          coverImage && <img src={ coverImage } alt="" />
+        }
       </section>
       {
         list &&
         list.map((menu, i) => {
-          return <ResultList key={i} menu={ menu } noTit={ list.length===1 && true }/>
+          return <ResultList key={i} menu={ menu } noTit={ list.length===1 && true}/>
         })
       }
     </div>

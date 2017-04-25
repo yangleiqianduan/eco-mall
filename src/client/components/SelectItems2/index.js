@@ -11,7 +11,7 @@ import Slider from 'components/Slider/'
 export default class extends PureComponent {
   picShow = (i) => {
     let pics = []
-    this.props.menu.items[i].pics.map(item => pics.push({img_url: item}))
+    this.props.menu.voteQuestionChoiceList[i].imageUrlArr.map(item => pics.push({img_url: item}))
     this.setState({
       show: true,
       pics
@@ -20,7 +20,7 @@ export default class extends PureComponent {
   closePicShow = () => {
     this.setState({
       show: false
-    }, () => console.log('5555555555', this.state))
+    })
   }
 
   handleShowFullscreen = (e) => {
@@ -39,20 +39,20 @@ export default class extends PureComponent {
     const { menu, selected, noTit } = this.props || {}
     // console.log('singleItem:', menu, selected, this.state)
     const { currentImage, showFullscreen, pics, show } = this.state
+
     return <div styleName='wrap'>
       {
-        !noTit &&
-        <MenuTitle text={ menu.type } />
+        !noTit && <MenuTitle text={ menu.title } />
       }
       <ul>
         {
-          menu.items.map((item, i) => {
+          menu.voteQuestionChoiceList.map((item, i) => {
             return <li key={i} styleName='item'>
               <div styleName='picWrap' onClick={ this.picShow.bind(this, i) }>
-                <img src={ item.pics[0] } alt='' />
+                <img src={ item.imageUrlArr[0] } alt='' />
                 {
-                  item.pics.length > 1 &&
-                  <span styleName='tag'>{item.pics.length}图</span>
+                  item.imageUrlArr.length > 1 &&
+                  <span styleName='tag'>{item.imageUrlArr.length}图</span>
                 }
               </div>
               <div styleName='detail' onClick={ this.props.onChange(i) }>

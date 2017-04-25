@@ -10,26 +10,60 @@ import Button from 'components/Button/'
 import TelUs from 'components/TelUs'
 
 import telUsPic from 'common/img/telUs.png'
-import whatILikePic from 'common/img/whatILike.png'
+// import whatILikePic from 'common/img/whatILike.png'
 
 @CSSModules(styles, { allowMultiple: true })
 export class Vote extends PureComponent {
+  componentDidMount () {
+    this.props.dispatch(actions.getVoteOptions())
+  }
+  componentWillReceiveProps (nextProps) {
+    const { list, selected } = nextProps.vote.toJS() || {}
+    if (list) {
+      let curSelected  = []
+      selected.length>0 && selected[0].length > 0 &&
+      selected.map((menu, i) => {
+        menu.map((item, j) => {
+          curSelected.push(list[i].voteQuestionChoiceList[j].voteQuestionChoiceId)
+        })
+      })
+      this.setState({
+        selected: curSelected
+      }, () => console.log('checkCurState:', this.state))
+    }
+  }
+
+  state = {
+    selected: []
+  }
 
   changeItem = (menuIndex, itemIndex) => {
     // console.log('menuIndex:',menuIndex,'itemIndex',itemIndex)
     this.props.dispatch(actions.selectItem({menuIndex, itemIndex}))
   }
   handleSubmit = () => {
-    this.props.dispatch(actions.sendChoose(this.props.vote.toJS().selected))
+    const { voteId } = this.props.vote.toJS() || {}
+    if (!localStorage.getItem("user_id")) {
+      localStorage.setItem("user_id", parseInt(Math.random()*100000000+1))
+    }
+    const params = {
+      vote_id: voteId,
+      user_id: localStorage.getItem("user_id") || '12345678',
+      choice_ids: this.state.selected
+    }
+    this.state.selected.length > 0 && this.props.dispatch(actions.sendChoose(params))
   }
 
   render () {
-    const { list, selected } = this.props.vote.toJS() || {}
-    // console.log('kkkKK:', list, selected)
+    const { list, selected, coverImage } = this.props.vote.toJS() || {}
+    // const data = this.props.vote.toJS() || {}
+    console.log('end of redux Dataaaaaaa :', list, selected)
 
     return <div styleName='wrap'>
       <section styleName='banner'>
-        <img src={ whatILikePic } alt="" />
+        {
+          coverImage && <img src={ coverImage } alt="" />
+        }
       </section>
       {
         list &&
@@ -38,7 +72,7 @@ export class Vote extends PureComponent {
         })
       }
       <div styleName="G-card">
-        <Button onClick={ this.handleSubmit }>确定预约</Button>
+        <Button onClick={ this.handleSubmit } disabled = {this.state.selected.length > 0 ? false : true}>投票</Button>
       </div>
 
       <TelUs data={ {link: '/want', pic: telUsPic} }/>

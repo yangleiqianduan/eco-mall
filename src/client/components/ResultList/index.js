@@ -13,15 +13,14 @@ export default class extends PureComponent {
 
     return <div styleName='wrap'>
       {
-        !noTit &&
-        <MenuTitle text={ menu.type } />
+        !noTit && <MenuTitle text={ menu.title } />
       }
       <ul>
         {
-          menu.items.map((item, i) => {
+          menu.voteQuestionChoiceList.map((item, i) => {
             return <li key={i} styleName='item'>
               <div styleName='picWrap'>
-                <img src={ item.pics[0] } alt='' />
+                <img src={ item.imageUrlArr[0] } alt='' />
               </div>
               <section styleName='detail'>
                 <header>
@@ -30,12 +29,12 @@ export default class extends PureComponent {
                     <p styleName='desc'>{item.description}</p>
                   </div>
                   <div styleName='right'>
-                    <p styleName='prec'>{ (item.votePerc * 100).toFixed(2) }%</p>
-                    <p styleName='count'>{ item.voteCount }票</p>
+                    <p styleName='prec'>{ (item.totalVoteRate || 0) * 100 }%</p>
+                    <p styleName='count'>{ item.totalVoteCount }票</p>
                   </div>
                 </header>
                 <footer styleName='progressBar'>
-                  <span style={{ width: item.votePerc * 100 + '%' }}>{ item.votePerc }</span>
+                  <span style={{ width: (item.totalVoteRate || 0) * 100 + '%' }}>{ item.votePerc }</span>
                 </footer>
               </section>
             </li>

@@ -3,6 +3,7 @@ import * as api from 'constants/api'
 
 import {
   UPDATE_LOADING_ACTION,
+  changeRouter,
   showToast
 } from './index'
 
@@ -35,7 +36,8 @@ export const submit = data => dispatch => {
     dispatch(UPDATE_LOADING_ACTION(false))
     if (res.code === '1') {
       dispatch(showToast('提交成功'))
-      window.history.back()
+      dispatch(changeRouter('/vote'))
+      // window.history.back()
     } else {
       dispatch(showToast('提交失败'))
     }
