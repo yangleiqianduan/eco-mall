@@ -20,13 +20,12 @@ export const itemDetail = '/web/product/detail'                             // �
 export const collocation = '/web/product/mix/details'                       // 获取搭配详情
 
 // 确定预约
-export const conformOrder = '/web/product/appoint/create'                   /、确定预约
+export const conformOrder = '/web/product/appoint/create'                  // 确定预约
 
 // 投票
 export const voteSelects = '/m/vote/select_vote'          // 投票选项
 export const voteResult = '/m/vote/stats_vote_result'     // 投票结果
 export const voteSave = '/m/vote/save'                     // 投票提交
-
 
 export const host = {
   // dev: 'http://10.33.69.91:8050',
