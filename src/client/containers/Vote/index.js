@@ -1,6 +1,7 @@
 import React, { PureComponent } from 'react'
 import { connect } from 'react-redux'
 import * as actions from 'actions/vote'
+import { showToast } from 'actions/index'
 
 import CSSModules from 'react-css-modules'
 import styles from './index.styl'
@@ -19,7 +20,7 @@ export class Vote extends PureComponent {
     this.props.dispatch(actions.getVoteOptions(query))
   }
   componentWillReceiveProps (nextProps) {
-    const { list, selected,} = nextProps.vote.toJS() || {}
+    const { list, selected } = nextProps.vote.toJS() || {}
     if (list) {
       let curSelected  = []
       selected.length>0 && selected[0].length > 0 &&
@@ -38,10 +39,14 @@ export class Vote extends PureComponent {
     selected: []
   }
 
-  changeItem = (menuIndex, itemIndex) => {
-    // console.log('menuIndex:',menuIndex,'itemIndex',itemIndex)
-    this.props.dispatch(actions.selectItem({menuIndex, itemIndex}))
+  changeItem = (menuIndex, itemIndex, isLimited) => {
+    if (!isLimited) {
+      this.props.dispatch(actions.selectItem({menuIndex, itemIndex}))
+    } else {
+      this.props.dispatch(showToast('该品类最多选择'+isLimited+'个'))
+    }
   }
+
   handleSubmit = () => {
     const { voteId } = this.props.vote.toJS() || {}
     if (!localStorage.getItem("user_id")) {
@@ -57,8 +62,7 @@ export class Vote extends PureComponent {
 
   render () {
     const { list, selected, coverImage, title, description } = this.props.vote.toJS() || {}
-    // const data = this.props.vote.toJS() || {}
-    console.log('end of redux Dataaaaaaa :', list, selected)
+    // console.log('end of redux Dataaaaaaa :', list, selected)
 
     return <div styleName='wrap'>
       <section styleName='banner'>
@@ -71,7 +75,7 @@ export class Vote extends PureComponent {
       {
         list &&
         list.map((menu, i) => {
-          return <SelectItems2 key={i} menu={ menu } selected={ selected[i] } noTit={ list.length===1 && true } onChange={(itemIndex) => this.changeItem.bind(this, i, itemIndex)}/>
+          return <SelectItems2 key={i} menu={ menu } selected={ selected[i] } limited={ menu.voteQuestion } noTit={ list.length===1 && true } onChange={this.changeItem.bind(this, i)}/>
         })
       }
       {
