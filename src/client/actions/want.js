@@ -28,9 +28,9 @@ export const DEL_IMAGE_ACTION = (payload) => ({
   payload
 })
 // 删除文字
-export const DEL_TEXT = 'DEL_TEXT'
-export const DEL_TEXT_ACTION = (payload) => ({
-  type: DEL_TEXT,
+export const CLEAR_DATA = 'CLEAR_DATA'
+export const CLEAR_DATA_ACTION = (payload) => ({
+  type: CLEAR_DATA,
   payload
 })
 
@@ -41,7 +41,7 @@ export const submit = data => dispatch => {
   .then(res => {
     dispatch(UPDATE_LOADING_ACTION(false))
     if (res.code === '1') {
-      dispatch(DEL_TEXT_ACTION())
+      dispatch(CLEAR_DATA_ACTION())
       dispatch(showToast('提交成功'))
       // dispatch(changeRouter('/vote'))
       window.history.back()

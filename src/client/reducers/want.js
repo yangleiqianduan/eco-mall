@@ -5,8 +5,10 @@ export default (state = fromJS(initState), action) => {
   switch (action.type) {
     case actions.UPDATE_TEXT:
       return state.set('text', action.payload)
-    case actions.DEL_TEXT:
-      return state.set('text','')
+    case actions.CLEAR_DATA:
+      return state
+        .set('text','')
+        .set('imgList', [])
     case actions.ADD_IMAGE:
       return state.update('imgList', imgs => imgs.push(fromJS(action.payload)))
     case actions.DEL_IMAGE:
