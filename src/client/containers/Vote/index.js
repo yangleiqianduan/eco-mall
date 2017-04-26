@@ -29,7 +29,7 @@ export class Vote extends PureComponent {
       let curSelected = []
       selected.forEach((menu, i) => {
         menu.forEach((item, j) => {
-          curSelected.push(list[i].voteQuestionChoiceList[j].voteQuestionChoiceId)
+          curSelected.push(list[i].voteQuestionChoiceList[item].voteQuestionChoiceId)
         })
       })
       this.setState({
@@ -67,7 +67,7 @@ export class Vote extends PureComponent {
 
   render () {
     const { list, selected, coverImage, title, description } = this.props.vote.toJS() || {}
-    // console.log('end of redux Dataaaaaaa :', list, selected)
+    console.log('end of redux Dataaaaaaa :', list, selected)
 
     return <div styleName='wrap'>
       <section styleName='banner'>

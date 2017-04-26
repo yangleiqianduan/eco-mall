@@ -15,7 +15,7 @@ export default (state = fromJS(initState), action) => {
         list: action.payload.voteQuestion
       })
     case actions.SELECT_ITEM:
-      return state.updateIn(['selected', action.payload.menuIndex], list => list.includes(action.payload.itemIndex) ? list.filter(i => i != action.payload.itemIndex) : list.push(action.payload.itemIndex))
+      return state.updateIn(['selected', action.payload.menuIndex], list => list.indexOf(action.payload.itemIndex)>=0 ? list.filter(i => i != action.payload.itemIndex) : list.push(action.payload.itemIndex))
     default:
       return state
   }
