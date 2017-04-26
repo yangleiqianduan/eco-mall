@@ -3,7 +3,8 @@ import * as api from 'constants/api'
 
 import {
   UPDATE_LOADING_ACTION,
-  changeRouter
+  changeRouter,
+  showToast
 } from './index'
 
 // 更新投票结果选项
