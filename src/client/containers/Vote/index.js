@@ -21,11 +21,12 @@ export class Vote extends PureComponent {
       vote_id: query
     }, () => console.log('save_vote_id:', this.state))
     this.props.dispatch(actions.getVoteOptions(query))
+    _hmt.push(['_trackPageview', '/vote'])
   }
   componentWillReceiveProps (nextProps) {
     const { list, selected } = nextProps.vote.toJS() || {}
     if (list) {
-      let curSelected  = []
+      let curSelected = []
       selected.forEach((menu, i) => {
         menu.forEach((item, j) => {
           curSelected.push(list[i].voteQuestionChoiceList[item].voteQuestionChoiceId)
@@ -46,18 +47,18 @@ export class Vote extends PureComponent {
     if (!isLimited) {
       this.props.dispatch(actions.selectItem({menuIndex, itemIndex}))
     } else {
-      this.props.dispatch(showToast('该品类最多选择'+isLimited+'个'))
+      this.props.dispatch(showToast('该品类最多选择' + isLimited + '个'))
     }
   }
 
   handleSubmit = () => {
     const { voteId } = this.props.vote.toJS() || {}
-    if (!localStorage.getItem("user_id")) {
-      localStorage.setItem("user_id", parseInt(Math.random()*100000000+1))
+    if (!localStorage.getItem('user_id')) {
+      localStorage.setItem('user_id', parseInt(Math.random()*100000000+1))
     }
     const params = {
       vote_id: voteId,
-      user_id: localStorage.getItem("user_id") || '12345678',
+      user_id: localStorage.getItem('user_id') || '12345678',
       choice_ids: this.state.selected,
       vote_id: this.state.vote_id
     }
@@ -73,7 +74,7 @@ export class Vote extends PureComponent {
         <h1>{ title }</h1>
         <h2>{ description }</h2>
         {
-          coverImage && <img src={ coverImage } alt="" />
+          coverImage && <img src={ coverImage } alt='' />
         }
       </section>
 
@@ -85,7 +86,7 @@ export class Vote extends PureComponent {
       }
       {
         list &&
-        <div styleName="G-card">
+        <div styleName='G-card'>
           <Button onClick={ this.handleSubmit } disabled = {this.state.selected.length > 0 ? false : true}>投票</Button>
         </div>
       }
