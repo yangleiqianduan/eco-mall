@@ -33,7 +33,7 @@ export default function (url, op = {}, mock) {
     }
   }
   delete (op.param)                                               // 去除多余的option
-  return fetch((isMock ? '/api' : host[window.ENV]) + url, Object.assign({}, config, op))
+  return fetch(host[window.ENV] + url, Object.assign({}, config, op))
     .then(res => {
       return res.json()
     })
