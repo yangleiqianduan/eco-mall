@@ -19,7 +19,7 @@ export const getVoteOptions = (vote_id) => dispatch => {
   dispatch(UPDATE_LOADING_ACTION(true))
   fetch(api.voteSelects, {param: {
     vote_id: vote_id || 1
-  }})
+  }}, false)
   .then(res => {
     if (!res) return dispatch(UPDATE_LOADING_ACTION(false))
     dispatch(UPDATE_VOTE_OPTIONS_ACTION(res.data || null))
