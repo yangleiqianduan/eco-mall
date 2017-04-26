@@ -20,12 +20,15 @@ export const getVoteResult = () => dispatch => {
     vote_id: 1
   }})
   .then(res => {
-    if (!res) return dispatch(UPDATE_LOADING_ACTION(false))
-    dispatch(UPDATE_VOTE_RESULT_ACTION(res.data || null))
     dispatch(UPDATE_LOADING_ACTION(false))
+    if (res.code === '1') {
+      dispatch(UPDATE_VOTE_RESULT_ACTION(res.data || null))
+    } else {
+      dispatch(showToast(res.msg || '接口有误，返回数据格式错误'))
+    }
   })
   .catch(e => {
-    console.log('返回数据格式错误')
+    dispatch(showToast('返回数据格式错误'))
     dispatch(UPDATE_LOADING_ACTION(false))
   })
 }

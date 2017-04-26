@@ -47,9 +47,9 @@ export const sendChoose = data => dispatch => {
     dispatch(UPDATE_LOADING_ACTION(false))
     if (res.code === '1') {
       dispatch(showToast('提交成功'))
-      dispatch(changeRouter('/voteResult'))
+      setTimeout(() => dispatch(changeRouter('/voteResult')), 1000)
     } else {
-      dispatch(showToast(res.msg))
+      dispatch(showToast(res.msg || '接口有误，提交失败'))
     }
   })
   .catch(e => {
