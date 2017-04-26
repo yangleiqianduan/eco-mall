@@ -19,7 +19,7 @@ export default class extends PureComponent {
   }
   handleChange (itemIndex) {
     const { selected, limited } = this.props
-    if (!limited || selected.includes(itemIndex) || selected.length < limited) {
+    if (!limited || selected.indexOf(itemIndex) >= 0 || selected.length < limited) {
       this.props.onChange(itemIndex)
     } else {
       this.props.onChange(itemIndex, limited)
@@ -46,7 +46,7 @@ export default class extends PureComponent {
 
   render () {
     const { menu, selected, noTit } = this.props || {}
-    // console.log('singleItem:', menu, selected, this.state)
+    console.log('singleItem:', menu, selected, this.state)
     const { currentImage, showFullscreen, pics, show } = this.state
 
     return <div styleName='wrap'>
@@ -69,7 +69,7 @@ export default class extends PureComponent {
                 <p styleName='desc'>{item.description}</p>
               </div>
               <div onClick={ () => this.handleChange(i) }>
-                <Icon icon = { selected.includes(i) ? 'checked' : 'unChecked' } width={15} fill = '#394043' />
+                <Icon icon = { selected.indexOf(i) >= 0 ? 'checked' : 'unChecked' } width={15} fill = '#394043' />
               </div>
             </li>
           })

@@ -76,6 +76,7 @@ export class Vote extends PureComponent {
           coverImage && <img src={ coverImage } alt="" />
         }
       </section>
+
       {
         list &&
         list.map((menu, i) => {
