@@ -23,9 +23,8 @@ export class Vote extends PureComponent {
     const { list, selected } = nextProps.vote.toJS() || {}
     if (list) {
       let curSelected  = []
-      selected.length>0 && selected[0].length > 0 &&
-      selected.map((menu, i) => {
-        menu.map((item, j) => {
+      selected.forEach((menu, i) => {
+        menu.forEach((item, j) => {
           curSelected.push(list[i].voteQuestionChoiceList[j].voteQuestionChoiceId)
         })
       })
