@@ -6,6 +6,7 @@ import classNames from 'classnames/bind'
 import { Link } from 'react-router-dom'
 import Slider from 'react-slick'
 import 'slick-carousel/slick/slick.css'
+import './slider.css'
 
 @CSSModules(styles, {allowMultiple: true})
 export default class extends PureComponent {

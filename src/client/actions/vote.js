@@ -41,6 +41,7 @@ export const selectItem = (payload) => ({
 // 提交投票选择
 export const SEND_CHOOSE = 'SEND_CHOOSE'
 export const sendChoose = data => dispatch => {
+  debugger
   dispatch(UPDATE_LOADING_ACTION(true))
   fetch(api.voteSave, {method: 'post', param: {
     vote_id: data.vote_id,
