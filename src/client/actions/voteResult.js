@@ -17,7 +17,8 @@ export const UPDATE_VOTE_RESULT_ACTION = (payload) => ({
 export const getVoteResult = (vote_id) => dispatch => {
   dispatch(UPDATE_LOADING_ACTION(true))
   fetch(api.voteResult, {param: {
-    vote_id: vote_id || 1
+    vote_id: vote_id || 1,
+    user_id: localStorage.getItem('user_id') || ''
   }})
   .then(res => {
     dispatch(UPDATE_LOADING_ACTION(false))
