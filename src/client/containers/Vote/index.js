@@ -17,6 +17,9 @@ import telUsPic from 'common/img/telUs.png'
 export class Vote extends PureComponent {
   componentDidMount () {
     const query = this.props.location.query.vote_id
+    this.setState({
+      vote_id: query
+    }, () => console.log('save_vote_id:', this.state))
     this.props.dispatch(actions.getVoteOptions(query))
   }
   componentWillReceiveProps (nextProps) {
@@ -35,7 +38,8 @@ export class Vote extends PureComponent {
   }
 
   state = {
-    selected: []
+    selected: [],
+    vote_id: 1
   }
 
   changeItem = (menuIndex, itemIndex, isLimited) => {
@@ -54,7 +58,8 @@ export class Vote extends PureComponent {
     const params = {
       vote_id: voteId,
       user_id: localStorage.getItem("user_id") || '12345678',
-      choice_ids: this.state.selected
+      choice_ids: this.state.selected,
+      vote_id: this.state.vote_id
     }
     this.state.selected.length > 0 && this.props.dispatch(actions.sendChoose(params))
   }

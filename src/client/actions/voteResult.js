@@ -14,10 +14,10 @@ export const UPDATE_VOTE_RESULT_ACTION = (payload) => ({
 })
 
 // 获取数据
-export const getVoteResult = () => dispatch => {
+export const getVoteResult = (vote_id) => dispatch => {
   dispatch(UPDATE_LOADING_ACTION(true))
   fetch(api.voteResult, {param: {
-    vote_id: 1
+    vote_id: vote_id || 1
   }})
   .then(res => {
     dispatch(UPDATE_LOADING_ACTION(false))

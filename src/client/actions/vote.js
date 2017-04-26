@@ -42,12 +42,16 @@ export const selectItem = (payload) => ({
 export const SEND_CHOOSE = 'SEND_CHOOSE'
 export const sendChoose = data => dispatch => {
   dispatch(UPDATE_LOADING_ACTION(true))
-  fetch(api.voteSave, {method: 'post', param: data})
+  fetch(api.voteSave, {method: 'post', param: {
+    vote_id: data.vote_id,
+    user_id: data.user_id,
+    choice_ids: data.choice_ids
+  }})
   .then(res => {
     dispatch(UPDATE_LOADING_ACTION(false))
     if (res.code === '1') {
       dispatch(showToast('提交成功'))
-      setTimeout(() => dispatch(changeRouter('/voteResult')), 1000)
+      setTimeout(() => dispatch(changeRouter('/voteResult?vote_id='+data.vote_id)), 1000)
     } else {
       dispatch(showToast(res.msg || '接口有误，提交失败'))
     }
