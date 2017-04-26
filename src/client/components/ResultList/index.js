@@ -25,7 +25,13 @@ export default class extends PureComponent {
               <section styleName='detail'>
                 <header>
                   <div styleName='left'>
-                    <h3 styleName='tit'>{item.title}</h3>
+                    <h3 styleName='tit'>
+                      {item.title}
+                      {
+                        item.select &&
+                        <span styleName='spcColor'>（已选）</span>
+                      }
+                    </h3>
                     <p styleName='desc'>{item.description}</p>
                   </div>
                   <div styleName='right'>
