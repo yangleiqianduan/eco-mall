@@ -81,7 +81,9 @@ export default class extends PureComponent {
       {
         this.state.pics.length > 0 && show &&
         <section styleName='showPic'>
-          <i styleName='close' onClick={this.closePicShow}>X</i>
+          <span styleName='close' onClick={this.closePicShow}>
+            <Icon icon = {'layerClose'} width = {'40'} />
+          </span>
           <div styleName='sliderWrap'>
             <Slider
               data={ pics }

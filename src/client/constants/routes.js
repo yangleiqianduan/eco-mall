@@ -68,10 +68,10 @@ export default [
     component: VoteResult,
     title: '投票结果'
   },
-  // {
-  //   path: '/icon',
-  //   exact: true,
-  //   component: Icons,
-  //   title: 'icon示例'
-  // }
+  {
+    path: '/icon',
+    exact: true,
+    component: Icons,
+    title: 'icon示例'
+  }
 ]

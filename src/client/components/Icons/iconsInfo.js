@@ -71,5 +71,8 @@ export const iconsInfo = {
     width: 45,
     height: 50
   },
-
+  layerClose: {
+    width: 40,
+    height: 40
+  }
 }
