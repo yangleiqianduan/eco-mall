@@ -17,12 +17,12 @@ export default [
   //   component: Home,
   //   title: '链家·优品'
   // },
-  {
-    path: '/',
-    exact: true,
-    component: Vote,
-    title: '投票'
-  },
+  // {
+  //   path: '/',
+  //   exact: true,
+  //   component: Vote,
+  //   title: '投票'
+  // },
   // {
   //   path: '/search',
   //   exact: true,
