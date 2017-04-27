@@ -9,7 +9,7 @@ import { upload, host } from 'constants/api'
 import CSSModules from 'react-css-modules'
 import styles from './index.styl'
 
-import { UPDATE_TEXT_ACTION, ADD_IMAGE_ACTION, DEL_IMAGE_ACTION, submit } from 'actions/want'
+import { CLEAR_DATA_ACTION, UPDATE_TEXT_ACTION, ADD_IMAGE_ACTION, DEL_IMAGE_ACTION, submit } from 'actions/want'
 
 @CSSModules(styles, {allowMultiple: true})
 export class Want extends PureComponent {
@@ -28,6 +28,9 @@ export class Want extends PureComponent {
       content: text,
       image_urls: imgList.map(item => item.src)
     }))
+  }
+  componentWillUnmount = () => {
+    this.props.dispatch(CLEAR_DATA_ACTION())
   }
   render () {
     const { text, imgList } = this.props.data.toJS()
