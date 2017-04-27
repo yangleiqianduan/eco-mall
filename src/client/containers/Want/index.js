@@ -15,7 +15,7 @@ import { CLEAR_DATA_ACTION, UPDATE_TEXT_ACTION, ADD_IMAGE_ACTION, DEL_IMAGE_ACTI
 export class Want extends PureComponent {
   handleChangeText = (e) => this.props.dispatch(UPDATE_TEXT_ACTION(e.target.value))
   handleUploaded = (data) => {
-    if (data.code !== '1' || !data.data.length) return alert('图片上传失败')
+    if (data.code !== '1' || !data.data.length) return alert(data.msg)
     this.props.dispatch(ADD_IMAGE_ACTION({
       src: data.data[0]
     }))
