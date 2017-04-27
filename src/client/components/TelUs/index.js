@@ -4,6 +4,6 @@ import styles from './index.styl'
 
 import { Link } from 'react-router-dom'
 
-export default CSSModules(({data}) => <div styleName='wrap'>
+export default CSSModules(({data}) => <div styleName='wrap' style={data.styles}>
   <Link to={data.link}><img src={data.pic} /></Link>
 </div>, styles)

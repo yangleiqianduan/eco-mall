@@ -57,19 +57,21 @@ export default class extends PureComponent {
         {
           menu.voteQuestionChoiceList.map((item, i) => {
             return <li key={i} styleName='item'>
-              <div styleName='picWrap' onClick={ this.picShow.bind(this, i) }>
-                <img src={ item.imageUrlArr[0] } alt='' />
-                {
-                  item.imageUrlArr.length > 1 &&
-                  <span styleName='tag'>{item.imageUrlArr.length}图</span>
-                }
-              </div>
-              <div styleName='detail' onClick={ () => this.handleChange(i) }>
-                <h3 styleName='tit'>{item.title}</h3>
-                <p styleName='desc'>{item.description}</p>
-              </div>
-              <div onClick={ () => this.handleChange(i) }>
-                <Icon icon = { selected.indexOf(i) >= 0 ? 'checked' : 'unChecked' } width={15} fill = '#394043' />
+              <div>
+                <div styleName='picWrap' onClick={ this.picShow.bind(this, i) }>
+                  <img src={ item.imageUrlArr[0] } alt='' />
+                  {
+                    item.imageUrlArr.length > 1 &&
+                    <span styleName='tag'>{item.imageUrlArr.length}图</span>
+                  }
+                </div>
+                <div styleName='detail' onClick={ () => this.handleChange(i) }>
+                  <h3 styleName='tit'>{item.title}</h3>
+                  <p styleName='desc'>{item.description}</p>
+                </div>
+                <div onClick={ () => this.handleChange(i) }>
+                  <Icon icon = { selected.indexOf(i) >= 0 ? 'checked' : 'unChecked' } width={16} fill = '#394043' />
+                </div>
               </div>
             </li>
           })
