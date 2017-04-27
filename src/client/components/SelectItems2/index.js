@@ -35,7 +35,8 @@ export default class extends PureComponent {
   }
   closePicShow = () => {
     this.setState({
-      show: false
+      show: false,
+      currentImage: 0
     })
   }
 
@@ -46,7 +47,7 @@ export default class extends PureComponent {
 
   render () {
     const { menu, selected, noTit } = this.props || {}
-    console.log('singleItem:', menu, selected, this.state)
+    console.log('singleItem:', selected, this.state)
     const { currentImage, showFullscreen, pics, show } = this.state
 
     return <div styleName='wrap'>
