@@ -33,5 +33,5 @@ export const host = {
   // dev: 'http://lmall.lianjia.com:8070',
   dev: 'http://mall.lj-web-30.lianjia.com',
   offline: 'http://mall.lj-web-30.lianjia.com',
-  prod: ''
+  prod: 'https://mall.lianjia.com'
 }
