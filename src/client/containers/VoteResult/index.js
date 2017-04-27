@@ -1,6 +1,7 @@
 import React, { PureComponent } from 'react'
 import { connect } from 'react-redux'
 import * as actions from 'actions/voteResult'
+import * as Utils from 'common/utils'
 
 import CSSModules from 'react-css-modules'
 import styles from './index.styl'

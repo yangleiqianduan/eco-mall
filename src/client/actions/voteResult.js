@@ -1,5 +1,6 @@
 import fetch from 'common/fetch'
 import * as api from 'constants/api'
+import * as Utils from 'common/utils'
 
 import {
   UPDATE_LOADING_ACTION,
@@ -19,7 +20,7 @@ export const getVoteResult = (vote_id) => dispatch => {
   dispatch(UPDATE_LOADING_ACTION(true))
   fetch(api.voteResult, {param: {
     vote_id: vote_id || 1,
-    user_id: localStorage.getItem('user_id') || ''
+    user_id: Utils.getCookie('user_id') || ''
   }})
   .then(res => {
     dispatch(UPDATE_LOADING_ACTION(false))

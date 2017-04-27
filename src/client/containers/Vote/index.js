@@ -1,6 +1,7 @@
 import React, { PureComponent } from 'react'
 import { connect } from 'react-redux'
 import * as actions from 'actions/vote'
+import * as Utils from 'common/utils'
 import { showToast, changeRouter } from 'actions/index'
 
 import CSSModules from 'react-css-modules'
@@ -17,7 +18,7 @@ import telUsPic from 'common/img/telUs.png'
 export class Vote extends PureComponent {
   componentWillMount () {
     const query = this.props.location.query.vote_id
-    if (localStorage.getItem('user_id') && JSON.parse(localStorage.getItem('vote_id_list')).indexOf(query+'')>=0) {
+    if (Utils.getCookie('user_id') && JSON.parse(Utils.getCookie('vote_id_list')).indexOf(query+'')>=0) {
       this.props.dispatch(changeRouter('/voteResult?vote_id='+(query|| 1)))
     }
   }
@@ -61,21 +62,21 @@ export class Vote extends PureComponent {
 
   handleSubmit = () => {
     const { voteId } = this.props.vote.toJS() || {}
-    if (!localStorage.getItem('user_id')) {
-      localStorage.setItem('user_id', parseInt(Math.random()*100000000+1))
+    if (!Utils.getCookie('user_id')) {
+      Utils.setCookie('user_id', parseInt(Math.random()*100000000+1))
     }
-    if (!localStorage.getItem('vote_id_list')) {
+    if (!Utils.getCookie('vote_id_list')) {
       let opt = []
       opt.push(voteId+'')
-      localStorage.setItem('vote_id_list', JSON.stringify(opt))
+      Utils.setCookie('vote_id_list', JSON.stringify(opt))
     } else {
-      let opt = JSON.parse(localStorage.getItem('vote_id_list'))
+      let opt = JSON.parse(Utils.getCookie('vote_id_list'))
       opt.push(voteId+'')
-      localStorage.setItem('vote_id_list', JSON.stringify(opt))
+      Utils.setCookie('vote_id_list', JSON.stringify(opt))
     }
     const params = {
       vote_id: voteId,
-      user_id: localStorage.getItem('user_id') || '12345678',
+      user_id: Utils.getCookie('user_id') || '12345678',
       choice_ids: this.state.selected,
       vote_id: this.state.vote_id
     }
