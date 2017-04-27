@@ -17,7 +17,7 @@ import telUsPic from 'common/img/telUs.png'
 export class Vote extends PureComponent {
   componentWillMount () {
     const query = this.props.location.query.vote_id
-    if (localStorage.getItem('user_id')) {
+    if (localStorage.getItem('user_id') && JSON.parse(localStorage.getItem('vote_id_list')).indexOf(query+'')>=0) {
       this.props.dispatch(changeRouter('/voteResult?vote_id='+(query|| 1)))
     }
   }
@@ -63,6 +63,15 @@ export class Vote extends PureComponent {
     const { voteId } = this.props.vote.toJS() || {}
     if (!localStorage.getItem('user_id')) {
       localStorage.setItem('user_id', parseInt(Math.random()*100000000+1))
+    }
+    if (!localStorage.getItem('vote_id_list')) {
+      let opt = []
+      opt.push(voteId+'')
+      localStorage.setItem('vote_id_list', JSON.stringify(opt))
+    } else {
+      let opt = JSON.parse(localStorage.getItem('vote_id_list'))
+      opt.push(voteId+'')
+      localStorage.setItem('vote_id_list', JSON.stringify(opt))
     }
     const params = {
       vote_id: voteId,
