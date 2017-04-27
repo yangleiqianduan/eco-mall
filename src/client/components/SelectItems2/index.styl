@@ -3,13 +3,15 @@
 .wrap
   background #FFF
   .item
-    box()
-    align-items()
-    justify-content()
-    padding px2rem(16) 0
-    margin 0 px2rem(16)
-    &:not(:last-child)
+    padding 0 px2rem(20)
+    &:active
+      background-color $color-gray
+    & > div
+      box()
+      align-items()
+      justify-content()
       border(bottom)
+      padding px2rem(20) 0
   .picWrap
     width px2rem(80)
     min-width px2rem(80)
@@ -22,24 +24,28 @@
     overflow hidden
     img
       width 100%
+      min-height 100%
     .tag
       position absolute
-      bottom px2rem(8)
-      right px2rem(2)
-      line-height 1
-      border-radius px2rem(8)
-      padding px2rem(1) px2rem(8)
+      bottom px2rem(5)
+      right px2rem(5)
+      line-height px2rem(15)
+      border-radius px2rem(7)
+      padding 0 px2rem(7)
       background-color #F1ECE1
       color #898989
-      transform(scale(.8))
+      transform(scale(.95))
   .detail
     margin-right px2rem(20)
     flex()
     .tit
       font-size $font-size16
-      margin-bottom px2rem(10)
+      line-height px2rem(14)
+      margin-bottom px2rem(11)
+      color #333
     .desc
       color #9C9FA1
+      font-size $font-size13
       G-cut-p()
   .showPic
     background-color rgba(0, 0, 0, .9)

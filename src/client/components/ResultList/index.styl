@@ -6,8 +6,8 @@
     box()
     align-items()
     justify-content()
-    padding px2rem(16) 0
-    margin 0 px2rem(16)
+    padding px2rem(20) 0
+    margin 0 px2rem(20)
     &:not(:last-child)
       border(bottom)
   .picWrap
@@ -22,37 +22,41 @@
     overflow hidden
     img
       width 100%
+      min-height 100%
     // .tag
-    //   position absolute
-    //   bottom px2rem(8)
-    //   right px2rem(2)
-    //   line-height 1
-    //   border-radius px2rem(8)
-    //   padding px2rem(1) px2rem(8)
-    //   background-color #F1ECE1
-    //   color #898989
-    //   transform(scale(.8))
+        // position absolute
+        // bottom px2rem(5)
+        // right px2rem(5)
+        // line-height px2rem(15)
+        // border-radius px2rem(7)
+        // padding 0 px2rem(7)
+        // background-color #F1ECE1
+        // color #898989
+        // transform(scale(.95))
   .detail
     flex()
     header
       box()
-      margin-bottom px2rem(10)
+      margin-bottom px2rem(11)
     .left
       flex()
       margin-right px2rem(20)
       .tit
         font-size $font-size16
-        margin-bottom px2rem(10)
+        color #333
+        margin-bottom px2rem(11)
         .spcColor
           color $color-light
       .desc
         color #9C9FA1
+        font-size $font-size13
         G-cut-p()
     .right
       text-align right
       .prec
         color #FF5A5A
-        font-size $font-size20
+        font-size $font-size24
+        line-height px2rem(30)
       .count
         color #9C9FA1
     .progressBar

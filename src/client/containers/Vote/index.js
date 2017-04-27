@@ -86,13 +86,12 @@ export class Vote extends PureComponent {
       }
       {
         list &&
-        <div styleName='G-card'>
+        <div styleName='btnArea'>
           <Button onClick={ this.handleSubmit } disabled = {this.state.selected.length > 0 ? false : true}>投票</Button>
         </div>
       }
 
-
-      <TelUs data={ {link: '/want', pic: telUsPic} }/>
+      <TelUs data={ {link: '/want', pic: telUsPic, styles:{background: 'none'}} }/>
     </div>
   }
 }
