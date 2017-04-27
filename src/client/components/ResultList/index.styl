@@ -10,6 +10,8 @@
     margin 0 px2rem(20)
     &:not(:last-child)
       border(bottom)
+    &:first-child
+      padding-top 0
   .picWrap
     width px2rem(80)
     min-width px2rem(80)
@@ -45,6 +47,7 @@
         font-size $font-size16
         color #333
         margin-bottom px2rem(11)
+        line-height 1
         .spcColor
           color $color-light
       .desc
@@ -57,6 +60,7 @@
         color #FF5A5A
         font-size $font-size24
         line-height px2rem(30)
+        margin-top px2rem(-4)
       .count
         color #9C9FA1
     .progressBar
