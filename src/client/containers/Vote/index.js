@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react'
 import { connect } from 'react-redux'
 import * as actions from 'actions/vote'
-import { showToast } from 'actions/index'
+import { showToast, changeRouter } from 'actions/index'
 
 import CSSModules from 'react-css-modules'
 import styles from './index.styl'
@@ -15,6 +15,12 @@ import telUsPic from 'common/img/telUs.png'
 
 @CSSModules(styles, { allowMultiple: true })
 export class Vote extends PureComponent {
+  componentWillMount () {
+    const query = this.props.location.query.vote_id
+    if (localStorage.getItem('user_id')) {
+      this.props.dispatch(changeRouter('/voteResult?vote_id='+(query|| 1)))
+    }
+  }
   componentDidMount () {
     const query = this.props.location.query.vote_id
     this.setState({
@@ -22,7 +28,7 @@ export class Vote extends PureComponent {
     }, () => console.log('save_vote_id:', this.state))
     this.props.dispatch(actions.getVoteOptions(query))
     if ( _hmt && _hmt !== null && _hmt !== undefined ) {
-      _hmt.push(['_trackPageview', '/vote']) 
+      _hmt.push(['_trackPageview', '/vote'])
     }
   }
   componentWillReceiveProps (nextProps) {

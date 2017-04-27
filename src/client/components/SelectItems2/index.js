@@ -70,7 +70,7 @@ export default class extends PureComponent {
                   <p styleName='desc'>{item.description}</p>
                 </div>
                 <div onClick={ () => this.handleChange(i) } styleName='iconCheck'>
-                  <Icon icon = { selected.indexOf(i) >= 0 ? 'checked' : 'unChecked' } width={15} fill = '#394043' />
+                  <Icon icon = { selected.indexOf(i) >= 0 ? 'checked' : 'unChecked' } width={18} fill = '#394043' />
                 </div>
               </div>
             </li>
