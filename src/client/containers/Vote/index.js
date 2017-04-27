@@ -62,7 +62,11 @@ export class Vote extends PureComponent {
       choice_ids: this.state.selected,
       vote_id: this.state.vote_id
     }
-    this.state.selected.length > 0 && this.props.dispatch(actions.sendChoose(params))
+    if (this.state.selected.length > 0) {
+      this.props.dispatch(actions.sendChoose(params))
+    } else {
+      this.props.dispatch(showToast('你还没有投票，请选择'))
+    }
   }
 
   render () {
@@ -87,7 +91,7 @@ export class Vote extends PureComponent {
       {
         list &&
         <div styleName='btnArea'>
-          <Button onClick={ this.handleSubmit } disabled = {this.state.selected.length > 0 ? false : true}>投票</Button>
+          <Button onClick={ this.handleSubmit } isDisButToast = {this.state.selected.length > 0 ? false : true}>投票</Button>
         </div>
       }
 
