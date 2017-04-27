@@ -23,7 +23,10 @@ module.exports = function (webpackConfig, redSkull, plugins) {
   webpackConfig.plugins[1].filename = 'css/[name].css'
   webpackConfig.plugins.push(new plugins.CommonsChunkPlugin({
     name: 'common',
-    filename: 'js/common.min.js'
+    filename: 'js/common.min.js',
+    minChunks: 1,
+    chunks: ['react', 'react-dom', 'redux', 'react-redux', 'redux-thunk', 'immutable', 'react-css-modules', 'react-router'],
+    children: true
   }))
 
   webpackConfig.module.loaders.splice(4, 1)
