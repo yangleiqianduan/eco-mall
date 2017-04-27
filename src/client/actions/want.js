@@ -29,9 +29,8 @@ export const DEL_IMAGE_ACTION = (payload) => ({
 })
 // 删除文字
 export const CLEAR_DATA = 'CLEAR_DATA'
-export const CLEAR_DATA_ACTION = (payload) => ({
-  type: CLEAR_DATA,
-  payload
+export const CLEAR_DATA_ACTION = () => ({
+  type: CLEAR_DATA
 })
 
 // 提交数据
