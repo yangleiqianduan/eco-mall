@@ -23,8 +23,8 @@ export const getVoteOptions = voteId => dispatch => {
   .then(res => {
     if (!res) return dispatch(UPDATE_LOADING_ACTION(false))
     if (res.code !== '1') {
-      setTimeout(() => dispatch(changeRouter('/errorPage?error_msg=' + res.msg)), 1000)
       dispatch(UPDATE_LOADING_ACTION(false))
+      dispatch(changeRouter('/errorPage?error_msg=' + res.msg))
     } else {
       if (res.data.title) document.title = res.data.title
       dispatch(UPDATE_VOTE_OPTIONS_ACTION(res.data || null))
