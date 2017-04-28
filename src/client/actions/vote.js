@@ -22,6 +22,7 @@ export const getVoteOptions = (vote_id) => dispatch => {
   }}, false)
   .then(res => {
     if (!res) return dispatch(UPDATE_LOADING_ACTION(false))
+    if (res.data.title) document.title = res.data.title
     dispatch(UPDATE_VOTE_OPTIONS_ACTION(res.data || null))
     dispatch(UPDATE_LOADING_ACTION(false))
   })
