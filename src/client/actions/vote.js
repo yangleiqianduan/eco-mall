@@ -22,6 +22,7 @@ export const getVoteOptions = voteId => dispatch => {
   }}, false)
   .then(res => {
     if (!res) return dispatch(UPDATE_LOADING_ACTION(false))
+<<<<<<< HEAD
     if (res.code !== '1') {
       setTimeout(() => dispatch(changeRouter('/errorPage?error_msg=' + res.msg)), 1000)
       dispatch(UPDATE_LOADING_ACTION(false))
@@ -30,6 +31,13 @@ export const getVoteOptions = voteId => dispatch => {
       dispatch(UPDATE_LOADING_ACTION(false))
     }
   }).catch(e => {
+=======
+    if (res.data.title) document.title = res.data.title
+    dispatch(UPDATE_VOTE_OPTIONS_ACTION(res.data || null))
+    dispatch(UPDATE_LOADING_ACTION(false))
+  })
+  .catch(e => {
+>>>>>>> e40f2e3377b9e7e357eb1fc726d252ad73bc3b7d
     console.log('返回数据格式错误')
     dispatch(UPDATE_LOADING_ACTION(false))
   })
