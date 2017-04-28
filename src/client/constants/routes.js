@@ -1,13 +1,13 @@
-import Home from 'containers/Home/'
-import Detail from 'containers/Detail/'
-import Subject from 'containers/Subject/'
-import Result from 'containers/Result/'
-import Collocation from 'containers/Collocation/'
+// import Home from 'containers/Home/'
+// import Detail from 'containers/Detail/'
+// import Subject from 'containers/Subject/'
+// import Result from 'containers/Result/'
+// import Collocation from 'containers/Collocation/'
+// import Success from 'containers/Success/'
 import Want from 'containers/Want/'
-import Success from 'containers/Success/'
 import Vote from 'containers/Vote/'
 import VoteResult from 'containers/VoteResult/'
-
+import ErrorPage from 'containers/ErrorPage'
 import Icons from 'components/Icons/demo/'
 
 export default [
@@ -67,6 +67,12 @@ export default [
     exact: true,
     component: VoteResult,
     title: '投票结果'
+  },
+  {
+    path: '/errorPage',
+    exact: true,
+    component: ErrorPage,
+    title: '错误'
   },
   {
     path: '/icon',

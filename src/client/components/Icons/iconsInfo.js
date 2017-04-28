@@ -19,7 +19,7 @@ export const iconsInfo = {
     width: 18,
     height: 18
   },
-  listener:{
+  listener: {
     width: 18,
     height: 20
   },
@@ -74,5 +74,9 @@ export const iconsInfo = {
   layerClose: {
     width: 40,
     height: 40
+  },
+  errorInfo: {
+    width: 105,
+    height: 116
   }
 }

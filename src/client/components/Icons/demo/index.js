@@ -43,6 +43,7 @@ export default class extends Component {
         <Icon icon = {'location'} width={12} style = {{color: '#000'}} />
         <Icon icon = {'successBig'} width = {'45px'} fill = {'#00AE66'} />
         <Icon icon = {'layerClose'} width = {'40'} />
+        <Icon icon = {'errorInfo'} width = {'105'} />
       </section>
 
 
