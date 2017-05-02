@@ -18,8 +18,8 @@ import telUsPic from 'common/img/telUs.png'
 export class Vote extends PureComponent {
   componentWillMount () {
     const query = this.props.location.query.vote_id
-    if (Utils.getCookie('user_id') && JSON.parse(Utils.getCookie('vote_id_list')).indexOf(query+'')>=0) {
-      this.props.dispatch(changeRouter('/voteResult?vote_id='+(query|| 1)))
+    if (Utils.getCookie('user_id') && (Utils.getCookie('vote_id_list')).indexOf(query + '') >= 0) {
+      this.props.dispatch(changeRouter('/voteResult?vote_id=' + (query || 1)))
     }
   }
   componentDidMount () {

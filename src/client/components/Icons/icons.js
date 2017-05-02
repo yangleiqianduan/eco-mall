@@ -122,8 +122,8 @@ export const layerClose = () => <g stroke="none">
   <rect fill="#c0c2c2" transform="translate(9.500000, 9.500000) rotate(-180.000000) translate(-9.500000, -9.500000) " x="8.70833333" y="9.73443548e-13" width="1.58333333" height="19" rx="0.791666667" ></rect>
   </g>
 </g>
-export const errorInfo = () => <g id="优家V1.0" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-        <g id="不存在" transform="translate(-135.000000, -233.000000)" fill-rule="nonzero">
+export const errorInfo = () => <g id="优家V1.0" stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
+        <g id="不存在" transform="translate(-135.000000, -233.000000)" fillRule="nonzero">
             <g id="飞碟-(1)" transform="translate(123.000000, 222.000000)">
                 <g id="Group">
                     <path d="M13.084374,74.4694566 C13.084374,46.0721568 36.1384478,22.9711892 64.477956,22.9711892 C92.8174642,22.9711892 115.871538,46.0722762 115.871538,74.469576 C115.871538,102.866876 92.8174642,125.967963 64.477956,125.967963 C36.1384478,125.967843 13.084374,102.866756 13.084374,74.4694566 Z" id="Shape" stroke="#D5D5D5" opacity="0.300000012"></path>
