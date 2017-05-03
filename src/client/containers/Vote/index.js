@@ -87,7 +87,6 @@ export class Vote extends PureComponent {
 
   render () {
     const { list, selected, coverImage, title, description } = this.props.vote.toJS() || {}
-    console.log('end of redux Dataaaaaaa :', list, selected)
 
     return <div styleName='wrap'>
       <section styleName='banner'>

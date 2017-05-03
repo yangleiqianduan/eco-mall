@@ -28,7 +28,6 @@ export class Main extends PureComponent {
   }
 
   render () {
-    console.log(this.props.shared.toJS(), 'sss')
     const { routes, location } = this.props
     const { transRoute, loading, toast } = this.props.shared.toJS()
     return <div styleName='wrap'>
@@ -52,8 +51,7 @@ export class Main extends PureComponent {
 
 export class InitPath extends PureComponent {
   render () {
-    const location = this.props.location || window.location || {pathname: ''}
-    console.log(location, 'ssssss')
+    // const location = this.props.location || window.location || {pathname: ''}
     return <Redirect to='/' />
   }
 }

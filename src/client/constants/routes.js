@@ -4,6 +4,10 @@
 // import Result from 'containers/Result/'
 // import Collocation from 'containers/Collocation/'
 // import Success from 'containers/Success/'
+import AddressList from 'containers/AddressList/'
+import Address from 'containers/Address/'
+import OrderList from 'containers/OrderList/'
+import Order from 'containers/Order/'
 import Want from 'containers/Want/'
 import Vote from 'containers/Vote/'
 import VoteResult from 'containers/VoteResult/'
@@ -44,6 +48,30 @@ export default [
   //   component: Subject,
   //   title: '专题'
   // },
+  {
+    path: '/addressList',
+    exact: true,
+    component: AddressList,
+    title: '收货地址列表'
+  },
+  {
+    path: '/address',
+    exact: true,
+    component: Address,
+    title: '收货地址详情'
+  },
+  {
+    path: '/orderList',
+    exact: true,
+    component: OrderList,
+    title: '订单列表'
+  },
+  {
+    path: '/order',
+    exact: true,
+    component: Order,
+    title: '订单详情'
+  },
   {
     path: '/want',
     exact: true,
