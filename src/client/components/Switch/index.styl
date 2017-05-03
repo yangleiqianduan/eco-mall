@@ -1,0 +1,31 @@
+@import "~common/global.styl"
+
+.wrap
+  height px2rem(26)
+  width px2rem(60)
+  border-radius px2rem(13)
+  font-size 0
+  background #e7e7e7
+  display inline-flex
+  align-items center
+  transition all .1s
+.active
+  background $color-dark
+  justify-content flex-end
+  .inner
+    border-color $color-dark
+.btn
+  transition all .1s
+  margin px2rem(3)
+  width px2rem(20)
+  height px2rem(20)
+  border-radius 50%
+  background $color-white
+  display inline-flex
+  align-items center
+  justify-content center
+.inner
+  width px2rem(8)
+  height px2rem(8)
+  border-radius 50%
+  border(all, px2rem(2), #BCC3CF, solid)
