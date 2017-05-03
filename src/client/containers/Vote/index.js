@@ -62,6 +62,9 @@ export class Vote extends PureComponent {
 
   handleSubmit = () => {
     const { voteId } = this.props.vote.toJS() || {}
+    if (this.state.selected.length <= 0) {
+      return this.props.dispatch(showToast('你还没有投票，请选择'))
+    }
     if (!Utils.getCookie('user_id')) {
       Utils.setCookie('user_id', parseInt(Math.random()*100000000+1))
     }
@@ -75,16 +78,11 @@ export class Vote extends PureComponent {
       Utils.setCookie('vote_id_list', JSON.stringify(opt))
     }
     const params = {
-      vote_id: voteId,
+      vote_id: voteId || this.state.vote_id,
       user_id: Utils.getCookie('user_id') || '12345678',
-      choice_ids: this.state.selected,
-      vote_id: this.state.vote_id
+      choice_ids: this.state.selected
     }
-    if (this.state.selected.length > 0) {
-      this.props.dispatch(actions.sendChoose(params))
-    } else {
-      this.props.dispatch(showToast('你还没有投票，请选择'))
-    }
+    this.props.dispatch(actions.sendChoose(params))
   }
 
   render () {
