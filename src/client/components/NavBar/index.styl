@@ -3,8 +3,8 @@
 .wrap
   box()
   border bottom px2rem(1)
+  justify-content space-around
   .tab
-    flex 1
     text-align center
     padding px2rem(15) 0
     a
@@ -12,12 +12,17 @@
       font-size $font-size14
       display block
   .active
+    border(bottom,2px,$color-dark)
+  .ver_active
     background $color-white
     a
       border(left,3px,$color-dark)
       color $color-dark
       font-size $font-size16
       font-weight bold
+.horizontal
+  .tab
+    padding px2rem(10) px2rem(2)
 .vertical
   flex-direction column
   border none
