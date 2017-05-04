@@ -32,12 +32,14 @@ export default [
   //   exact: true,
   //   component: Result,
   //   title: '优品目录'
-  // }, {
+  // },
+  // {
   //   path: '/item',
   //   exact: true,
   //   component: Detail,
   //   title: '商品详情'
-  // }, {
+  // },
+  // {
   //   path: '/collocation',
   //   exact: true,
   //   component: Collocation,

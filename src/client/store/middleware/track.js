@@ -1,5 +1,6 @@
+import { getCookie } from 'common/utils'
 
-window.__UDL_CONFIG = {pid: 'mallm', uuid: '20240622', c: 'H5'}
+window.__UDL_CONFIG = {pid: 'mallm', uuid: getCookie('lianjia_uuid'), c: 'H5'}
 
 const track = async action => {
   switch (action.type) {
