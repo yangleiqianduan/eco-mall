@@ -54,13 +54,13 @@ export default [
     path: '/addressList',
     exact: true,
     component: AddressList,
-    title: '收货地址列表'
+    title: '地址管理'
   },
   {
     path: '/address',
     exact: true,
     component: Address,
-    title: '收货地址详情'
+    title: '新建地址'
   },
   {
     path: '/orderList',

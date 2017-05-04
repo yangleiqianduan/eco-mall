@@ -5,6 +5,8 @@ import CSSModules from 'react-css-modules'
 import styles from './index.styl'
 
 import NavBar from 'components/NavBar/'
+import ScrollList from 'components/ScrollList/'
+import Order from './Order'
 
 @CSSModules(styles, { allowMultiple: true })
 export class OrderList extends PureComponent {
@@ -14,9 +16,16 @@ export class OrderList extends PureComponent {
   render () {
     const { status = '' } = this.props.location.query
     const navData = this.state.nav.map(n => Object.assign(n, {path: n.status ? `/orderList?status=${n.status}` : '/orderList', active: n.status === status}))
+    const orders = [
+      {firstPageUrl: 'https://image1.ljcdn.com/lmall/93f2c612-f8c7-4cca-9952-ba0556d0ceed.jpg', text: '火山黑 1件', productName: '宜家组合布艺沙发', marketPrice: '2360'},
+      {firstPageUrl: 'https://image1.ljcdn.com/lmall/93f2c612-f8c7-4cca-9952-ba0556d0ceed.jpg', text: '火山黑 1件', productName: '宜家组合布艺沙发', marketPrice: '2360'},
+      {firstPageUrl: 'https://image1.ljcdn.com/lmall/93f2c612-f8c7-4cca-9952-ba0556d0ceed.jpg', text: '火山黑 1件', productName: '宜家组合布艺沙发', marketPrice: '2360'},
+      {firstPageUrl: 'https://image1.ljcdn.com/lmall/93f2c612-f8c7-4cca-9952-ba0556d0ceed.jpg', text: '火山黑 1件', productName: '宜家组合布艺沙发', marketPrice: '2360'}
+    ]
     return <div styleName='wrap'>
       <div styleName='nav'><NavBar data={navData} /></div>
-      订单列表
+      <ScrollList data={orders}
+        renderItem={(item, i) => <Order key={i} data={item} />} />
     </div>
   }
 }
