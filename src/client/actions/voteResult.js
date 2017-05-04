@@ -20,7 +20,7 @@ export const getVoteResult = (vote_id) => dispatch => {
   dispatch(UPDATE_LOADING_ACTION(true))
   fetch(api.voteResult, {param: {
     vote_id: vote_id || 1,
-    user_id: Utils.getCookie('user_id') || ''
+    user_id: Utils.getCookie('lianjia_mall_vote_user_id') || ''
   }})
   .then(res => {
     dispatch(UPDATE_LOADING_ACTION(false))

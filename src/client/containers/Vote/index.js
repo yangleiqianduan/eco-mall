@@ -65,8 +65,8 @@ export class Vote extends PureComponent {
     if (this.state.selected.length <= 0) {
       return this.props.dispatch(showToast('你还没有投票，请选择'))
     }
-    if (!Utils.getCookie('user_id')) {
-      Utils.setCookie('user_id', parseInt(Math.random()*100000000+1))
+    if (!Utils.getCookie('lianjia_mall_vote_user_id')) {
+      Utils.setCookie('lianjia_mall_vote_user_id', parseInt(Math.random()*100000000+1))
     }
     if (!Utils.getCookie('vote_id_list')) {
       let opt = []
@@ -79,7 +79,7 @@ export class Vote extends PureComponent {
     }
     const params = {
       vote_id: voteId || this.state.vote_id,
-      user_id: Utils.getCookie('user_id') || '12345678',
+      user_id: Utils.getCookie('lianjia_mall_vote_user_id') || '12345678',
       choice_ids: this.state.selected
     }
     this.props.dispatch(actions.sendChoose(params))
