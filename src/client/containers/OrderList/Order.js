@@ -30,6 +30,10 @@ export default class extends PureComponent {
     }
   }
 
+  componentWillUnmount () {
+    window.clearTimeout(this.timer)
+  }
+
   renderOperationList = (op, i) => {
     const { orderId } = this.props.data
     const { onCancel, onDelete } = this.props
