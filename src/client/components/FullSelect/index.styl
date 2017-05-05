@@ -1,0 +1,57 @@
+@import "~common/global"
+
+.wrap
+  overflow hidden
+  position fixed
+  bottom 0
+  height 0
+  width 100%
+.wrapShow
+  height 100%
+.cover
+  position fixed
+  top 0
+  left 0
+  width 100%
+  height 100%
+  background rgba(0, 0, 0, .6)
+  z-index 998
+.optionsWrap
+  background $color-white
+  position absolute
+  left 0
+  width 100%
+  z-index 999
+  bottom -100%
+  transition all .1s
+  font-size px2rem(14)
+  color $color-font-light
+.open
+  bottom 0
+.optionsHeader
+  padding px2rem(15) px2rem(20) 0
+  border(bottom)
+  .value
+    display inline-block
+    padding 0 px2rem(2) px2rem(5)
+    margin-right px2rem(15)
+  .active
+    color $color-dark
+    font-weight bolder
+    border(bottom, px2rem(2), $color-dark)
+  .sure
+    color $color-dark
+    float right
+    padding 0 0 px2rem(5) px2rem(10)
+  .disabled
+    color $color-font-light
+.optionsContent
+  min-height px2rem(100)
+  max-height px2rem(400)
+  padding px2rem(10) px2rem(20)
+  overflow-y auto
+  li
+    padding px2rem(10) 0
+  .active
+    font-weight bolder
+    color $color-dark

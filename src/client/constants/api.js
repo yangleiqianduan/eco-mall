@@ -22,6 +22,13 @@ export const collocation = '/web/product/mix/details'                       // �
 // 确定预约
 export const conformOrder = '/web/product/appoint/create'                  // 确定预约
 
+// 收货地址
+export const getAddressList = '/web/user/deliver_address/get_list'          // 获取收货地址列表
+export const deleteAddress = '/web/user/deliver_address/delete'             // 删除收货地址
+export const getArea = '/web/lbs/get_cities'                                // 获取省、市、县列表
+export const addAddress = '/web/user/deliver_address/add'                   // 新增收货地址
+export const editAddress = '/web/user/deliver_address//modify'              // 编辑收货地址
+
 // 投票
 export const voteSelects = '/m/vote/select_vote'          // 投票选项
 export const voteResult = '/m/vote/stats_vote_result'     // 投票结果

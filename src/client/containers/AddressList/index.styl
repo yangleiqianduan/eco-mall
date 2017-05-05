@@ -1,4 +1,39 @@
 @import "~common/global"
 
 .wrap
-  padding px2rem(20)
+  padding-bottom px2rem(85)
+.pannel
+  background $color-white
+  padding px2rem(15) px2rem(20)
+  margin-bottom px2rem(12)
+  .header
+    font-size $font-size16
+    margin-bottom px2rem(2)
+  .content
+    font-size px2rem(13)
+    font-weight 300
+    color $font-color-light
+  .footer
+    font-size px2rem(13)
+    font-weight 300
+    box()
+    .setDefaultArea
+      flex 1
+      box()
+      align-items center
+  .split
+    border(none)
+    border(top)
+    margin px2rem(15) 0 px2rem(10) 0
+  .edit
+    color $color-dark
+    padding px2rem(1) px2rem(14)
+    border(right)
+  .delete
+    padding px2rem(1) px2rem(14)
+.bottom
+  position fixed
+  width 100%
+  bottom 0
+  left 0
+  padding px2rem(15)

@@ -23,7 +23,7 @@ export default function (url, op = {}, mock) {
       let formData = new window.FormData()
       let key
       for (key in op.param) {
-        formData.append(key, op.body[key])
+        formData.append(key, op.param[key])
       }
       op.body = formData
       delete (op.formData)                                        // 去除多余的option
