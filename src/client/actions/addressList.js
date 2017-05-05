@@ -38,6 +38,18 @@ export const deleteAddress = id => async dispatch => {
   if (result.code === '1') {
     dispatch(getAddressList())
   } else {
+    dispatch(UPDATE_LOADING_ACTION(false))
     dispatch(showToast(result.msg || '删除失败'))
+  }
+}
+
+export const setDefault = (id) => async dispatch => {
+  dispatch(UPDATE_LOADING_ACTION(true))
+  const result = await fetch(api.setDefault, {param: {deliver_address_id: id, uid: 1000000010098260}, method: 'post', formData: true})
+  if (result.code === '1') {
+    dispatch(getAddressList())
+  } else {
+    dispatch(UPDATE_LOADING_ACTION(false))
+    dispatch(showToast(result.msg || '设置失败'))
   }
 }

@@ -29,6 +29,7 @@ export const deleteAddress = '/web/user/deliver_address/delete'             // �
 export const getArea = '/web/lbs/get_cities'                                // 获取省、市、县列表
 export const addAddress = '/web/user/deliver_address/add'                   // 新增收货地址
 export const editAddress = '/web/user/deliver_address//modify'              // 编辑收货地址
+export const setDefault = '/web/user/deliver_address/set_default'           // 设为默认地址
 
 // 订单列表
 export const getOrderList = '/web/order/get'                                // 获取订单列表

@@ -12,7 +12,8 @@ import { Link } from 'react-router-dom'
 import {
   getAddressList,
   toEditAddress,
-  deleteAddress
+  deleteAddress,
+  setDefault
 } from 'actions/addressList'
 
 @CSSModules(styles, { allowMultiple: true })
@@ -25,6 +26,7 @@ export class AddressList extends PureComponent {
   hadnleDeleteAddress = (id) => {
     if (window.confirm('确认删除该收货地址？')) this.props.dispatch(deleteAddress(id))
   }
+  handleSetDefault = (id) => this.props.dispatch(setDefault(id))
 
   render () {
     const { list } = this.props.data.toJS()
@@ -36,7 +38,7 @@ export class AddressList extends PureComponent {
           <section styleName='content'>{a.provinceName} {a.cityName} {a.detailAddress}</section>
           <hr styleName='split' />
           <section styleName='footer'>
-            <div styleName='setDefaultArea'><Icon icon={classNames({checked: a.isDefault, unChecked: !a.isDefault})} width={18} />&nbsp;默认地址</div>
+            <div styleName='setDefaultArea'><span onClick={() => this.handleSetDefault(a.id)}><Icon icon={classNames({checked: a.isDefault, unChecked: !a.isDefault})} width={18} />&nbsp;{a.isDefault ? '默认地址' : '设为默认地址'}</span></div>
             <div>
               <a styleName='edit' onClick={() => this.handleEditAddress(a)}>编辑</a>
               <a styleName='delete' onClick={() => this.hadnleDeleteAddress(a.id)}>删除</a>
