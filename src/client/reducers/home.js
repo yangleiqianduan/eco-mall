@@ -9,6 +9,8 @@ export default (state = fromJS(initState), action) => {
       return state.merge({collocation: action.payload})
     case actions.UPDATE_HOT_ITEMS:
       return state.merge({hotItems: action.payload})
+    case actions.UPDATE_BANNER:
+      return state.merge({banner: action.payload})
     default:
       return state
   }

@@ -2,27 +2,52 @@ import React, { PureComponent } from 'react'
 
 import CSSModules from 'react-css-modules'
 import styles from './Order.styl'
+import classNames from 'classnames/bind'
 
 import LabelItem from 'components/LabelItem/'
+import { Link } from 'react-router-dom'
 
 @CSSModules(styles, { allowMultiple: true })
 export default class extends PureComponent {
+  renderOperationList = (op, i) => {
+    const { orderId } = this.props.data
+    const { onCancel, onDelete } = this.props
+    switch (op.code) {
+      case 1:               // 待支付
+        return <div key={i} styleName='btnArea dark'>付款</div>
+      case 2:               // 取消订单
+        return <div key={i} styleName='btnArea' onClick={() => onCancel(orderId)}>取消订单</div>
+      // case 3:               // 查看物流
+      //   return <div key={i} styleName='btnArea light'>追踪物流</div>
+      case 3:
+        return <div key={i} styleName='btnArea' onClick={() => onDelete(orderId)}>删除订单</div>
+      case 4:
+        return <div key={i} styleName='btnArea light'>退货</div>
+    }
+  }
   render () {
-    const items = [
-      {firstPageUrl: 'https://image1.ljcdn.com/lmall/93f2c612-f8c7-4cca-9952-ba0556d0ceed.jpg', text: '火山黑 1件', productName: '宜家组合布艺沙发', marketPrice: '2360'},
-      {firstPageUrl: 'https://image1.ljcdn.com/lmall/93f2c612-f8c7-4cca-9952-ba0556d0ceed.jpg', text: '火山黑 1件', productName: '宜家组合布艺沙发', marketPrice: '2360'},
-      {firstPageUrl: 'https://image1.ljcdn.com/lmall/93f2c612-f8c7-4cca-9952-ba0556d0ceed.jpg', text: '火山黑 1件', productName: '宜家组合布艺沙发', marketPrice: '2360'},
-      {firstPageUrl: 'https://image1.ljcdn.com/lmall/93f2c612-f8c7-4cca-9952-ba0556d0ceed.jpg', text: '火山黑 1件', productName: '宜家组合布艺沙发', marketPrice: '2360'}
-    ]
+    const { itemsList, operationList, status, statusCode, orderId, totalAmount } = this.props.data
+    const statusStyle = classNames('gray', {
+      red: statusCode === 100,
+      yollow: statusCode === 200,
+      green: statusCode === 300
+    })
     return <div styleName='wrap'>
       <section styleName='header'>
-        <div>订单号：198070711</div>
-        <div>待付款</div>
+        <div>订单号：{orderId}</div>
+        <div styleName={statusStyle}>{status}</div>
       </section>
       <section>
-        {items.map((item, i) => <LabelItem vertical={false} data={item} key={i} />)}
+        <Link to={`/order?id=${orderId}`}>
+          {itemsList.map((item, i) => <LabelItem vertical={false} data={item} key={i} />)}
+        </Link>
       </section>
-      <section styleName='footer'>合计:￥4388</section>
+      <section styleName='footer'>
+        <div styleName='priceArea'>合计:￥{totalAmount}</div>
+        {
+          operationList.reverse().map(this.renderOperationList)
+        }
+      </section>
     </div>
   }
 }

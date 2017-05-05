@@ -9,7 +9,7 @@ import CSSModules from 'react-css-modules'
 import styles from './index.styl'
 import wantItem from 'common/img/wantItem.png'
 
-import { getCollocationList, getHotItems } from 'actions/home'
+import { getCollocationList, getHotItems, getBanner } from 'actions/home'
 
 @CSSModules(styles, { allowMultiple: true })
 export class Home extends PureComponent {
@@ -19,6 +19,7 @@ export class Home extends PureComponent {
   componentDidMount () {
     this.props.dispatch(getCollocationList())
     this.props.dispatch(getHotItems())
+    this.props.dispatch(getBanner())
   }
   render () {
     const { categoryList } = this.props.shared.toJS()

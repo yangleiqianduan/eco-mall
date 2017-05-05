@@ -35,3 +35,16 @@ export const getHotItems = () => dispatch => {
     dispatch(UPDATE_HOT_ITEMS_ACTION((res || {}).data || []))
   })
 }
+
+export const UPDATE_BANNER = 'UPDATE_BANNER_HOME'
+export const UPDATE_BANNER_ACTION = (payload) => ({
+  type: UPDATE_BANNER,
+  payload
+})
+
+export const getBanner = () => dispatch => {
+  fetch(api.getBanner)
+  .then(res => {
+    dispatch(UPDATE_BANNER_ACTION(((res || {}).data || []).filter(b => b.location === 10)))
+  })
+}

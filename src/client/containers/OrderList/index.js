@@ -8,30 +8,78 @@ import NavBar from 'components/NavBar/'
 import ScrollList from 'components/ScrollList/'
 import Order from './Order'
 
+import {
+  getOrderList,
+  cancelOrder,
+  deleteOrder
+} from 'actions/orderList'
+
 @CSSModules(styles, { allowMultiple: true })
 export class OrderList extends PureComponent {
   state = {
     nav: [{title: '全部', status: '', replace: true}, {status: '1', title: '待付款', replace: true}, {status: '2', title: '待发货', replace: true}, {status: '3', title: '待收货', replace: true}]
   }
+
+  componentDidMount () {
+    this.getOrderList()
+    window.addEventListener('scroll', this.checkScrollBottom)
+  }
+
+  componentWillReceiveProps = (np) => {
+    const ns = np.location.query.status
+    const ts = this.props.location.query.status
+    if (ts !== ns) {
+      this.getOrderList({status: ns})
+    }
+  }
+
+  componentWillUnmount () {
+    window.removeEventListener('scroll', this.checkScrollBottom)
+  }
+
+  checkScrollBottom = (e) => {
+    const { page } = this.props.data.toJS()
+    const footerPosition = this.refs.footer.getBoundingClientRect()
+    const clientHeight = document.body.clientHeight
+    if (footerPosition.bottom === clientHeight) {
+      if (page.currentPage < page.totalPage) {
+        this.getOrderList({current_page: page.currentPage + 1})
+      }
+    }
+  }
+
+  getOrderList = (param) => {
+    const status = this.props.location.query.status || ''
+    this.props.dispatch(getOrderList(Object.assign({status}, param)))
+  }
+
+  cancelOrder = (id, index) => {
+    console.log(id)
+    if (window.confirm('确认取消该订单？')) this.props.dispatch(cancelOrder(id, index))
+  }
+
+  deleteOrder = (id) => {
+    if (window.confirm('确认删除该订单')) this.props.dispatch(deleteOrder(id, this.props.location.query.status || ''))
+  }
+
   render () {
     const { status = '' } = this.props.location.query
     const navData = this.state.nav.map(n => Object.assign(n, {path: n.status ? `/orderList?status=${n.status}` : '/orderList', active: n.status === status}))
-    const orders = [
-      {firstPageUrl: 'https://image1.ljcdn.com/lmall/93f2c612-f8c7-4cca-9952-ba0556d0ceed.jpg', text: '火山黑 1件', productName: '宜家组合布艺沙发', marketPrice: '2360'},
-      {firstPageUrl: 'https://image1.ljcdn.com/lmall/93f2c612-f8c7-4cca-9952-ba0556d0ceed.jpg', text: '火山黑 1件', productName: '宜家组合布艺沙发', marketPrice: '2360'},
-      {firstPageUrl: 'https://image1.ljcdn.com/lmall/93f2c612-f8c7-4cca-9952-ba0556d0ceed.jpg', text: '火山黑 1件', productName: '宜家组合布艺沙发', marketPrice: '2360'},
-      {firstPageUrl: 'https://image1.ljcdn.com/lmall/93f2c612-f8c7-4cca-9952-ba0556d0ceed.jpg', text: '火山黑 1件', productName: '宜家组合布艺沙发', marketPrice: '2360'}
-    ]
+    const { orders, page } = this.props.data.toJS()
     return <div styleName='wrap'>
       <div styleName='nav'><NavBar data={navData} /></div>
       <ScrollList data={orders}
-        renderItem={(item, i) => <Order key={i} data={item} />} />
+        renderItem={(item, i) => <Order key={i} onCancel={(id) => this.cancelOrder(id, i)} onDelete={this.deleteOrder} data={item} />} />
+      <div styleName='bottom' ref='footer'>
+        {page.currentPage < page.totalPage ? '加载中...' : (page.totalPage ? '没有更多了' : '暂无订单')}
+      </div>
     </div>
   }
 }
 
 const mapStateToProps = state => ({
-  shared: state.shared
+  shared: state.shared,
+  data: state.orderList
 })
 
 export default connect(mapStateToProps)(OrderList)
