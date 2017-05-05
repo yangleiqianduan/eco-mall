@@ -2,8 +2,8 @@
 export const userInfo = '/web/user/buyer/get_info'
 
 // 首页
-export const getCollocationList = '/web/product/mix/list'                   // 获取搭配列表
-export const getHotItems = '/web/product/recommend/list'                    // 获取推荐商品
+export const getCollocationList = '/m/product/mix/list'                   // 获取搭配列表
+export const getHotItems = '/m/product/recommend/list'                    // 获取推荐商品
 export const getCategoryList = '/web/category/list'                         // 获取类目列表
 export const getBanner = '/web/banner/get'                                  // 获取banner列表
 
