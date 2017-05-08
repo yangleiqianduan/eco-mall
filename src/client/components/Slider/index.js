@@ -27,9 +27,10 @@ export default class extends PureComponent {
     const { data, setting, slideStyle, needDesc, onClick, fullScreen, onClose } = this.props
     const settings = Object.assign({
       dots: true,
+      useCSS: true,
       customPaging: () => <a />,
       infinite: false,
-      speed: 800,
+      speed: 500,
       slidesToShow: 1,
       slidesToScroll: 1,
       arrows: false,

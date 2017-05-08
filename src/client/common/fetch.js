@@ -1,4 +1,4 @@
-import { host } from 'constants/api'
+import { host, login } from 'constants/api'
 
 export default function (url, op = {}, mock) {
   const isMock = mock === undefined ? false : mock
@@ -39,7 +39,7 @@ export default function (url, op = {}, mock) {
     })
     .then(data => {
       if (data.code === '403') {                                  // 未登陆
-        window.location.href = host[window.ENV] + '/web/login/?ru=' + encodeURIComponent(window.location)
+        window.location.href = `${host[window.ENV]}${login}?ru=${encodeURIComponent(window.location)}`
         return false
       }
       return data
