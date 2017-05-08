@@ -4,6 +4,7 @@ import Subject from 'containers/Subject/'
 import Result from 'containers/Result/'
 import Collocation from 'containers/Collocation/'
 import Success from 'containers/Success/'
+import Shoppingcart from 'containers/Shoppingcart/'
 import AddressList from 'containers/AddressList/'
 import Address from 'containers/Address/'
 import OrderList from 'containers/OrderList/'
@@ -43,6 +44,12 @@ export default [
     exact: true,
     component: Subject,
     title: '专题'
+  },
+  {
+    path: '/shoppingcart',
+    exact: true,
+    component: Shoppingcart,
+    title: '购物车'
   },
   {
     path: '/addressList',

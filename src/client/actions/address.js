@@ -3,7 +3,8 @@ import * as api from 'constants/api'
 import { isEmpty } from 'common/utils'
 import {
   showToast,
-  UPDATE_LOADING_ACTION
+  UPDATE_LOADING_ACTION,
+  changeRouter
 } from './index'
 
 export const UPDATE_FORM_INPUT = 'UPDATE_FORM_INPUT_ADDRESS'
@@ -103,8 +104,7 @@ export const submit = (data, id) => async dispatch => {
     ['addressDetail', 'address_detail'],
     ['isDefault', 'is_default']
   ]
-  const reqParams = {uid: '1000000010098260'}
-  // TODO 去掉uid
+  const reqParams = {}
   let url = api.addAddress
   for (let i = 0; i < params.length; i++) {
     const current = data[params[i][0]]
@@ -126,7 +126,7 @@ export const submit = (data, id) => async dispatch => {
   const result = await fetch(url, {param: reqParams, method: 'post', formData: true})
   dispatch(UPDATE_LOADING_ACTION(false))
   if (result.code === '1') {
-    window.history.back()
+    dispatch(changeRouter({to: 'addressList', replace: true}))
   } else {
     dispatch(showToast(result.msg || '保存失败'))
   }

@@ -1,0 +1,44 @@
+@import "~common/global.styl"
+
+.wrap
+  position relative
+.inner
+  box()
+  position absolute
+  right 0
+  min-width 100%
+.pannel
+  box()
+  align-items center
+  font-size $font-size16
+  font-weight 300
+  padding px2rem(20) 0 px2rem(15)
+  background $color-white
+.checkArea
+  padding 0 px2rem(12)
+.img
+  width px2rem(100)
+  height px2rem(100)
+.titleArea
+  min-height px2rem(100)
+  padding 0 px2rem(20) 0 px2rem(14)
+  box()
+  flex-direction column
+.title
+  G-cut-p(1)
+.light
+  flex 1
+  padding px2rem(10) 0
+  color $color-font-light
+  font-size px2rem(13)
+.delete
+  transition all .1s
+  background $color-red
+  color $color-white
+  width 0
+  box()
+  align-items center
+  justify-content center
+  overflow hidden
+.showDelete
+  width px2rem(74)

@@ -6,7 +6,7 @@ export const login = '/m/login'
 export const getCollocationList = '/m/product/mix/list'                   // 获取搭配列表
 export const getHotItems = '/m/product/recommend/list'                    // 获取推荐商品
 export const getCategoryList = '/m/category/list'                         // 获取类目列表
-export const getBanner = '/m/banner/get'                                  // 获取banner列表
+export const getBanner = '/m/banner/get_list'                             // 获取banner列表
 
 // 商品列表页
 export const getItems = '/m/product/search/list'                          // 获取商品列表

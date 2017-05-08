@@ -18,7 +18,7 @@ export const UPDATE_LIST_ACTION = (payload) => ({
 
 export const getAddressList = data => async dispatch => {
   dispatch(UPDATE_LOADING_ACTION(true))
-  const result = await fetch(api.getAddressList, {param: {uid: '1000000010098260'}})
+  const result = await fetch(api.getAddressList)
   dispatch(UPDATE_LOADING_ACTION(false))
   if (result.code === '1') {
     dispatch(UPDATE_LIST_ACTION(result.data || []))
@@ -34,7 +34,7 @@ export const toEditAddress = payload => dispatch => {
 
 export const deleteAddress = id => async dispatch => {
   dispatch(UPDATE_LOADING_ACTION(true))
-  const result = await fetch(api.deleteAddress, {param: {deliver_address_id: id, uid: 1000000010098260}})
+  const result = await fetch(api.deleteAddress, {param: {deliver_address_id: id}})
   if (result.code === '1') {
     dispatch(getAddressList())
   } else {
@@ -45,7 +45,7 @@ export const deleteAddress = id => async dispatch => {
 
 export const setDefault = (id) => async dispatch => {
   dispatch(UPDATE_LOADING_ACTION(true))
-  const result = await fetch(api.setDefault, {param: {deliver_address_id: id, uid: 1000000010098260}, method: 'post', formData: true})
+  const result = await fetch(api.setDefault, {param: {deliver_address_id: id}, method: 'post', formData: true})
   if (result.code === '1') {
     dispatch(getAddressList())
   } else {
