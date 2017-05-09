@@ -30,7 +30,7 @@ export default (state = initState, action) => {
 
     case actions.UPDATE_CATEGPRYLIST:
       return state.merge({
-        categoryList: action.payload
+        categoryList: action.payload.map((item) => Object.assign({}, item, {icon: mapName2Icon(item)}))
       })
 
     case actions.UPDATE_SHOPCART_COUNT:
@@ -43,6 +43,19 @@ export default (state = initState, action) => {
 
     default:
       return state
+  }
+}
+
+const mapName2Icon = (icon) => {
+  switch (icon.categoryName) {
+    case '椅凳':
+      return 'sofa'
+    case '柜架':
+      return 'wooden'
+    case '睡床':
+      return 'bedroom'
+    case '床垫':
+      return 'bedroom'
   }
 }
 
@@ -61,13 +74,10 @@ const initState = fromJS({
     onCancel: () => {},
     onClose: () => {},
     type: 'alert',
-    title: '提示',
     text: ''
   },
   categoryList: [
-    {'categoryId': 100, 'categoryName': '卧室床品', 'icon': 'bedroom' },
-    {'categoryId': 101, 'categoryName': '木作家具', 'icon': 'wooden' },
-    {'categoryId': 122, 'categoryName': '客厅沙发', 'icon': 'sofa' }
+    // {'categoryId': 100, 'categoryName': '卧室床品', 'icon': 'bedroom'}
   ],
   transRoute: {
     to: ''
@@ -77,8 +87,8 @@ const initState = fromJS({
     info: '预定111111111111112222222222333333',
     img: 'https://gw.alicdn.com/imgextra/i1/833274142/TB2IaQTX00opuFjSZFxXXaDNVXa_!!833274142.jpg_970x970q50s150.jpg_.webp',
     content: [
-        {label: '手机号', type: 'text', value: '', key: 'user_id'},
-        {label: '系统号', type: 'text', value: '', key: 'phone'}
-        ]
-  },
+      {label: '手机号', type: 'text', value: '', key: 'user_id'},
+      {label: '系统号', type: 'text', value: '', key: 'phone'}
+    ]
+  }
 })

@@ -16,6 +16,8 @@ import {
   setDefault
 } from 'actions/addressList'
 
+import { alert } from 'actions/'
+
 @CSSModules(styles, { allowMultiple: true })
 export class AddressList extends PureComponent {
   componentDidMount () {
@@ -24,7 +26,14 @@ export class AddressList extends PureComponent {
 
   handleEditAddress = (address) => this.props.dispatch(toEditAddress(address))
   hadnleDeleteAddress = (id) => {
-    if (window.confirm('确认删除该收货地址？')) this.props.dispatch(deleteAddress(id))
+    this.props.dispatch(alert({
+      text: '确认删除该收货地址？',
+      type: 'confirm',
+      onSure: () => {
+        this.props.dispatch(deleteAddress(id))
+        this.props.dispatch(alert({show: false}))
+      }
+    }))
   }
   handleSetDefault = (id) => this.props.dispatch(setDefault(id))
 

@@ -37,7 +37,7 @@ export class Result extends PureComponent {
       <div styleName='left'>
         <div styleName='leftFix'>
           <NavBar vertical
-            data={categoryList.map(item => ({path: `/search?categoryId=${item.categoryId}`, title: item.categoryName, active: item.categoryId.toString() === query.categoryId}))} />
+            data={categoryList.map(item => ({path: `/search?categoryId=${item.categoryId}`, title: item.categoryName, active: item.categoryId.toString() === query.categoryId, replace: true}))} />
         </div>
       </div>
       <div styleName='right'>

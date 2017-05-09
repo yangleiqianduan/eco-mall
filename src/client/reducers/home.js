@@ -19,10 +19,10 @@ export default (state = fromJS(initState), action) => {
 const protocol = window.location.protocol
 
 const initState = {
-  banner: [
-    {redirect_url: protocol + '//www.baidu.com', img_url: protocol + '//img.ljcdn.com/lmall/c1fd76ca-f6d3-4098-bae5-14f31540d0b1.jpg.738x392.jpg'},
-    {img_url: protocol + '//img.ljcdn.com/lmall/5dd8d599-6d98-4055-8227-819373619cdb.jpg.738x392.jpg'},
-    {img_url: protocol + '//img.ljcdn.com/lmall/18b79305-e61b-46cc-bc69-a296a7f1b4e9.jpg.738x392.jpg'}
+  banner: [],
+  wantList: [
+    {img_url: protocol + '//img.ljcdn.com/lmall/f85ce159-7d98-460e-a0b2-ccb5dc8f052b.png.408x224.png', redirect_url: '/voteList'},
+    {img_url: protocol + '//img.ljcdn.com/lmall/aba3e731-e9a6-4a6a-b477-0c90b4484c2f.png.416x224.png', redirect_url: '/want'}
   ],
   collocation: [],    // {picture, productMixDescription, productMixId, productMixName}
   hotItems: []        // {firstPageUrl, marketPrice, productId, productName}

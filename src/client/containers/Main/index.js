@@ -11,6 +11,7 @@ import styles from './index.styl'
 import NavBar from 'components/NavBar/'
 import Toast from 'components/Toast/'
 import Loading from 'components/Loading/'
+import Modal from 'components/Modal/'
 
 import { getCateoryList } from 'actions/'
 
@@ -29,7 +30,7 @@ export class Main extends PureComponent {
 
   render () {
     const { routes, location } = this.props
-    const { transRoute, loading, toast } = this.props.shared.toJS()
+    const { transRoute, loading, toast, modal } = this.props.shared.toJS()
     return <div styleName='wrap'>
       {
         transRoute.to
@@ -42,6 +43,7 @@ export class Main extends PureComponent {
       <div style={{position: 'fixed', bottom: 0, width: '100%', display: 'none'}}>
         <NavBar data={routes} />
       </div>
+      <Modal {...modal} />
       {toast.show ? <Toast>{toast.text}</Toast> : null}
       {loading ? <Toast><Loading color='#ccc' /></Toast> : null}
       <Prompt message={(location) => updateTitle(location, routes)} />

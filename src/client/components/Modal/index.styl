@@ -1,0 +1,53 @@
+@import "~common/global.styl"
+.wrap
+  position fixed
+  z-index 999
+  top 0
+  left 0
+  width 100%
+  height 100%
+  background rgba(0, 0, 0, .3)
+  display flex
+  align-items center
+  .modalContainer
+    border-radius px2rem(3)
+    // overflow hidden
+    margin 0 auto px2rem(200)
+    min-width px2rem(250)
+    background #fff
+    padding px2rem(20)
+    .head
+      position relative
+      text-align left
+      font-size $font-size16
+      font-weight bold
+      border(bottom)
+      padding-bottom px2rem(15)
+      .closeBtnArea
+        position absolute
+        font-size px2rem(15)
+        top 0
+        right 0
+        display flex
+        height 100%
+        align-items center
+        cursor pointer
+        i
+          font-weight bold
+    .content
+      padding px2rem(15) 0 px2rem(20)
+      font-size $font-size14
+    .btnArea
+      text-align right
+      padding-top px2rem(10)
+      .btn
+        font-size px2rem(13)
+        padding px2rem(5) px2rem(25)
+        margin 0 0 0 px2rem(15)
+        &:first-child
+          margin-left 0
+        &:last-child
+          margin-right 0
+      .obviousBtn
+        background $color-dark
+        color $color-white

@@ -40,7 +40,7 @@ export const alert = data => dispatch => {
     onCancel: () => dispatch(UPDATE_MODAL_ACTION({show: false})),
     onClose: () => dispatch(UPDATE_MODAL_ACTION({show: false})),
     type: 'alert',
-    title: '提示'
+    show: true
   }, typeof data === 'string' ? {text: data, show: true} : data)))
 }
 
@@ -77,6 +77,6 @@ export const confirmOrder = data => dispatch => {
     if (res.code === '1' && res.success) {
       dispatch(UPDATE_LOADING_ACTION(false))
       dispatch(changeRouter('success'))
-    } 
+    }
   })
 }

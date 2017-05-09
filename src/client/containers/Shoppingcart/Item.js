@@ -3,6 +3,7 @@ import CSSModules from 'react-css-modules'
 import styles from './Item.styl'
 import classNames from 'classnames/bind'
 
+import { Link } from 'react-router-dom'
 import Icon from 'components/Icons/'
 import NumberInput from 'components/NumberInput/'
 
@@ -44,18 +45,20 @@ export default class extends PureComponent {
   }
   render () {
     const deleteStyl = classNames('delete', {showDelete: this.state.showDelete})
+    const { data, onCheck, onChangeNumber, onDelete } = this.props
+    const {product_id: id, cart_id: cartId, product_img_url: imgUrl, product_name: name, sale_price: price, quantity, sku_attribute_names: sku, isChecked} = data
     return <div styleName='wrap' style={{height: this.state.innerHeight + 'px'}}>
       <div styleName='inner' ref='inner'>
         <div styleName='pannel' onTouchStart={this.onTouchStart} onTouchMove={this.onTouchMove} style={{width: document.body.getBoundingClientRect().width + 'px'}}>
-          <div styleName='checkArea'><Icon icon='checked' width={18} /></div>
-          <div><img styleName='img' /></div>
+          <div styleName='checkArea' onClick={onCheck}><Icon icon={isChecked ? 'checked' : 'unChecked'} width={18} /></div>
+          <div><Link to={`/item?id=${id}`}><img styleName='img' src={imgUrl} /></Link></div>
           <div styleName='titleArea'>
-            <div styleName='title'>这里是文案文字最多一行是是</div>
-            <div styleName='light'>尺寸: 150cmX80cm;颜色:火山黑</div>
-            <div styleName='priceArea'>￥1999<NumberInput value={1} onChange={() => 1} /></div>
+            <div styleName='title'>{name}</div>
+            <div styleName='light'>{sku.join(' ')}</div>
+            <div styleName='priceArea'>￥{price}<NumberInput value={quantity} onChange={(v) => onChangeNumber(cartId, v)} /></div>
           </div>
         </div>
-        <div styleName={deleteStyl}>
+        <div styleName={deleteStyl} onClick={() => onDelete(cartId)}>
           删除
         </div>
       </div>
