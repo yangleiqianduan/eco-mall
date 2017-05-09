@@ -30,7 +30,11 @@ export class Shoppingcart extends PureComponent {
     const checkedItems = data.filter(d => d.isChecked)
     const isCheckedAll = checkedItems.length === data.length
     return <div styleName='wrap'>
-      <ul styleName='list'>
+      <ul styleName={classNames({list: data.length > 0})}>
+        {data.length === 0
+          ? <div styleName='empty'>购物车为空</div>
+          : null
+        }
         {
           data.map((item, i) => <li key={i}>
             <Item data={item} onCheck={() => this.handleCheck(i)} onDelete={(id) => this.handleDelete(i, id)} onChangeNumber={(id, v) => this.handleChangeNumber(i, id, v)} />

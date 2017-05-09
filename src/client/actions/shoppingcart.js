@@ -2,6 +2,7 @@ import fetch from 'common/fetch'
 import * as api from 'constants/api'
 
 import {
+  UPDATE_LOADING_ACTION,
   alert
 } from './index'
 
@@ -13,7 +14,9 @@ export const UPDATE_LIST_ACTION = (payload) => ({
 
 // 获取购物车列表
 export const getList = () => async dispatch => {
+  dispatch(UPDATE_LOADING_ACTION(true))
   const result = await fetch(api.getShoppingcartItems)
+  dispatch(UPDATE_LOADING_ACTION(false))
   dispatch(UPDATE_LIST_ACTION(result.data))
 }
 

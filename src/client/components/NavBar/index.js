@@ -10,14 +10,14 @@ export default CSSModules(({ data = [], vertical }) => {
   return <ul styleName={wrap}>
     {
       data.map((route, i) => <li key={i} styleName={classNames('tab', {active: route.active && !vertical, ver_active: route.active && vertical})}>
-        {
-          route.icon && <Icon icon={route.icon} width='30' height='28' style={{marginBottom: '.08rem', display: 'inline-block'}} />
-        }
         <NavLink
           exact={route.exact}
           replace={route.replace}
           to={route.path}
           style={route.style || {}} >
+          {
+            route.icon && <div><Icon icon={route.icon} width='30' height='28' style={{marginBottom: '.08rem', display: 'inline-block'}} /></div>
+          }
           {route.title}
         </NavLink>
       </li>)
