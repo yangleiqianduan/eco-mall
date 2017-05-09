@@ -9,3 +9,33 @@
   margin-left px2rem(20)
   border(none)
   border(bottom)
+.footer
+  position fixed
+  bottom 0
+  width 100%
+  padding px2rem(15) px2rem(20)
+  font-weight 300
+  box()
+  align-items center
+.checkAll, .priceArea
+  height px2rem(55)
+  background $color-dark
+  padding 0 px2rem(15)
+  color $color-white
+  box()
+  align-items center
+.active
+  :global .innerMark
+    fill $color-dark
+.priceArea
+  flex 1
+  justify-content flex-end
+.buyArea
+  height px2rem(55)
+  box()
+  align-items center
+  background $color-bright
+  text-align center
+  width px2rem(128)
+  justify-content center
+  

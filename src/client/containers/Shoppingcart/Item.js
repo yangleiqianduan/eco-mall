@@ -4,6 +4,7 @@ import styles from './Item.styl'
 import classNames from 'classnames/bind'
 
 import Icon from 'components/Icons/'
+import NumberInput from 'components/NumberInput/'
 
 @CSSModules(styles, { allowMultiple: true })
 export default class extends PureComponent {
@@ -51,7 +52,7 @@ export default class extends PureComponent {
           <div styleName='titleArea'>
             <div styleName='title'>这里是文案文字最多一行是是</div>
             <div styleName='light'>尺寸: 150cmX80cm;颜色:火山黑</div>
-            <div>￥1999</div>
+            <div styleName='priceArea'>￥1999<NumberInput value={1} onChange={() => 1} /></div>
           </div>
         </div>
         <div styleName={deleteStyl}>

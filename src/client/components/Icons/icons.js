@@ -68,7 +68,7 @@ export const checked = () => <g transform="translate(-20.000000, -718.000000)">
     <g transform="translate(20.000000, 48.000000)">
       <g transform="translate(1.000000, 49.000000)">
         <circle cx="7.5" cy="7.5" r="7.5"></circle>
-        <g transform="translate(7.000000, 7.000000) rotate(-45.000000) translate(-7.000000, -7.000000) translate(4.000000, 5.000000)" fill="#FFF" stroke="none">
+        <g className='innerMark' transform="translate(7.000000, 7.000000) rotate(-45.000000) translate(-7.000000, -7.000000) translate(4.000000, 5.000000)" fill="#FFF" stroke="none">
           <rect x="-4.26325641e-13" y="-4.17443857e-13" width="1" height="4" rx="0.5"></rect>
           <rect transform="translate(3.000000, 3.500000) rotate(-270.000000) translate(-3.000000, -3.500000) " x="2.5" y="0.5" width="1" height="6" rx="0.5"></rect>
         </g>
