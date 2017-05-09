@@ -47,7 +47,7 @@ export const deleteItem = (i, id) => dispatch => {
     type: 'confirm',
     onSure: () => {
       // 不需要顺序进行
-      fetch(api.deleteShoppingcartItem, {param: {cart_ids: [id]}})
+      fetch(api.deleteShoppingcartItem, {method: 'post', formData: true, param: {cart_ids: [id]}})
       dispatch(DELETE_ITEM_ACTION(i))
       dispatch(alert({show: false}))
     }
@@ -67,7 +67,7 @@ export const updateNumber = (i, id, v) => dispatch => {
     dispatch(deleteItem(i, id))
   } else {
     // 不需要顺序进行
-    fetch(api.updateShoppingcartItemNumer, {param: {cart_ids: id, quantity: v}})
+    fetch(api.updateShoppingcartItemNumer, {method: 'post', formData: true, param: {cart_id: id, quantity: v}})
     dispatch(UPDATE_NUMBER_ACTION(i, v))
   }
 }
