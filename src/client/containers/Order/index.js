@@ -28,7 +28,7 @@ export class OrderList extends PureComponent {
     const { payInfo , statusCode } = details
     const isNeedPay = statusCode === 100
 
-    return <div styleName={!isNeedPay ? 'wrap wrap_pay' : 'wrap'}>
+    return <div styleName={isNeedPay ? 'wrap wrap_pay' : 'wrap'}>
         <div styleName='orderInfo bgWhite'>
           <p>下单时间：<span>{details.createTime}</span></p>
           <p>订单编号：<span>{details.orderId}</span></p>
@@ -43,25 +43,20 @@ export class OrderList extends PureComponent {
           </div>
           {!isNeedPay
             ? <div>
-              {payInfo
-                ? <div>
-                    <div styleName="content">
-                      <p>支付方式：<span>{payInfo.payMethod}</span></p>
-                      <p>商品合计：<span>{'￥'+payInfo.totalProductAmount}</span></p>
-                      <p>运&emsp;&emsp;费：<span>{'￥'+payInfo.totalTmsAmount}</span></p>
-                    </div>
-                    <div styleName="content">
-                      <p>实&emsp;&emsp;付：<span styleName="red">{'￥'+payInfo.payAmount}</span></p>
-                    </div>
-                  </div>
-                : null
-              }
+                <div styleName="content">
+                  <p>支付方式：<span>{payInfo.payMethod}</span></p>
+                  <p>商品合计：<span>{'￥'+payInfo.totalProductAmount}</span></p>
+                  <p>运&emsp;&emsp;费：<span>{'￥'+payInfo.totalTmsAmount}</span></p>
+                </div>
+                <div styleName="content">
+                  <p>实&emsp;&emsp;付：<span styleName="red">{'￥'+payInfo.payAmount}</span></p>
+                </div>
               </div>
             : null
           }       
         </div>
         {
-          !isNeedPay
+          isNeedPay
           ? <div>
               <div styleName="contect bgWhite">
                 <p><Icon icon='listener' width="16"/><span>联系客服</span></p>

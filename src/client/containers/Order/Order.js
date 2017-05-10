@@ -52,7 +52,7 @@ export default class extends PureComponent {
         <div styleName={statusStyle}>{status}</div>
       </section>
       <section styleName='content'>
-        {(itemsList || []).map((item, i) => <LabelItem vertical={false} data={item} key={i} noBorder={(itemsList.length - 1) === i} />)}
+        {itemsList.map((item, i) => <LabelItem vertical={false} data={item} key={i} noBorder={(itemsList.length - 1) === i} />)}
       </section>
       {
         operationList.length
