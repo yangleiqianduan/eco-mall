@@ -82,5 +82,9 @@ export const iconsInfo = {
   quotes2: {
     width: 14,
     height: 9
+  },
+  right: {
+    width: 16,
+    height: 20
   }
 }
