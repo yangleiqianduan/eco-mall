@@ -8,13 +8,21 @@
     font-size $font-size16
     padding px2rem(15) px2rem(20)
     border(bottom, px2rem(1), transparent)
-  .header
-    margin-bottom px2rem(12)
+  .address
     box()
-    >div:first-child
+    .icon
+      padding-right px2rem(10)
+    .detail
+      box()
+      font-size px2rem(13)
+      margin-top px2rem(5)
+      font-weight 300
+      color $color-font-light
+    .addressDetail
       flex 1
   .content
-    padding-bottom 0
+    border(top, px2rem(1), transparent)
+    padding 0 px2rem(20)
   .footer
     background #fff
     margin-top px2rem(1)
