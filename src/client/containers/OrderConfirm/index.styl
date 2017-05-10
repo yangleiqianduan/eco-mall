@@ -1,0 +1,43 @@
+@import "~common/global"
+
+.wrap
+  margin-bottom px2rem(12)
+  .pannel
+    background #fff
+    margin-bottom px2rem(12)
+    font-size $font-size16
+    padding px2rem(15) px2rem(20)
+    border(bottom, px2rem(1), transparent)
+  .header
+    margin-bottom px2rem(12)
+    box()
+    >div:first-child
+      flex 1
+  .content
+    padding-bottom 0
+  .footer
+    background #fff
+    margin-top px2rem(1)
+    padding px2rem(10) px2rem(20)
+    box()
+    align-items center
+    .priceArea
+      flex 1
+    .btnArea
+      box()
+      align-items center
+      margin-left px2rem(20)
+      height px2rem(30)
+      text-align center
+    .dark
+      background $color-dark
+      padding 0 px2rem(10)
+      color $color-white
+    .light
+      padding 0 px2rem(13)
+      border(all, px2rem(1), $color-dark)
+    .disabled
+      background $color-light
+.red
+  color $color-red
+  

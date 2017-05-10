@@ -68,8 +68,10 @@ export class OrderList extends PureComponent {
     const { orders, page } = this.props.data.toJS()
     return <div styleName='wrap'>
       <div styleName='nav'><NavBar data={navData} /></div>
-      <ScrollList data={orders}
-        renderItem={(item, i) => <Order key={i} onCancel={(id) => this.cancelOrder(id, i)} onDelete={this.deleteOrder} data={item} />} />
+      <div styleName='content'>
+        <ScrollList data={orders}
+          renderItem={(item, i) => <Order key={i} onCancel={(id) => this.cancelOrder(id, i)} onDelete={this.deleteOrder} data={item} />} />
+      </div>
       <div styleName='bottom' ref='footer'>
         {page.currentPage < page.totalPage ? '加载中...' : (page.totalPage ? '没有更多了' : '暂无订单')}
       </div>

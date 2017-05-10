@@ -7,6 +7,7 @@ import Success from 'containers/Success/'
 import Shoppingcart from 'containers/Shoppingcart/'
 import AddressList from 'containers/AddressList/'
 import Address from 'containers/Address/'
+import OrderConfirm from 'containers/OrderConfirm/'
 import OrderList from 'containers/OrderList/'
 import Order from 'containers/Order/'
 import Want from 'containers/Want/'
@@ -63,6 +64,12 @@ export default [
     exact: true,
     component: Address,
     title: '新建地址'
+  },
+  {
+    path: '/orderConfirm',
+    exact: true,
+    component: OrderConfirm,
+    title: '确认订单'
   },
   {
     path: '/orderList',

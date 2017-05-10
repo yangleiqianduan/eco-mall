@@ -52,7 +52,7 @@ export default class extends PureComponent {
             : <Slider {...settings}>
               {
                 data.map((item, i) => <div key={i} style={slideStyle}>
-                  <Link onClick={item.redirect_url.indexOf('http') === 0 ? (e) => this.handleRedirect(e, item.redirect_url) : onClick} to={item.redirect_url ? item.redirect_url : ''}>
+                  <Link onClick={(item.redirect_url || '').indexOf('http') === 0 ? (e) => this.handleRedirect(e, item.redirect_url) : onClick} to={item.redirect_url ? item.redirect_url : ''}>
                     <img className='slick-img' src={item.img_url} />
                     {
                       needDesc
