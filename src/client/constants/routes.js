@@ -7,9 +7,11 @@ import Success from 'containers/Success/'
 import Shoppingcart from 'containers/Shoppingcart/'
 import AddressList from 'containers/AddressList/'
 import Address from 'containers/Address/'
+import OrderConfirm from 'containers/OrderConfirm/'
 import OrderList from 'containers/OrderList/'
 import Order from 'containers/Order/'
 import Want from 'containers/Want/'
+import VoteList from 'containers/VoteList/'
 import Vote from 'containers/Vote/'
 import VoteResult from 'containers/VoteResult/'
 import ErrorPage from 'containers/ErrorPage'
@@ -64,6 +66,12 @@ export default [
     title: '新建地址'
   },
   {
+    path: '/orderConfirm',
+    exact: true,
+    component: OrderConfirm,
+    title: '确认订单'
+  },
+  {
     path: '/orderList',
     exact: true,
     component: OrderList,
@@ -86,6 +94,12 @@ export default [
     exact: true,
     component: Success,
     title: '预约成功'
+  },
+  {
+    path: '/voteList',
+    exact: true,
+    component: VoteList,
+    title: '投票专栏'
   },
   {
     path: '/vote',

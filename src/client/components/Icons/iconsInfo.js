@@ -78,5 +78,9 @@ export const iconsInfo = {
   errorInfo: {
     width: 105,
     height: 116
+  },
+  quotes2: {
+    width: 14,
+    height: 9
   }
 }

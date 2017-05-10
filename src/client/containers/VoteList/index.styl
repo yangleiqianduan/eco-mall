@@ -1,0 +1,39 @@
+@import "~common/global.styl"
+
+.wrap
+  background $color-white
+  padding-bottom px2rem(50)
+  min-height 100%
+.item
+  padding-top px2rem(20)
+  position relative
+  text-align center
+  .img
+    width px2rem(335)
+  .content
+    padding-top px2rem(20)
+    position absolute
+    left 0
+    top 0
+    width 100%
+    height 100%
+    box()
+    flex-direction column
+    justify-content center
+    align-items center
+    hr
+      width px2rem(16)
+      margin px2rem(7)
+      border(none)
+      border(bottom, px2rem(2), $color-white)
+    h2
+      font-size $font-size22
+      color $color-white
+      >span
+        position relative
+        top px2rem(-18)
+        right px2rem(3)
+    h4
+      font-size $font-size14
+      color $color-white
+      font-weight 300
