@@ -1,4 +1,24 @@
 @import "~common/global"
 
 .wrap
-  padding px2rem(20)
+  .bgWhite
+    background-color $color-white
+  .orderInfo
+    margin-bottom px2rem(12)
+    height px2rem(78)
+    padding px2rem(15) px2rem(21)
+    p
+      line-height px2rem(24)
+  .payInfo
+    margin-bottom px2rem(12)
+    .content
+      padding px2rem(15) px2rem(21)
+      border-bottom 1px solid #f6f6f6
+      p
+        line-height px2rem(24)
+        .red
+          color $color-red
+        .tel
+          margin-left px2rem(13)
+      .address
+        margin-left px2rem(60)
