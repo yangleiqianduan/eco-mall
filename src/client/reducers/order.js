@@ -4,7 +4,7 @@ import * as actions from 'actions/order'
 export default (state = fromJS(initState), action) => {
   switch (action.type) {
     case actions.UPDATE_ORDER_DETAIL:
-      return state.merge('data', action.payload)
+      return state.merge({data: action.payload})
     default:
       return state
   }
@@ -21,6 +21,36 @@ const initState = {
         "itemsList": [
             {
                 "skuId": 100123411111,
+                "skuCode": "aaa",
+                "title": "58同",
+                "url": "http://img.58cdn.com.cn/ui6/index/logo.gif",
+                "quantity": 1,
+                "realPrice": 20,
+                "marketPrice": 20,
+                "saleAttributes": [
+                    {
+                        "key": "颜色",
+                        "value": "绿色"
+                    }
+                ]
+            },
+            {
+                "skuId": 100123411112,
+                "skuCode": "aaa",
+                "title": "58同",
+                "url": "http://img.58cdn.com.cn/ui6/index/logo.gif",
+                "quantity": 1,
+                "realPrice": 20,
+                "marketPrice": 20,
+                "saleAttributes": [
+                    {
+                        "key": "颜色",
+                        "value": "绿色"
+                    }
+                ]
+            },
+            {
+                "skuId": 100123411113,
                 "skuCode": "aaa",
                 "title": "58同",
                 "url": "http://img.58cdn.com.cn/ui6/index/logo.gif",

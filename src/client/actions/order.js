@@ -17,7 +17,7 @@ export const getOrderDetail = id => async dispatch => {
   const result = await fetch(api.getOrderDetail, {param:{order_id:id}})
   dispatch(UPDATE_LOADING_ACTION(false))
   if(result.code === '1') {
-    dispatch(UPDATE_ORDER_DETAIL_ACTION(result.data || {}))
+    // dispatch(UPDATE_ORDER_DETAIL_ACTION(result.data || {}))
   } else {
     dispatch(showToast(result.msg || '获取订单详情失败'))
   }

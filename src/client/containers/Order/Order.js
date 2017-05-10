@@ -51,18 +51,18 @@ export default class extends PureComponent {
         <div>订单详情</div>
         <div styleName={statusStyle}>{status}</div>
       </section>
-      <section>
-        <Link to={`/order?id=${orderId}`}>
-          {(itemsList || []).map((item, i) => <LabelItem vertical={false} data={item} key={i} />)}
-        </Link>
+      <section styleName='content'>
+        {(itemsList || []).map((item, i) => <LabelItem vertical={false} data={item} key={i} noBorder={(itemsList.length - 1) === i} />)}
       </section>
-      <section styleName='footer'>
-      {/*
-        {
-          operationList.reverse().map(this.renderOperationList)
-        }
-      */}
-      </section>
+      {
+        operationList.length
+        ? <section styleName='footer'>
+            {
+              operationList.reverse().map(this.renderOperationList)
+            }
+          </section>
+        : null
+      }
     </div>
   }
 }
