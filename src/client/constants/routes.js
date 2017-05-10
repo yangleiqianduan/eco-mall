@@ -10,6 +10,7 @@ import Address from 'containers/Address/'
 import OrderList from 'containers/OrderList/'
 import Order from 'containers/Order/'
 import Want from 'containers/Want/'
+import VoteList from 'containers/VoteList/'
 import Vote from 'containers/Vote/'
 import VoteResult from 'containers/VoteResult/'
 import ErrorPage from 'containers/ErrorPage'
@@ -86,6 +87,12 @@ export default [
     exact: true,
     component: Success,
     title: '预约成功'
+  },
+  {
+    path: '/voteList',
+    exact: true,
+    component: VoteList,
+    title: '投票专栏'
   },
   {
     path: '/vote',
