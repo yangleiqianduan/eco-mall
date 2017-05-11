@@ -10,6 +10,7 @@ import Address from 'containers/Address/'
 import OrderConfirm from 'containers/OrderConfirm/'
 import OrderList from 'containers/OrderList/'
 import Order from 'containers/Order/'
+import Logistics from 'containers/Logistics/'
 import Want from 'containers/Want/'
 import VoteList from 'containers/VoteList/'
 import Vote from 'containers/Vote/'
@@ -82,6 +83,12 @@ export default [
     exact: true,
     component: Order,
     title: '订单详情'
+  },
+  {
+    path: '/logistics',
+    exact: true,
+    component: Logistics,
+    title: '追踪物流'
   },
   {
     path: '/want',

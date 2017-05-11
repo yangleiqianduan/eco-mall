@@ -18,14 +18,14 @@ export class OrderList extends PureComponent {
   }
 
   componentDidMount() {
-    const query = this.props.location.query.order_id
+    const query = this.props.location.query
     this.props.dispatch(actions.getOrderDetail(query))
   }
 
   render () {
     const data = this.props.data.toJS() || {}
     const details = data.data
-    const { payInfo , statusCode } = details
+    const { payInfo , statusCode , receiverInfo } = details
     const isNeedPay = statusCode === 100
 
     return <div styleName={isNeedPay ? 'wrap wrap_pay' : 'wrap'}>
@@ -38,18 +38,18 @@ export class OrderList extends PureComponent {
         </div>
         <div styleName="payInfo bgWhite">
           <div styleName="content">
-            <p>美丽娜子<span styleName="tel">18612566861</span></p>
-            <p styleName="address">北京市朝阳区菜市口C座198室</p>
+            <p>{receiverInfo.receiverName}<span styleName="tel">{receiverInfo.phoneNum}</span></p>
+            <p styleName="address">{receiverInfo.addressDetail}</p>
           </div>
           {!isNeedPay
             ? <div>
                 <div styleName="content">
                   <p>支付方式：<span>{payInfo.payMethod}</span></p>
-                  <p>商品合计：<span>{'￥'+payInfo.totalProductAmount}</span></p>
-                  <p>运&emsp;&emsp;费：<span>{'￥'+payInfo.totalTmsAmount}</span></p>
+                  <p>商品合计：<span>￥{payInfo.totalProductAmount}</span></p>
+                  <p>运&emsp;&emsp;费：<span>￥{payInfo.totalTmsAmount}</span></p>
                 </div>
                 <div styleName="content">
-                  <p>实&emsp;&emsp;付：<span styleName="red">{'￥'+payInfo.payAmount}</span></p>
+                  <p>实&emsp;&emsp;付：<span styleName="red">￥{payInfo.payAmount}</span></p>
                 </div>
               </div>
             : null
@@ -62,7 +62,7 @@ export class OrderList extends PureComponent {
                 <p><Icon icon='listener' width="16"/><span>联系客服</span></p>
               </div>
               <div styleName='readyPay'>
-                <div styleName='totalAmount common'>总计：<span>{'￥'+payInfo.totalAmount}</span></div>
+                <div styleName='totalAmount common'>总计：<span>￥{payInfo.totalAmount}</span></div>
                 <div styleName='goPay common' onClick={() => this.handlePay()}>去支付</div>
               </div>
             </div>

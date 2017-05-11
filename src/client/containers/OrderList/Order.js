@@ -81,7 +81,7 @@ export default class extends PureComponent {
         <div styleName={statusStyle}>{status}</div>
       </section>
       <section>
-        <Link to={`/order?id=${orderId}`}>
+        <Link to={`/order?order_id=${orderId}`}>
           {itemsList.map((item, i) => <LabelItem vertical={false} data={item} key={i} />)}
         </Link>
       </section>
