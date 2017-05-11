@@ -27,7 +27,7 @@ export default class extends PureComponent {
   }
 
   render () {
-    const { data, onShowService } = this.props
+    const { data, onShowService, marketPrice, salePrice } = this.props
     let baseInfo = data.product_name ? this.formatData(data) : null
 
     if (baseInfo) {
@@ -38,8 +38,8 @@ export default class extends PureComponent {
             <h2>全方位呵护你的心</h2>
           </div>
           <div styleName='right'>
-            <p styleName='salePrice'>￥{baseInfo.salePrice}</p>
-            <p styleName='marketPrice'>市场价：￥{baseInfo.marketPrice}</p>
+            <p styleName='salePrice'>￥{salePrice}</p>
+            <p styleName='marketPrice'>市场价：￥{marketPrice}</p>
           </div>
         </header>
         {

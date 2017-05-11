@@ -3,7 +3,6 @@ import CSSModules from 'react-css-modules'
 import styles from './index.styl'
 import { servicePhoneNumber } from 'constants/text'
 
-import Button from 'components/Button/'
 import Icon from 'components/Icons'
 import { Link } from 'react-router-dom'
 
@@ -21,11 +20,15 @@ export default class extends PureComponent {
             <Icon icon='cart' width={18} stroke='#FFF' />
             <em>2</em>
           </Link>
-          <div styleName='item addCart' onClick={onAdd}>
+        </div>
+        <div styleName='buyArea' onClick={onBuy}>
+          <div styleName='addCart' onClick={onAdd}>
             加入购物车
           </div>
+          <div styleName='buy'>
+            立即购买
+          </div>
         </div>
-        <div styleName='buyArea'><Button bright onClick={onBuy}>立即购买</Button></div>
       </div>
     </div>
   }

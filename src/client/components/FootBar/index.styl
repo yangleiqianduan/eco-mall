@@ -5,10 +5,10 @@
   bottom 0
   width 100%
   .content
+    box-shadow 0 0 px2rem(4) 0 rgba(0,0,0,0.19)
     box()
     // width px2rem(355)
     height px2rem(55)
-    background $color-dark
     color $color-white
     margin 0 px2rem(15) px2rem(15)
     overflow hidden
@@ -17,16 +17,17 @@
       align-items center
       justify-content center
     .icons
+      background $color-dark
       box()
       .item
         min-width px2rem(50)
         line-height px2rem(55)
         text-align center
         position relative
-        &:not(:last-child):after
+        &:after
           content ''
           position absolute
-          right 0
+          right px2rem(-0.5)
           top px2rem(16)
           width px2rem(1)
           height px2rem(24)
@@ -34,18 +35,33 @@
       .cart
         color $color-white
         em
-          width px2rem(18)
-          height px2rem(18)
-          line-height px2rem(18)
+          font-size px2rem(10)
+          font-weight 300
+          width px2rem(14)
+          height px2rem(14)
+          line-height px2rem(14)
           text-align center
           background-color $color-red
           position absolute
-          right px2rem(5)
-          top px2rem(12)
+          right px2rem(8)
+          top px2rem(14)
           border-radius 50%
-      .addCart
-        padding 0 px2rem(20)
-        font-size $font-size16
     .buyArea
       flex 1
       font-size $font-size16
+      box()
+      align-items center
+      >div
+        box()
+        height 100%
+        justify-content center
+        align-items center
+      .addCart
+        flex 1
+        background $color-dark
+        color $color-white
+      .buy
+        flex 1
+        background $color-bright
+        color $color-dark
+      
