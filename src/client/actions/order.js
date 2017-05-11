@@ -6,15 +6,15 @@ import {
   UPDATE_LOADING_ACTION
 } from './index'
 
-export const UPDATE_ORDER_DETAIL = 'UPDATE_ORDER_DETAIL_ORDERLIST'
+export const UPDATE_ORDER_DETAIL = 'UPDATE_ORDER_DETAIL'
 export const UPDATE_ORDER_DETAIL_ACTION = (payload) => ({
   type: UPDATE_ORDER_DETAIL,
   payload
 })
 
-export const getOrderDetail = id => async dispatch => {
+export const getOrderDetail = param => async dispatch => {
   dispatch(UPDATE_LOADING_ACTION(true))
-  const result = await fetch(api.getOrderDetail, {param:{order_id:id}})
+  const result = await fetch(api.getOrderDetail, {param})
   dispatch(UPDATE_LOADING_ACTION(false))
   if(result.code === '1') {
     dispatch(UPDATE_ORDER_DETAIL_ACTION(result.data || {}))
