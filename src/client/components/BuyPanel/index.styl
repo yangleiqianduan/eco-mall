@@ -6,10 +6,10 @@
   bottom 0
   width 100%
   z-index 5
-
+  font-weight 300
   .infoContainer
     transform opacity 0
-    height 75%
+    max-height 75%
     width 100%
     position fixed
     left 0
@@ -18,74 +18,100 @@
     background-color $color-white
     transition transform .3s ease-out
     .skuContainer
-      box() 
+      box()
+      height px2rem(60)
       .skuImg
-        height px2rem(80)
-        width px2rem(110)
-        margin .1rem
+        height 100%
+        width px2rem(130)
         position relative
-        p
+        img
           position absolute
+          bottom 0
+          right 0
           color white
           height px2rem(110)
           width px2rem(110)
           overflow hidden
-          bottom 0.2rem
       .skuInfo
         flex 1
+        padding-left px2rem(10)
         .price
           color $color-red
           font-size $font-size20
-          margin-top px2rem(20)
         .info
-          color #9c9fa1
-          margin-right px2rem(30)
-          margin-top px2rem(8)
-          word-break break-all
+          color $color-font-light
     .close
-      position absolute
-      top px2rem(20)
-      right px2rem(25)
-      width px2rem(20)
-      height px2rem(20)
-      color #9c9fa1
+      position relative
+      top px2rem(-5)
+      right px2rem(-5)
+      color $color-font-light
       font-size px2rem(20)
     .line
-      border(bottom, 1px, $color-border)
-      margin px2rem(20) auto auto auto
-    .subContainer
-      border(bottom, 1px, $color-border)
-      margin px2rem(10) auto
-      .title
-        font-size px2rem(15)
-        color #9C9FA1
-        margin-top .3rem
-      input
-        width 100%
-        height .3rem
-        padding-bottom .1rem
-        border(none)
-        margin-top px2rem(30)
-        color #394043
-        font-size px2rem(15)
-      .subContainer.focus
-        border(bottom, 1px, #394043)
+      border(bottom)
+      margin px2rem(20) 0
+    .checkArea
+      overflow-y auto
+      padding-bottom px2rem(55)
+// sku区域
+    .attrArea
+      margin-bottom px2rem(20)
+    .label
+      color $color-font-light
+      font-size px2rem(15)
+      padding-bottom px2rem(5)
+    .itemSkuOuter
+      color $color-dark
+      font-size $font-size16
+    .attr
+      min-width px2rem(78)
+      height px2rem(34)
+      margin-right px2rem(10)
+      display inline-block
+      color $color-dark
+      border(all)
+      border-color $color-font-light
+    .disabled
+      border-color $color-border
+      color $color-border
+    .active
+      border-color $color-dark
+      &:before
+        content ''
+        position absolute
+        display block
+        width 0
+        height 0
+        border-top px2rem(10) solid $color-dark
+        border-right px2rem(10) solid transparent
+    .sku
+      box()
+      width 100%
+      height 100%
+      padding 0 px2rem(10)
+      align-items center
+      justify-content center
     .btnArea
       position fixed
       bottom 0
       left 0
       width 100%
       font-size $font-size14
+      box()
+      padding 0 px2rem(15) px2rem(15)
       .container
-        width 3.55rem
+        box()
+        align-items center
+        justify-content center
+        width 100%
         height px2rem(55)
-        margin 0 auto px2rem(10) auto
+        background $color-dark
+        color $color-white
   .show
     visibility visible
     opacity 1
     transform translate(0, -100%)
   .hide
-    transform translate(0, 0)
+    transform translate(0, px2rem(40))
     .skuImg
       p
         opacity 0
