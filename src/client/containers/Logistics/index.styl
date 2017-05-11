@@ -1,0 +1,90 @@
+@import "~common/global"
+
+.wrap
+  font-size px2rem(14)
+  font-weight 300
+  background $color-white
+  min-height 100%
+  .header
+    background $color-border
+    height px2rem(115)
+    padding px2rem(20)
+    .express_logo
+      height px2rem(74)
+      width px2rem(74)
+      display inline-block
+      background-color $color-dark
+    .express_info
+      display inline-block
+      padding-left px2rem(13)
+      position relative
+      top px2rem(-16)
+      p
+        line-height px2rem(28)
+        height px2rem(28)
+        color $color-font-light
+        span
+          color $color-dark
+  .track
+    background-color $color-white
+    padding 0 px2rem(15) px2rem(25) px2rem(50)
+    .top
+      height px2rem(25)
+      border-left px2rem(1) solid #d8d8d8
+    .icon
+      position absolute
+      z-index 1
+      left px2rem(42)
+    .item
+      display flex
+      align-items center
+      .deal
+        text-align center
+        color #ddd
+        .step
+          display inline-block
+          position relative
+          border-left px2rem(1) solid #d8d8d8
+          width 100%
+        .step.last
+          color red
+        .mask
+          background $color-white
+          position absolute
+          top px2rem(10)
+          left px2rem(-1)
+          width px2rem(2)
+          height 100%
+        .step.first
+          color red
+        .circleOuter
+          display flex
+          align-items center
+          justify-content center
+          position absolute
+          left px2rem(-11)
+          top px2rem(0)
+          height px2rem(20)
+          width px2rem(20)
+          border-radius 50%
+        .circle
+          display inline-block
+          height px2rem(7)
+          width px2rem(7)
+          border-radius 50%
+          background #bfbfbf
+        .content
+          padding 0 px2rem(10) px2rem(5) px2rem(14)
+          color $color-normal
+          text-align left
+          line-height px2rem(20)
+        .content.status
+          font-size px2rem(20)
+          color $color-tag
+        .time
+          color $color-font-light
+          text-align left
+          margin-left px2rem(14)
+          line-height px2rem(20)
+          padding-bottom px2rem(22)
+
