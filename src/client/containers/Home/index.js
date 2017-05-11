@@ -15,7 +15,8 @@ import { getCollocationList, getHotItems, getBanner } from 'actions/home'
 @CSSModules(styles, { allowMultiple: true })
 export class Home extends PureComponent {
   state = {
-    footerSrc: 'http://img.ljcdn.com/lmall/b017714a-414c-44e1-b63c-d0e4f4edf4b2.png.616x98.png'
+    footerSrc: 'http://img.ljcdn.com/lmall/b017714a-414c-44e1-b63c-d0e4f4edf4b2.png.616x98.png',
+    currentSubject: 0
     // currentCollocation: 0
   }
   componentDidMount () {
@@ -28,6 +29,7 @@ export class Home extends PureComponent {
     const { hotItems, banner, wantList } = this.props.data.toJS()
     const {
       // currentCollocation,
+      currentSubject,
       footerSrc
     } = this.state
     // const collocationList = collocation.map(item => ({img_url: item.picture, title: item.productMixName, desc: item.productMixDescription, redirect_url: `/collocation?id=${item.productMixId}`}))
@@ -37,6 +39,7 @@ export class Home extends PureComponent {
     //   productName: '可能低价出现在这里哦',
     //   marketPrice: '立即登记'
     // })
+    const subject = []
 
     return <div styleName='wrap'>
       <div styleName='banner'>
@@ -44,6 +47,13 @@ export class Home extends PureComponent {
       </div>
       <div styleName='navOuter'>
         <NavBar data={categoryList.map(item => ({path: `/search?categoryId=${item.categoryId}`, title: item.categoryName, icon: item.icon}))} />
+      </div>
+      <div styleName='label'>
+        <h2 styleName='title'>精选专题</h2>
+        {subject.length > 0 ? <div><i styleName='current'>{currentSubject + 1}</i>/{subject.length}</div> : null}
+      </div>
+      <div styleName='plat subject'>
+        <Slider data={subject} needDesc setting={{slidesToShow: 1.1, dots: false, autoplay: false, afterChange: (e) => this.setState({currentSubject: Math.round(e)})}} slideStyle={{paddingRight: '0.11rem'}} />
       </div>
       <div styleName='label'>
         <h2 styleName='title'>我想买<span styleName='subTitle'>更多选品方式</span></h2>

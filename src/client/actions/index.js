@@ -24,7 +24,7 @@ export const CHANGE_ROUTER_ACTION = (payload) => ({
 })
 
 export const changeRouter = payload => async dispatch => {
-  await dispatch(CHANGE_ROUTER_ACTION(typeof payload === 'string' ? {to: payload} : payload))
+  await dispatch(CHANGE_ROUTER_ACTION(typeof payload === 'string' ? {to: payload, push: true} : payload))
   await dispatch(CHANGE_ROUTER_ACTION({to: undefined}))
 }
 

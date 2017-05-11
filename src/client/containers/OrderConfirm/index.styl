@@ -8,44 +8,35 @@
     font-size $font-size16
     padding px2rem(15) px2rem(20)
     border(bottom, px2rem(1), transparent)
-  .address
-    box()
-    .icon
-      padding-right px2rem(10)
-    .detail
-      box()
-      font-size px2rem(13)
-      margin-top px2rem(5)
-      font-weight 300
-      color $color-font-light
-    .addressDetail
-      flex 1
   .content
     border(top, px2rem(1), transparent)
     padding 0 px2rem(20)
+  .bottom
+    position fixed
+    width 100%
+    bottom 0
+    left 0
+    padding px2rem(15)
   .footer
-    background #fff
-    margin-top px2rem(1)
-    padding px2rem(10) px2rem(20)
+    position fixed
+    bottom 0
+    width 100%
+    padding px2rem(15) px2rem(20)
     box()
     align-items center
-    .priceArea
-      flex 1
-    .btnArea
-      box()
-      align-items center
-      margin-left px2rem(20)
-      height px2rem(30)
-      text-align center
-    .dark
-      background $color-dark
-      padding 0 px2rem(10)
-      color $color-white
-    .light
-      padding 0 px2rem(13)
-      border(all, px2rem(1), $color-dark)
-    .disabled
-      background $color-light
-.red
-  color $color-red
-  
+  .priceArea
+    height px2rem(55)
+    background $color-dark
+    padding 0 px2rem(15)
+    color $color-white
+    box()
+    align-items center
+    flex 1
+  .buyArea
+    height px2rem(55)
+    box()
+    align-items center
+    background $color-bright
+    text-align center
+    width px2rem(128)
+    justify-content center

@@ -13,7 +13,8 @@ import {
   getAddressList,
   toEditAddress,
   deleteAddress,
-  setDefault
+  setDefault,
+  UPDATE_CHOOSE_ADDRESS_ACTION
 } from 'actions/addressList'
 
 import { alert } from 'actions/'
@@ -24,8 +25,12 @@ export class AddressList extends PureComponent {
     this.props.dispatch(getAddressList())
   }
 
-  handleEditAddress = (address) => this.props.dispatch(toEditAddress(address))
-  hadnleDeleteAddress = (id) => {
+  handleEditAddress = (e, address) => {
+    e.stopPropagation()
+    this.props.dispatch(toEditAddress(address))
+  }
+  hadnleDeleteAddress = (e, id) => {
+    e.stopPropagation()
     this.props.dispatch(alert({
       text: '确认删除该收货地址？',
       type: 'confirm',
@@ -35,22 +40,29 @@ export class AddressList extends PureComponent {
       }
     }))
   }
-  handleSetDefault = (id) => this.props.dispatch(setDefault(id))
+  handleSetDefault = (e, id) => {
+    e.stopPropagation()
+    this.props.dispatch(setDefault(id))
+  }
+  chooseAddress = (index) => {
+    if (!this.props.location.query.choose) return false
+    this.props.dispatch(UPDATE_CHOOSE_ADDRESS_ACTION(index))
+    window.history.back()
+  }
 
   render () {
     const { list } = this.props.data.toJS()
-    console.log(list)
     return <div styleName='wrap'>
       {
-        list.map((a, i) => <div key={i} styleName='pannel'>
+        list.map((a, i) => <div key={i} styleName='pannel' onClick={(e) => this.chooseAddress(i)}>
           <section styleName='header'>{a.receiverName}&nbsp;{a.phoneNumber}</section>
           <section styleName='content'>{a.provinceName} {a.cityName} {a.detailAddress}</section>
           <hr styleName='split' />
           <section styleName='footer'>
-            <div styleName='setDefaultArea'><span onClick={() => this.handleSetDefault(a.id)}><Icon icon={classNames({checked: a.isDefault, unChecked: !a.isDefault})} width={18} />&nbsp;{a.isDefault ? '默认地址' : '设为默认地址'}</span></div>
+            <div styleName='setDefaultArea'><span onClick={(e) => this.handleSetDefault(e, a.id)}><Icon icon={classNames({checked: a.isDefault, unChecked: !a.isDefault})} width={18} />&nbsp;{a.isDefault ? '默认地址' : '设为默认地址'}</span></div>
             <div>
-              <a styleName='edit' onClick={() => this.handleEditAddress(a)}>编辑</a>
-              <a styleName='delete' onClick={() => this.hadnleDeleteAddress(a.id)}>删除</a>
+              <a styleName='edit' onClick={(e) => this.handleEditAddress(e, a)}>编辑</a>
+              <a styleName='delete' onClick={(e) => this.hadnleDeleteAddress(e, a.id)}>删除</a>
             </div>
           </section>
         </div>)

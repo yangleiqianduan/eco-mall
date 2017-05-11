@@ -5,31 +5,44 @@ import CSSModules from 'react-css-modules'
 import styles from './index.styl'
 // import classNames from 'classnames/bind'
 
+import { getAddressList } from 'actions/addressList'
+
+import Address from './Address'
 import LabelItem from 'components/LabelItem/'
-import Icon from 'components/Icons/'
 
 @CSSModules(styles, { allowMultiple: true })
 export class OrderConfirm extends PureComponent {
+  componentDidMount () {
+    this.props.dispatch(getAddressList())
+  }
+  getCurrentAddress = (list, choose) => {
+    if (list.length === 0) {
+      return null
+    }
+    if (choose === -1) {
+      return list.filter(a => a.isDefault)[0]
+    } else {
+      return list[choose]
+    }
+  }
   render () {
-    const { data } = this.props.data.toJS()
+    const {
+      data,
+      addressChoose             // 选择的收货地址, 为地址列表的index，-1表示未选择
+    } = this.props.data.toJS()
+    const addressList = this.props.addressList.toJS().list      // 收货地址列表
     const { itemsList, totalAmount } = data
+    const currentAddress = this.getCurrentAddress(addressList, addressChoose)
     return <div styleName='wrap'>
-      <section styleName='pannel address'>
-        <div styleName='icon'><Icon icon='location' width={16} /></div>
-        <div>
-          <div>王聪 18810541172</div>
-          <div styleName='detail'>
-            <div styleName='addressDetail'>北京市 朝阳区 太阳宫街道四环到五环102号院7号楼 1单元1501</div>
-            <div><Icon icon='right' /></div>
-          </div>
-        </div>
+      <section styleName='pannel'>
+        <Address data={currentAddress} />
       </section>
       <section styleName='content pannel'>
         {itemsList.map((item, i) => <LabelItem vertical={false} data={item} key={i} noBorder={i === (itemsList.length - 1)} />)}
       </section>
       <section styleName='footer'>
-        <div styleName='priceArea'>总计:￥{totalAmount}</div>
-        <div>下单</div>
+        <div styleName='priceArea'>总计：￥{totalAmount}</div>
+        <div styleName='buyArea'>提交订单</div>
       </section>
     </div>
   }
@@ -37,7 +50,8 @@ export class OrderConfirm extends PureComponent {
 
 const mapStateToProps = state => ({
   shared: state.shared,
-  data: state.orderConfirm
+  data: state.orderConfirm,
+  addressList: state.addressList
 })
 
 export default connect(mapStateToProps)(OrderConfirm)

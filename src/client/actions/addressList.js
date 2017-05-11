@@ -53,3 +53,9 @@ export const setDefault = (id) => async dispatch => {
     dispatch(showToast(result.msg || '设置失败'))
   }
 }
+
+export const UPDATE_CHOOSE_ADDRESS = 'UPDATE_CHOOSE_ADDRESS_ADDRESSLIST'
+export const UPDATE_CHOOSE_ADDRESS_ACTION = (payload) => ({
+  type: UPDATE_CHOOSE_ADDRESS,
+  payload
+})

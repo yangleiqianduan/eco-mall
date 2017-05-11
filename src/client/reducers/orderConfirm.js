@@ -1,14 +1,18 @@
 import { fromJS } from 'immutable'
 // import * as actions from 'actions/orderList'
+import { UPDATE_CHOOSE_ADDRESS } from 'actions/addressList'
 
 export default (state = fromJS(initState), action) => {
   switch (action.type) {
+    case UPDATE_CHOOSE_ADDRESS:
+      return state.set('addressChoose', action.payload)
     default:
       return state
   }
 }
 
 const initState = {
+  addressChoose: -1,
   data: {
     itemsList: [
       {

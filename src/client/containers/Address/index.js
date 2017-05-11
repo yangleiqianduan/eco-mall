@@ -59,17 +59,22 @@ export class Address extends PureComponent {
       <section styleName='form'>
         <div styleName='info'>
           <label styleName='label'>
-            <input type='text' placeholder='收货人' value={data.receiverName.value} onChange={(e) => this.handleChangeInput('receiverName', e.target.value)} />
+            <span styleName='inputLabel'>收&nbsp;&nbsp;货&nbsp;&nbsp;人</span>：
+            <input type='text' value={data.receiverName.value} onChange={(e) => this.handleChangeInput('receiverName', e.target.value)} />
           </label>
         </div>
         <div styleName='info'>
           <label styleName='label'>
-            <input type='text' placeholder='联系电话' value={data.mobile.value} onChange={(e) => this.handleChangeInput('mobile', e.target.value)} />
+            <span styleName='inputLabel'>联系电话</span>：
+            <input type='text' value={data.mobile.value} onChange={(e) => this.handleChangeInput('mobile', e.target.value)} />
           </label>
         </div>
         <div styleName='info'>
           <div onClick={() => this.openSelect(true)}>
-            {data.provinceId.label}&nbsp;{data.cityCode.label}
+            {data.provinceId.value && data.cityCode.value
+              ? <span>{data.provinceId.label}&nbsp;{data.cityCode.label}</span>
+              : <span><span styleName='inputLabel'>所选地区</span><span>：</span></span>
+            }
             <div styleName='right'><Icon icon='right' /></div>
           </div>
         </div>

@@ -3,8 +3,8 @@ import * as api from 'constants/api'
 import { isEmpty } from 'common/utils'
 import {
   showToast,
-  UPDATE_LOADING_ACTION,
-  changeRouter
+  UPDATE_LOADING_ACTION
+  // changeRouter
 } from './index'
 
 export const UPDATE_FORM_INPUT = 'UPDATE_FORM_INPUT_ADDRESS'
@@ -74,6 +74,9 @@ export const updateSelectValue = payload => async dispatch => {
   dispatch(UPDATE_SELECT_ACTION(['areaSelect'], {
     current: isLast ? current : (current + 1)             // 如果点击的是最后一个，不用移到下一个选项
   }))
+  if (current === 0) {                                    // 如果点击第一个，清空第二个的选择
+    dispatch(UPDATE_SELECT_ACTION(['areaSelect', 'data', 1], {value: '', label: '城市'}))
+  }
   dispatch(UPDATE_SELECT_ACTION(['areaSelect', 'data', current], select))
   if (!isLast) {
     const result = await getOptions({type: '1', province_id: select.value})
@@ -95,7 +98,7 @@ export const selectOnSure = data => dispatch => {
   dispatch(UPDATE_SELECT_ACTION(['areaSelect'], {open: false}))
 }
 
-export const submit = (data, id) => async dispatch => {
+export const submit = (data, cb) => async dispatch => {
   const params = [
     ['receiverName', 'receiver_name'],
     ['mobile', 'mobile'],
@@ -126,7 +129,8 @@ export const submit = (data, id) => async dispatch => {
   const result = await fetch(url, {param: reqParams, method: 'post', formData: true})
   dispatch(UPDATE_LOADING_ACTION(false))
   if (result.code === '1') {
-    dispatch(changeRouter({to: 'addressList', replace: true}))
+    // dispatch(changeRouter({to: 'addressList', replace: true}))
+    window.history.back()
   } else {
     dispatch(showToast(result.msg || '保存失败'))
   }
