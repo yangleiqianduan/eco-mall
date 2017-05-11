@@ -3,5 +3,21 @@
 .wrap
   @extend .G-card
   line-height px2rem(30)
-  span
-    color $color-light
+  font-size $font-size14
+  font-weight 300
+  color $color-light
+  .first
+    border(bottom)
+    padding-bottom px2rem(15)
+  .second
+    padding-top px2rem(15)
+  .label
+    box()
+    align-items center
+  .long
+    flex 1
+  .value
+    color $color-dark
+  .dotWrap
+    box()
+    align-items center

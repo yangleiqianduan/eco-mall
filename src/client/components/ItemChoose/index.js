@@ -15,14 +15,19 @@ export default class extends PureComponent {
   }
 
   render () {
-    const { reqData } = this.props.data || {}
-    let chooseInfo = ''
-    reqData && (chooseInfo = this.formatData(reqData))
+    const { data, onShowChoose, onShowParam } = this.props
+    console.log(data, 'ssss')
+    let chooseInfo = data ? this.formatData(data) : ''
 
-    if (chooseInfo) {
-      return <div styleName='wrap'>已选：<span> {chooseInfo} </span></div>
-    } else {
-      return <div styleName='wrap'>已选：</div>
-    }
+    return <section styleName='wrap'>
+      <div styleName='label first' onClick={onShowChoose}>
+        <div styleName='long'>已选：<span styleName='value'>{chooseInfo}</span></div>
+        <div><span styleName='dot' /><span styleName='dot' /><span styleName='dot' /></div>
+      </div>
+      <div styleName='label second' onClick={onShowParam}>
+        <div styleName='long'>产品参数：<span styleName='value'>这里是产品参数，待添加</span></div>
+        <div styleName='dotWrap'><span styleName='dot' /><span styleName='dot' /><span styleName='dot' /></div>
+      </div>
+    </section>
   }
 }

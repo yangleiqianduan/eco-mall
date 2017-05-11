@@ -6,13 +6,12 @@ import styles from './index.styl'
 
 import Slider from 'components/Slider/'
 import FootBar from 'components/FootBar/'
-import BuyPanel from 'components/BuyPanel'
+import BuyPanel from 'components/BuyPanel/'
+import InfoPanel from 'components/InfoPanel/'
 
 import ItemOverview from 'components/ItemOverview/'
 import ItemChoose from 'components/ItemChoose/'
 import ItemDeatil from 'components/ItemDeatil/'
-import ItemStandard from 'components/ItemStandard/'
-import ItemEnsureInfo from 'components/ItemEnsureInfo/'
 import TelUs from 'components/TelUs/'
 import wantPic from 'common/img/want.png'
 
@@ -32,13 +31,13 @@ export class Detail extends PureComponent {
     show: false,
     currentImage: 0,
     showFullscreen: false,
+    showInfo: 1             // 1展示服务说明 2展示产品参数
   }
-  handleBuyItem = () => {
-    this.setState({show: true})
-  }
-  handleCover = () => {
-    this.setState({show: false})
-  }
+
+  handleShowBuy = (payload) => this.setState({show: payload})
+
+  handleShowInfo = (payload) => this.setState({showInfo: payload})
+
   handleSubmit = (result) => {
     result.type_id = 1
     result.appoint_id = this.props.location.query.id
@@ -49,22 +48,14 @@ export class Detail extends PureComponent {
     e.preventDefault()
     this.setState({showFullscreen: true})
   }
-  formatData = (reqData) => {
-    let banner = []
-    reqData.product_image_info && reqData.product_image_info[-1].map(item => {
-      banner.push({
-        img_url: item.img_url
-      })
-    })
-    return banner
-  }
 
   render () {
-    const data = this.props.data.toJS() || {}
+    const { reqData } = this.props.data.toJS()
     const { orderInfo } = this.props.shared.toJS()
-    const { currentImage, showFullscreen } = this.state
-    let banner = []
-    data.reqData && (banner = this.formatData(data.reqData))
+    const { show, showInfo, currentImage, showFullscreen } = this.state
+
+    // '-1'是所有图片的key
+    const banner = (reqData.product_image_info || {'-1': []})['-1']
 
     return <div styleName='wrap'>
       <section styleName='banner'>
@@ -78,22 +69,25 @@ export class Detail extends PureComponent {
           : null
         }
       </section>
-      <section><ItemOverview data = { data } /></section>
-      <section><ItemChoose data = { data } /></section>
-      <section><ItemDeatil data = { data } /></section>
-      <section><ItemStandard data = { data } /></section>
-      <section><ItemEnsureInfo data = { data } /></section>
-      <section><TelUs data={ {link: '/want', pic: wantPic} }/></section>
-
+      <section><ItemOverview data={reqData} onShowService={() => this.handleShowInfo(1)} /></section>
+      <section><ItemChoose data={reqData} onShowChoose={() => this.handleShowBuy(true)} onShowParam={() => this.handleShowInfo(2)} /></section>
+      <section><ItemDeatil data={reqData} /></section>
+      <section><TelUs data={{link: '/want', pic: wantPic}} /></section>
+      <FootBar onBuy={() => this.handleShowBuy(true)} />
+      <InfoPanel
+        show={!!showInfo}
+        type={showInfo + 0}
+        title={showInfo === 1 ? '服务说明' : '产品参数'}
+        data={reqData}
+        onClose={() => this.handleShowInfo(false)} />
       <BuyPanel
-        show={this.state.show}
+        show={show}
         price={'￥' + orderInfo.price}
         info={orderInfo.info}
         img={orderInfo.img}
         content={orderInfo.content}
         onSubmit={this.handleSubmit.bind(this)}
-        onClickCover={this.handleCover.bind(this)} />
-      <FootBar onBuy={this.handleBuyItem.bind(this)} />
+        onClickCover={() => this.handleShowBuy(false)} />
       {showFullscreen
         ? <Slider data={banner} fullscreen onClose={() => this.setState({showFullscreen: false})} setting={{dots: false, autoplay: false, afterChange: (e) => this.setState({currentImage: e})}} />
         : null
@@ -104,7 +98,7 @@ export class Detail extends PureComponent {
 
 const mapStateToProps = state => ({
   shared: state.shared,
-  data: state.detail,
+  data: state.detail
 })
 
 export default connect(mapStateToProps)(Detail)

@@ -27,45 +27,48 @@ export default class extends PureComponent {
   }
 
   render () {
-    const { reqData } = this.props.data || {}
-    let baseInfo = null
-    reqData && (baseInfo = this.formatData(reqData))
+    const { data, onShowService } = this.props
+    let baseInfo = data.product_name ? this.formatData(data) : null
 
-    if(baseInfo) {
+    if (baseInfo) {
       return <div styleName='wrap'>
         <header>
           <div styleName='left'>
             <h1>{baseInfo.title || ''}</h1>
-              {
-                baseInfo.tags
-                ? <div styleName='tags'>
-                  {
-                    baseInfo.tags.map((item, i) => {
-                      return <span styleName='item' key={i}>{item} ></span>
-                    })
-                  }
-                </div>
-                : <div styleName='tags' />
-              }
+            <h2>全方位呵护你的心</h2>
           </div>
           <div styleName='right'>
             <p styleName='salePrice'>￥{baseInfo.salePrice}</p>
             <p styleName='marketPrice'>市场价：￥{baseInfo.marketPrice}</p>
           </div>
         </header>
+        {
+          baseInfo.tags
+          ? <div styleName='tags'>
+            {
+              baseInfo.tags.map((item, i) => {
+                return <span styleName='item' key={i}>{item} ></span>
+              })
+            }
+          </div>
+          : <div styleName='tags' />
+        }
         <section styleName='main'>
           <div>快递：{baseInfo.deliveryMsg}</div>
           <div>库存：{baseInfo.skuStore}</div>
           <div>发货：{baseInfo.deliveryCity}</div>
         </section>
-        <footer>
+        <footer onClick={onShowService}>
           <ul>
             {
               baseInfo.tips.map((item, i) => <li key={i} styleName='item'>{item}</li>)
             }
           </ul>
+          <div styleName='dotWrap'><span styleName='dot' /><span styleName='dot' /><span styleName='dot' /></div>
         </footer>
       </div>
+    } else {
+      return null
     }
   }
 }

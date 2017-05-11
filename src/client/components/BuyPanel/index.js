@@ -1,6 +1,7 @@
 import React, { PureComponent, PropTypes } from 'react'
 import CSSModules from 'react-css-modules'
 import Button from 'components/Button/'
+import Icon from 'components/Icons'
 
 import styles from './index.styl'
 
@@ -8,7 +9,7 @@ import styles from './index.styl'
 export default class extends PureComponent {
   static propTypes = {
     onChange: PropTypes.func,
-    show: PropTypes.bool,
+    show: PropTypes.bool
   }
   state = {
     result: {}
@@ -31,7 +32,7 @@ export default class extends PureComponent {
       ? <div styleName='cover' onClick={this.handleClick.bind(this)}></div>
       : null
     }
-    
+
       <div styleName={this.props.show ? 'infoContainer show' : 'infoContainer hide'}>
           <div styleName='skuContainer'>
             <div styleName='skuImg'>
@@ -40,7 +41,7 @@ export default class extends PureComponent {
             <div styleName='skuInfo'>
               <div styleName='price'>{this.props.price}</div>
               <div styleName='info'>{this.props.info}</div>
-              <div styleName='close' onClick={this.handleClick.bind(this)}>&times;</div>
+              <div styleName='close' onClick={this.handleClick.bind(this)}><Icon icon='layerClose' width={40} /></div>
             </div>
           </div>
           <div styleName='line'></div>

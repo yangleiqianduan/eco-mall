@@ -1,6 +1,7 @@
 @import "~common/global.styl"
 
 .wrap
+  font-weight 300
   @extend .G-card
   header
     box()
@@ -11,19 +12,28 @@
       font-size $font-size20
       color $color-dark
       margin-bottom px2rem(3)
+      font-weight normal
+    h2
+      font-size $font-size12
+      color $color-light
+      display none
   .right
     flex()
     text-align right
     padding-top px2rem(4)
     .salePrice
+      font-weight normal
       color $color-spc
       font-size $font-size18
-      margin-bottom px2rem(2)
+      margin-bottom px2rem(5)
       word-spacing no-wrap
     .marketPrice
       color $color-light
       word-spacing no-wrap
   .tags
+    border(bottom)
+    margin-bottom px2rem(15)
+    padding-bottom px2rem(15)
     .item
       display inline-block
       border(all,1px,$color-tag)
@@ -37,6 +47,7 @@
     margin-bottom px2rem(15)
     padding-bottom px2rem(15)
     border(bottom)
+    display none
     & > div
       flex()
       text-align center
@@ -45,7 +56,16 @@
       &:last-child
         text-align right
   footer
+    box()
+    align-items center
+    ul
+      flex 1
+    .dotWrap
+      color $color-light
+      box()
+      align-items center
     .item
+      font-size $font-size14
       display inline-block
       position relative
       text-indent 1em

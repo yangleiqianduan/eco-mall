@@ -1,0 +1,80 @@
+@import "~common/global.styl"
+.wrap
+  removeShape()
+  display-flex()
+  position fixed
+  bottom 0
+  width 100%
+  z-index 5
+  .infoContainer
+    transform opacity 0
+    max-height 75%
+    width 100%
+    position fixed
+    left 0
+    padding 0 px2rem(15)
+    z-index 101
+    background-color $color-white
+    transition transform .3s ease-out
+  .title
+    box()
+    align-items center
+    padding px2rem(20) 0
+    border(bottom)
+    h2
+      font-size $font-size18
+      color $color-dark
+      flex 1
+    .close
+      position relative
+      left px2rem(10)
+      color #9c9fa1
+  .content
+    overflow-y auto
+    padding-bottom px2rem(15)
+  .service
+    padding px2rem(20) 0
+    .label
+      font-size px2rem(15)
+      color $color-dark
+      padding-bottom px2rem(5)
+      box()
+      align-items center
+      >div
+        width px2rem(20)
+        box()
+        justify-content center
+        align-items center
+        .dot
+          width px2rem(6)
+          height px2rem(6)
+    .value
+      padding-left px2rem(20)
+      color $color-font-light
+      font-size px2rem(13)
+  .param
+    box()
+    padding px2rem(15) 0
+    font-size px2rem(15)
+    border(bottom)
+    .label
+      width px2rem(90)
+      color $color-font-light
+    .value
+      color $color-dark
+      flex 1
+  .show
+    visibility visible
+    opacity 1
+    transform translate(0, -100%)
+  .hide
+    transform translate(0, 0)
+  .cover
+    opacity .7
+    height 100%
+    width 100%
+    position fixed
+    background-color #000
+    top 0
+    left 0
+    z-index 100
