@@ -42,6 +42,9 @@ export const getOrderList = '/m/order/get'                                // 获
 export const cancelOrder = '/m/order/cancel'                              // 取消订单
 export const deleteOrder = '/m/order/delete'                              // 删除订单
 
+//订单详情
+export const getOrderDetail = '/m/order/detail'                           // 获取订单详情
+
 // 投票
 export const getVoteList = '/m/vote/get_vote_list'                        // 获取投票列表
 export const voteSelects = '/m/vote/select_vote'                          // 投票选项

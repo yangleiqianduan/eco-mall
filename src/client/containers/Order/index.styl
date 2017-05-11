@@ -1,4 +1,58 @@
 @import "~common/global"
 
+.wrap_pay
+  padding-bottom px2rem(80)
 .wrap
-  padding px2rem(20)
+  .bgWhite
+    background-color $color-white
+    margin-bottom px2rem(12)
+  .orderInfo
+    height px2rem(78)
+    padding px2rem(15) px2rem(21)
+    p
+      line-height px2rem(24)
+  .payInfo
+    .content
+      padding px2rem(15) px2rem(21)
+      border-bottom 1px solid #f6f6f6
+      p
+        line-height px2rem(24)
+        .red
+          color $color-red
+        .tel
+          margin-left px2rem(13)
+      .address
+        margin-left px2rem(60)
+  .contect
+    height px2rem(60)
+    padding px2rem(20) 0
+    text-align center
+    font-size px2rem(14)
+    span
+      margin-left px2rem(10)
+  .service
+    padding 0 px2rem(15) px2rem(15)
+    // position fixed 
+    // bottom 0
+    width 100%
+  .readyPay
+    padding px2rem(15)
+    position fixed 
+    bottom 0
+    width 100%
+    .totalAmount
+      background-color $color-dark
+      width 65%
+      color $color-white
+      padding-left px2rem(15)
+    .goPay
+      background-color $color-bright
+      width 35%
+      text-align center
+    .common
+      display inline-block
+      height 55px
+      line-height 55px
+      font-size px2rem(14)
+
+      
