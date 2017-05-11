@@ -12,6 +12,24 @@ export default (state = fromJS(initState), action) => {
 
 const initState = {
   data: {
-    list:[]
+    isEnd: true,
+    list: [
+      {
+        content:'已签收',
+        time:'2017-12-1 16:32'
+      },
+      {
+        content:'凭取件码到辅道大厦一层领取',
+        time:'2017-12-1 16:32'
+      },
+      {
+        content:'凭取件码到辅道大厦一层领取',
+        time:'2017-12-1 16:32'
+      },
+      {
+        content:'凭取件码到辅道大厦一层领取',
+        time:'2017-12-1 16:32'
+      }
+    ]
   }
 }
