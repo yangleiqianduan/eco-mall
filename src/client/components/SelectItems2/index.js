@@ -1,10 +1,10 @@
-import React, { PureComponent, PropTypes } from 'react'
+import React, { PureComponent } from 'react'
 import CSSModules from 'react-css-modules'
 import styles from './index.styl'
 
 import MenuTitle from 'components/MenuTitle'
 import Icon from 'components/Icons'
-import Slider from 'components/Slider/'
+import FullScreen from 'components/Slider/FullScreen/'
 
 @CSSModules(styles, {allowMultiple: true})
 export default class extends PureComponent {
@@ -79,23 +79,7 @@ export default class extends PureComponent {
         }
       </ul>
       {
-        this.state.pics.length > 0 && show &&
-        <section styleName='showPic'>
-          <span styleName='close' onClick={this.closePicShow}>
-            <Icon icon = {'layerClose'} width = {'40'} />
-          </span>
-          <div styleName='sliderWrap'>
-            <Slider
-              data={ pics }
-              onClick={this.handleShowFullscreen}
-              setting={{dots: false, autoplay: false, afterChange: (e) => this.setState({currentImage: e})}} />
-            </div>
-          {
-            pics.length > 0
-            ? <div styleName='page'><strong>{currentImage + 1}</strong>/{this.state.pics.length}</div>
-            : null
-          }
-        </section>
+        this.state.pics.length > 0 && show && <FullScreen data={pics} onClose={this.closePicShow} />
       }
     </div>
   }

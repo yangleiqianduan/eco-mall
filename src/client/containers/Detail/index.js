@@ -12,7 +12,7 @@ import ItemOverview from 'components/ItemOverview/'
 import ItemChoose from 'components/ItemChoose/'
 import ItemDeatil from 'components/ItemDeatil/'
 import TelUs from 'components/TelUs/'
-import Icon from 'components/Icons/'
+import FullScreen from 'components/Slider/FullScreen'
 
 import wantPic from 'common/img/want.png'
 
@@ -171,21 +171,7 @@ export class Detail extends PureComponent {
         onClickCover={() => this.handleShowBuy(false)} />
       {
         showFullscreen
-        ? <section styleName='showPic'>
-          <span styleName='close' onClick={() => this.setState({showFullscreen: false})}>
-            <Icon icon={'layerClose'} width={'40'} />
-          </span>
-          <div styleName='sliderWrap' onClick={(e) => e.stopPropagation()}>
-            <Slider
-              data={banner}
-              setting={{dots: false, autoplay: false, afterChange: (e) => this.setState({currentImage: e})}} />
-          </div>
-          {
-            banner.length > 0
-            ? <div styleName='page'><strong>{currentImage + 1}</strong>/{banner.length}</div>
-            : null
-          }
-        </section>
+        ? <FullScreen data={banner} onClose={() => this.setState({showFullscreen: false})} />
         : null
       }
     </div>

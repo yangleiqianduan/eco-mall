@@ -28,8 +28,22 @@ export default class extends PureComponent {
     window.location = url
   }
 
+  handleClick = (e, i, item) => {
+    if (this.props.onClick) {
+      e.preventDefault()
+      return this.props.onClick(e, i, item)
+    }
+    if ((item.redirect_url || '').indexOf('http') === 0) {
+      e.preventDefault()
+      window.location = item.redirect_url
+    }
+    if (!item.redirect_url) {
+      e.preventDefault()
+    }
+  }
+
   render () {
-    const { data, setting, slideStyle, needDesc, onClick, fullScreen, onClose } = this.props
+    const { data, setting, slideStyle, needDesc, fullScreen, onClose } = this.props
     const settings = Object.assign({
       dots: true,
       useCSS: true,
@@ -52,7 +66,7 @@ export default class extends PureComponent {
             : <Slider {...settings}>
               {
                 data.map((item, i) => <div key={i} style={slideStyle}>
-                  <Link onClick={(item.redirect_url || '').indexOf('http') === 0 ? (e) => this.handleRedirect(e, item.redirect_url) : onClick} to={item.redirect_url ? item.redirect_url : ''}>
+                  <Link onClick={(e) => this.handleClick(e, i, item)} to={item.redirect_url ? item.redirect_url : ''}>
                     <img className='slick-img' src={item.img_url} />
                     {
                       needDesc
