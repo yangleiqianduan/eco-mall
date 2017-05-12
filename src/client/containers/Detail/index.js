@@ -73,7 +73,7 @@ export class Detail extends PureComponent {
       }, () => this.handleShowBuy(false, 0)))
     } else if (type === 2) {
       this.props.dispatch(toBuy({
-        sku_list: [{sku_id: skuId, buy_count: number}]
+        sku_list: [{sku_id: skuId, buy_count: number, source: 101}]
       }, () => this.handleShowBuy(false, 0)))
     }
   }
