@@ -29,7 +29,7 @@ export default class extends PureComponent {
 
   render () {
     const { show, onClose, title, data, type } = this.props
-    const list = this.getInfoPannelList(data, type)
+    const list = this.getInfoPannelList(data, type).filter(l => l.value)
     return <div styleName='wrap'>
       {
       show

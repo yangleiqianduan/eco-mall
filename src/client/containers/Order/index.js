@@ -10,22 +10,23 @@ import Order from './Order'
 
 import * as actions from 'actions/order'
 
+import { payOrder } from 'constants/api'
+
 @CSSModules(styles, { allowMultiple: true })
 export class OrderList extends PureComponent {
-
-  handlePay = () => {
-    console.log(11111)
-  }
-
   componentDidMount() {
     const query = this.props.location.query
     this.props.dispatch(actions.getOrderDetail(query))
   }
 
+  handlePay = (id) => {
+    window.location = `${payOrder}?order_id=${id}`
+  }
+
   render () {
     const data = this.props.data.toJS() || {}
     const details = data.data
-    const { payInfo , statusCode , receiverInfo } = details
+    const { payInfo, statusCode, receiverInfo, payOrderId } = details
     const isNeedPay = statusCode === 100
 
     return <div styleName={isNeedPay ? 'wrap wrap_pay' : 'wrap'}>
@@ -63,7 +64,7 @@ export class OrderList extends PureComponent {
               </div>
               <div styleName='readyPay'>
                 <div styleName='totalAmount common'>总计：<span>￥{payInfo.totalAmount}</span></div>
-                <div styleName='goPay common' onClick={() => this.handlePay()}>去支付</div>
+                <div styleName='goPay common' onClick={() => this.handlePay(payOrderId)}>去支付</div>
               </div>
             </div>
           : <div styleName='service'>

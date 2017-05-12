@@ -40,6 +40,7 @@ export const editAddress = '/m/user/deliver_address//modify'              // 编
 export const setDefault = '/m/user/deliver_address/set_default'           // 设为默认地址
 
 // 订单列表
+export const payOrder = '/m/order/pay/redirect'                           // 付款
 export const getOrderList = '/m/order/get'                                // 获取订单列表
 export const cancelOrder = '/m/order/cancel'                              // 取消订单
 export const deleteOrder = '/m/order/delete'                              // 删除订单
