@@ -136,6 +136,7 @@ export class Detail extends PureComponent {
 
     return <div styleName='wrap'>
       <section styleName='banner'>
+        {this.renderToastByStatus(status)}
         <Slider
           data={banner}
           onClick={this.handleShowFullscreen}
@@ -179,7 +180,6 @@ export class Detail extends PureComponent {
         ? <FullScreen data={banner} onClose={() => this.setState({showFullscreen: false})} />
         : null
       }
-      {this.renderToastByStatus(status)}
     </div>
   }
 

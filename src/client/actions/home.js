@@ -45,6 +45,6 @@ export const UPDATE_BANNER_ACTION = (payload) => ({
 export const getBanner = () => dispatch => {
   fetch(api.getBanner)
   .then(res => {
-    dispatch(UPDATE_BANNER_ACTION(((res || {}).data || []).filter(b => b.location === 10)))
+    dispatch(UPDATE_BANNER_ACTION(((res || {}).data || [])))
   })
 }
