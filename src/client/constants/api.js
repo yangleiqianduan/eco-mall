@@ -48,6 +48,9 @@ export const getOrderDetail = '/m/order/detail'                           // 获
 // 核对订单
 export const confirmOrder = '/m/order/confirm'                            // 核对订单信息
 
+// 提交订单
+export const submitOrder = '/m/order/create'                               // 提交订单信息
+
 // 投票
 export const getVoteList = '/m/vote/get_vote_list'                        // 获取投票列表
 export const voteSelects = '/m/vote/select_vote'                          // 投票选项

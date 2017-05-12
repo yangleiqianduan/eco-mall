@@ -1,6 +1,7 @@
 import { fromJS } from 'immutable'
 // import * as actions from 'actions/orderList'
-import { UPDATE_CHOOSE_ADDRESS, UPDATE_CONFIRM_LIST, UPDATE_CONFIRM_AMOUNT } from 'actions/addressList'
+import { UPDATE_CHOOSE_ADDRESS } from 'actions/addressList'
+import { UPDATE_CONFIRM_LIST, UPDATE_CONFIRM_AMOUNT, UPDATE_TOKEN, UPDATE_SOURCE, SET_ADDRESS_ID } from 'actions/orderConfirm'
 
 export default (state = fromJS(initState), action) => {
   switch (action.type) {
@@ -10,6 +11,12 @@ export default (state = fromJS(initState), action) => {
       return state.setIn(['data', 'itemsList'], action.payload)
     case UPDATE_CONFIRM_AMOUNT:
       return state.setIn(['data', 'totalAmount'], action.payload)
+    case UPDATE_TOKEN:
+      return state.set('token', action.payload)
+    case UPDATE_SOURCE:
+      return state.set('source', action.payload)
+    case SET_ADDRESS_ID:
+      return state.set('deliver_address_id', action.payload)
     default:
       return state
   }
@@ -17,6 +24,9 @@ export default (state = fromJS(initState), action) => {
 
 const initState = {
   addressChoose: -1,
+  deliver_address_id: 0,
+  token: '',
+  source: 0,
   data: {
     itemsList: [
       // {

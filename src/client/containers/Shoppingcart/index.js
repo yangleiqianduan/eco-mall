@@ -30,7 +30,7 @@ export class Shoppingcart extends PureComponent {
   handleOrder = () => {
     let checklist = this.props.data.toJS().data.filter(item => item.isChecked)
     let param = checklist.map(item => ({sku_id: item.sku_id, buy_count: item.quantity, cart_id: item.cart_id}))
-    let transParam = JSON.stringify({sku_list: param})
+    let transParam = JSON.stringify({sku_list: param, source: 102})
     this.props.dispatch(changeRouter('/orderConfirm?param=' + transParam))
   }
   render () {

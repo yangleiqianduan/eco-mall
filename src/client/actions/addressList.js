@@ -26,17 +26,7 @@ export const getAddressList = data => async dispatch => {
     showToast(result.msg || '获取列表失败')
   }
 }
-export const getConfirmList = data => async dispatch => {
-  dispatch(UPDATE_LOADING_ACTION(true))
-  const result = await fetch(api.confirmOrder, {method: 'post', param: data})
-  if (result.code === '1') {
-    dispatch(UPDATE_CONFIRM_LIST_ACTION(result.data.buyOrderList.map(item => item.itemInfo)))
-    dispatch(UPDATE_CONFIRM_AMOUNT_ACTION(result.data.totalAmountInfo.totalAmount))
-  } else {
-    dispatch(UPDATE_LOADING_ACTION(false))
-    dispatch(showToast(result.msg || '订单核对失败'))
-  }
-}
+
 export const toEditAddress = payload => dispatch => {
   dispatch(initAddress(payload))
   dispatch(changeRouter('/address'))
@@ -63,18 +53,6 @@ export const setDefault = (id) => async dispatch => {
     dispatch(showToast(result.msg || '设置失败'))
   }
 }
-
-export const UPDATE_CONFIRM_LIST = 'UPDATE_CONFIRM_LIST'
-export const UPDATE_CONFIRM_LIST_ACTION = (payload) => ({
-  type: UPDATE_CONFIRM_LIST,
-  payload
-})
-
-export const UPDATE_CONFIRM_AMOUNT = 'UPDATE_CONFIRM_AMOUNT'
-export const UPDATE_CONFIRM_AMOUNT_ACTION = (payload) => ({
-  type: UPDATE_CONFIRM_AMOUNT,
-  payload
-})
 
 export const UPDATE_CHOOSE_ADDRESS = 'UPDATE_CHOOSE_ADDRESS_ADDRESSLIST'
 export const UPDATE_CHOOSE_ADDRESS_ACTION = (payload) => ({
