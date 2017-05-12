@@ -46,7 +46,7 @@ export default class extends PureComponent {
   render () {
     const deleteStyl = classNames('delete', {showDelete: this.state.showDelete})
     const { data, onCheck, onChangeNumber, onDelete } = this.props
-    const {product_id: id, cart_id: cartId, product_img_url: imgUrl, product_name: name, sale_price: price, quantity, sku_attribute_names: sku, isChecked} = data
+    const {product_id: id, cart_id: cartId, product_img_url: imgUrl, product_name: name, sale_price: price, quantity, sku_attribute_kv_pairs: sku, isChecked} = data
     return <div styleName='wrap' style={{height: this.state.innerHeight + 'px'}}>
       <div styleName='inner' ref='inner'>
         <div styleName='pannel' onTouchStart={this.onTouchStart} onTouchMove={this.onTouchMove} style={{width: document.body.getBoundingClientRect().width + 'px'}}>
@@ -54,7 +54,7 @@ export default class extends PureComponent {
           <div><Link to={`/item?id=${id}`}><img styleName='img' src={imgUrl} /></Link></div>
           <div styleName='titleArea'>
             <div styleName='title'>{name}</div>
-            <div styleName='light'>{sku.join(' ')}</div>
+            <div styleName='light'>{sku.map(it => it.value).join(' ')}</div>
             <div styleName='priceArea'>￥{price}<NumberInput value={quantity} onChange={(v) => onChangeNumber(cartId, v)} /></div>
           </div>
         </div>
