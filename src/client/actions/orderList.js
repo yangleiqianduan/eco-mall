@@ -26,7 +26,8 @@ export const getOrderList = (param = {}) => async dispatch => {
   dispatch(UPDATE_LOADING_ACTION(false))
   const { orders, page } = result.data || {orders: [], page: {totalPage: 0}}
   if (parseInt(param.current_page) === 1 || !param.current_page) {
-    dispatch(REPLACE_ORDER_LIST_ACTION({orders, page}))
+    // 让付款按钮展示在最右边
+    dispatch(REPLACE_ORDER_LIST_ACTION({orders: orders.map(o => Object.assign(o, {operationList: o.operationList.reverse()})), page}))
   } else {
     dispatch(UPDATE_ORDER_LIST_ACTION({orders, page}))
   }

@@ -7,6 +7,8 @@ import classNames from 'classnames/bind'
 import LabelItem from 'components/LabelItem/'
 import { Link } from 'react-router-dom'
 
+import { payOrder } from 'constants/api'
+
 @CSSModules(styles, { allowMultiple: true })
 export default class extends PureComponent {
   state = {
@@ -34,12 +36,18 @@ export default class extends PureComponent {
     window.clearTimeout(this.timer)
   }
 
+  handlePay = (id) => {
+    window.location = `${payOrder}?order_id=${id}`
+  }
+
   renderOperationList = (op, i) => {
-    const { orderId } = this.props.data
+    const { orderId, payOrderId } = this.props.data
     const { onCancel, onDelete } = this.props
     switch (op.code) {
       case 1:               // 待支付
-        return <div key={i} styleName={classNames('btnArea', 'dark', {disabled: !this.state.canPay})}>付款 {this.state.time}</div>
+        return <div key={i} styleName={classNames('btnArea', 'dark', {disabled: !this.state.canPay})} onClick={this.state.canPay ? () => this.handlePay(payOrderId) : null}>
+          付款 {this.state.time}
+        </div>
       case 2:               // 取消订单
         return <div key={i} styleName='btnArea' onClick={() => onCancel(orderId)}>取消订单</div>
       // case 3:               // 查看物流
@@ -59,7 +67,7 @@ export default class extends PureComponent {
         } else {
           const minutes = this.joinNumber(Math.floor(t / 60000))
           const seconds = this.joinNumber(Math.floor(t % 60000 / 1000))
-          this.setState({time: `${minutes}:${seconds}`}, run(t - 1000))
+          this.setState({canPay: true, time: `${minutes}:${seconds}`}, run(t - 1000))
         }
       }, 1000)
     }
@@ -80,7 +88,7 @@ export default class extends PureComponent {
         <div>订单号：{orderId}</div>
         <div styleName={statusStyle}>{status}</div>
       </section>
-      <section>
+      <section styleName='content'>
         <Link to={`/order?order_id=${orderId}`}>
           {itemsList.map((item, i) => <LabelItem vertical={false} data={item} key={i} />)}
         </Link>
@@ -88,7 +96,7 @@ export default class extends PureComponent {
       <section styleName='footer'>
         <div styleName='priceArea'>合计:￥{totalAmount}</div>
         {
-          operationList.reverse().map(this.renderOperationList)
+          operationList.map(this.renderOperationList)
         }
       </section>
     </div>
