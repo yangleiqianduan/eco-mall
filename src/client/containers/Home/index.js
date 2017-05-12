@@ -11,6 +11,7 @@ import styles from './index.styl'
 // import wantItem from 'common/img/wantItem.png'
 
 import { getCollocationList, getHotItems, getBanner } from 'actions/home'
+import { getCartCount } from 'actions/'
 
 @CSSModules(styles, { allowMultiple: true })
 export class Home extends PureComponent {
@@ -23,9 +24,10 @@ export class Home extends PureComponent {
     this.props.dispatch(getCollocationList())
     this.props.dispatch(getHotItems())
     this.props.dispatch(getBanner())
+    this.props.dispatch(getCartCount())
   }
   render () {
-    const { categoryList } = this.props.shared.toJS()
+    const { categoryList, cartCount } = this.props.shared.toJS()
     const { hotItems, banner, wantList } = this.props.data.toJS()
     const {
       // currentCollocation,
@@ -39,11 +41,12 @@ export class Home extends PureComponent {
     //   productName: '可能低价出现在这里哦',
     //   marketPrice: '立即登记'
     // })
+    const topBanner = banner.filter(c => c.location === 10)
     const subject = []
 
     return <div styleName='wrap'>
       <div styleName='banner'>
-        <Slider data={banner} setting={{infinite: true}} />
+        <Slider data={topBanner} setting={{infinite: true}} />
       </div>
       <div styleName='navOuter'>
         <NavBar data={categoryList.map(item => ({path: `/search?categoryId=${item.categoryId}`, title: item.categoryName, icon: item.icon}))} />
@@ -70,7 +73,7 @@ export class Home extends PureComponent {
       <div styleName='footer'>
         <img src={footerSrc} />
       </div>
-      <Nav />
+      <Nav cartCount={cartCount} />
     </div>
   }
 }

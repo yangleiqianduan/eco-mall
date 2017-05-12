@@ -9,7 +9,7 @@ import { Link } from 'react-router-dom'
 @CSSModules(styles, {allowMultiple: true})
 export default class extends PureComponent {
   render () {
-    const { onBuy, onAdd } = this.props
+    const { onBuy, onAdd, cartCount } = this.props
     return <div styleName='wrap'>
       <div styleName='content'>
         <div styleName='icons'>
@@ -18,14 +18,18 @@ export default class extends PureComponent {
           </div>
           <Link styleName='item cart' to='/shoppingcart'>
             <Icon icon='cart' width={18} stroke='#FFF' />
-            <em>2</em>
+            {
+              cartCount > 0
+              ? <em>{cartCount}</em>
+              : null
+            }
           </Link>
         </div>
-        <div styleName='buyArea' onClick={onBuy}>
+        <div styleName='buyArea'>
           <div styleName='addCart' onClick={onAdd}>
             加入购物车
           </div>
-          <div styleName='buy'>
+          <div styleName='buy' onClick={onBuy}>
             立即购买
           </div>
         </div>

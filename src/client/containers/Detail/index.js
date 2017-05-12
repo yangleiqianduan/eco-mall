@@ -15,27 +15,30 @@ import ItemDeatil from 'components/ItemDeatil/'
 import TelUs from 'components/TelUs/'
 import wantPic from 'common/img/want.png'
 
-import { getItemDetail } from 'actions/detail'
-import { confirmOrder } from 'actions/index'
+import { getItemDetail, addToShoppingcart, toBuy } from 'actions/detail'
+import { showToast, getCartCount } from 'actions/index'
 import { createArray } from 'common/utils'
 
 @CSSModules(styles, {allowMultiple: true})
 export class Detail extends PureComponent {
-  componentDidMount () {
-    const query = this.props.location.query.id
-    this.getItemDetail(query)
-  }
-  getItemDetail = (query) => {
-    this.props.dispatch(getItemDetail(query))
-  }
   state={
     currentOperate: 0,           // 1表示加入购物车， 2表示立即购买
-    show: true,
+    show: false,
     currentImage: 0,
     showFullscreen: false,
     showInfo: false,             // 1展示服务说明 2展示产品参数
     number: 1,
     skuMapKey: createArray(this.props.data.getIn(['reqData', 'product_attribute_info', 'sku_attribute_info']).size, '')
+  }
+
+  componentDidMount () {
+    const query = this.props.location.query.id
+    this.getItemDetail(query)
+    this.props.dispatch(getCartCount())
+  }
+
+  getItemDetail = (query) => {
+    this.props.dispatch(getItemDetail(query))
   }
 
   componentWillReceiveProps (np) {
@@ -55,9 +58,22 @@ export class Detail extends PureComponent {
   handleSubmit = (type) => {
     // type: 1加入购物车 2立即购买
     console.log(type)
-    // result.type_id = 1
-    // result.appoint_id = this.props.location.query.id
-    // this.props.dispatch(confirmOrder(result))
+    const { reqData } = this.props.data.toJS()
+    const { number, skuMapKey } = this.state
+    const skuId = this.getValidMap(skuMapKey)
+    if (type === 1) {
+      this.props.dispatch(addToShoppingcart({
+        source: '100',                              // 来源，商品详情页
+        quantity: number,                           // 数量
+        product_id: reqData.product_id,             // 商品id
+        merchant_code: reqData.merchant_code,       // 商家code
+        sku_id: skuId                               // skuId
+      }, () => this.handleShowBuy(false, 0)))
+    } else if (type === 2) {
+      this.props.dispatch(toBuy({
+        sku_list: [{sku_id: skuId, buy_count: number}]
+      }, () => this.handleShowBuy(false, 0)))
+    }
   }
 
   handleShowFullscreen = (e) => {
@@ -88,6 +104,7 @@ export class Detail extends PureComponent {
 
   render () {
     const { reqData } = this.props.data.toJS()
+    const { cartCount } = this.props.shared.toJS()
     const { show, currentOperate, showInfo, currentImage, showFullscreen, number, skuMapKey } = this.state
 
     // '-1'是所有图片的key
@@ -128,7 +145,7 @@ export class Detail extends PureComponent {
       <section><ItemChoose skuChoose={skuChoose} params={reqData.product_attribute_info.spu_attribute_info} onShowChoose={() => this.handleShowBuy(true, 0)} onShowParam={() => this.handleShowInfo(2)} /></section>
       <section><ItemDeatil data={reqData} /></section>
       <section><TelUs data={{link: '/want', pic: wantPic}} /></section>
-      <FootBar onBuy={() => this.handleShowBuy(true, 2)} />
+      <FootBar onAdd={() => this.handleShowBuy(true, 1)} onBuy={() => this.handleShowBuy(true, 2)} cartCount={cartCount} />
       <InfoPanel
         show={!!showInfo}
         type={showInfo + 0}
@@ -137,11 +154,12 @@ export class Detail extends PureComponent {
         onClose={() => this.handleShowInfo(false)} />
       <BuyPanel
         show={show}
+        showToast={(s) => this.props.dispatch(showToast(s))}
         price={salePrice}
         img={skuImage}
         skuChoose={skuChoose}
         data={reqData.product_attribute_info.sku_attribute_info}
-        type={currentOperate}
+        currentOperate={currentOperate}
         inventory={inventory} inventorySkuMap={(reqData.product_inv_info || {sku_inv: {}}).sku_inv}
         skuMap={reqData.sku_attribute_mapping_sku_id}
         number={number}
@@ -151,7 +169,7 @@ export class Detail extends PureComponent {
         onSubmit={this.handleSubmit}
         onClickCover={() => this.handleShowBuy(false)} />
       {showFullscreen
-        ? <Slider data={banner} fullscreen onClose={() => this.setState({showFullscreen: false})} setting={{dots: false, autoplay: false, afterChange: (e) => this.setState({currentImage: e})}} />
+        ? <Slider data={banner} fullScreen onClose={() => this.setState({showFullscreen: false})} setting={{dots: false, autoplay: false, afterChange: (e) => this.setState({currentImage: e})}} />
         : null
       }
     </div>

@@ -70,6 +70,7 @@ export const showToast = data => async dispatch => {
   await dispatch(UPDATE_TOAST_ACTION({show: false, text: ''}))
 }
 
+// 预约
 export const confirmOrder = data => dispatch => {
   dispatch(UPDATE_LOADING_ACTION(true))
   fetch(api.conformOrder, {method: 'post', param: data})
@@ -77,6 +78,22 @@ export const confirmOrder = data => dispatch => {
     if (res.code === '1' && res.success) {
       dispatch(UPDATE_LOADING_ACTION(false))
       dispatch(changeRouter('success'))
+    }
+  })
+}
+
+export const UPDATE_CART_COUNT = 'UPDATE_CART_COUNT_SHARED'
+export const UPDATE_CART_COUNT_ACTION = (payload) => ({
+  type: UPDATE_CART_COUNT,
+  payload
+})
+
+// 获取购物车条数
+export const getCartCount = () => dispatch => {
+  fetch(api.getCartCount)
+  .then(res => {
+    if (res.code === '1') {
+      dispatch(UPDATE_CART_COUNT_ACTION(res.data.user_cart_count))
     }
   })
 }

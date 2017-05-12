@@ -29,6 +29,21 @@ export default class extends PureComponent {
       return inv[Object.keys(inv)[0]] || 0
     }
   }
+  handleChangeNumber = (v) => {
+    const {
+      showToast,
+      onChangeNumber,
+      inventory
+    } = this.props
+    const maxNumber = this.dealInv(inventory)
+    if (v < 1) {
+      showToast('最小数量为1')
+    } else if (v > maxNumber) {
+      showToast(`最大购买数量为${maxNumber}`)
+    } else {
+      onChangeNumber(v)
+    }
+  }
 
   transformData (data, skuMapKeyArr) {
     /*
@@ -82,7 +97,6 @@ export default class extends PureComponent {
       skuChoose,
       skuMapKey,
       number,
-      onChangeNumber,
       inventory,
       onChangeSku,
       show,
@@ -90,6 +104,8 @@ export default class extends PureComponent {
       onSubmit
     } = this.props
     const data = this.transformData(this.props.data, skuMapKey)
+
+    const canBuy = skuMapKey.filter(str => str).length === skuMapKey.length
 
     return <div styleName='wrap'>
       {
@@ -130,15 +146,22 @@ export default class extends PureComponent {
           <div styleName='attrArea'>
             <p styleName='label'>数量</p>
             <div>
-              <NumberInput value={number} onChange={onChangeNumber} />
+              <NumberInput value={number} min={1} max={this.dealInv(inventory)} onChange={this.handleChangeNumber} />
             </div>
           </div>
         </div>
-        <div styleName='btnArea'>
-          <div styleName='container' onClick={() => onSubmit(currentOperate)}>
-            确定
+        {
+          currentOperate
+          ? <div styleName={classNames('btnArea', {disabled: !canBuy})}>
+            <div styleName='container' onClick={canBuy ? () => onSubmit(currentOperate) : null}>
+              确定
+            </div>
           </div>
-        </div>
+          : <div styleName={classNames('btnArea', {disabled: !canBuy})}>
+            <div styleName='add container' onClick={canBuy ? () => onSubmit(1) : null}>加入购物车</div>
+            <div styleName='buy container' onClick={canBuy ? () => onSubmit(2) : null}>立即购买</div>
+          </div>
+        }
       </div>
     </div>
   }

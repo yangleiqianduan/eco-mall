@@ -3,6 +3,7 @@ import * as api from 'constants/api'
 
 import {
   UPDATE_LOADING_ACTION,
+  showToast,
   changeRouter
 } from './index'
 
@@ -29,4 +30,22 @@ export const getItemDetail = id => dispatch => {
     console.log('返回数据格式错误')
     dispatch(UPDATE_LOADING_ACTION(false))
   })
+}
+
+// 添加到购物车
+export const addToShoppingcart = (param, cb) => async dispatch => {
+  const result = await fetch(api.addToCart, {method: 'post', formData: true, param})
+  if (result.code === '1') {
+    dispatch(showToast('添加成功'))
+    if (typeof cb === 'function') {
+      cb()
+    }
+  } else {
+    dispatch(showToast(result.msg || '添加失败'))
+  }
+}
+
+// 立即购买
+export const toBuy = (param) => dispatch => {
+  dispatch(changeRouter(`/orderConfirm?param=${JSON.stringify(param)}`))
 }
