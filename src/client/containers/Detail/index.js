@@ -68,6 +68,7 @@ export class Detail extends PureComponent {
         quantity: number,                           // 数量
         product_id: reqData.product_id,             // 商品id
         merchant_code: reqData.merchant_code,       // 商家code
+        merchant_name: reqData.merchant_name,       // 商家名称
         sku_id: skuId                               // skuId
       }, () => this.handleShowBuy(false, 0)))
     } else if (type === 2) {
@@ -108,8 +109,8 @@ export class Detail extends PureComponent {
     const { cartCount } = this.props.shared.toJS()
     const { show, currentOperate, showInfo, currentImage, showFullscreen, number, skuMapKey } = this.state
 
-    // '-1'是所有图片的key
-    const banner = (reqData.product_image_info || {'-1': []})['-1'] || []
+    // 商品状态 0：可售卖  2：已下架  3：售罄
+    const status = reqData.product_status
 
     // skuId
     const skuMapStr = this.getValidMap(skuMapKey)
@@ -117,7 +118,10 @@ export class Detail extends PureComponent {
     const inventoryMay = (reqData.product_inv_info || {sku_inv: {}}).sku_inv[skuMapStr]
     const inventory = (inventoryMay || {})
 
-    const skuImage = (reqData.product_image_info[skuMapStr] || []).map(img => (img.img_url || reqData.product_image_info['-1'][0].img_url))[0]
+    const skuImage = (reqData.product_image_info[skuMapStr] || []).map(img => (img.img_url || reqData.product_image_info['-1'][0].img_url))
+
+    // '-1'是所有图片的key
+    const banner = showFullscreen === 2 ? skuImage.map(im => ({img_url: im})) : (reqData.product_image_info || {'-1': []})['-1'] || []
 
     const price = reqData.product_price_info[skuMapStr] || {}
     const {
@@ -143,10 +147,10 @@ export class Detail extends PureComponent {
         }
       </section>
       <section><ItemOverview data={reqData} marketPrice={marketPrice} salePrice={salePrice} onShowService={() => this.handleShowInfo(1)} /></section>
-      <section><ItemChoose skuChoose={skuChoose} params={reqData.product_attribute_info.spu_attribute_info} onShowChoose={() => this.handleShowBuy(true, 0)} onShowParam={() => this.handleShowInfo(2)} /></section>
+      <section><ItemChoose skuChoose={skuChoose} params={reqData.product_attribute_info.spu_attribute_info} onShowChoose={status === 0 ? () => this.handleShowBuy(true, 0) : null} onShowParam={() => this.handleShowInfo(2)} /></section>
       <section><ItemDeatil data={reqData} /></section>
       <section><TelUs data={{link: '/want', pic: wantPic}} /></section>
-      <FootBar onAdd={() => this.handleShowBuy(true, 1)} onBuy={() => this.handleShowBuy(true, 2)} cartCount={cartCount} />
+      <FootBar status={status} onAdd={() => this.handleShowBuy(true, 1)} onBuy={() => this.handleShowBuy(true, 2)} cartCount={cartCount} />
       <InfoPanel
         show={!!showInfo}
         type={showInfo + 0}
@@ -157,7 +161,8 @@ export class Detail extends PureComponent {
         show={show}
         showToast={(s) => this.props.dispatch(showToast(s))}
         price={salePrice}
-        img={skuImage}
+        onClickSkuImage={() => this.setState({showFullscreen: 2})}
+        img={skuImage[0]}
         skuChoose={skuChoose}
         data={reqData.product_attribute_info.sku_attribute_info}
         currentOperate={currentOperate}
@@ -174,7 +179,19 @@ export class Detail extends PureComponent {
         ? <FullScreen data={banner} onClose={() => this.setState({showFullscreen: false})} />
         : null
       }
+      {this.renderToastByStatus(status)}
     </div>
+  }
+
+  renderToastByStatus = (status) => {
+    switch (status) {
+      case 2:        // 已下架
+        return <div styleName='toast'><div styleName='inner'>已下架</div></div>
+      case 30:       // 已售罄
+        return <div styleName='toast'><div styleName='inner'>已售罄</div></div>
+      default:
+        return null
+    }
   }
 }
 

@@ -92,6 +92,7 @@ export default class extends PureComponent {
 
   render () {
     const {
+      onClickSkuImage,
       img,
       price,
       skuChoose,
@@ -115,7 +116,7 @@ export default class extends PureComponent {
       }
       <div styleName={classNames('infoContainer', {show: show, hide: !show})}>
         <div styleName='skuContainer'>
-          <div styleName='skuImg'>
+          <div styleName='skuImg' onClick={onClickSkuImage}>
             <img src={img} />
           </div>
           <div styleName='skuInfo'>

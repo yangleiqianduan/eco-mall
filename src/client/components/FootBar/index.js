@@ -8,8 +8,43 @@ import { Link } from 'react-router-dom'
 
 @CSSModules(styles, {allowMultiple: true})
 export default class extends PureComponent {
+  renderFooter = () => {
+    const { onBuy, onAdd, status } = this.props
+    switch (status) {
+      case 0:        // 可售卖
+        return <div styleName='buyArea'>
+          <div styleName='addCart' onClick={onAdd}>
+            加入购物车
+          </div>
+          <div styleName='buy' onClick={onBuy}>
+            立即购买
+          </div>
+        </div>
+      case 2:        // 已下架
+        return <div styleName='buyArea'>
+          <div styleName='disabled' onClick={onBuy}>
+            已下架
+          </div>
+        </div>
+      case 30:       // 已售罄
+        return <div styleName='buyArea'>
+          <div styleName='disabled'>
+            已售罄
+          </div>
+        </div>
+      default:
+        return <div styleName='buyArea'>
+          <div styleName='addCart' onClick={onAdd}>
+            加入购物车
+          </div>
+          <div styleName='buy' onClick={onBuy}>
+            立即购买
+          </div>
+        </div>
+    }
+  }
   render () {
-    const { onBuy, onAdd, cartCount } = this.props
+    const { cartCount } = this.props
     return <div styleName='wrap'>
       <div styleName='content'>
         <div styleName='icons'>
@@ -25,14 +60,7 @@ export default class extends PureComponent {
             }
           </Link>
         </div>
-        <div styleName='buyArea'>
-          <div styleName='addCart' onClick={onAdd}>
-            加入购物车
-          </div>
-          <div styleName='buy' onClick={onBuy}>
-            立即购买
-          </div>
-        </div>
+        {this.renderFooter()}
       </div>
     </div>
   }
