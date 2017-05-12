@@ -47,6 +47,9 @@ export const deleteOrder = '/m/order/delete'                              // 删
 // 订单详情
 export const getOrderDetail = '/m/order/detail'                           // 获取订单详情
 
+// 核对订单
+export const confirmOrder = '/m/order/confirm'                            // 核对订单信息
+
 // 投票
 export const getVoteList = '/m/vote/get_vote_list'                        // 获取投票列表
 export const voteSelects = '/m/vote/select_vote'                          // 投票选项
@@ -58,6 +61,7 @@ export const host = {
   // dev: 'http://10.33.69.182:8050',
   // dev: 'http://lmall.lianjia.com:8070',
   dev: 'http://mall.lj-web-30.lianjia.com',
+  // dev: 'http://10.33.66.18:8050',
   offline: 'http://mall.lj-web-30.lianjia.com',
   prod: 'https://mall.lianjia.com'
 }

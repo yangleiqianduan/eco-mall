@@ -5,7 +5,7 @@ import CSSModules from 'react-css-modules'
 import styles from './index.styl'
 // import classNames from 'classnames/bind'
 
-import { getAddressList } from 'actions/addressList'
+import { getAddressList, getConfirmList } from 'actions/addressList'
 
 import Address from './Address'
 import LabelItem from 'components/LabelItem/'
@@ -13,7 +13,9 @@ import LabelItem from 'components/LabelItem/'
 @CSSModules(styles, { allowMultiple: true })
 export class OrderConfirm extends PureComponent {
   componentDidMount () {
+    let paramData = JSON.parse(this.props.location.query.param)
     this.props.dispatch(getAddressList())
+    this.props.dispatch(getConfirmList(paramData))
   }
   getCurrentAddress = (list, choose) => {
     if (list.length === 0) {
@@ -30,6 +32,7 @@ export class OrderConfirm extends PureComponent {
       data,
       addressChoose             // 选择的收货地址, 为地址列表的index，-1表示未选择
     } = this.props.data.toJS()
+    console.log(this.props)
     const addressList = this.props.addressList.toJS().list      // 收货地址列表
     const { itemsList, totalAmount } = data
     const currentAddress = this.getCurrentAddress(addressList, addressChoose)
