@@ -35,24 +35,16 @@ export default class extends PureComponent {
         <header>
           <div styleName='left'>
             <h1>{baseInfo.title || ''}</h1>
-            <h2>全方位呵护你的心</h2>
+            <h2>暂不显示</h2>
           </div>
           <div styleName='right'>
             <p styleName='salePrice'>￥{salePrice}</p>
             <p styleName='marketPrice'>市场价：￥{marketPrice}</p>
           </div>
         </header>
-        {
-          baseInfo.tags
-          ? <div styleName='tags'>
-            {
-              baseInfo.tags.map((item, i) => {
-                return <span styleName='item' key={i}>{item} ></span>
-              })
-            }
-          </div>
-          : <div styleName='tags' />
-        }
+        <div styleName='tags'>
+          <span styleName='item'>{data.product_attribute_info.brand_info}</span>
+        </div>
         <section styleName='main'>
           <div>快递：{baseInfo.deliveryMsg}</div>
           <div>库存：{baseInfo.skuStore}</div>

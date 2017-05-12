@@ -8,11 +8,12 @@ import Slider from 'components/Slider/'
 import FootBar from 'components/FootBar/'
 import BuyPanel from 'components/BuyPanel/'
 import InfoPanel from 'components/InfoPanel/'
-
 import ItemOverview from 'components/ItemOverview/'
 import ItemChoose from 'components/ItemChoose/'
 import ItemDeatil from 'components/ItemDeatil/'
 import TelUs from 'components/TelUs/'
+import Icon from 'components/Icons/'
+
 import wantPic from 'common/img/want.png'
 
 import { getItemDetail, addToShoppingcart, toBuy } from 'actions/detail'
@@ -168,8 +169,23 @@ export class Detail extends PureComponent {
         onChangeSku={this.handleChangeSku}
         onSubmit={this.handleSubmit}
         onClickCover={() => this.handleShowBuy(false)} />
-      {showFullscreen
-        ? <Slider data={banner} fullScreen onClose={() => this.setState({showFullscreen: false})} setting={{dots: false, autoplay: false, afterChange: (e) => this.setState({currentImage: e})}} />
+      {
+        showFullscreen
+        ? <section styleName='showPic'>
+          <span styleName='close' onClick={() => this.setState({showFullscreen: false})}>
+            <Icon icon={'layerClose'} width={'40'} />
+          </span>
+          <div styleName='sliderWrap' onClick={(e) => e.stopPropagation()}>
+            <Slider
+              data={banner}
+              setting={{dots: false, autoplay: false, afterChange: (e) => this.setState({currentImage: e})}} />
+          </div>
+          {
+            banner.length > 0
+            ? <div styleName='page'><strong>{currentImage + 1}</strong>/{banner.length}</div>
+            : null
+          }
+        </section>
         : null
       }
     </div>
