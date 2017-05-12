@@ -1,16 +1,14 @@
 @import "~common/global.styl"
 
 .wrap
-  position fixed
-  bottom 0
-  width 100%
+  footerStyle()
   .content
+    flex 1
     box-shadow 0 0 px2rem(4) 0 rgba(0,0,0,0.19)
     box()
     // width px2rem(355)
     height px2rem(55)
     color $color-white
-    margin 0 px2rem(15) px2rem(15)
     overflow hidden
     > div
       box()

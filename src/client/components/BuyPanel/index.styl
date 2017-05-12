@@ -91,13 +91,8 @@
       align-items center
       justify-content center
     .btnArea
-      position fixed
-      bottom 0
-      left 0
-      width 100%
+      footerStyle()
       font-size $font-size14
-      box()
-      padding 0 px2rem(15) px2rem(15)
       .container
         box()
         align-items center
@@ -106,6 +101,18 @@
         height px2rem(55)
         background $color-dark
         color $color-white
+      .add
+        flex 1
+      .buy
+        flex 1
+        color $color-dark
+        background $color-bright
+    .disabled
+      .container
+        background $color-font-light + 4%
+      .buy
+        background $color-bright + 40%
+        color $color-dark + 40%
   .show
     visibility visible
     opacity 1

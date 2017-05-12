@@ -41,6 +41,11 @@ export default (state = initState, action) => {
         toast: action.payload
       })
 
+    case actions.UPDATE_CART_COUNT:
+      return state.merge({
+        cartCount: action.payload
+      })
+
     default:
       return state
   }
@@ -81,7 +86,8 @@ const initState = fromJS({
   ],
   transRoute: {
     to: ''
-  }
+  },
+  cartCount: 0
   // orderInfo: {
   //   price: '2310',
   //   info: '预定111111111111112222222222333333',

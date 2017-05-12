@@ -16,6 +16,8 @@ export const upload = '/m/product/image/upload'                           // 图
 export const submitRequire = '/m/product/want/commit'                     // 提交想要买什么
 
 // 购物车
+export const getCartCount = '/m/user/cart/count'                          // 获取购物车总数量
+export const addToCart = '/m/user/cart/add'                               // 添加商品到购物车
 export const getShoppingcartItems = '/m/user/cart/get'                    // 获取购物车列表
 export const updateShoppingcartItemNumer = '/m/user/cart/modify_quantity' // 修改购物车商品数量
 export const deleteShoppingcartItem = '/m/user/cart/remove'               // 删除购物车商品

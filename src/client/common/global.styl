@@ -7,6 +7,9 @@ $font-size20 = .2rem
 $font-size22 = .22rem
 $font-size24 = .24rem
 
+// 最大宽度
+$max-width = 414px
+
 // 通用色
 $color-white = #fff
 $color-gray = #f6f6f6
@@ -146,9 +149,11 @@ removeShape()
 
 footerStyle()
   position fixed
+  left 0
   bottom 0
   width 100%
-  padding px2rem(15)
+  max-width $max-width
+  padding 0 px2rem(15) px2rem(15) px2rem(15)
   box()
   align-items center
 

@@ -5,8 +5,18 @@ import styles from './index.styl'
 import { Link } from 'react-router-dom'
 import Icon from 'components/Icons/'
 
-export default CSSModules(() => <div styleName='wrap'>
-  <div><Link to='/orderList'><Icon icon='personal' width={15} stroke={'#FFF'} /></Link></div>
+export default CSSModules(({ cartCount }) => <div styleName='wrap'>
+  <div>
+    <Link to='/orderList'><Icon icon='personal' width={15} stroke={'#FFF'} /></Link>
+  </div>
   <hr />
-  <div><Link to='shoppingcart' styleName='shoppingcart'><Icon icon='cart' width={18} stroke={'#FFF'} /><div styleName='mark' /></Link></div>
+  <div>
+    <Link to='shoppingcart' styleName='shoppingcart'>
+      <Icon icon='cart' width={18} stroke={'#FFF'} />
+      { cartCount > 0
+        ? <div styleName='mark' />
+        : null
+      }
+    </Link>
+  </div>
 </div>, styles, {allowMultiple: true})
