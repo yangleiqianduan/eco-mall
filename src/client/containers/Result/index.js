@@ -6,7 +6,6 @@ import styles from './index.styl'
 
 import NavBar from 'components/NavBar/'
 import ProductItem from 'components/ProductItem/'
-
 import { getItems } from 'actions/result'
 
 @CSSModules(styles, {allowMultiple: true})
@@ -14,6 +13,22 @@ export class Result extends PureComponent {
   componentDidMount () {
     const query = this.props.location.query
     this.getItems(query)
+    window.addEventListener('scroll', this.checkScrollBottom)
+  }
+
+  componentWillUnmount () {
+    window.removeEventListener('scroll', this.checkScrollBottom)
+  }
+
+  checkScrollBottom = (e) => {
+    const { page } = this.props.data.toJS()
+    const footerPosition = this.refs.footer.getBoundingClientRect()
+    const clientHeight = document.body.clientHeight
+    if (footerPosition.bottom === clientHeight) {
+      if (page.currentPage < page.totalPage) {
+        this.getItems(Object.assign({current_page: page.currentPage + 1}, this.props.location.query))
+      }
+    }
   }
 
   componentWillReceiveProps (np) {
@@ -29,7 +44,7 @@ export class Result extends PureComponent {
   }
 
   render () {
-    const { list } = this.props.data.toJS()
+    const { list, page } = this.props.data.toJS()
     const { categoryList } = this.props.shared.toJS()
     const query = this.props.location.query
 
@@ -48,6 +63,9 @@ export class Result extends PureComponent {
             </li>)
           }
         </ul>
+        <div styleName='bottom' ref='footer'>
+          {page.currentPage < page.totalPage ? '加载中...' : (page.totalPage ? '没有更多了' : '暂无订单')}
+        </div>
       </div>
     </div>
   }
