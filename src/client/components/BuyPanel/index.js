@@ -21,6 +21,7 @@ export default class extends PureComponent {
 
   dealInv = (inv) => {
     // 取得总库存
+    if (typeof inv === 'number') return inv
     if (!inv) return 0
     if (Object.keys(inv).length > 1) {
       const inventoryTotal = Object.keys(inv).reduce((x, y) => (inv[x] + inv[y])) || 0
@@ -97,7 +98,7 @@ export default class extends PureComponent {
     }
   }
 
-  componentWillUnmount() {
+  componentWillUnmount () {
     document.body.style.overflow = 'auto'
   }
 

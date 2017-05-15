@@ -74,7 +74,6 @@ export const updateTitle = (location = window.location, routes) => {
   const cheeckCurrent = (routes) => {
     if (!Array.isArray(routes)) return
     for (let i = 0; i < routes.length; i++) {
-      debugger
       if (comparePath(routes[i].path, location.pathname)) {
         document.title = routes[i].title
         stat('pv', location.pathname)
