@@ -28,6 +28,9 @@ export class Main extends PureComponent {
     updateTitle(location, routes)
   }
 
+  handleStat = (route) => {
+    console.log(11111, route)
+  }
   render () {
     const { routes, location } = this.props
     const { transRoute, loading, toast, modal } = this.props.shared.toJS()
@@ -38,7 +41,7 @@ export class Main extends PureComponent {
         : null
       }
       {
-        routes.map((route, i) => <Route key={i} {...route} location={Object.assign({}, location, {query: parseQueryString(location.search)})} />)
+        routes.map((route, i) => <Route key={i} {...route} onClick={this.handleStat.bind(this, route)} location={Object.assign({}, location, {query: parseQueryString(location.search)})} />)
       }
       <div style={{position: 'fixed', bottom: 0, width: '100%', display: 'none'}}>
         <NavBar data={routes} />
