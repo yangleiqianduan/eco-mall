@@ -86,5 +86,13 @@ export const iconsInfo = {
   right: {
     width: 16,
     height: 20
+  },
+  chari: {
+    width: 22,
+    height: 30
+  },
+  mattess: {
+    width: 35,
+    height: 26
   }
 }

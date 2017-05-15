@@ -54,13 +54,13 @@ export default (state = initState, action) => {
 const mapName2Icon = (icon) => {
   switch (icon.categoryName) {
     case '椅凳':
-      return 'sofa'
+      return 'chari'
     case '柜架':
       return 'wooden'
     case '睡床':
       return 'bedroom'
     case '床垫':
-      return 'bedroom'
+      return 'mattess'
   }
 }
 
