@@ -7,7 +7,7 @@ import classNames from 'classnames/bind'
 import Item from './Item'
 import Icon from 'components/Icons/'
 
-import { changeRouter } from 'actions/index'
+import { changeRouter, showToast } from 'actions/index'
 import {
   getList,
   UPDATE_CHECK_ACTION,
@@ -29,6 +29,9 @@ export class Shoppingcart extends PureComponent {
 
   handleOrder = () => {
     let checklist = this.props.data.toJS().data.filter(item => item.isChecked)
+    if (checklist.length === 0) {
+      return this.props.dispatch(showToast('商品不能为空'))
+    }
     let param = checklist.map(item => ({sku_id: item.sku_id, buy_count: item.quantity, cart_id: item.cart_id}))
     let transParam = JSON.stringify({sku_list: param, source: 102})
     this.props.dispatch(changeRouter('/orderConfirm?param=' + transParam))
@@ -36,7 +39,7 @@ export class Shoppingcart extends PureComponent {
   render () {
     const { data } = this.props.data.toJS()
     const checkedItems = data.filter(d => d.isChecked)
-    const isCheckedAll = checkedItems.length === data.length
+    const isCheckedAll = data.length && checkedItems.length === data.length
     return <div styleName='wrap'>
       <ul styleName={classNames({list: data.length > 0})}>
         {data.length === 0
