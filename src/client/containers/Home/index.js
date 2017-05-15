@@ -34,6 +34,7 @@ export class Home extends PureComponent {
       currentSubject,
       footerSrc
     } = this.state
+    const navList = categoryList.slice(0, 4)
     // const collocationList = collocation.map(item => ({img_url: item.picture, title: item.productMixName, desc: item.productMixDescription, redirect_url: `/collocation?id=${item.productMixId}`}))
     // hotItems.push({
     //   wantItem: true,
@@ -49,7 +50,7 @@ export class Home extends PureComponent {
         <Slider data={topBanner} setting={{infinite: true}} />
       </div>
       <div styleName='navOuter'>
-        <NavBar data={categoryList.map(item => ({path: `/search?categoryId=${item.categoryId}`, title: item.categoryName, icon: item.icon}))} />
+        <NavBar data={navList.map(item => ({path: `/search?categoryId=${item.categoryId}`, title: item.categoryName, icon: item.icon}))} />
       </div>
       <div styleName='label'>
         <h2 styleName='title'>精选专题</h2>
