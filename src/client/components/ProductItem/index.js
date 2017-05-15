@@ -8,5 +8,5 @@ export default CSSModules(({ data = {} }) => <Link
   to={data.wantItem ? '/want' : `/item?id=${data.productId}`}>
   <div><img styleName='img' src={data.firstPageUrl} /></div>
   <div styleName='text'>{data.productName}</div>
-  <div styleName={data.wantItem ? 'price normal' : 'price'}>{data.wantItem ? '' : '￥'}{data.marketPrice}</div>
+  <div styleName={data.wantItem ? 'price normal' : 'price'}>{data.wantItem ? '' : '￥'}{data.lowestPrice}</div>
 </Link>, styles, {allowMultiple: true})
