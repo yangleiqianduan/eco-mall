@@ -21,7 +21,7 @@ import { getCateoryList } from 'actions/'
 export class Main extends PureComponent {
   componentDidMount () {
     this.props.dispatch(getCateoryList())
-    window.$ULOG.send('10000', {type: 'pv', page: 'home'})
+    // window.$ULOG.send('10000', {type: 'pv', page: 'home'})
   }
   componentWillMount () {
     const { location, routes } = this.props

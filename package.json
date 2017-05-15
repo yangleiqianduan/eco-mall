@@ -41,7 +41,7 @@
     ]
   },
   "redskull": {
-    "port": 8880,
+    "port": 8888,
     "libraries": "./libraries",
     "src": "./src/client",
     "host": "127.0.0.1",
