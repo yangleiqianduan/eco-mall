@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react'
-import { Route, Redirect, Miss } from 'react-router-dom'
+import { Route, Redirect } from 'react-router-dom'
 import { withRouter, Prompt } from 'react-router'
 import { connect } from 'react-redux'
 import { updateTitle, parseQueryString } from 'common/utils'
