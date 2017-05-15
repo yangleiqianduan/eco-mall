@@ -1,6 +1,7 @@
 import React, { PureComponent } from 'react'
 import CSSModules from 'react-css-modules'
 import styles from './index.styl'
+import classNames from 'classnames/bind'
 import { servicePhoneNumber } from 'constants/text'
 
 import Icon from 'components/Icons'
@@ -44,14 +45,14 @@ export default class extends PureComponent {
     }
   }
   render () {
-    const { cartCount } = this.props
+    const { cartCount, status } = this.props
     return <div styleName='wrap'>
       <div styleName='content'>
         <div styleName='icons'>
           <div styleName='item'>
             <a href={`tel:${servicePhoneNumber}`}><Icon icon='listener' width={18} stroke='#FFF' /></a>
           </div>
-          <Link styleName='item cart' to='/shoppingcart'>
+          <Link styleName={classNames('item', 'cart', {noBoard: status !== 0})} to='/shoppingcart'>
             <Icon icon='cart' width={18} stroke='#FFF' />
             {
               cartCount > 0

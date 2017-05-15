@@ -10,7 +10,7 @@ export const stat = (type, category, action, label, value) => {
   if (_hmt && _hmt !== null && _hmt !== undefined) {
     switch (type) {
       case 'pv':
-        _hmt.push(['_trackPageview', '/vote'])
+        _hmt.push(['_trackPageview', category])
         break
       case 'uv':
         _hmt.push(['_trackEvent', category, action, label, value])

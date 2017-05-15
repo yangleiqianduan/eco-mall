@@ -1,4 +1,5 @@
 import pathToRegexp from 'path-to-regexp'
+import { stat } from './stat'
 
 // 创建一个数组，params: 数组长度{number}；规则{function{i}}
 export const createArray = (length, rule = 1) => {
@@ -73,8 +74,10 @@ export const updateTitle = (location = window.location, routes) => {
   const cheeckCurrent = (routes) => {
     if (!Array.isArray(routes)) return
     for (let i = 0; i < routes.length; i++) {
+      debugger
       if (comparePath(routes[i].path, location.pathname)) {
         document.title = routes[i].title
+        stat('pv', location.pathname)
         return
       } else if (routes[i].routes) {
         cheeckCurrent(routes[i].routes)
@@ -108,36 +111,36 @@ export const delay = (t) => new Promise((resolve) => {
   setTimeout(() => resolve(), t * 1000)
 })
 
-//设置cookie
+// 设置cookie
 export const setCookie = (cname, cvalue, exdays) => {
   var d = new Date()
-  d.setTime(d.getTime() + (exdays*24*60*60*1000))
-  var expires = "expires="+d.toUTCString()
-  document.cookie = cname + "=" + cvalue + "; " + expires
+  d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000))
+  var expires = 'expires=' + d.toUTCString()
+  document.cookie = cname + '=' + cvalue + '; ' + expires
 }
-//获取cookie
+// 获取cookie
 export const getCookie = cname => {
-  var name = cname + "=";
+  var name = cname + '='
   var ca = document.cookie.split(';')
-  for(var i=0; i<ca.length; i++) {
+  for (var i = 0; i < ca.length; i++) {
     var c = ca[i]
-    while (c.charAt(0)==' ') c = c.substring(1)
-    if (c.indexOf(name) != -1) return c.substring(name.length, c.length)
+    while (c.charAt(0) === ' ') c = c.substring(1)
+    if (c.indexOf(name) !== -1) return c.substring(name.length, c.length)
   }
-  return ""
+  return ''
 }
-//清除cookie
+// 清除cookie
 export const clearCookie = (name) => {
-  setCookie(name, "", -1)
+  setCookie(name, '', -1)
 }
 export const checkCookie = () => {
-  var user = getCookie("username")
-  if (user != "") {
-    alert("Welcome again " + user)
+  var user = getCookie('username')
+  if (user !== '') {
+    alert('Welcome again ' + user)
   } else {
-    user = prompt("Please enter your name:", "")
-    if (user != "" && user != null) {
-      setCookie("username", user, 365)
+    user = prompt('Please enter your name:', '')
+    if (user !== '' && user != null) {
+      setCookie('username', user, 365)
     }
   }
 }

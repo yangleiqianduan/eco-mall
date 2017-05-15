@@ -3,6 +3,7 @@ import * as api from 'constants/api'
 
 import {
   showToast,
+  changeRouter,
   UPDATE_LOADING_ACTION
 } from './index'
 
@@ -50,6 +51,9 @@ function transfer (data, currentAddress) {
   return newData
 }
 export const submitOrder = (data, currentAddress) => async dispatch => {
+  if (!currentAddress) {                      // 没有收货地址时 跳到增加收货地址页
+    return dispatch(changeRouter('/address'))
+  }
   dispatch(UPDATE_LOADING_ACTION(true))
   const transData = transfer(data, currentAddress)
   const result = await fetch(api.submitOrder, {method: 'post', param: transData})

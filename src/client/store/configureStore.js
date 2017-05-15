@@ -1,7 +1,7 @@
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux'
 import thunkMiddleware from 'redux-thunk'
 
-import track from './middleware/track'
+// import track from './middleware/track'
 
 import * as reducers from 'reducers'
 
@@ -12,8 +12,8 @@ const rootReducer = combineReducers({
 })
 
 let middlewares = [
-  thunkMiddleware,
-  track
+  thunkMiddleware
+  // track
 ]
 
 if (window.ENV === 'dev') {

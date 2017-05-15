@@ -5,16 +5,16 @@ import CSSModules from 'react-css-modules'
 import styles from './index.styl'
 import Icon from 'components/Icons'
 
-export default CSSModules(({ data = [], vertical }) => {
+export default CSSModules(({ data = [], vertical, onClick }) => {
   const wrap = classNames('wrap', {vertical, horizontal: !vertical})
-  return <ul styleName={wrap}>
+  return <ul styleName={wrap} onClick={onClick}>
     {
-      data.map((route, i) => <li key={i} styleName={classNames('tab', {active: route.active && !vertical, ver_active: route.active && vertical})}>
+      data.map((route, i) => <li key={i} styleName={classNames('tab', {active: route.active && !vertical, ver_active: route.active && vertical})} >
         <NavLink
           exact={route.exact}
           replace={route.replace}
           to={route.path}
-          style={route.style || {}} >
+          style={route.style || {}}>
           {
             route.icon && <div><Icon icon={route.icon} width='30' height='28' style={{marginBottom: '.08rem', display: 'inline-block'}} /></div>
           }
