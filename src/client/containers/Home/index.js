@@ -43,7 +43,6 @@ export class Home extends PureComponent {
     // })
     const topBanner = banner.filter(c => c.location === 10)
     const subject = banner.filter(c => c.location === 30).map(s => Object.assign(s, {title: s.name, desc: s.advert_desc}))
-    console.log(subject, 'ssss', banner)
 
     return <div styleName='wrap'>
       <div styleName='banner'>

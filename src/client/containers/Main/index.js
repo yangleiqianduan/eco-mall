@@ -21,7 +21,7 @@ import { getCateoryList } from 'actions/'
 export class Main extends PureComponent {
   componentDidMount () {
     this.props.dispatch(getCateoryList())
-    window.$ULOG.send('10000', {type: 'pv', page: 'home'})
+    // window.$ULOG.send('10000', {type: 'pv', page: 'home'})
   }
   componentWillMount () {
     const { location, routes } = this.props
@@ -38,7 +38,12 @@ export class Main extends PureComponent {
         : null
       }
       {
-        routes.map((route, i) => <Route key={i} {...route} location={Object.assign({}, location, {query: parseQueryString(location.search)})} />)
+        routes.map((route, i) => <Route key={i} path={route.path} exact={route.exact} title={route.title} render={props => {
+          if (route.chunk) {
+            return <GetDynamicComponent chunk={route.chunk} title={route.title} {...props} routes={route.routes} location={Object.assign({}, location, {query: parseQueryString(location.search)})} />
+          }
+          return <route.component title={route.title} {...props} routes={route.routes} location={Object.assign({}, location, {query: parseQueryString(location.search)})} />
+        }} />)
       }
       <div style={{position: 'fixed', bottom: 0, width: '100%', display: 'none'}}>
         <NavBar data={routes} />
@@ -55,6 +60,23 @@ export class InitPath extends PureComponent {
   render () {
     // const location = this.props.location || window.location || {pathname: ''}
     return <Redirect to='/' />
+  }
+}
+
+export class GetDynamicComponent extends PureComponent {
+  state = {
+    component: null
+  }
+  componentDidMount () {
+    this.props.chunk()
+    .then(mod => {
+      this.setState({component: mod.default})
+    })
+  }
+  render () {
+    const props = Object.assign({}, this.props)
+    if (!this.state.component) return <div />
+    return <this.state.component {...props} />
   }
 }
 

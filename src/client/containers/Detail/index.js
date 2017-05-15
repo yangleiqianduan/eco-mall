@@ -19,6 +19,7 @@ import wantPic from 'common/img/want.png'
 import { getItemDetail, addToShoppingcart, toBuy } from 'actions/detail'
 import { showToast, getCartCount } from 'actions/index'
 import { createArray } from 'common/utils'
+import { stat } from 'common/stat'
 
 @CSSModules(styles, {allowMultiple: true})
 export class Detail extends PureComponent {
@@ -52,8 +53,15 @@ export class Detail extends PureComponent {
     }
   }
 
-  handleShowBuy = (payload, type) => this.setState({show: payload, currentOperate: type})
-
+  handleShowBuy = (payload, type) => {
+    this.setState({show: payload, currentOperate: type})
+    if (payload && type === 1) {
+      stat('uv', 'detail', 'click', '加入购物车')
+    }
+    if (payload && type === 2) {
+      stat('uv', 'detail', 'click', '立即购买')
+    }
+  }
   handleShowInfo = (payload) => this.setState({showInfo: payload})
 
   handleSubmit = (type) => {
