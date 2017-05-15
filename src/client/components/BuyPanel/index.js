@@ -90,6 +90,17 @@ export default class extends PureComponent {
     })
   }
 
+  componentDidUpdate (prep) {
+    const show = this.props.show
+    if (prep.show !== show) {
+      document.body.style.overflow = show ? 'hidden' : 'auto'
+    }
+  }
+
+  componentWillUnmount() {
+    document.body.style.overflow = 'auto'
+  }
+
   render () {
     const {
       onClickSkuImage,
