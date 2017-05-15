@@ -64,7 +64,7 @@ export class Result extends PureComponent {
           }
         </ul>
         <div styleName='bottom' ref='footer'>
-          {page.currentPage < page.totalPage ? '加载中...' : (page.totalPage ? '没有更多了' : '暂无订单')}
+          {page.currentPage < page.totalPage ? '加载中...' : (page.totalPage ? '没有更多了' : '')}
         </div>
       </div>
     </div>

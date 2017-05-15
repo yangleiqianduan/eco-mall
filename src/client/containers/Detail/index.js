@@ -34,6 +34,8 @@ export class Detail extends PureComponent {
   }
 
   componentDidMount () {
+    // 每次进入 定位在页面顶部
+    window.scrollTo(0, 0)
     const query = this.props.location.query.id
     this.getItemDetail(query)
     this.props.dispatch(getCartCount())

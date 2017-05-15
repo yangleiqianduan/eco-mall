@@ -6,7 +6,7 @@ export default (state = fromJS(initState), action) => {
     case actions.UPDATE_ITEM_LIST:
       return state.merge({list: action.payload})
     case actions.UPDATE_PAGE:
-      return state.pdate('page', page => page.merge(action.payload.page))
+      return state.update('page', page => page.merge(action.payload.page))
     default:
       return state
   }
