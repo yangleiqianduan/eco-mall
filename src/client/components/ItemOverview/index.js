@@ -43,7 +43,11 @@ export default class extends PureComponent {
           </div>
         </header>
         <div styleName='tags'>
-          <span styleName='item'>{data.product_attribute_info.brand_info}</span>
+          {
+          data.product_attribute_info.brand_info
+          ? <span styleName='item'>{data.product_attribute_info.brand_info}</span>
+          : null
+          }
         </div>
         <section styleName='main'>
           <div>快递：{baseInfo.deliveryMsg}</div>

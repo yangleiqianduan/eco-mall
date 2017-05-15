@@ -27,6 +27,17 @@ export default class extends PureComponent {
     return list
   }
 
+  componentDidUpdate (prep) {
+    const show = this.props.show
+    if (prep.show !== show) {
+      document.body.style.overflow = show ? 'hidden' : 'auto'
+    }
+  }
+
+  componentWillUnmount() {
+    document.body.style.overflow = 'auto'
+  }
+
   render () {
     const { show, onClose, title, data, type } = this.props
     const list = this.getInfoPannelList(data, type).filter(l => l.value)
