@@ -12,7 +12,7 @@ export const getBanner = '/m/banner/get_list'                             // 获
 export const getItems = '/m/product/search/list'                          // 获取商品列表
 
 // 需要页面
-export const upload = '/m/product/image/upload'                           // 图片上传
+export const upload = '/m/file/image/upload'                           // 图片上传
 export const submitRequire = '/m/product/want/commit'                     // 提交想要买什么
 
 // 购物车
