@@ -71,12 +71,13 @@ export const isEmpty = function () {
 
 // location变化时，更新页面title
 export const updateTitle = (location = window.location, routes) => {
-  stat('pv', location.pathname)
   const cheeckCurrent = (routes) => {
     if (!Array.isArray(routes)) return
     for (let i = 0; i < routes.length; i++) {
+      debugger
       if (comparePath(routes[i].path, location.pathname)) {
         document.title = routes[i].title
+        stat('pv', location.pathname)
         return
       } else if (routes[i].routes) {
         cheeckCurrent(routes[i].routes)
