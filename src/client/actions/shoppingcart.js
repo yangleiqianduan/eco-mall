@@ -17,6 +17,7 @@ export const getList = () => async dispatch => {
   dispatch(UPDATE_LOADING_ACTION(true))
   const result = await fetch(api.getShoppingcartItems)
   dispatch(UPDATE_LOADING_ACTION(false))
+  if (!result) return false
   dispatch(UPDATE_LIST_ACTION(result.data))
 }
 
