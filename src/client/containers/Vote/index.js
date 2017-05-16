@@ -87,10 +87,14 @@ export class Vote extends PureComponent {
 
     return <div styleName='wrap'>
       <section styleName='banner'>
-        <h1>{ title }</h1>
-        <h2>{ description }</h2>
+        <div styleName='content'>
+          <img styleName='img' src='https://image1.ljcdn.com/lmall/fe113abe-87b0-4f26-b724-514c62226c17.png.200x70.png' />
+          <h1>{ title }</h1>
+          <h2>{ description }</h2>
+          <img styleName='img' src='https://image1.ljcdn.com/lmall/afbf3e19-addc-4e5c-b182-ca7ab9945039.png.200x70.png' />
+        </div>
         {
-          coverImage && <img src={ coverImage } alt='' />
+          coverImage && <img styleName='coverImage' src={ coverImage } alt='' />
         }
       </section>
 
