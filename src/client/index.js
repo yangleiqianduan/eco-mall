@@ -8,8 +8,10 @@ import makeStore from './store/configureStore'
 
 const store = makeStore({})
 
-render(<BrowserRouter>
-  <Provider store={store}>
-    <Main routes={routes} />
-  </Provider>
-</BrowserRouter>, document.getElementById('root'))
+$ljBridge.ready(() => {
+  render(<BrowserRouter>
+    <Provider store={store}>
+      <Main routes={routes} />
+    </Provider>
+  </BrowserRouter>, document.getElementById('root'))
+})
