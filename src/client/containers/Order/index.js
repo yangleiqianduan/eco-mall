@@ -1,5 +1,6 @@
 import React, { PureComponent } from 'react'
 import { connect } from 'react-redux'
+import { alert } from 'actions/'
 
 import CSSModules from 'react-css-modules'
 import styles from './index.styl'
@@ -21,7 +22,21 @@ export class OrderList extends PureComponent {
     const query = this.props.location.query
     this.props.dispatch(actions.getOrderDetail(query))
   }
-
+  confirmTel = (e) => {
+    e.stopPropagation()
+    this.props.dispatch(alert({
+      text: '是否拨打电话：010-58104869',
+      type: 'confirm',
+      sureText: '致电',
+      onSure: () => {
+        document.getElementById('tel').click();
+        this.props.dispatch(alert({
+          show: false,
+          sureText: '确定'
+        }))
+      }
+    }))
+  }
   handlePay = (id) => {
     window.location = `${payOrder}?order_id=${id}`
   }
@@ -62,18 +77,19 @@ export class OrderList extends PureComponent {
         {
           isNeedPay
           ? <div>
-              <div styleName="contect bgWhite">
-                <a href={`tel:${servicePhoneNumber}`}><Icon icon='listener' width="16"/><span>联系客服</span></a>
+              <div styleName="contect bgWhite" onClick={(e) => this.confirmTel(e)}>
+                <Icon icon='listener' width="16"/><span>联系客服</span>
               </div>
               <div styleName='readyPay'>
                 <div styleName='totalAmount common'>总计：<span>￥{payInfo.totalAmount}</span></div>
                 <div styleName='goPay common' onClick={() => this.handlePay(payOrderId)}>去支付</div>
               </div>
             </div>
-          : <div styleName='service'>
-            <a href={`tel:${servicePhoneNumber}`}><Button>电话客服</Button></a>
+          : <div styleName='service' onClick={(e) => this.confirmTel(e)}>
+              <Button>电话客服</Button>
             </div>
         }
+        <a href={`tel:${servicePhoneNumber}`} id="tel"></a>
       </div>
   }
 }
