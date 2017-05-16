@@ -21,7 +21,7 @@ export default class extends PureComponent {
         </div>
       case 2:        // 已下架
         return <div styleName='buyArea'>
-          <div styleName='disabled' onClick={onBuy}>
+          <div styleName='disabled'>
             已下架
           </div>
         </div>

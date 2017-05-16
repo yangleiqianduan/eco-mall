@@ -58,7 +58,7 @@ export class OrderList extends PureComponent {
         <div styleName="payInfo bgWhite">
           <div styleName="content">
             <p>{receiverInfo.receiverName}<span styleName="tel">{receiverInfo.phoneNum}</span></p>
-            <p styleName="address">{receiverInfo.addressDetail}</p>
+            <p>{receiverInfo.addressDetail}</p>
           </div>
           {!isNeedPay
             ? <div>
