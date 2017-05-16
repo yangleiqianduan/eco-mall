@@ -42,7 +42,7 @@ export default class extends PureComponent {
             <p styleName='marketPrice'>市场价：￥{marketPrice}</p>
           </div>
         </header>
-        <div styleName='tags'>
+        <div styleName='tags tagsTop'>
           {
           data.product_attribute_info.brand_info
           ? <span styleName='item'>{data.product_attribute_info.brand_info}</span>

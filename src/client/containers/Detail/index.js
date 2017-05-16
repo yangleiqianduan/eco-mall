@@ -161,7 +161,7 @@ export class Detail extends PureComponent {
           setting={{dots: false, autoplay: false, afterChange: (e) => this.setState({currentImage: e})}} />
         {
           banner.length > 0
-          ? <div styleName='page'><strong>{currentImage + 1}</strong>/{banner.length}</div>
+          ? <div styleName='page'>{currentImage + 1}/{banner.length}</div>
           : null
         }
       </section>
