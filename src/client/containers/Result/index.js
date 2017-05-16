@@ -26,7 +26,7 @@ export class Result extends PureComponent {
     const { page } = this.props.data.toJS()
     const footerPosition = this.refs.footer.getBoundingClientRect()
     const clientHeight = document.body.clientHeight
-    if (footerPosition.bottom === clientHeight) {
+    if (parseInt(footerPosition.bottom) <= clientHeight) {
       if (page.currentPage < page.totalPage) {
         this.getItems(Object.assign({current_page: page.currentPage + 1}, this.props.location.query))
       }
