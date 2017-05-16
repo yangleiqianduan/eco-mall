@@ -74,9 +74,13 @@ export class Detail extends PureComponent {
     this.props.dispatch(alert({
       text: '是否拨打电话：010-58104869',
       type: 'confirm',
+      sureText: '致电',
       onSure: () => {
         document.getElementById('tel').click();
-        this.props.dispatch(alert({show: false}))
+        this.props.dispatch(alert({
+          show: false,
+          sureText: '确定'
+        }))
       }
     }))
   }
