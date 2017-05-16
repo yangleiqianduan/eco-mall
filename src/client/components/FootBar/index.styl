@@ -36,17 +36,20 @@
       .cart
         color $color-white
         em
-          font-size px2rem(10)
+          font-size px2rem(12)
           font-weight 300
           width px2rem(14)
           height px2rem(14)
-          line-height px2rem(14)
-          text-align center
+          box()
+          align-items center
+          justify-content center
           background-color $color-red
           position absolute
           right px2rem(8)
           top px2rem(14)
           border-radius 50%
+          span
+            transform scale(0.8)
     .buyArea
       flex 1
       height 100%

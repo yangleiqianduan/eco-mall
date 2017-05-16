@@ -1,6 +1,8 @@
 import React, { PureComponent } from 'react'
 import CSSModules from 'react-css-modules'
 
+import { updateBodyScroll } from 'common/utils'
+
 import styles from './index.styl'
 @CSSModules(styles, { allowMultiple: true, errorWhenNotFound: false })
 export class Modal extends PureComponent {
@@ -13,12 +15,12 @@ export class Modal extends PureComponent {
   }
 
   componentDidMount () {
-    document.body.style.overflow = 'hidden'
+    updateBodyScroll(false)
     window.addEventListener('keydown', this.checkKeydown)
   }
 
   componentWillUnmount () {
-    document.body.style.overflow = 'auto'
+    updateBodyScroll(true)
     window.removeEventListener('keydown', this.checkKeydown)
   }
 

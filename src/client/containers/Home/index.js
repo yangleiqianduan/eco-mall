@@ -10,7 +10,7 @@ import CSSModules from 'react-css-modules'
 import styles from './index.styl'
 // import wantItem from 'common/img/wantItem.png'
 
-import { getCollocationList, getHotItems, getBanner } from 'actions/home'
+import { getHotItems, getBanner } from 'actions/home'
 import { getCartCount } from 'actions/'
 
 @CSSModules(styles, { allowMultiple: true })
@@ -21,7 +21,7 @@ export class Home extends PureComponent {
     // currentCollocation: 0
   }
   componentDidMount () {
-    this.props.dispatch(getCollocationList())
+    // this.props.dispatch(getCollocationList())
     this.props.dispatch(getHotItems())
     this.props.dispatch(getBanner())
     this.props.dispatch(getCartCount())

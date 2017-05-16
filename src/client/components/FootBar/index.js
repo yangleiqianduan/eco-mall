@@ -56,7 +56,7 @@ export default class extends PureComponent {
             <Icon icon='cart' width={18} stroke='#FFF' />
             {
               cartCount > 0
-              ? <em>{cartCount}</em>
+              ? <em><span>{cartCount}</span></em>
               : null
             }
           </Link>

@@ -5,6 +5,8 @@ import Icon from 'components/Icons'
 import styles from './index.styl'
 import classNames from 'classnames/bind'
 
+import { updateBodyScroll } from 'common/utils'
+
 @CSSModules(styles, {allowMultiple: true})
 export default class extends PureComponent {
   static propTypes = {
@@ -30,12 +32,12 @@ export default class extends PureComponent {
   componentDidUpdate (prep) {
     const show = this.props.show
     if (prep.show !== show) {
-      document.body.style.overflow = show ? 'hidden' : 'auto'
+      updateBodyScroll(!show)
     }
   }
 
-  componentWillUnmount() {
-    document.body.style.overflow = 'auto'
+  componentWillUnmount () {
+    updateBodyScroll(true)
   }
 
   render () {

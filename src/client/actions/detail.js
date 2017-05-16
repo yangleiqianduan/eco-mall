@@ -4,7 +4,8 @@ import * as api from 'constants/api'
 import {
   UPDATE_LOADING_ACTION,
   showToast,
-  changeRouter
+  changeRouter,
+  getCartCount
 } from './index'
 
 // 更新商品信息
@@ -37,6 +38,7 @@ export const addToShoppingcart = (param, cb) => async dispatch => {
   const result = await fetch(api.addToCart, {method: 'post', formData: true, param}, false, true)
   if (result.code === '1') {
     dispatch(showToast('添加成功'))
+    dispatch(getCartCount())
     if (typeof cb === 'function') {
       cb()
     }

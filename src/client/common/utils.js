@@ -144,3 +144,20 @@ export const checkCookie = () => {
   }
 }
 
+let lastPositionTop = 0
+
+export const updateBodyScroll = (type) => {
+  if (type) {
+    document.body.style.position = 'static'
+    document.body.style.overflowY = 'auto'
+    document.body.scrollTop = lastPositionTop
+  } else {
+    lastPositionTop = document.body.scrollTop
+    document.body.style.top = -lastPositionTop + 'px'
+    document.body.style.overflowY = 'hidden'
+    document.body.style.position = 'fixed'
+    document.body.style.left = 0
+    document.body.style.width = '100%'
+    // document.body.style.height = '100%'
+  }
+}
