@@ -13,13 +13,17 @@ import {
   UPDATE_CHECK_ACTION,
   CHECK_ALL_ACTION,
   deleteItem,
-  updateNumber
+  updateNumber,
+  clearAlert
 } from 'actions/shoppingcart'
 
 @CSSModules(styles, { allowMultiple: true })
 export class Shoppingcart extends PureComponent {
   componentDidMount () {
     this.props.dispatch(getList())
+  }
+  componentWillUnmount () {
+    this.props.dispatch(clearAlert())
   }
   handleCheck = (i) => this.props.dispatch(UPDATE_CHECK_ACTION(i))
   handleDelete = (i, id) => this.props.dispatch(deleteItem(i, id))

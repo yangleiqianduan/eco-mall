@@ -54,7 +54,9 @@ export const deleteItem = (i, id) => dispatch => {
     }
   }))
 }
-
+export const clearAlert = () => dispatch => {
+  dispatch(alert({show: false}))
+}
 export const UPDATE_NUMBER = 'UPDATE_NUMBER_SHOPPINGCART'
 export const UPDATE_NUMBER_ACTION = (index, payload) => ({
   type: UPDATE_NUMBER,
