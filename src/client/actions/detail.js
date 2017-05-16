@@ -35,14 +35,14 @@ export const getItemDetail = id => dispatch => {
 
 // 添加到购物车
 export const addToShoppingcart = (param, cb) => async dispatch => {
-  const result = await fetch(api.addToCart, {method: 'post', formData: true, param}, false, true)
+  const result = await fetch(api.addToCart, {method: 'post', formData: true, param})
   if (result.code === '1') {
     dispatch(showToast('添加成功'))
     dispatch(getCartCount())
     if (typeof cb === 'function') {
       cb()
     }
-  } else {
+  } else if (result.code !== '403') {             // 非未登录时才展示toast
     dispatch(showToast(result.msg || '添加失败'))
   }
 }

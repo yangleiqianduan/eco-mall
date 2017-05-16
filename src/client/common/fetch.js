@@ -1,6 +1,6 @@
 import { host, login } from 'constants/api'
 
-export default function (url, op = {}, mock, notRedirect = false) {
+export default function (url, op = {}, mock) {
   const isMock = mock === undefined ? false : mock
   let config = {
     method: 'get',
@@ -38,7 +38,7 @@ export default function (url, op = {}, mock, notRedirect = false) {
       return res.json()
     })
     .then(data => {
-      if (data.code === '403' && !notRedirect) {                   // 未登陆
+      if (data.code === '403') {                                  // 未登陆
         window.location.href = `${host[window.ENV]}${login}?ru=${encodeURIComponent(window.location)}`
         return false
       }

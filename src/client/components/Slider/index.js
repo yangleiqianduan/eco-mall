@@ -30,7 +30,6 @@ export default class extends PureComponent {
 
   handleClick = (e, i, item) => {
     if (this.props.onClick) {
-      e.preventDefault()
       return this.props.onClick(e, i, item)
     }
     if ((item.redirect_url || '').indexOf('http') === 0) {
