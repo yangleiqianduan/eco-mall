@@ -22,7 +22,7 @@ const initState = {
   banner: [],
   wantList: [
     {img_url: protocol + '//img.ljcdn.com/lmall/f85ce159-7d98-460e-a0b2-ccb5dc8f052b.png.408x224.png', redirect_url: '/voteList'},
-    {img_url: protocol + '//img.ljcdn.com/lmall/aba3e731-e9a6-4a6a-b477-0c90b4484c2f.png.416x224.png', redirect_url: '/want'}
+    {img_url: protocol + '//image1.ljcdn.com/lmall/3a4f0c89-2f05-44d7-b8f3-351a2e8d36b6.png.416x224.png', redirect_url: '/want'}
   ],
   collocation: [],    // {picture, productMixDescription, productMixId, productMixName}
   hotItems: []        // {firstPageUrl, marketPrice, productId, productName}

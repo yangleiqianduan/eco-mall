@@ -42,6 +42,7 @@ export class Home extends PureComponent {
   render () {
     const { categoryList, cartCount } = this.props.shared.toJS()
     const { hotItems, banner, wantList } = this.props.data.toJS()
+    console.log(wantList)
     const {
       // currentCollocation,
       currentSubject,
