@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 
 import CSSModules from 'react-css-modules'
 import styles from './index.styl'
-
+import { servicePhoneNumber } from 'constants/text'
 import Icon from 'components/Icons/'
 import Button from 'components/Button/'
 import Order from './Order'
@@ -60,7 +60,7 @@ export class OrderList extends PureComponent {
           isNeedPay
           ? <div>
               <div styleName="contect bgWhite">
-                <p><Icon icon='listener' width="16"/><span>联系客服</span></p>
+                <a href={`tel:${servicePhoneNumber}`}><Icon icon='listener' width="16"/><span>联系客服</span></a>
               </div>
               <div styleName='readyPay'>
                 <div styleName='totalAmount common'>总计：<span>￥{payInfo.totalAmount}</span></div>
@@ -68,7 +68,7 @@ export class OrderList extends PureComponent {
               </div>
             </div>
           : <div styleName='service'>
-              <a href='tel:123'><Button>电话客服</Button></a>
+            <a href={`tel:${servicePhoneNumber}`}><Button>电话客服</Button></a>
             </div>
         }
       </div>
