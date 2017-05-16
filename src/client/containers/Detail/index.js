@@ -1,9 +1,8 @@
 import React, { PureComponent } from 'react'
 import { connect } from 'react-redux'
-
+import { alert } from 'actions/'
 import CSSModules from 'react-css-modules'
 import styles from './index.styl'
-
 import Slider from 'components/Slider/'
 import FootBar from 'components/FootBar/'
 import BuyPanel from 'components/BuyPanel/'
@@ -13,7 +12,7 @@ import ItemChoose from 'components/ItemChoose/'
 import ItemDeatil from 'components/ItemDeatil/'
 import TelUs from 'components/TelUs/'
 import FullScreen from 'components/Slider/FullScreen'
-
+import { servicePhoneNumber } from 'constants/text'
 import wantPic from 'common/img/want.png'
 
 import { getItemDetail, addToShoppingcart, toBuy, TO_INIT_ACTION } from 'actions/detail'
@@ -70,6 +69,21 @@ export class Detail extends PureComponent {
   }
   handleShowInfo = (payload) => this.setState({showInfo: payload})
 
+  confirmTel = (e) => {
+    e.stopPropagation()
+    this.props.dispatch(alert({
+      text: '是否拨打电话：010-58104869',
+      type: 'confirm',
+      sureText: '致电',
+      onSure: () => {
+        document.getElementById('tel').click();
+        this.props.dispatch(alert({
+          show: false,
+          sureText: '确定'
+        }))
+      }
+    }))
+  }
   handleSubmit = (type) => {
     // type: 1加入购物车 2立即购买
     const { reqData } = this.props.data.toJS()
@@ -169,7 +183,7 @@ export class Detail extends PureComponent {
       <section><ItemChoose skuChoose={skuChoose} params={reqData.product_attribute_info.spu_attribute_info} onShowChoose={status === 0 ? () => this.handleShowBuy(true, 0) : null} onShowParam={() => this.handleShowInfo(2)} /></section>
       <section><ItemDeatil data={reqData} /></section>
       <section><TelUs data={{link: '/want', pic: wantPic}} onClick={this.handleClickNeed} /></section>
-      <FootBar status={status} onAdd={() => this.handleShowBuy(true, 1)} onBuy={() => this.handleShowBuy(true, 2)} cartCount={cartCount} />
+      <FootBar status={status} onAdd={() => this.handleShowBuy(true, 1)} onBuy={() => this.handleShowBuy(true, 2)} cartCount={cartCount} confirmTel={this.confirmTel} />
       <InfoPanel
         show={!!showInfo}
         type={showInfo + 0}
@@ -198,6 +212,7 @@ export class Detail extends PureComponent {
         ? <FullScreen data={banner} onClose={() => this.setState({showFullscreen: false})} />
         : null
       }
+      <a href={`tel:${servicePhoneNumber}`} id="tel"> </a>
     </div>
   }
 

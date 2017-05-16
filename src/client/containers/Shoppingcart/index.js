@@ -13,7 +13,8 @@ import {
   UPDATE_CHECK_ACTION,
   CHECK_ALL_ACTION,
   deleteItem,
-  updateNumber
+  updateNumber,
+  clearAlert
 } from 'actions/shoppingcart'
 
 @CSSModules(styles, { allowMultiple: true })
@@ -21,11 +22,15 @@ export class Shoppingcart extends PureComponent {
   componentDidMount () {
     this.props.dispatch(getList())
   }
+  componentWillUnmount () {
+    this.props.dispatch(clearAlert())
+  }
   handleCheck = (i) => this.props.dispatch(UPDATE_CHECK_ACTION(i))
   handleDelete = (i, id) => this.props.dispatch(deleteItem(i, id))
   handleChangeNumber = (i, id, v) => this.props.dispatch(updateNumber(i, id, v))
   handleCheckAll = (payload) => this.props.dispatch(CHECK_ALL_ACTION(payload))
-  getTotalPrice = (list) => list.reduce((x, y) => ({quantity: 1, sale_price: x.sale_price * x.quantity + y.sale_price * y.quantity}), {sale_price: 0, quantity: 1}).sale_price
+  // 计算时先乘以1000再除1000确保不产生很多小数点
+  getTotalPrice = (list) => list.reduce((x, y) => ({quantity: 1, sale_price: x.sale_price * 1000 * x.quantity / 1000 + y.sale_price * 1000 * y.quantity / 1000}), {sale_price: 0, quantity: 1}).sale_price
 
   handleOrder = () => {
     let checklist = this.props.data.toJS().data.filter(item => item.isChecked)

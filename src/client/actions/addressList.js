@@ -20,10 +20,11 @@ export const getAddressList = data => async dispatch => {
   dispatch(UPDATE_LOADING_ACTION(true))
   const result = await fetch(api.getAddressList)
   dispatch(UPDATE_LOADING_ACTION(false))
+  if (!result) return false
   if (result.code === '1') {
     dispatch(UPDATE_LIST_ACTION(result.data || []))
   } else {
-    showToast(result.msg || '获取列表失败')
+    dispatch(showToast(result.msg || '获取列表失败'))
   }
 }
 
@@ -47,7 +48,8 @@ export const setDefault = (id) => async dispatch => {
   dispatch(UPDATE_LOADING_ACTION(true))
   const result = await fetch(api.setDefault, {param: {deliver_address_id: id}, method: 'post', formData: true})
   if (result.code === '1') {
-    dispatch(getAddressList())
+    await dispatch(getAddressList())
+    dispatch(showToast('设置成功'))
   } else {
     dispatch(UPDATE_LOADING_ACTION(false))
     dispatch(showToast(result.msg || '设置失败'))

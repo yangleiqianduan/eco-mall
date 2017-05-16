@@ -17,6 +17,7 @@ export const getList = () => async dispatch => {
   dispatch(UPDATE_LOADING_ACTION(true))
   const result = await fetch(api.getShoppingcartItems)
   dispatch(UPDATE_LOADING_ACTION(false))
+  if (!result) return false
   dispatch(UPDATE_LIST_ACTION(result.data))
 }
 
@@ -53,7 +54,9 @@ export const deleteItem = (i, id) => dispatch => {
     }
   }))
 }
-
+export const clearAlert = () => dispatch => {
+  dispatch(alert({show: false}))
+}
 export const UPDATE_NUMBER = 'UPDATE_NUMBER_SHOPPINGCART'
 export const UPDATE_NUMBER_ACTION = (index, payload) => ({
   type: UPDATE_NUMBER,

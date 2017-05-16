@@ -46,11 +46,11 @@ export default class extends PureComponent {
   render () {
     const deleteStyl = classNames('delete', {showDelete: this.state.showDelete})
     const { data, onCheck, onChangeNumber, onDelete } = this.props
-    const {product_id: id, cart_id: cartId, product_img_url: imgUrl, product_name: name, sale_price: price, quantity, sku_attribute_kv_pairs: sku, isChecked} = data
+    const {product_id: id, cart_id: cartId, product_img_url: imgUrl, product_name: name, sale_price: price, quantity, sku_attribute_kv_pairs: sku, isChecked, is_off_shelf: disabled} = data
     return <div styleName='wrap' style={{height: this.state.innerHeight + 'px'}}>
       <div styleName='inner' ref='inner'>
         <div styleName='pannel' onTouchStart={this.onTouchStart} onTouchMove={this.onTouchMove} style={{width: document.body.getBoundingClientRect().width + 'px'}}>
-          <div styleName='checkArea' onClick={onCheck}><Icon icon={isChecked ? 'checked' : 'unChecked'} width={18} /></div>
+          <div styleName='checkArea' onClick={disabled ? null : onCheck}>{disabled ? <small styleName='offShelf'>失效</small> : <Icon icon={isChecked ? 'checked' : 'unChecked'} width={18} />}</div>
           <div><Link to={`/item?id=${id}`}><img styleName='img' src={imgUrl} /></Link></div>
           <div styleName='titleArea'>
             <div styleName='title'>{name}</div>

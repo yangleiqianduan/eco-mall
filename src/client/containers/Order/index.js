@@ -3,14 +3,17 @@ import { connect } from 'react-redux'
 
 import CSSModules from 'react-css-modules'
 import styles from './index.styl'
-
+import { servicePhoneNumber } from 'constants/text'
 import Icon from 'components/Icons/'
 import Button from 'components/Button/'
 import Order from './Order'
 
 import * as actions from 'actions/order'
+import { changeRouter } from 'actions/'
 
 import { payOrder } from 'constants/api'
+
+import { formatTime } from 'common/utils'
 
 @CSSModules(styles, { allowMultiple: true })
 export class OrderList extends PureComponent {
@@ -31,11 +34,11 @@ export class OrderList extends PureComponent {
 
     return <div styleName={isNeedPay ? 'wrap wrap_pay' : 'wrap'}>
         <div styleName='orderInfo bgWhite'>
-          <p>下单时间：<span>{details.createTime}</span></p>
+          <p>下单时间：<span>{formatTime(details.createTime)}</span></p>
           <p>订单编号：<span>{details.orderId}</span></p>
         </div>
         <div>
-          <Order data={details} />
+          <Order data={details} changeRouter={(path) => this.props.dispatch(changeRouter(path))} />
         </div>
         <div styleName="payInfo bgWhite">
           <div styleName="content">
@@ -60,7 +63,7 @@ export class OrderList extends PureComponent {
           isNeedPay
           ? <div>
               <div styleName="contect bgWhite">
-                <p><Icon icon='listener' width="16"/><span>联系客服</span></p>
+                <a href={`tel:${servicePhoneNumber}`}><Icon icon='listener' width="16"/><span>联系客服</span></a>
               </div>
               <div styleName='readyPay'>
                 <div styleName='totalAmount common'>总计：<span>￥{payInfo.totalAmount}</span></div>
@@ -68,7 +71,7 @@ export class OrderList extends PureComponent {
               </div>
             </div>
           : <div styleName='service'>
-              <a href='tel:123'><Button>电话客服</Button></a>
+            <a href={`tel:${servicePhoneNumber}`}><Button>电话客服</Button></a>
             </div>
         }
       </div>

@@ -10,6 +10,7 @@ import {
 export const getConfirmList = data => async dispatch => {
   dispatch(UPDATE_LOADING_ACTION(true))
   const result = await fetch(api.confirmOrder, {method: 'post', param: data})
+  if (!result) return false
   if (result.code === '1') {
     dispatch(UPDATE_CONFIRM_LIST_ACTION(result.data.buyOrderList))
     dispatch(UPDATE_CONFIRM_AMOUNT_ACTION(result.data.totalAmountInfo.totalAmount))

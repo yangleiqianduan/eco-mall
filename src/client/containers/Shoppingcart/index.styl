@@ -15,14 +15,16 @@
 .checkAll, .priceArea
   height px2rem(55)
   background $color-dark
-  padding 0 px2rem(15)
   color $color-white
   box()
   align-items center
 .active
   :global .innerMark
     fill $color-dark
+.checkAll
+  padding-left px2rem(15)
 .priceArea
+  padding-right px2rem(15)
   flex 1
   justify-content flex-end
 .buyArea
