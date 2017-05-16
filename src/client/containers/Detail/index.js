@@ -97,7 +97,7 @@ export class Detail extends PureComponent {
 
   handleShowFullscreen = (e) => {
     e.preventDefault()
-    stat('event', 'mall_product_detail_album', 'pv', 'mall_product_detail_album')
+    stat('event', 'mall_product_detail_album', 'pv', '商品详情页相册')
     this.setState({showFullscreen: true})
   }
 

@@ -64,7 +64,7 @@ export default class extends PureComponent {
             ? <div styleName='empty'>loading...</div>
             : <Slider {...settings}>
               {
-                data.map((item, i) => <div key={i} style={slideStyle}>
+                data.map((item, i) => <div key={i} style={slideStyle} className={classNames({needMaxWidth: needDesc && !setting.infinite})}>
                   <Link onClick={(e) => this.handleClick(e, i, item)} to={item.redirect_url ? item.redirect_url : ''}>
                     <img className='slick-img' src={item.img_url} />
                     {

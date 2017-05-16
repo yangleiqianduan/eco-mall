@@ -17,7 +17,7 @@ import {
 @CSSModules(styles, { allowMultiple: true })
 export class OrderList extends PureComponent {
   state = {
-    nav: [{title: '全部', status: '', replace: true}, {status: '1', title: '待付款', replace: true}, {status: '2', title: '待发货', replace: true}, {status: '3', title: '待收货', replace: true}]
+    nav: [{title: '全部', status: '', replace: true}, {status: '100', title: '待付款', replace: true}, {status: '230', title: '待发货', replace: true}, {status: '250', title: '待收货', replace: true}]
   }
 
   componentDidMount () {
