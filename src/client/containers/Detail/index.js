@@ -16,7 +16,7 @@ import FullScreen from 'components/Slider/FullScreen'
 
 import wantPic from 'common/img/want.png'
 
-import { getItemDetail, addToShoppingcart, toBuy } from 'actions/detail'
+import { getItemDetail, addToShoppingcart, toBuy, TO_INIT_ACTION } from 'actions/detail'
 import { showToast, getCartCount } from 'actions/index'
 import { createArray } from 'common/utils'
 import { stat } from 'common/stat'
@@ -53,6 +53,10 @@ export class Detail extends PureComponent {
         skuMapKey: createArray(nextItem.getIn(['product_attribute_info', 'sku_attribute_info']).size, '')
       })
     }
+  }
+
+  componentWillUnmount () {
+    this.props.dispatch(TO_INIT_ACTION())
   }
 
   handleShowBuy = (payload, type) => {

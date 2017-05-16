@@ -49,3 +49,9 @@ export const addToShoppingcart = (param, cb) => async dispatch => {
 export const toBuy = (param) => dispatch => {
   dispatch(changeRouter(`/orderConfirm?param=${JSON.stringify(param)}`))
 }
+
+// 返回初始状态
+export const TO_INIT = 'TO_INIT_DETAIL'
+export const TO_INIT_ACTION = () => ({
+  type: TO_INIT
+})
