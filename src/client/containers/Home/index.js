@@ -13,6 +13,8 @@ import styles from './index.styl'
 import { getHotItems, getBanner } from 'actions/home'
 import { getCartCount } from 'actions/'
 
+import { stat } from 'common/stat'
+
 @CSSModules(styles, { allowMultiple: true })
 export class Home extends PureComponent {
   state = {
@@ -26,6 +28,17 @@ export class Home extends PureComponent {
     this.props.dispatch(getBanner())
     this.props.dispatch(getCartCount())
   }
+
+  handleClickNeed = (e, i) => {
+    if (i === 1) {
+      stat('event', 'mall_home', 'click', '需求登记')
+    }
+  }
+
+  handleClickCategory = (item) => {
+    stat('event', 'mall_home', 'click', `类目-${item.categoryName}`)
+  }
+
   render () {
     const { categoryList, cartCount } = this.props.shared.toJS()
     const { hotItems, banner, wantList } = this.props.data.toJS()
@@ -50,7 +63,7 @@ export class Home extends PureComponent {
         <Slider data={topBanner} setting={{infinite: true}} />
       </div>
       <div styleName='navOuter'>
-        <NavBar data={navList.map(item => ({path: `/search?categoryId=${item.categoryId}`, title: item.categoryName, icon: item.icon}))} />
+        <NavBar data={navList.map(item => ({path: `/search?categoryId=${item.categoryId}`, title: item.categoryName, icon: item.icon, onClick: () => this.handleClickCategory(item)}))} />
       </div>
       <div styleName='label'>
         <h2 styleName='title'>精选专题</h2>
@@ -63,7 +76,7 @@ export class Home extends PureComponent {
         <h2 styleName='title'>我想买<span styleName='subTitle'>更多选品方式</span></h2>
       </div>
       <div styleName='plat subject'>
-        <Slider data={wantList} setting={{slidesToShow: 1.1, dots: false, autoplay: false, variableWidth: true}} slideStyle={{paddingRight: '0.11rem', width: '2.08rem'}} />
+        <Slider data={wantList} onClick={this.handleClickNeed} setting={{slidesToShow: 1.1, dots: false, autoplay: false, variableWidth: true}} slideStyle={{paddingRight: '0.11rem', width: '2.08rem'}} />
       </div>
       <div styleName='label'>
         <h2 styleName='title'>为你推荐</h2>

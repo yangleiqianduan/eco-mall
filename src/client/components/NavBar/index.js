@@ -12,6 +12,7 @@ export default CSSModules(({ data = [], vertical, onClick }) => {
       data.map((route, i) => <li key={i} styleName={classNames('tab', {active: route.active && !vertical, ver_active: route.active && vertical})} >
         <NavLink
           exact={route.exact}
+          onClick={route.onClick}
           replace={route.replace}
           to={route.path}
           style={route.style || {}}>

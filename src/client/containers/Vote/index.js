@@ -28,9 +28,6 @@ export class Vote extends PureComponent {
       vote_id: query
     }, () => console.log('save_vote_id:', this.state))
     this.props.dispatch(actions.getVoteOptions(query))
-    if ( _hmt && _hmt !== null && _hmt !== undefined ) {
-      _hmt.push(['_trackPageview', '/vote'])
-    }
   }
   componentWillReceiveProps (nextProps) {
     const { list, selected } = nextProps.vote.toJS() || {}

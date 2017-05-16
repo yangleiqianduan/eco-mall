@@ -8,6 +8,8 @@ import NavBar from 'components/NavBar/'
 import ProductItem from 'components/ProductItem/'
 import { getItems } from 'actions/result'
 
+import { stat } from 'common/stat'
+
 @CSSModules(styles, {allowMultiple: true})
 export class Result extends PureComponent {
   componentDidMount () {
@@ -43,6 +45,10 @@ export class Result extends PureComponent {
     this.props.dispatch(getItems(query))
   }
 
+  handleClickCategory = (item) => {
+    stat('event', 'mall_product_list', 'click', `类目-${item.categoryName}`)
+  }
+
   render () {
     const { list, page } = this.props.data.toJS()
     const { categoryList } = this.props.shared.toJS()
@@ -52,7 +58,7 @@ export class Result extends PureComponent {
       <div styleName='left'>
         <div styleName='leftFix'>
           <NavBar vertical
-            data={categoryList.map(item => ({path: `/search?categoryId=${item.categoryId}`, title: item.categoryName, active: item.categoryId.toString() === query.categoryId, replace: true}))} />
+            data={categoryList.map(item => ({path: `/search?categoryId=${item.categoryId}`, title: item.categoryName, active: item.categoryId.toString() === query.categoryId, replace: true, onClick: () => this.handleClickCategory(item)}))} />
         </div>
       </div>
       <div styleName='right'>

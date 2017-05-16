@@ -62,17 +62,16 @@ export class Detail extends PureComponent {
   handleShowBuy = (payload, type) => {
     this.setState({show: payload, currentOperate: type})
     if (payload && type === 1) {
-      stat('uv', 'detail', 'click', '加入购物车')
+      stat('event', 'mall_product_detail', 'click', '加入购物车')
     }
     if (payload && type === 2) {
-      stat('uv', 'detail', 'click', '立即购买')
+      stat('event', 'mall_product_detail', 'click', '立即购买')
     }
   }
   handleShowInfo = (payload) => this.setState({showInfo: payload})
 
   handleSubmit = (type) => {
     // type: 1加入购物车 2立即购买
-    console.log(type)
     const { reqData } = this.props.data.toJS()
     const { number, skuMapKey } = this.state
     const skuId = this.getValidMap(skuMapKey)
@@ -92,8 +91,13 @@ export class Detail extends PureComponent {
     }
   }
 
+  handleClickNeed = (e) => {
+    stat('event', 'mall_product_detail', 'click', '需求登记')
+  }
+
   handleShowFullscreen = (e) => {
     e.preventDefault()
+    stat('event', 'mall_product_detail_album', 'pv', 'mall_product_detail_album')
     this.setState({showFullscreen: true})
   }
 
@@ -164,7 +168,7 @@ export class Detail extends PureComponent {
       <section><ItemOverview data={reqData} marketPrice={marketPrice} salePrice={salePrice} onShowService={() => this.handleShowInfo(1)} /></section>
       <section><ItemChoose skuChoose={skuChoose} params={reqData.product_attribute_info.spu_attribute_info} onShowChoose={status === 0 ? () => this.handleShowBuy(true, 0) : null} onShowParam={() => this.handleShowInfo(2)} /></section>
       <section><ItemDeatil data={reqData} /></section>
-      <section><TelUs data={{link: '/want', pic: wantPic}} /></section>
+      <section><TelUs data={{link: '/want', pic: wantPic}} onClick={this.handleClickNeed} /></section>
       <FootBar status={status} onAdd={() => this.handleShowBuy(true, 1)} onBuy={() => this.handleShowBuy(true, 2)} cartCount={cartCount} />
       <InfoPanel
         show={!!showInfo}
