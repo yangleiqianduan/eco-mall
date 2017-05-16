@@ -2,8 +2,6 @@ import React, { PureComponent } from 'react'
 import CSSModules from 'react-css-modules'
 import styles from './index.styl'
 import classNames from 'classnames/bind'
-import { servicePhoneNumber } from 'constants/text'
-
 import Icon from 'components/Icons'
 import { Link } from 'react-router-dom'
 
@@ -49,8 +47,8 @@ export default class extends PureComponent {
     return <div styleName='wrap'>
       <div styleName='content'>
         <div styleName='icons'>
-          <div styleName='item'>
-            <a href={`tel:${servicePhoneNumber}`}><Icon icon='listener' width={18} stroke='#FFF' /></a>
+          <div styleName='item' onClick={(e) => this.props.confirmTel(e)}>
+            <Icon icon='listener' width={18} stroke='#FFF'/>
           </div>
           <Link styleName={classNames('item', 'cart', {noBoard: status !== 0})} to='/shoppingcart'>
             <Icon icon='cart' width={18} stroke='#FFF' />
