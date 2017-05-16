@@ -54,7 +54,7 @@ export default class extends PureComponent {
           <div><Link to={`/item?id=${id}`}><img styleName='img' src={imgUrl} /></Link></div>
           <div styleName='titleArea'>
             <div styleName='title'>{name}</div>
-            <div styleName='light'>{sku.map(it => it.value).join(' ')}</div>
+            <div styleName='light'>{sku.map(it => it.value).join('，')}</div>
             <div styleName='priceArea'>￥{price}<NumberInput value={quantity} onChange={(v) => onChangeNumber(cartId, v)} /></div>
           </div>
         </div>
