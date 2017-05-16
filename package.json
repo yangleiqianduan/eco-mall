@@ -33,7 +33,8 @@
     "global": [
       "alert",
       "fetch",
-      "it"
+      "it",
+      "$ljBridge"
     ],
     "ignore": [
       "dist/",
