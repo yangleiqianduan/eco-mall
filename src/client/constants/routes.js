@@ -17,7 +17,7 @@
 // import VoteResult from 'containers/VoteResult/'
 // import ErrorPage from 'containers/ErrorPage'
 
-const onlyVoteHost = ['mall.lianjia.com', 'test.mall.lianjia.com']
+const onlyVoteHost = ['mall.lianjia.com']
 const routes = ~onlyVoteHost.indexOf(window.location.hostname)
   ? [
     {
