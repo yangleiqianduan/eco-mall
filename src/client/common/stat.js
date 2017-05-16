@@ -28,5 +28,5 @@ const parseName = {                     // 需要统计pv的页面
   '商品详情': 'mall_product_detail',
   '需求登记': 'mall_want_buy',
   '投票': 'mall_vote_detail',
-  '投票结果': 'mall_vote_detail'
+  '投票结果': 'mall_vote_result'
 }

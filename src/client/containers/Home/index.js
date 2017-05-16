@@ -42,7 +42,6 @@ export class Home extends PureComponent {
   render () {
     const { categoryList, cartCount } = this.props.shared.toJS()
     const { hotItems, banner, wantList } = this.props.data.toJS()
-    console.log(wantList)
     const {
       // currentCollocation,
       currentSubject,
@@ -71,13 +70,13 @@ export class Home extends PureComponent {
         {subject.length > 0 ? <div styleName='page'><i styleName='current'>{currentSubject + 1}</i><i styleName='total'>&nbsp;<span>/</span>{subject.length}</i></div> : null}
       </div>
       <div styleName='plat subject'>
-        <Slider data={subject} needDesc setting={{slidesToShow: 1.1, dots: false, autoplay: false, afterChange: (e) => this.setState({currentSubject: Math.round(e)})}} slideStyle={{paddingRight: '0.11rem'}} />
+        <Slider data={subject} needDesc setting={{dots: false, autoplay: false, variableWidth: true, afterChange: (e) => this.setState({currentSubject: Math.round(e)})}} slideStyle={{paddingRight: '0.11rem'}} />
       </div>
       <div styleName='label'>
         <h2 styleName='title'>我想买<span styleName='subTitle'>更多选品方式</span></h2>
       </div>
       <div styleName='plat subject'>
-        <Slider data={wantList} onClick={this.handleClickNeed} setting={{slidesToShow: 1.1, dots: false, autoplay: false, variableWidth: true}} slideStyle={{paddingRight: '0.11rem', width: '2.08rem'}} />
+        <Slider data={wantList} onClick={this.handleClickNeed} setting={{dots: false, autoplay: false, variableWidth: true, responsive: [{breakpoint: '240%', settings: 'unslick'}]}} slideStyle={{paddingRight: '0.11rem', width: '2.08rem'}} />
       </div>
       <div styleName='label'>
         <h2 styleName='title'>为你推荐</h2>
