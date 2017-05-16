@@ -33,7 +33,7 @@ export const sofa = () => <g stroke="none" fill="none" fillRule="evenodd">
 //
 export const personal = () => <g strokeWidth="1.5" fill="none">
   <path d="M7,8.75 C4.93181431,8.75 3.25,7.06818569 3.25,5 C3.25,2.93312539 4.93258731,1.25 7,1.25 C9.06687461,1.25 10.75,2.93258731 10.75,5 C10.75,7.06687461 9.06741269,8.75 7,8.75 Z" fillRule="nonzero"></path>
-  <path d="M0.75,11.75 L13.25,11.75 L13.25,18.9856304 L7.17995993,17.1248074 L6.95887995,17.0570334 L6.73801844,17.1255159 L0.75,18.982221 L0.75,11.75 Z"></path>
+  <path d="M0.75,11.75 L13.25,11.75 L13.25,19.25 L7,19.25 L0.75,19.25 L0.75,11.75 Z"></path>
 </g>
 export const cart = () => <g transform="translate(-84.000000, -614.000000)" fill="none" strokeWidth="1.5">
   <g transform="translate(15.000000, 597.000000)">

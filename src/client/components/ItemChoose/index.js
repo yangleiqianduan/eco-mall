@@ -9,7 +9,7 @@ export default class extends PureComponent {
 
     return <section styleName='wrap'>
       <div styleName='label first' onClick={onShowChoose}>
-        <div styleName='long'>已选：<span styleName='value'>{skuChoose || '暂无'}</span></div>
+        <div styleName='long'>已选：<span styleName='value'>{skuChoose || '请选择规格参数'}</span></div>
         <div><span styleName='dot' /><span styleName='dot' /><span styleName='dot' /></div>
       </div>
       <div styleName='label second' onClick={onShowParam}>

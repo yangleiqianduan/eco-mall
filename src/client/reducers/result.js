@@ -16,6 +16,8 @@ const initState = {
   list: [],         // {firstPageUrl, marketPrice, productId, productName}
   page: {
     current_page: 1,
-    page_size: 10
+    page_size: 10,
+    totalNum: 4,
+    totalPage: 1
   }
 }
