@@ -9,8 +9,11 @@ import Button from 'components/Button/'
 import Order from './Order'
 
 import * as actions from 'actions/order'
+import { changeRouter } from 'actions/'
 
 import { payOrder } from 'constants/api'
+
+import { formatTime } from 'common/utils'
 
 @CSSModules(styles, { allowMultiple: true })
 export class OrderList extends PureComponent {
@@ -31,11 +34,11 @@ export class OrderList extends PureComponent {
 
     return <div styleName={isNeedPay ? 'wrap wrap_pay' : 'wrap'}>
         <div styleName='orderInfo bgWhite'>
-          <p>下单时间：<span>{details.createTime}</span></p>
+          <p>下单时间：<span>{formatTime(details.createTime)}</span></p>
           <p>订单编号：<span>{details.orderId}</span></p>
         </div>
         <div>
-          <Order data={details} />
+          <Order data={details} changeRouter={(path) => this.props.dispatch(changeRouter(path))} />
         </div>
         <div styleName="payInfo bgWhite">
           <div styleName="content">

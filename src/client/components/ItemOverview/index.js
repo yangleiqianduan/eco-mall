@@ -16,7 +16,7 @@ export default class extends PureComponent {
     baseInfo.salePrice = reqData.product_price_info[-1].sale_price
     baseInfo.marketPrice = reqData.product_price_info[-1].market_price
     baseInfo.deliveryMsg = reqData.delivery_msg || '暂无'
-    baseInfo.skuStore = reqData.product_inv_info.sku_inv[-1][-1] || '暂无'
+    baseInfo.skuStore = (reqData.product_inv_info || {sku_inv: {}}).sku_inv[-1] || '暂无'
     baseInfo.deliveryCity = reqData.delivery_city || '暂无'
     baseInfo.tips = []
 
