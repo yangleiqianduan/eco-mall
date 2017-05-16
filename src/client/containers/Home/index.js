@@ -54,7 +54,7 @@ export class Home extends PureComponent {
       </div>
       <div styleName='label'>
         <h2 styleName='title'>精选专题</h2>
-        {subject.length > 0 ? <div><i styleName='current'>{currentSubject + 1}</i>/{subject.length}</div> : null}
+        {subject.length > 0 ? <div styleName='page'><i styleName='current'>{currentSubject + 1}</i><i styleName='total'>&nbsp;<span>/</span>{subject.length}</i></div> : null}
       </div>
       <div styleName='plat subject'>
         <Slider data={subject} needDesc setting={{slidesToShow: 1.1, dots: false, autoplay: false, afterChange: (e) => this.setState({currentSubject: Math.round(e)})}} slideStyle={{paddingRight: '0.11rem'}} />
