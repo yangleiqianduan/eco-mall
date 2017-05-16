@@ -25,7 +25,7 @@ export const getItems = data => dispatch => {
   }})
   .then(res => {
     if (!res) return dispatch(UPDATE_LOADING_ACTION(false))
-    dispatch(UPDATE_ITEM_LIST_ACTION(res.data || []))
+    dispatch(UPDATE_ITEM_LIST_ACTION(res.data.productList || []))
     dispatch(UPDATE_LOADING_ACTION(false))
     dispatch(UPDATE_PAGE_ACTION(res.data.page))
   })
