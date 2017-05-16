@@ -61,7 +61,7 @@ export class Shoppingcart extends PureComponent {
       <div styleName='footer'>
         <div onClick={() => this.handleCheckAll(!isCheckedAll)} styleName={classNames('checkAll', {active: isCheckedAll})}><Icon icon='checked' width={18} />&nbsp;全选</div>
         <div styleName='priceArea'>总计：￥{this.getTotalPrice(checkedItems)}</div>
-        <div styleName='buyArea' onClick={this.handleOrder.bind(this)}>下单</div>
+        <div styleName='buyArea' onClick={this.handleOrder.bind(this)}>去支付</div>
       </div>
     </div>
   }
