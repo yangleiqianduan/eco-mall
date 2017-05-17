@@ -76,7 +76,7 @@ export class Detail extends PureComponent {
       type: 'confirm',
       sureText: '致电',
       onSure: () => {
-        document.getElementById('tel').click();
+        this.refs.tel.click()
         this.props.dispatch(alert({
           show: false,
           sureText: '确定'
@@ -212,7 +212,7 @@ export class Detail extends PureComponent {
         ? <FullScreen data={banner} onClose={() => this.setState({showFullscreen: false})} />
         : null
       }
-      <a href={`tel:${servicePhoneNumber}`} id="tel"> </a>
+      <a href={`tel:${servicePhoneNumber}`} ref='tel' />
     </div>
   }
 
