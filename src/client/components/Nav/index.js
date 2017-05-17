@@ -14,7 +14,7 @@ export default CSSModules(({ cartCount }) => <div styleName='wrap'>
     <Link to='shoppingcart' styleName='shoppingcart'>
       <Icon icon='cart' width={18} stroke={'#FFF'} />
       { cartCount > 0
-        ? <div styleName='mark' />
+        ? <div styleName='mark'><span>{cartCount}</span></div>
         : null
       }
     </Link>
