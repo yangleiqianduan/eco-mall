@@ -65,8 +65,8 @@ export class Address extends PureComponent {
         </div>
         <div styleName='info'>
           <label styleName='label'>
-            <span styleName='inputLabel'>联系电话</span>：
-            <input type='text' value={data.mobile.value} onChange={(e) => this.handleChangeInput('mobile', e.target.value)} />
+            <span styleName='inputLabel'>手机号码</span>：
+            <input type='tel' value={data.mobile.value} onChange={(e) => this.handleChangeInput('mobile', e.target.value)} />
           </label>
         </div>
         <div styleName='info'>
