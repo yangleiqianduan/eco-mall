@@ -7,8 +7,8 @@ export default CSSModules(({ data = {}, noBorder, onClick }) => <div
   styleName='wrap' style={noBorder ? {border: 'none'} : null}>
   <div styleName='left'><img styleName='img' src={data.url} /></div>
   <div styleName='right'>
-    <div styleName='title'>{data.title}</div>
-    <div styleName='text'>{data.saleAttributes.map(v => v.value).join('，')}&nbsp;&nbsp;{data.quantity}件</div>
+    <div styleName='title'><div styleName='long'>{data.title}</div><div>X{data.quantity}</div></div>
+    <div styleName='text'>{data.saleAttributes.map(v => v.value).join('，')}</div>
     <div styleName='price'>￥{data.realPrice}</div>
   </div>
 </div>, styles, {allowMultiple: true})
