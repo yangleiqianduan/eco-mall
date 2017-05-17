@@ -8,10 +8,10 @@ import Icon from 'components/Icons/'
 @CSSModules(styles, {allowMultiple: true})
 export default class extends PureComponent {
   state = {
-    current: 0
+    current: this.props.currentImage
   }
   render () {
-    const { data, onClose } = this.props
+    const { data, onClose, currentImage = 0 } = this.props
     const { current } = this.state
     return <section styleName='showPic' onClick={onClose}>
       <span styleName='close' onClick={onClose}>
@@ -20,7 +20,7 @@ export default class extends PureComponent {
       <div styleName='sliderWrap' onClick={(e) => e.stopPropagation()}>
         <Slider
           data={data}
-          setting={{dots: false, autoplay: false, afterChange: (e) => this.setState({current: e})}} />
+          setting={{initialSlide: currentImage, dots: false, autoplay: false, afterChange: (e) => this.setState({current: e})}} />
       </div>
       {
         data.length > 0

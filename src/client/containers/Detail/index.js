@@ -212,7 +212,7 @@ export class Detail extends PureComponent {
         onClickCover={() => this.handleShowBuy(false)} />
       {
         showFullscreen
-        ? <FullScreen data={banner} onClose={() => this.setState({showFullscreen: false})} />
+        ? <FullScreen data={banner} currentImage={currentImage} onClose={() => this.setState({showFullscreen: false})} />
         : null
       }
       <a href={`tel:${servicePhoneNumber}`} ref='tel' />
