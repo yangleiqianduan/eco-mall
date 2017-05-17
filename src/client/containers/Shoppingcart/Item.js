@@ -51,7 +51,7 @@ export default class extends PureComponent {
     return <div styleName='wrap' style={{height: this.state.innerHeight + 'px'}}>
       <div styleName='inner' ref='inner'>
         <div styleName='pannel' style={{width: document.body.getBoundingClientRect().width + 'px'}}>
-          <div styleName='checkArea' onClick={disabled ? null : onCheck}>{disabled ? <small styleName='offShelf'>失效</small> : <Icon icon={isChecked ? 'checked' : 'unChecked'} width={18} />}</div>
+          <div styleName='checkArea' onClick={disabled ? null : onCheck}>{disabled ? <span styleName='offShelfBg'><small styleName='offShelf'>失效</small></span> : <Icon icon={isChecked ? 'checked' : 'unChecked'} width={18} />}</div>
           <div><Link to={`/item?id=${id}`}><img styleName='img' src={imgUrl} /></Link></div>
           <div styleName='titleArea'>
             <Link to={`/item?id=${id}`} styleName='title'>{name}</Link>
