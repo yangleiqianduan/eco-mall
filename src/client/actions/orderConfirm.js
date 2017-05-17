@@ -29,7 +29,8 @@ function transfer (data, currentAddress) {
   newData.token = data.token
   newData.deliver_address_id = currentAddress.id
   newData.products = []
-  tmplist = data.itemsList.filter(item => item.canBuy)
+  tmplist = data.itemsList
+  // .filter(item => item.canBuy)
   let nl = []
   let len = tmplist.length
   let obj = {}
