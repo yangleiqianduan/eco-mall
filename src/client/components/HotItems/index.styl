@@ -15,6 +15,19 @@
     &:nth-child(even)
       .inner
         padding-left px2rem(10)
+        border(left, 0.5px, transparent)
+    &:nth-child(1)
+      .inner
+        border(top, 0.5px, #EDEDED)
+    &:nth-child(2)
+      .inner
+        border(top, 0.5px, #EDEDED)
+    &:nth-last-child(2)
+      .inner
+        border-bottom none
+    &:last-child
+      .inner
+        border-bottom none
     .img
       width 100%
     .text

@@ -81,7 +81,7 @@ export class Home extends PureComponent {
       <div styleName='label'>
         <h2 styleName='title'>为你推荐</h2>
       </div>
-      <div styleName='plat'>
+      <div styleName='plat last'>
         <HotItems data={hotItems} />
       </div>
       <div styleName='footer'>

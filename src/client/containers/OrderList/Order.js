@@ -24,7 +24,7 @@ export default class extends PureComponent {
   }
 
   componentDidUpdate (prep) {
-    const { statusCode, countDown } = this.props.data
+    const { statusCode, pCountDown: countDown } = this.props.data
     const { pCountDown } = prep.data
     if (statusCode === 100 && (pCountDown !== countDown)) {
       window.clearTimeout(this.timer)
@@ -59,7 +59,7 @@ export default class extends PureComponent {
     }
   }
 
-  startCountDown = (t) => {
+  startCountDown = (time) => {
     const run = (t) => {
       this.timer = setTimeout(() => {
         if (t <= 0) {
@@ -71,7 +71,7 @@ export default class extends PureComponent {
         }
       }, 1000)
     }
-    run(t)
+    run(time)
   }
 
   joinNumber = (numb) => (numb < 10 ? ('0' + numb) : numb)

@@ -118,6 +118,9 @@ export class Detail extends PureComponent {
   getValidMap = (keyArr) => {
     // 根据本地的skuMapKey获取合法的后端提供的sku map key(string)
     const validMap = this.props.data.toJS().reqData.sku_attribute_mapping_sku_id
+    if (!validMap || validMap.length === 0) {
+      return -1
+    }
     return validMap[keyArr.join(';')] || -1
   }
 
