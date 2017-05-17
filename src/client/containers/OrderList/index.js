@@ -54,8 +54,7 @@ export class OrderList extends PureComponent {
   }
 
   cancelOrder = (id, index) => {
-    console.log(id)
-    if (window.confirm('确认取消该订单？')) this.props.dispatch(cancelOrder(id, index))
+    if (window.confirm('确认取消该订单？')) this.props.dispatch(cancelOrder(id, index, this.props.location.query.status || ''))
   }
 
   deleteOrder = (id) => {
@@ -73,8 +72,8 @@ export class OrderList extends PureComponent {
           renderItem={(item, i) => <Order key={i} onCancel={(id) => this.cancelOrder(id, i)} onDelete={this.deleteOrder} data={item} />} />
       </div>
       <div styleName='bottom' ref='footer'>
-        {page.currentPage < page.totalPage ? '加载中...' : (page.totalPage ? '没有更多了' : '暂无订单')}
-        <div styleName='bottomHeight'></div>
+        {page.currentPage < page.totalPage ? '加载中...' : (page.totalPage ? (page.totalPage > 1 ? '没有更多了' : '') : '暂无订单')}
+        <div styleName='bottomHeight' />
       </div>
     </div>
   }

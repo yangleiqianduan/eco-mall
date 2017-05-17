@@ -39,13 +39,14 @@ export const DELETE_ORDER_ACTION = (payload) => ({
   payload
 })
 
-export const cancelOrder = (id, index) => async dispatch => {
+export const cancelOrder = (id, index, status) => async dispatch => {
   dispatch(UPDATE_LOADING_ACTION(true))
   const result = await fetch(api.cancelOrder, {param: {order_id: id}})
-  dispatch(UPDATE_LOADING_ACTION(false))
   if (result.code === '1') {
+    dispatch(getOrderList({current_page: 1, status}))
     dispatch(DELETE_ORDER_ACTION(index))
   } else {
+    dispatch(UPDATE_LOADING_ACTION(false))
     dispatch(showToast(result.msg || '取消失败'))
   }
 }
