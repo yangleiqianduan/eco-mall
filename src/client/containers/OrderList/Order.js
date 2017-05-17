@@ -53,7 +53,7 @@ export default class extends PureComponent {
       // case 3:               // 查看物流
       //   return <div key={i} styleName='btnArea light'>追踪物流</div>
       case 3:
-        return <div key={i} styleName='btnArea' onClick={() => onDelete(orderId)}>删除订单</div>
+        return <div key={i} styleName='btnArea delete' onClick={() => onDelete(orderId)}>删除订单</div>
       case 4:
         return <div key={i} styleName='btnArea light'>退货</div>
     }
