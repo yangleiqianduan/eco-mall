@@ -75,10 +75,10 @@ export class OrderList extends PureComponent {
           }       
         </div>
         {
-          !isNeedPay
+          isNeedPay
           ? <div>
               <div styleName="contect bgWhite" onClick={(e) => this.confirmTel(e)}>
-                <Icon icon='listener' width="16"/><span>联系客服</span>
+                <Icon icon='listener' width="16"/><span styleName='text'>联系客服</span>
               </div>
               <div styleName='readyPay'>
                 <div styleName='totalAmount common'>总计：<span>￥{payInfo.totalAmount}</span></div>
