@@ -30,7 +30,7 @@ export class Shoppingcart extends PureComponent {
   handleChangeNumber = (i, id, v) => this.props.dispatch(updateNumber(i, id, v))
   handleCheckAll = (payload) => this.props.dispatch(CHECK_ALL_ACTION(payload))
   // 计算时先乘以1000再除1000确保不产生很多小数点
-  getTotalPrice = (list) => list.reduce((x, y) => ({quantity: 1, sale_price: (x.sale_price * 1000 * x.quantity + y.sale_price * 1000 * y.quantity) / 1000}), {sale_price: 0, quantity: 1}).sale_price
+  getTotalPrice = (list) => list.map(item => item.sale_price * 1000 * item.quantity / 1000).reduce((x, y) => x + y, 0)
 
   handleOrder = () => {
     let checklist = this.props.data.toJS().data.filter(item => item.isChecked)
@@ -44,7 +44,8 @@ export class Shoppingcart extends PureComponent {
   render () {
     const { data } = this.props.data.toJS()
     const checkedItems = data.filter(d => d.isChecked)
-    const isCheckedAll = data.length && checkedItems.length === data.length
+    const ableData = data.filter(d => !d.is_off_shelf)
+    const isCheckedAll = ableData.length && checkedItems.length === ableData.length
     return <div styleName='wrap'>
       <ul styleName={classNames({list: data.length > 0})}>
         {data.length === 0

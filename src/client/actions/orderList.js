@@ -46,7 +46,7 @@ export const cancelOrder = (id, index) => async dispatch => {
   if (result.code === '1') {
     dispatch(DELETE_ORDER_ACTION(index))
   } else {
-    dispatch(showToast(result.msg || '删除失败'))
+    dispatch(showToast(result.msg || '取消失败'))
   }
 }
 
