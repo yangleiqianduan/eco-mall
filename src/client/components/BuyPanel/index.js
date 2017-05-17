@@ -168,7 +168,7 @@ export default class extends PureComponent {
         {
           currentOperate
           ? <div styleName={classNames('btnArea', {disabled: !canBuy})}>
-            <div styleName='container' onClick={canBuy ? () => onSubmit(currentOperate) : null}>
+            <div styleName='container sure' onClick={canBuy ? () => onSubmit(currentOperate) : null}>
               确定
             </div>
           </div>

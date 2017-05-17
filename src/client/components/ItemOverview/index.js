@@ -35,7 +35,13 @@ export default class extends PureComponent {
         <header>
           <div styleName='left'>
             <h1>{baseInfo.title || ''}</h1>
-            <h2>暂不显示</h2>
+            {
+              data.brief_desc
+              ? <h2>{data.brief_desc}</h2>
+              : (data.product_attribute_info.brand_info
+              ? <span styleName='item'>{data.product_attribute_info.brand_info}</span>
+              : null)
+            }
           </div>
           <div styleName='right'>
             <p styleName='salePrice'>￥{salePrice}</p>
@@ -44,7 +50,7 @@ export default class extends PureComponent {
         </header>
         <div styleName='tags tagsTop'>
           {
-          data.product_attribute_info.brand_info
+          data.product_attribute_info.brand_info && data.brief_desc
           ? <span styleName='item'>{data.product_attribute_info.brand_info}</span>
           : null
           }
@@ -57,7 +63,7 @@ export default class extends PureComponent {
         <footer onClick={onShowService}>
           <ul>
             {
-              baseInfo.tips.map((item, i) => <li key={i} styleName='item'>{item}</li>)
+              baseInfo.tips.map((item, i) => <li key={i} styleName='itemTag'>{item}</li>)
             }
           </ul>
           <div styleName='dotWrap'><span styleName='dot' /><span styleName='dot' /><span styleName='dot' /></div>

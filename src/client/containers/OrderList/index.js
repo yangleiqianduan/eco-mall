@@ -74,6 +74,7 @@ export class OrderList extends PureComponent {
       </div>
       <div styleName='bottom' ref='footer'>
         {page.currentPage < page.totalPage ? '加载中...' : (page.totalPage ? '没有更多了' : '暂无订单')}
+        <div styleName='bottomHeight'></div>
       </div>
     </div>
   }

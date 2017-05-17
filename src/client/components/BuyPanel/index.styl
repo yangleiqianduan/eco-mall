@@ -13,7 +13,7 @@
     width 100%
     position fixed
     left 0
-    padding .14rem
+    padding .2rem
     z-index 101
     background-color $color-white
     transition transform .3s ease-out
@@ -28,6 +28,7 @@
           position absolute
           bottom 0
           right 0
+          left 0
           color white
           height px2rem(110)
           width px2rem(110)
@@ -57,7 +58,7 @@
     .attrArea
       margin-bottom px2rem(20)
     .label
-      color $color-font-light
+      color $color-dark
       font-size px2rem(15)
       padding-bottom px2rem(5)
     .itemSkuOuter
@@ -93,7 +94,7 @@
       justify-content center
     .btnArea
       footerStyle()
-      font-size $font-size14
+      font-size $font-size16
       .container
         box()
         align-items center
@@ -110,10 +111,14 @@
         background $color-bright
     .disabled
       .container
-        background $color-font-light + 4%
+        background $color-purple
+        font-weight bold
       .buy
-        background $color-bright + 40%
-        color $color-dark + 40%
+        background $color-bright
+        color $color-dark
+        font-weight bold
+      .sure
+        background $color-dark
   .show
     visibility visible
     transform translate(0, -100%)

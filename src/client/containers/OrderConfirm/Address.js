@@ -16,13 +16,13 @@ export default CSSModules(({ data }) => <div styleName='address'>
         <div>{data.receiverName} {data.phoneNumber}</div>
         <div styleName='detail'>
           <div styleName='addressDetail'>{data.provinceName} {data.cityName} {data.detailAddress}</div>
-          <div><Icon icon='right' /></div>
+          <div styleName='next'><Icon icon='right' /></div>
         </div>
       </Link>
       : <Link to='/address'>
         <div styleName='detail'>
           <div styleName='addressDetail'>暂无收货地址，点击添加</div>
-          <div><Icon icon='right' /></div>
+          <div styleName='next'><Icon icon='right' /></div>
         </div>
       </Link>
     }

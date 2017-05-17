@@ -22,13 +22,13 @@ export default class extends PureComponent {
       case 2:        // 已下架
         return <div styleName='buyArea'>
           <div styleName='disabled'>
-            已下架
+            <span>已下架</span>
           </div>
         </div>
       case 30:       // 已售罄
         return <div styleName='buyArea'>
           <div styleName='disabled'>
-            已售罄
+            <span>已售罄</span>
           </div>
         </div>
       default:

@@ -8,6 +8,9 @@
     margin-bottom px2rem(10)
   .left
     max-width 66%
+    .item
+      margin-top px2rem(8)
+      margin-bottom px2rem(12)
     h1
       font-size $font-size20
       color $color-dark
@@ -16,7 +19,7 @@
     h2
       font-size $font-size12
       color $color-light
-      display none
+      // display none
   .right
     flex()
     text-align right
@@ -36,17 +39,17 @@
     border(bottom)
     margin-bottom px2rem(18)
     padding-bottom px2rem(20)
-    .item
-      display inline-block
-      height px2rem(20)
-      line-height px2rem(20)
-      border(all,1px,$color-tag)
-      padding 0 px2rem(5)
-      margin-right px2rem(10)
-      font-size $font-size12
-      font-weight 300
-      color $color-tag
-      border-radius px2rem(2)
+  .item
+    display inline-block
+    height px2rem(20)
+    line-height px2rem(20)
+    border(all,1px,$color-tag)
+    padding 0 px2rem(5)
+    margin-right px2rem(10)
+    font-size $font-size12
+    font-weight 300
+    color $color-tag
+    border-radius px2rem(2)
   .main
     color $color-light
     box()
@@ -71,17 +74,17 @@
       color $color-light
       box()
       align-items center
-    .item
+    .itemTag
       font-size $font-size14
       display inline-block
       position relative
       text-indent 1em
-      margin-right px2rem(10)
+      margin-right px2rem(30)
       &:before
         content ''
         position absolute
         left 0
-        top px2rem(6)
+        top px2rem(7.5)
         width px2rem(5)
         height px2rem(5)
         background-color $color-normal
