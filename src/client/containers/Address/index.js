@@ -35,7 +35,13 @@ export class Address extends PureComponent {
 
   changeSelect = (map, payload) => this.props.dispatch(UPDATE_SELECT_ACTION(map, payload))
 
-  changeSelectValue = (payload) => this.props.dispatch(updateSelectValue(payload))
+  changeSelectValue = async (payload) => {
+    console.log(payload)
+    await this.props.dispatch(updateSelectValue(payload))
+    if (payload.current === payload.data.length - 1) {
+      this.selectOnSure(this.props.data.toJS().areaSelect.data)
+    }
+  }
 
   selectOnSure = (payload) => this.props.dispatch(selectOnSure(payload))
 
