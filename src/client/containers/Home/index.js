@@ -70,7 +70,7 @@ export class Home extends PureComponent {
         {subject.length > 0 ? <div styleName='page'><i styleName='current'>{currentSubject + 1}</i><i styleName='total'>&nbsp;<span>/</span>{subject.length}</i></div> : null}
       </div>
       <div styleName='plat subject'>
-        <Slider data={subject} needDesc setting={{swipeToSlide: true, dots: false, autoplay: false, variableWidth: true, afterChange: (e) => this.setState({currentSubject: Math.round(e)})}} slideStyle={{paddingRight: '0.11rem'}} />
+        <Slider data={subject} needDesc setting={{dots: false, autoplay: false, variableWidth: true, afterChange: (e) => this.setState({currentSubject: Math.round(e)})}} slideStyle={{paddingRight: '0.11rem'}} />
       </div>
       <div styleName='label'>
         <h2 styleName='title'>我想买<span styleName='subTitle'>更多选品方式</span></h2>
