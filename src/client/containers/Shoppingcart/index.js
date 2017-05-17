@@ -45,6 +45,7 @@ export class Shoppingcart extends PureComponent {
     const { data } = this.props.data.toJS()
     const checkedItems = data.filter(d => d.isChecked)
     const isCheckedAll = data.length && checkedItems.length === data.length
+    console.log(isCheckedAll)
     return <div styleName='wrap'>
       <ul styleName={classNames({list: data.length > 0})}>
         {data.length === 0
@@ -59,7 +60,7 @@ export class Shoppingcart extends PureComponent {
         }
       </ul>
       <div styleName='footer'>
-        <div onClick={() => this.handleCheckAll(!isCheckedAll)} styleName={classNames('checkAll', {active: isCheckedAll})}><Icon icon='checked' width={18} />&nbsp;全选</div>
+        <div onClick={() => this.handleCheckAll(!isCheckedAll)} styleName={classNames('checkAll', {active: isCheckedAll})}><Icon icon={isCheckedAll ? 'checked': 'unChecked'} width={18} />&nbsp;全选</div>
         <div styleName='priceArea'>总计：￥{this.getTotalPrice(checkedItems)}</div>
         <div styleName='buyArea' onClick={this.handleOrder.bind(this)}>去支付</div>
       </div>

@@ -23,14 +23,15 @@
 .titleArea
   flex 1
   min-height px2rem(100)
-  padding 0 px2rem(20) 0 px2rem(14)
+  padding 0 px2rem(20) 0 px2rem(15)
   box()
   flex-direction column
 .title
   G-cut-p(1)
+  margin-top px2rem(-2)
 .light
   flex 1
-  padding px2rem(10) 0
+  padding px2rem(6) 0
   color $color-font-light
   font-size px2rem(13)
 .offShelf
@@ -40,6 +41,8 @@
   box()
   align-items flex-end
   justify-content space-between
+  font-size $font-size14
+  margin-bottom px2rem(-2)
 .delete
   transition all .1s
   background $color-red
