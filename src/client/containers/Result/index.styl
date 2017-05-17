@@ -5,11 +5,16 @@ $left-width=px2rem(100)
 .wrap
   box()
   height 100%
+  position fixed
+  width 100%
+  top 0
+  left 0
+  over-flow-y auto
 .left
   min-width $left-width
   border(right)
 .leftFix
-  position absolute
+  position fixed
   top 0
   left 0
   padding-top px2rem(10px)
@@ -32,6 +37,7 @@ $left-width=px2rem(100)
       padding-right px2rem(10)
   &:nth-child(even)
     .inner
+      border(left, 0.5px, transparent)
       padding-left px2rem(10)
 .bottom
   text-align center

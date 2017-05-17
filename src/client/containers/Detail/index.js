@@ -118,6 +118,9 @@ export class Detail extends PureComponent {
   getValidMap = (keyArr) => {
     // 根据本地的skuMapKey获取合法的后端提供的sku map key(string)
     const validMap = this.props.data.toJS().reqData.sku_attribute_mapping_sku_id
+    if (!validMap || validMap.length === 0) {
+      return -1
+    }
     return validMap[keyArr.join(';')] || -1
   }
 
@@ -209,7 +212,7 @@ export class Detail extends PureComponent {
         onClickCover={() => this.handleShowBuy(false)} />
       {
         showFullscreen
-        ? <FullScreen data={banner} onClose={() => this.setState({showFullscreen: false})} />
+        ? <FullScreen data={banner} currentImage={currentImage} onClose={() => this.setState({showFullscreen: false})} />
         : null
       }
       <a href={`tel:${servicePhoneNumber}`} ref='tel' />

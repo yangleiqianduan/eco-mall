@@ -37,13 +37,13 @@ function transfer (data, currentAddress) {
   for (let i = 0; i < len; i++) {
     let tmpObj = tmplist[i]
     if (!obj[tmpObj.merchantCode]) {
-      nl.push({mcode: tmpObj.merchantCode, sku_list: [{sku_id: tmpObj.itemInfo.skuId, buy_count: tmpObj.itemInfo.quantity}]})
+      nl.push({mcode: tmpObj.merchantCode, sku_list: [{sku_id: tmpObj.itemInfo.skuId, buy_count: tmpObj.itemInfo.quantity, cart_id: tmpObj.itemInfo.cartId}]})
       obj[tmpObj.merchantCode] = tmpObj
     } else {
       for (let j = 0; j < nl.length; j++) {
         var tmpObj2 = nl[j]
         if (tmpObj2.mcode === tmpObj.merchantCode) {
-          tmpObj2.sku_list.push({sku_id: tmpObj.itemInfo.skuId, buy_count: tmpObj.itemInfo.quantity})
+          tmpObj2.sku_list.push({sku_id: tmpObj.itemInfo.skuId, buy_count: tmpObj.itemInfo.quantity, cart_id: tmpObj.itemInfo.cartId})
           break
         }
       }

@@ -7,7 +7,7 @@ import styles from './index.styl'
 const basicStyle = {
   width: '120px',
   height: '120px',
-  border: '2px dashed rgba(0, 0, 0, .2)',
+  // border: '2px dashed rgba(0, 0, 0, .2)',
   borderRadius: '3px',
   position: 'relative'
 }

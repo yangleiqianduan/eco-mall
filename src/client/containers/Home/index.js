@@ -63,7 +63,7 @@ export class Home extends PureComponent {
         <Slider data={topBanner} setting={{infinite: true}} />
       </div>
       <div styleName='navOuter'>
-        <NavBar data={navList.map(item => ({path: `/search?categoryId=${item.categoryId}`, title: item.categoryName, icon: item.icon, onClick: () => this.handleClickCategory(item)}))} />
+        <NavBar data={navList.map(item => ({path: `/search?categoryId=${item.categoryId}`, title: item.categoryName, icon: item.icon, onClick: () => this.handleClickCategory(item)}))} style={{paddingBottom: '0.14rem'}} />
       </div>
       <div styleName='label'>
         <h2 styleName='title'>精选专题</h2>
@@ -81,7 +81,7 @@ export class Home extends PureComponent {
       <div styleName='label'>
         <h2 styleName='title'>为你推荐</h2>
       </div>
-      <div styleName='plat'>
+      <div styleName='plat last'>
         <HotItems data={hotItems} />
       </div>
       <div styleName='footer'>

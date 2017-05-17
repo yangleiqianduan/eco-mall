@@ -66,6 +66,7 @@ export const host = {
   // dev: 'http://lmall.lianjia.com:8070',
   dev: 'http://mall.lj-web-30.lianjia.com',
   // dev: 'http://10.33.66.18:8050',
-  offline: 'http://mall.lj-web-30.lianjia.com',
+  offline: '',
+  preview: '',
   prod: 'https://mall.lianjia.com'
 }

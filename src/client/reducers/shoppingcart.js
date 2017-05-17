@@ -8,7 +8,7 @@ export default (state = fromJS(initState), action) => {
     case actions.UPDATE_CHECK:
       return state.updateIn(['data', action.payload], d => d.set('isChecked', !d.get('isChecked')))
     case actions.CHECK_ALL:
-      return state.update('data', l => l.map(l => l.set('isChecked', action.payload)))
+      return state.update('data', l => l.map(l => l.get('is_off_shelf') ? l : l.set('isChecked', action.payload)))
     case actions.DELETE_ITEM:
       return state.update('data', l => l.delete(action.payload))
     case actions.UPDATE_NUMBER:

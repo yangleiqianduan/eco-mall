@@ -35,7 +35,13 @@ export class Address extends PureComponent {
 
   changeSelect = (map, payload) => this.props.dispatch(UPDATE_SELECT_ACTION(map, payload))
 
-  changeSelectValue = (payload) => this.props.dispatch(updateSelectValue(payload))
+  changeSelectValue = async (payload) => {
+    console.log(payload)
+    await this.props.dispatch(updateSelectValue(payload))
+    if (payload.current === payload.data.length - 1) {
+      this.selectOnSure(this.props.data.toJS().areaSelect.data)
+    }
+  }
 
   selectOnSure = (payload) => this.props.dispatch(selectOnSure(payload))
 
@@ -65,15 +71,15 @@ export class Address extends PureComponent {
         </div>
         <div styleName='info'>
           <label styleName='label'>
-            <span styleName='inputLabel'>联系电话</span>：
-            <input type='text' value={data.mobile.value} onChange={(e) => this.handleChangeInput('mobile', e.target.value)} />
+            <span styleName='inputLabel'>手机号码</span>：
+            <input type='tel' value={data.mobile.value} onChange={(e) => this.handleChangeInput('mobile', e.target.value)} />
           </label>
         </div>
         <div styleName='info'>
           <div onClick={() => this.openSelect(true)}>
             {data.provinceId.value && data.cityCode.value
               ? <span>{data.provinceId.label}&nbsp;{data.cityCode.label}</span>
-              : <span><span styleName='inputLabel'>所选地区</span><span>：</span></span>
+              : <span><span styleName='inputLabel'>所在地区</span><span>：</span></span>
             }
             <div styleName='right'><Icon icon='right' /></div>
           </div>

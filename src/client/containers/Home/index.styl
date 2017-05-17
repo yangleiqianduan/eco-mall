@@ -26,9 +26,14 @@
   .plat
     padding 0 px2rem(20) px2rem(36) px2rem(20)
     background $color-white
+  .last
+    padding-bottom 0
   .subject
     padding-right 0
     // min-height px2rem(150)
+    overflow hidden
+    :global .slick-list
+      overflow visible
   .page
     position relative
     top px2rem(4)
