@@ -21,8 +21,8 @@ const protocol = window.location.protocol
 const initState = {
   banner: [],
   wantList: [
-    {img_url: protocol + '//img.ljcdn.com/lmall/f85ce159-7d98-460e-a0b2-ccb5dc8f052b.png.408x224.png', redirect_url: '/voteList'},
-    {img_url: protocol + '//image1.ljcdn.com/lmall/3a4f0c89-2f05-44d7-b8f3-351a2e8d36b6.png.416x224.png', redirect_url: '/want'}
+    {img_url: protocol + '//image1.ljcdn.com/lmall/b551e907-367f-47e1-a903-096b34630ca8.png.624x336.png', redirect_url: '/voteList'},
+    {img_url: protocol + '//image1.ljcdn.com/lmall/ea20ee01-f886-435c-9689-f8d54a8489c8.png.624x336.png', redirect_url: '/want'}
   ],
   collocation: [],    // {picture, productMixDescription, productMixId, productMixName}
   hotItems: []        // {firstPageUrl, marketPrice, productId, productName}
