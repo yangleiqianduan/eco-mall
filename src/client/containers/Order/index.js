@@ -85,8 +85,8 @@ export class OrderList extends PureComponent {
                 <div styleName='goPay common' onClick={() => this.handlePay(payOrderId)}>去支付</div>
               </div>
             </div>
-          : <div styleName='service' onClick={(e) => this.confirmTel(e)}>
-              <Button>电话客服</Button>
+          : <div styleName="contect bgWhite" onClick={(e) => this.confirmTel(e)}>
+              <span styleName='telIcon'><Icon icon='listener' width="16"/></span><span styleName='text'>联系客服</span>
             </div>
         }
         <a href={`tel:${servicePhoneNumber}`} ref='tel'></a>

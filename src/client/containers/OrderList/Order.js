@@ -49,7 +49,7 @@ export default class extends PureComponent {
           付款 {this.state.time}
         </div>
       case 2:               // 取消订单
-        return <div key={i} styleName='btnArea' onClick={() => onCancel(orderId)}>取消订单</div>
+        return <div key={i} styleName='btnArea delete' onClick={() => onCancel(orderId)}>取消订单</div>
       // case 3:               // 查看物流
       //   return <div key={i} styleName='btnArea light'>追踪物流</div>
       case 3:
