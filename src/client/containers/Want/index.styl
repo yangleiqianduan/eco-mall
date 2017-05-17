@@ -4,7 +4,7 @@
   background $color-white
   height 100%
   min-height px2rem(460)
-  padding px2rem(20) px2rem(15) 0 px2rem(15)
+  padding px2rem(25) px2rem(15) 0 px2rem(15)
   font-size $font-size16
   color $color-dark
   .inner
@@ -13,16 +13,17 @@
   .title
     font-size $font-size20
     font-weight bolder
-    margin-bottom px2rem(8)
+    margin-bottom px2rem(10)
   .input
-    margin px2rem(20) 0
+    margin px2rem(20) 0 px2rem(25)
     width 100%
     height px2rem(100)
     border none
     border bottom 1
+  ::-webkit-input-placeholder
+    color #bfbfbf
+    font-weight 300
   .uploadOuter
     margin-top px2rem(10)
   .footer
-    width 100%
-    position absolute
-    margin-top px2rem(30)
+    footerStyle()

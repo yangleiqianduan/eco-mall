@@ -5,11 +5,11 @@ import CSSModules from 'react-css-modules'
 import styles from './index.styl'
 import Icon from 'components/Icons'
 
-export default CSSModules(({ data = [], vertical, onClick }) => {
+export default CSSModules(({ data = [], vertical, onClick, style = {} }) => {
   const wrap = classNames('wrap', {vertical, horizontal: !vertical})
-  return <ul styleName={wrap} onClick={onClick}>
+  return <ul styleName={wrap} onClick={onClick} style={style}>
     {
-      data.map((route, i) => <li key={i} styleName={classNames('tab', {active: route.active && !vertical, ver_active: route.active && vertical})} >
+      data.map((route, i) => <li key={i} styleName={classNames('tab', {active: route.active && !vertical, ver_active: route.active && vertical})}>
         <NavLink
           exact={route.exact}
           onClick={route.onClick}

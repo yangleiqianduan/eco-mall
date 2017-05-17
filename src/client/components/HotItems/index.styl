@@ -22,7 +22,7 @@
     &:nth-child(2)
       .inner
         border(top, 0.5px, #EDEDED)
-    &:nth-last-child(2)
+    &:nth-last-child(2):not(:nth-child(even))
       .inner
         border-bottom none
     &:last-child
