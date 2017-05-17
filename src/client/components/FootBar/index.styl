@@ -15,7 +15,7 @@
       align-items center
       justify-content center
     .icons
-      background $color-dark
+      background $color-purple
       box()
       .item
         min-width px2rem(50)
@@ -29,7 +29,8 @@
           top px2rem(16)
           width px2rem(1)
           height px2rem(24)
-          background-color #787c7e
+          background-color $color-white
+          opacity 0.3
       .noBoard
         &:after
           display none
@@ -63,12 +64,13 @@
         align-items center
       .addCart
         flex 1
-        background $color-dark
+        background $color-purple
         color $color-white
       .buy
         flex 1
         background $color-bright
-        color $color-dark
+        color $color-tag
+        font-weight bold
       .disabled
         flex 1
         background $color-font-light
