@@ -48,7 +48,7 @@ export default class extends PureComponent {
     })
     return <div styleName='wrap'>
       <section styleName='header'>
-        <div>订单详情</div>
+        <div><strong>订单详情</strong></div>
         <div styleName={statusStyle}>{status}</div>
       </section>
       <section styleName='content'>
