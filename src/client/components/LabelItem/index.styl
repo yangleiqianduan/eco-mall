@@ -12,15 +12,19 @@
     padding-right px2rem(16)
   .right
     flex 1
-    padding-right px2rem(20)
+    // padding-right px2rem(20)
     box()
     flex-direction column
   .img
     width 100%
   .title
-    G-cut-txt()
     color $color-dark
     font-size px2rem(16)
+    font-weight 300
+    box()
+    .long
+      G-cut-p(1)
+      flex 1
   .text
     flex 1
     color $color-font-light
