@@ -12,7 +12,7 @@ import { payOrder } from 'constants/api'
 @CSSModules(styles, { allowMultiple: true })
 export default class extends PureComponent {
   state = {
-    canPay: false,
+    canPay: true,
     time: '00:00'
   }
 
