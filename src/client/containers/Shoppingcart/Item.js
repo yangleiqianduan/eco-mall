@@ -31,6 +31,7 @@ export default class extends PureComponent {
     this.setState({showDelete: false})
   }
   onTouchStart = (e) => {
+    // 已去掉右滑删除功能
     this.setState({touchStartPosition: e.changedTouches[0].clientX})
   }
   onTouchMove = (e) => {
@@ -49,12 +50,12 @@ export default class extends PureComponent {
     const {product_id: id, cart_id: cartId, product_img_url: imgUrl, product_name: name, sale_price: price, quantity, sku_attribute_kv_pairs: sku, isChecked, is_off_shelf: disabled} = data
     return <div styleName='wrap' style={{height: this.state.innerHeight + 'px'}}>
       <div styleName='inner' ref='inner'>
-        <div styleName='pannel' onTouchStart={this.onTouchStart} onTouchMove={this.onTouchMove} style={{width: document.body.getBoundingClientRect().width + 'px'}}>
+        <div styleName='pannel' style={{width: document.body.getBoundingClientRect().width + 'px'}}>
           <div styleName='checkArea' onClick={disabled ? null : onCheck}>{disabled ? <small styleName='offShelf'>失效</small> : <Icon icon={isChecked ? 'checked' : 'unChecked'} width={18} />}</div>
           <div><Link to={`/item?id=${id}`}><img styleName='img' src={imgUrl} /></Link></div>
           <div styleName='titleArea'>
-            <div styleName='title'>{name}</div>
-            <div styleName='light'>{sku.map(it => it.value).join('，')}</div>
+            <Link to={`/item?id=${id}`} styleName='title'>{name}</Link>
+            <Link to={`/item?id=${id}`} styleName='light'>{sku.map(it => it.value).join('，')}</Link>
             <div styleName='priceArea'>￥{price}<NumberInput value={quantity} onChange={(v) => onChangeNumber(cartId, v)} /></div>
           </div>
         </div>
