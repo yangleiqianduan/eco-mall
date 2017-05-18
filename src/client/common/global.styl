@@ -23,7 +23,7 @@ $color-font-light = #9C9FA1
 $color-bright = #FFD819
 $color-spc = #FF5848
 
-$color-border = #E5E5E5
+$color-border = #E5E5E5 + 40%
 $color-tag = #394043
 $color-purple = #333242
 
@@ -56,24 +56,8 @@ border(path=all,width=1px,color=$color-border,style=solid)
     border none
   else if path==all
     border width style color
-    if width==1px
-      border .5px style color
-  else if path==top
-    border-top width style color
-    if width==1px
-      border-top .5px style color
-  else if path==right
-    border-right width style color
-    if width==1px
-      border-right .5px style color
-  else if path==bottom
-    border-bottom width style color
-    if width==1px
-      border-bottom .5px style color
-  else if path==left
-    border-left width style color
-    if width==1px
-      border-left .5px style color
+  else
+    border-{path} width style color
 
 // 按钮
 btn()
