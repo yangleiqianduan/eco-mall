@@ -15,7 +15,7 @@ export default class extends PureComponent {
     show: PropTypes.bool
   }
   state = {
-    result: {}
+    innerShow: false
   }
   handleClick = (e) => {
     this.props.onClickCover(e)
@@ -96,7 +96,10 @@ export default class extends PureComponent {
   componentDidUpdate (prep) {
     const show = this.props.show
     if (prep.show !== show) {
+      // 禁止浏览器滚动
       updateBodyScroll(!show)
+      // 内部动画
+      this.setState({innerShow: this.props.show})
     }
   }
 
@@ -122,13 +125,10 @@ export default class extends PureComponent {
 
     const canBuy = skuMapKey.filter(str => str).length === skuMapKey.length
 
-    return <div styleName='wrap'>
-      {
-      this.props.show
-      ? <div styleName='cover' onClick={this.handleClick.bind(this)} />
-      : null
-      }
-      <div styleName={classNames('infoContainer', {show: show, hide: !show})}>
+    const innerShow = this.state.innerShow
+
+    return <div styleName={classNames('wrap', {showOuter: show})} onClick={this.handleClick.bind(this)}>
+      <div styleName={classNames('infoContainer', {show: innerShow, hide: !innerShow})} onClick={e => e.stopPropagation()}>
         <div styleName='skuContainer'>
           <div styleName='skuImg' onClick={onClickSkuImage}>
             <img src={img} />

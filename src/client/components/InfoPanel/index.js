@@ -13,6 +13,10 @@ export default class extends PureComponent {
     show: PropTypes.bool
   }
 
+  state = {
+    innerShow: false
+  }
+
   getInfoPannelList = (data, type) => {
     let list = []
     if (type === 1) {
@@ -32,6 +36,9 @@ export default class extends PureComponent {
   componentDidUpdate (prep) {
     const show = this.props.show
     if (prep.show !== show) {
+      // 内层动画
+      this.setState({innerShow: this.props.show})
+      // 禁止浏览器滚动
       updateBodyScroll(!show)
     }
   }
@@ -43,13 +50,9 @@ export default class extends PureComponent {
   render () {
     const { show, onClose, title, data, type } = this.props
     const list = this.getInfoPannelList(data, type).filter(l => l.value)
-    return <div styleName='wrap'>
-      {
-      show
-      ? <div styleName='cover' onClick={onClose} />
-      : null
-      }
-      <div styleName={show ? 'infoContainer show' : 'infoContainer hide'}>
+    const innerShow = this.state.innerShow
+    return <div styleName={classNames('wrap', {showOuter: show})} onClick={onClose}>
+      <div styleName={innerShow ? 'infoContainer show' : 'infoContainer hide'} onClick={e => e.stopPropagation()}>
         <div styleName='title'>
           <h2>{title}</h2>
           <div styleName='close' onClick={onClose}><Icon icon='layerClose' width={40} /></div>

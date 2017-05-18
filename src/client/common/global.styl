@@ -167,3 +167,47 @@ footerStyle()
   height px2rem(5)
   border-radius 50%
   margin-left px2rem(3)
+
+
+fadeUp()
+  animation ani-fadeUp .3s ease-out forwards
+
+@-webkit-keyframes ani-fadeUp {
+  0% {
+    transform translate(0, 120%) translate3d(0,0,0)
+  }
+
+  100% {
+    transform translate(0, 0) translate3d(0,0,0)
+  }
+}
+
+@-moz-keyframes ani-fadeUp {
+  0% {
+    transform translate(0, 120%) translate3d(0,0,0)
+  }
+
+  100% {
+    transform translate(0, 0) translate3d(0,0,0)
+  }
+}
+
+@-o-keyframes ani-fadeUp {
+  0% {
+    transform translate(0, 120%) translate3d(0,0,0)
+  }
+
+  100% {
+    transform translate(0, 0) translate3d(0,0,0)
+  }
+}
+
+@keyframes ani-fadeUp {
+  0% {
+    transform translate(0, 120%) translate3d(0,0,0)
+  }
+
+  100% {
+    transform translate(0, 0) translate3d(0,0,0)
+  }
+}

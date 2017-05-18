@@ -5,16 +5,25 @@
   position fixed
   bottom 0
   width 100%
+  height 0
+  background-color rgba(0,0,0,0.7)
+  overflow hidden
   z-index 5
+  .show
+    fadeUp()
+  .hide
+    transform translate(0, 120%)
   .infoContainer
-    box()
-    flex-direction column
     transform opacity 0
     max-height 95%
-    height 60%
     width 100%
     position fixed
+    bottom 0
     left 0
+    box()
+    flex-direction column
+    height 60%
+    width 100%
     padding 0 px2rem(15)
     z-index 101
     background-color $color-white
@@ -66,19 +75,6 @@
     .value
       color $color-dark
       flex 1
-  .show
-    visibility visible
-    opacity 1
-    transform translate(0, -100%)
-  .hide
-    visibility hidden
-    transform translate(0, 0)
-  .cover
-    opacity .7
-    height 100%
-    width 100%
-    position fixed
-    background-color #000
-    top 0
-    left 0
-    z-index 100
+.showOuter
+  visibility visible
+  height 100%

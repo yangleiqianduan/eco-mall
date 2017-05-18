@@ -3,20 +3,30 @@
   removeShape()
   display-flex()
   position fixed
+  background-color rgba(0,0,0,0.7)
   bottom 0
   width 100%
+  height 0
   z-index 5
   font-weight 300
+  overflow hidden
+  // visibility hidden
+  .show
+    fadeUp()
+  .hide
+    transform translate(0, 120%) translate3d(0,0,0)
   .infoContainer
-    transform opacity 0
+    // transform opacity 0
     max-height 95%
     width 100%
+    // height 100%
     position fixed
+    bottom 0
     left 0
     padding .2rem
     z-index 101
     background-color $color-white
-    transition transform .3s ease-out
+    transition transform .3s ease forwards
     .skuContainer
       box()
       height px2rem(60)
@@ -118,21 +128,5 @@
         color $color-dark
       .sure
         background $color-dark + 20%
-  .show
-    visibility visible
-    transform translate(0, -100%)
-  .hide
-    visibility hidden
-    transform translate(0, px2rem(40))
-    .skuImg
-      p
-        opacity 0
-  .cover
-    opacity .7
-    height 100%
-    width 100%
-    position fixed
-    background-color #000
-    top 0
-    left 0
-    z-index 100
+.showOuter
+  height 100%

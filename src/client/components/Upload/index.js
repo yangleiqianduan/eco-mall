@@ -54,7 +54,7 @@ export default class extends PureComponent {
     argName: 'file',
     limit: 9,
     accept: 'image/*',
-    withCredentials: '',
+    withCredentials: 'include',
     list: [],
     View: Preview,
     multi: false,
