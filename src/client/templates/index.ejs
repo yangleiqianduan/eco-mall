@@ -27,7 +27,7 @@
   </script>
 </head>
 <body>
-  <div id="<%= htmlWebpackPlugin.options.appMountId || 'root'%>"></div>
+  <div id="<%= htmlWebpackPlugin.options.appMountId || 'root'%>">页面努力加载中...</div>
   <% if (htmlWebpackPlugin.options.appMountIds && htmlWebpackPlugin.options.appMountIds.length > 0) { %>
     <% for (var index in htmlWebpackPlugin.options.appMountIds) { %>
     <div id="<%= htmlWebpackPlugin.options.appMountIds[index]%>"></div>
