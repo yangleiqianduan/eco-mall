@@ -7,7 +7,7 @@ import classNames from 'classnames/bind'
 import LabelItem from 'components/LabelItem/'
 import { Link } from 'react-router-dom'
 
-import { payOrder } from 'constants/api'
+import { payOrder, host } from 'constants/api'
 
 @CSSModules(styles, { allowMultiple: true })
 export default class extends PureComponent {
@@ -37,7 +37,7 @@ export default class extends PureComponent {
   }
 
   handlePay = (id) => {
-    window.location = `${payOrder}?order_id=${id}`
+    window.location = `${host[window.ENV]}${payOrder}?order_id=${id}`
   }
 
   renderOperationList = (op, i) => {
