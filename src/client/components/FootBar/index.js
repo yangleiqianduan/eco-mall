@@ -19,6 +19,12 @@ export default class extends PureComponent {
             立即购买
           </div>
         </div>
+      case 1:
+        return <div styleName='buyArea'>
+          <div styleName='disabled'>
+            <span>待审核</span>
+          </div>
+        </div>
       case 2:        // 已下架
         return <div styleName='buyArea'>
           <div styleName='disabled'>
@@ -48,7 +54,7 @@ export default class extends PureComponent {
       <div styleName='content'>
         <div styleName='icons'>
           <div styleName='item' onClick={(e) => this.props.confirmTel(e)}>
-            <Icon icon='listener' width={18} stroke='#FFF'/>
+            <Icon icon='listener' width={18} stroke='#FFF' />
           </div>
           <Link styleName={classNames('item', 'cart', {noBoard: status !== 0})} to='/shoppingcart'>
             <Icon icon='cart' width={18} stroke='#FFF' />

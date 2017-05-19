@@ -43,16 +43,20 @@ export const DELETE_ITEM_ACTION = (payload) => ({
 
 // 删除商品
 export const deleteItem = (i, id) => dispatch => {
-  dispatch(alert({
-    text: '确认删除该商品么？',
-    type: 'confirm',
-    onSure: () => {
-      // 不需要顺序进行
-      fetch(api.deleteShoppingcartItem, {method: 'post', formData: true, param: {cart_ids: [id]}})
-      dispatch(DELETE_ITEM_ACTION(i))
-      dispatch(alert({show: false}))
-    }
-  }))
+  if (window.confirm('确认删除该商品么？')) {
+    fetch(api.deleteShoppingcartItem, {method: 'post', formData: true, param: {cart_ids: [id]}})
+    dispatch(DELETE_ITEM_ACTION(i))
+  }
+  // dispatch(alert({
+  //   text: '确认删除该商品么？',
+  //   type: 'confirm',
+  //   onSure: () => {
+  //     // 不需要顺序进行
+  //     fetch(api.deleteShoppingcartItem, {method: 'post', formData: true, param: {cart_ids: [id]}})
+  //     dispatch(DELETE_ITEM_ACTION(i))
+  //     dispatch(alert({show: false}))
+  //   }
+  // }))
 }
 export const clearAlert = () => dispatch => {
   dispatch(alert({show: false}))

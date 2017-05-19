@@ -20,12 +20,13 @@ export const getItemDetail = id => dispatch => {
   dispatch(UPDATE_LOADING_ACTION(true))
   fetch(api.itemDetail, {param: {
     product_id: id
-    // product_id: '118001004_1491020556160_8888'
   }})
   .then(res => {
-    if (!res) return dispatch(UPDATE_LOADING_ACTION(false))
-    dispatch(UPDATE_ITEM_DETAIL_ACTION(res.data || null))
     dispatch(UPDATE_LOADING_ACTION(false))
+    if (!res) return dispatch(showToast('系统繁忙'))
+    if (res.code === '20003') return dispatch(showToast('商品不存在'))
+    if (res.code !== '1') return dispatch(showToast('系统繁忙'))
+    dispatch(UPDATE_ITEM_DETAIL_ACTION(res.data || null))
   })
   .catch(e => {
     console.log('返回数据格式错误')
