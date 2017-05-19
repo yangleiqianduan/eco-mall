@@ -15,7 +15,7 @@ export default class extends PureComponent {
         canBuy
         ? <div styleName='label first' onClick={onShowChoose}>
           <div styleName='long'><span styleName='value'>已选：</span><span styleName='value'>{skuChoose || '请选择规格参数'}</span></div>
-          <div><span styleName='dot' /><span styleName='dot' /><span styleName='dot' /></div>
+          <div styleName='dotWrap'><span styleName='dot' /><span styleName='dot' /><span styleName='dot' /></div>
         </div>
         : null
       }
