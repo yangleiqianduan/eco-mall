@@ -1,12 +1,12 @@
 import React, { PureComponent } from 'react'
 import { connect } from 'react-redux'
-import { alert } from 'actions/'
+// import { alert } from 'actions/'
 
 import CSSModules from 'react-css-modules'
 import styles from './index.styl'
 import { servicePhoneNumber } from 'constants/text'
 import Icon from 'components/Icons/'
-import Button from 'components/Button/'
+// import Button from 'components/Button/'
 import Order from './Order'
 
 import * as actions from 'actions/order'
@@ -18,24 +18,27 @@ import { formatTime } from 'common/utils'
 
 @CSSModules(styles, { allowMultiple: true })
 export class OrderList extends PureComponent {
-  componentDidMount() {
+  componentDidMount () {
     const query = this.props.location.query
     this.props.dispatch(actions.getOrderDetail(query))
   }
   confirmTel = (e) => {
     e.stopPropagation()
-    this.props.dispatch(alert({
-      text: '是否拨打电话：010-58104869',
-      type: 'confirm',
-      sureText: '致电',
-      onSure: () => {
-        this.refs.tel.click();
-        this.props.dispatch(alert({
-          show: false,
-          sureText: '确定'
-        }))
-      }
-    }))
+    if (window.confirm(`是否拨打电话：${servicePhoneNumber}`)) {
+      this.refs.tel.click()
+    }
+    // this.props.dispatch(alert({
+    //   text: '是否拨打电话：010-58104869',
+    //   type: 'confirm',
+    //   sureText: '致电',
+    //   onSure: () => {
+    //     this.refs.tel.click();
+    //     this.props.dispatch(alert({
+    //       show: false,
+    //       sureText: '确定'
+    //     }))
+    //   }
+    // }))
   }
   handlePay = (id) => {
     window.location = `${payOrder}?order_id=${id}`

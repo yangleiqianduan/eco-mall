@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react'
 import { connect } from 'react-redux'
-import { alert } from 'actions/'
+// import { alert } from 'actions/'
 import CSSModules from 'react-css-modules'
 import styles from './index.styl'
 import Slider from 'components/Slider/'
@@ -83,18 +83,21 @@ export class Detail extends PureComponent {
 
   confirmTel = (e) => {
     e.stopPropagation()
-    this.props.dispatch(alert({
-      text: '是否拨打电话：010-58104869',
-      type: 'confirm',
-      sureText: '致电',
-      onSure: () => {
-        this.refs.tel.click()
-        this.props.dispatch(alert({
-          show: false,
-          sureText: '确定'
-        }))
-      }
-    }))
+    if (window.confirm(`是否拨打电话：${servicePhoneNumber}`)) {
+      this.refs.tel.click()
+    }
+    // this.props.dispatch(alert({
+    //   text: '是否拨打电话：010-58104869',
+    //   type: 'confirm',
+    //   sureText: '致电',
+    //   onSure: () => {
+    //     this.refs.tel.click()
+    //     this.props.dispatch(alert({
+    //       show: false,
+    //       sureText: '确定'
+    //     }))
+    //   }
+    // }))
   }
   handleSubmit = (type) => {
     // type: 1加入购物车 2立即购买

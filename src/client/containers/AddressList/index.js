@@ -17,7 +17,7 @@ import {
   UPDATE_CHOOSE_ADDRESS_ACTION
 } from 'actions/addressList'
 
-import { alert } from 'actions/'
+// import { alert } from 'actions/'
 
 @CSSModules(styles, { allowMultiple: true })
 export class AddressList extends PureComponent {
@@ -31,14 +31,17 @@ export class AddressList extends PureComponent {
   }
   hadnleDeleteAddress = (e, id) => {
     e.stopPropagation()
-    this.props.dispatch(alert({
-      text: '确认删除该收货地址？',
-      type: 'confirm',
-      onSure: () => {
-        this.props.dispatch(deleteAddress(id))
-        this.props.dispatch(alert({show: false}))
-      }
-    }))
+    if (window.confirm('确认删除该收货地址？')) {
+      this.props.dispatch(deleteAddress(id))
+    }
+    // this.props.dispatch(alert({
+    //   text: '确认删除该收货地址？',
+    //   type: 'confirm',
+    //   onSure: () => {
+    //     this.props.dispatch(deleteAddress(id))
+    //     this.props.dispatch(alert({show: false}))
+    //   }
+    // }))
   }
   handleSetDefault = (e, id) => {
     e.stopPropagation()
