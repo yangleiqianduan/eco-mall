@@ -73,7 +73,7 @@ export default class extends PureComponent {
     }
     const minutes = this.joinNumber(Math.floor(time / 60000))
     const seconds = this.joinNumber(Math.floor(time % 60000 / 1000))
-    this.setState({canPay: true, time: `${minutes}:${seconds}`}, run(time - 1000))
+    this.setState({canPay: true, time: `${minutes}:${seconds}`})
     run(time)
   }
 
