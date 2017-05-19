@@ -22,7 +22,8 @@ module.exports = function (webpackConfig, redSkull, plugins) {
   webpackConfig.output['chunkFilename'] = 'js/[name].[hash].js'
   webpackConfig.plugins[1].filename = 'css/[name].css'
   webpackConfig.plugins.push(new plugins.CommonsChunkPlugin({
-    name: 'common'
+    name: 'common',
+    filename: 'js/common.min.js'
   }))
 
   webpackConfig.module.loaders.splice(4, 1)
