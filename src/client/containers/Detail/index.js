@@ -17,11 +17,23 @@ import wantPic from 'common/img/want.png'
 
 import { getItemDetail, addToShoppingcart, toBuy, TO_INIT_ACTION } from 'actions/detail'
 import { showToast, getCartCount } from 'actions/index'
-import { createArray } from 'common/utils'
 import { stat } from 'common/stat'
 
 @CSSModules(styles, {allowMultiple: true})
 export class Detail extends PureComponent {
+  createSkuMapKey = (skuList) => {
+    // 生成一个带默认选中值的存储sku key的数组
+    // 默认选中只有在该sku只有一个选项的时候才会选中
+    return skuList.map(sku => {
+      const skuValue = sku.sku_attribute_value_info
+      if (skuValue && skuValue.length === 1) {
+        return skuValue[0].key
+      } else {
+        return ''
+      }
+    })
+  }
+
   state={
     currentOperate: 0,           // 1表示加入购物车， 2表示立即购买
     show: false,
@@ -29,7 +41,7 @@ export class Detail extends PureComponent {
     showFullscreen: false,
     showInfo: false,             // 1展示服务说明 2展示产品参数
     number: 1,
-    skuMapKey: createArray(this.props.data.getIn(['reqData', 'product_attribute_info', 'sku_attribute_info']).size, '')
+    skuMapKey: this.createSkuMapKey(this.props.data.getIn(['reqData', 'product_attribute_info', 'sku_attribute_info']).toJS())
   }
 
   componentDidMount () {
@@ -49,7 +61,7 @@ export class Detail extends PureComponent {
     if (!nextItem.equals(this.props.data.get('reqData'))) {
       this.setState({
         // 创建一个和属性数长度一样的数组，用做sku map，每次选择时更新对应位置的数组元素值
-        skuMapKey: createArray(nextItem.getIn(['product_attribute_info', 'sku_attribute_info']).size, '')
+        skuMapKey: this.createSkuMapKey(nextItem.getIn(['product_attribute_info', 'sku_attribute_info']).toJS())
       })
     }
   }
@@ -183,7 +195,7 @@ export class Detail extends PureComponent {
         }
       </section>
       <section><ItemOverview data={reqData} marketPrice={marketPrice} salePrice={salePrice} onShowService={() => this.handleShowInfo(1)} /></section>
-      <section><ItemChoose skuChoose={skuChoose} params={reqData.product_attribute_info.spu_attribute_info} onShowChoose={status === 0 ? () => this.handleShowBuy(true, 0) : null} onShowParam={() => this.handleShowInfo(2)} /></section>
+      <section><ItemChoose canBuy={status === 0} skuChoose={skuChoose} params={reqData.product_attribute_info.spu_attribute_info} onShowChoose={status === 0 ? () => this.handleShowBuy(true, 0) : null} onShowParam={() => this.handleShowInfo(2)} /></section>
       <section><ItemDeatil data={reqData} /></section>
       <section><TelUs data={{link: '/want', pic: wantPic}} onClick={this.handleClickNeed} /></section>
       <FootBar status={status} onAdd={() => this.handleShowBuy(true, 1)} onBuy={() => this.handleShowBuy(true, 2)} cartCount={cartCount} confirmTel={this.confirmTel} />
@@ -221,6 +233,8 @@ export class Detail extends PureComponent {
 
   renderToastByStatus = (status) => {
     switch (status) {
+      case 1:        // 待审核
+        return <div styleName='toast'><div styleName='inner'>待审核</div></div>
       case 2:        // 已下架
         return <div styleName='toast'><div styleName='inner'>已下架</div></div>
       case 30:       // 已售罄
