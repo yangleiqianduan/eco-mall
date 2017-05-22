@@ -14,9 +14,6 @@ export default class extends PureComponent {
     const { data, onClose, currentImage = 0 } = this.props
     const { current } = this.state
     return <section styleName='showPic' onClick={onClose}>
-      <span styleName='close' onClick={onClose}>
-        <Icon icon={'layerClose'} width={'40'} />
-      </span>
       <div styleName='sliderWrap' onClick={(e) => e.stopPropagation()}>
         <Slider
           data={data}
@@ -24,7 +21,7 @@ export default class extends PureComponent {
       </div>
       {
         data.length > 0
-        ? <div onClick={onClose} styleName='page'><strong>{current + 1}</strong>/{data.length}</div>
+        ? <div styleName='page'><strong>{current + 1}</strong>/{data.length}</div>
         : null
       }
     </section>
