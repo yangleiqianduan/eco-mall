@@ -56,7 +56,7 @@ export default class extends PureComponent {
           <div styleName='titleArea'>
             <Link to={`/item?id=${id}`} styleName='title'>{name}</Link>
             <Link to={`/item?id=${id}`} styleName='light'>{sku.map(it => it.value).join('，')}</Link>
-            <div styleName='priceArea'>￥{price}<NumberInput value={quantity} onChange={(v) => onChangeNumber(cartId, v)} /></div>
+            <div styleName='priceArea'>￥{price}<NumberInput disabled={disabled} value={quantity} onChange={(v) => onChangeNumber(cartId, v)} /></div>
           </div>
         </div>
         <div styleName={deleteStyl} onClick={() => onDelete(cartId)}>

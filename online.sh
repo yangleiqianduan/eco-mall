@@ -24,8 +24,7 @@ else
 fi
 
 echo "install deps"
-# redskull install
-npm install
+redskull install
 
 echo "build source"
 
