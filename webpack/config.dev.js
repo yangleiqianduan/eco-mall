@@ -27,24 +27,24 @@ module.exports = function (webpackConfig, redSkull) {
     include: redSkull.src,
     exclude: path.join(redSkull.src, 'common')
   })
-  webpackConfig.module.loaders.push({
-    test: /\.styl$/,
-    loader: 'style!css?modules!stylus',
-    include: internalModules
-  })
+  // webpackConfig.module.loaders.push({
+  //   test: /\.styl$/,
+  //   loader: 'style!css?modules!stylus',
+  //   include: internalModules
+  // })
 
-  webpackConfig.module.loaders.push({
-    test: /\.css/,
-    loader: 'style!css',
-    include: internalModules,
-    exclude: modules
-  })
-  webpackConfig.module.loaders.push({
-    test: /\.css/,
-    loader: 'style!css',
-    include: modules,
-    exclude: redSkull.src
-  })
+  // webpackConfig.module.loaders.push({
+  //   test: /\.css/,
+  //   loader: 'style!css',
+  //   include: internalModules,
+  //   exclude: modules
+  // })
+  // webpackConfig.module.loaders.push({
+  //   test: /\.css/,
+  //   loader: 'style!css',
+  //   include: modules,
+  //   exclude: redSkull.src
+  // })
   webpackConfig.module.loaders.push({
     test: /\.js/,
     loader: 'babel-loader',

@@ -56,27 +56,27 @@ module.exports = function (webpackConfig, redSkull, plugins) {
     include: internalModules
   })
 
-  webpackConfig.module.loaders.push({
-    test: /\.css/,
-    loader:
-      ExtractTextPlugin.extract({
-        notExtractLoader: 'style',
-        loader: 'css',
-        publicPath: '../'
-      }),
-    include: internalModules,
-    exclude: modules
-  })
-  webpackConfig.module.loaders.push({
-    test: /\.css/,
-    loader: ExtractTextPlugin.extract({
-      notExtractLoader: 'style',
-      loader: 'css',
-      publicPath: '../'
-    }),
-    include: modules,
-    exclude: redSkull.src
-  })
+  // webpackConfig.module.loaders.push({
+  //   test: /\.css/,
+  //   loader:
+  //     ExtractTextPlugin.extract({
+  //       notExtractLoader: 'style',
+  //       loader: 'css',
+  //       publicPath: '../'
+  //     }),
+  //   include: internalModules,
+  //   exclude: modules
+  // })
+  // webpackConfig.module.loaders.push({
+  //   test: /\.css/,
+  //   loader: ExtractTextPlugin.extract({
+  //     notExtractLoader: 'style',
+  //     loader: 'css',
+  //     publicPath: '../'
+  //   }),
+  //   include: modules,
+  //   exclude: redSkull.src
+  // })
   webpackConfig.module.loaders.push({
     test: /\.js/,
     loader: 'babel-loader',
