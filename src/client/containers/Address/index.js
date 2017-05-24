@@ -77,8 +77,8 @@ export class Address extends PureComponent {
         </div>
         <div styleName='info'>
           <div onClick={() => this.openSelect(true)}>
-            {data.provinceId.value && data.cityCode.value
-              ? <span>{data.provinceId.label}&nbsp;{data.cityCode.label}</span>
+            {data.provinceCode.value && data.cityCode.value && data.areaCode.value
+              ? <span>{data.provinceCode.label}&nbsp;{data.cityCode.label}&nbsp;{data.areaCode.label}</span>
               : <span><span styleName='inputLabel'>所在地区</span><span>：</span></span>
             }
             <div styleName='right'><Icon icon='right' /></div>

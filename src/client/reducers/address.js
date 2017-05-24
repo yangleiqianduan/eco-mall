@@ -32,7 +32,7 @@ const initState = {
     errorMsg: '请输入正确的手机号',
     emptyMsg: '联系电话不能为空'
   },
-  provinceId: {
+  provinceCode: {
     value: '',
     label: '省份',
     emptyMsg: '请选择对应省份'
@@ -41,6 +41,11 @@ const initState = {
     value: '',
     label: '城市',
     emptyMsg: '请选择对应城市'
+  },
+  areaCode: {
+    value: '',
+    label: '区县',
+    emptyMsg: '请选择对应区县'
   },
   addressDetail: {
     value: '',
@@ -61,6 +66,10 @@ const initState = {
     }, {
       value: '',
       label: '城市',
+      options: []
+    }, {
+      value: '',
+      label: '区县',
       options: []
     }]
   }

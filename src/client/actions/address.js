@@ -51,8 +51,9 @@ export const initAddress = payload => async dispatch => {
     id: payload.id,
     receiverName: {value: payload.receiverName},
     mobile: {value: payload.phoneNumber},
-    provinceId: {value: payload.provinceCode, label: payload.provinceName},
+    provinceCode: {value: payload.provinceCode, label: payload.provinceName},
     cityCode: {value: payload.cityCode, label: payload.cityName},
+    areaCode: {value: payload.areaCode, label: payload.areaName},
     addressDetail: {value: payload.detailAddress},
     isDefault: {value: payload.isDefault}
   }))
@@ -60,26 +61,39 @@ export const initAddress = payload => async dispatch => {
     value: payload.provinceCode,
     label: payload.provinceName
   }))
-  const result = await getOptions({type: '1', province_id: payload.provinceCode})
-  dispatch(UPDATE_SELECT_ACTION(['areaSelect', 'data', 1], {
-    value: payload.cityCode,
-    label: payload.cityName,
-    options: (result.data || []).map(op => ({label: op.name, value: op.gbCode}))
-  }))
+  getOptions({type: '1', code: payload.provinceCode}).then(result => {
+    dispatch(UPDATE_SELECT_ACTION(['areaSelect', 'data', 1], {
+      value: payload.cityCode,
+      label: payload.cityName,
+      options: (result.data || []).map(op => ({label: op.name, value: op.gbCode}))
+    }))
+  })
+  getOptions({type: '2', code: payload.cityCode}).then(result => {
+    dispatch(UPDATE_SELECT_ACTION(['areaSelect', 'data', 2], {
+      value: payload.areaCode,
+      label: payload.areaName,
+      options: (result.data || []).map(op => ({label: op.name, value: op.gbCode}))
+    }))
+  })
 }
 
 export const updateSelectValue = payload => async dispatch => {
+  // 用户选择地址时触发的操作
   const { current, data, select } = payload
   const isLast = current === (data.length - 1)
   dispatch(UPDATE_SELECT_ACTION(['areaSelect'], {
     current: isLast ? current : (current + 1)             // 如果点击的是最后一个，不用移到下一个选项
   }))
+  // 这个地方触发的action有点多，后续考虑看能不能做成mergeDeepMap那种
   if (current === 0) {                                    // 如果点击第一个，清空第二个的选择
     dispatch(UPDATE_SELECT_ACTION(['areaSelect', 'data', 1], {value: '', label: '城市'}))
+    dispatch(UPDATE_SELECT_ACTION(['areaSelect', 'data', 2], {value: '', label: '区县'}))
+  } else if (current === 1) {
+    dispatch(UPDATE_SELECT_ACTION(['areaSelect', 'data', 2], {value: '', label: '区县'}))
   }
   dispatch(UPDATE_SELECT_ACTION(['areaSelect', 'data', current], select))
   if (!isLast) {
-    const result = await getOptions({type: '1', province_id: select.value})
+    const result = await getOptions({type: current + 1, code: select.value})     // type 为1 加载省对应市列表， 为2 加载市对应区县列表
     dispatch(UPDATE_SELECT_ACTION(['areaSelect', 'data', current + 1], {
       options: (result.data || []).map(op => ({label: op.name, value: op.gbCode}))
     }))
@@ -94,7 +108,7 @@ export const getProvience = data => async dispatch => {
 }
 
 export const selectOnSure = data => dispatch => {
-  dispatch(UPDATE_SELECT_ACTION([], {provinceId: {value: data[0].value, label: data[0].label}, cityCode: {value: data[1].value, label: data[1].label}}))
+  dispatch(UPDATE_SELECT_ACTION([], {provinceCode: {value: data[0].value, label: data[0].label}, cityCode: {value: data[1].value, label: data[1].label}, areaCode: {value: data[2].value, label: data[2].label}}))
   dispatch(UPDATE_SELECT_ACTION(['areaSelect'], {open: false}))
 }
 
@@ -102,8 +116,9 @@ export const submit = (data, cb) => async dispatch => {
   const params = [
     ['receiverName', 'receiver_name'],
     ['mobile', 'mobile'],
-    ['provinceId', 'province_id'],
+    ['provinceCode', 'province_code'],
     ['cityCode', 'city_code'],
+    ['areaCode', 'area_code'],
     ['addressDetail', 'address_detail'],
     ['isDefault', 'is_default']
   ]
