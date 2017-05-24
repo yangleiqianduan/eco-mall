@@ -15,11 +15,11 @@ export class Result extends PureComponent {
   componentDidMount () {
     const query = this.props.location.query
     this.getItems(query)
-    window.addEventListener('scroll', this.checkScrollBottom)
+    this.refs.wrap.addEventListener('scroll', this.checkScrollBottom)
   }
 
   componentWillUnmount () {
-    window.removeEventListener('scroll', this.checkScrollBottom)
+    this.refs.wrap.removeEventListener('scroll', this.checkScrollBottom)
   }
 
   checkScrollBottom = (e) => {
@@ -28,7 +28,7 @@ export class Result extends PureComponent {
     const clientHeight = document.body.clientHeight
     if (parseInt(footerPosition.bottom) <= clientHeight) {
       if (page.currentPage < page.totalPage) {
-        this.getItems(Object.assign({current_page: page.currentPage + 1}, this.props.location.query))
+        this.getItems(Object.assign({currentPage: page.currentPage + 1}, this.props.location.query))
       }
     }
   }
@@ -42,7 +42,8 @@ export class Result extends PureComponent {
   }
 
   getItems = (query) => {
-    this.props.dispatch(getItems(query))
+    const { currentPage, pageSize } = this.props.data.toJS().page
+    this.props.dispatch(getItems(Object.assign({}, {currentPage, pageSize}, query)))
   }
 
   handleClickCategory = (item) => {
@@ -54,7 +55,7 @@ export class Result extends PureComponent {
     const { categoryList } = this.props.shared.toJS()
     const query = this.props.location.query
 
-    return <div styleName='wrap'>
+    return <div styleName='wrap' ref='wrap'>
       <div styleName='left'>
         <div styleName='leftFix'>
           <NavBar vertical
