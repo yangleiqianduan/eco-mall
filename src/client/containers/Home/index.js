@@ -1,5 +1,6 @@
 import React, { PureComponent } from 'react'
 import { connect } from 'react-redux'
+import { Link } from 'react-router-dom'
 
 import NavBar from 'components/NavBar/'
 import HotItems from 'components/HotItems/'
@@ -39,9 +40,23 @@ export class Home extends PureComponent {
     stat('event', 'mall_home', 'click', `类目-${item.categoryName}`)
   }
 
+  handleClick = (e, i, item) => {
+    if (this.props.onClick) {
+      return this.props.onClick(e, i, item)
+    }
+    if ((item.redirect_url || '').indexOf('http') === 0) {
+      e.preventDefault()
+      window.location = item.redirect_url
+    }
+    if (!item.redirect_url) {
+      e.preventDefault()
+    }
+  }
+
   render () {
     const { categoryList, cartCount } = this.props.shared.toJS()
     const { hotItems, banner, wantList } = this.props.data.toJS()
+    console.log(wantList)
     const {
       // currentCollocation,
       currentSubject,
@@ -75,8 +90,14 @@ export class Home extends PureComponent {
       <div styleName='label'>
         <h2 styleName='title'>我想买<span styleName='subTitle'>更多选品方式</span></h2>
       </div>
-      <div styleName='plat subject'>
-        <Slider data={wantList} onClick={this.handleClickNeed} setting={{dots: false, autoplay: false, variableWidth: true, responsive: [{breakpoint: '240%', settings: 'unslick'}]}} slideStyle={{paddingRight: '0.11rem', width: '2.08rem'}} />
+      <div styleName='plat splitOuter'>
+        {
+          wantList.map((item, i) => <div key={i} styleName='buyImage'>
+            <Link onClick={(e) => this.handleClick(e, i, item)} to={item.redirect_url ? item.redirect_url : ''}>
+              <img className='slick-img' src={item.img_url} />
+            </Link>
+          </div>)
+        }
       </div>
       <div styleName='label'>
         <h2 styleName='title'>为你推荐</h2>
