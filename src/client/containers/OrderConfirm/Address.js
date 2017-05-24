@@ -15,7 +15,7 @@ export default CSSModules(({ data }) => <div styleName='address'>
       ? <Link to='/addressList?choose=1'>
         <div>{data.receiverName} {data.phoneNumber}</div>
         <div styleName='detail'>
-          <div styleName='addressDetail'>{data.provinceName} {data.cityName} {data.detailAddress}</div>
+          <div styleName='addressDetail'>{data.provinceName} {data.cityName} {data.areaName} {data.detailAddress}</div>
           <div styleName='next'><Icon icon='right' /></div>
         </div>
       </Link>

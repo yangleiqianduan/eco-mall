@@ -38,6 +38,7 @@ export class OrderConfirm extends PureComponent {
       addressChoose             // 选择的收货地址, 为地址列表的index，-1表示未选择
     } = this.props.data.toJS()
     const addressList = this.props.addressList.toJS().list      // 收货地址列表
+    console.log(data, 'sss')
     const { itemsList, totalAmount } = data
     const currentAddress = this.getCurrentAddress(addressList, addressChoose)
     return <div styleName='wrap'>

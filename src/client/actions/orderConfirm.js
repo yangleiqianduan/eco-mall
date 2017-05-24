@@ -13,7 +13,7 @@ export const getConfirmList = data => async dispatch => {
   if (!result) return false
   if (result.code === '1') {
     dispatch(UPDATE_CONFIRM_LIST_ACTION(result.data.buyOrderList))
-    dispatch(UPDATE_CONFIRM_AMOUNT_ACTION(result.data.totalAmountInfo.totalAmount))
+    dispatch(UPDATE_CONFIRM_AMOUNT_ACTION((result.data.totalAmountInfo || {}).totalAmount))
     dispatch(UPDATE_TOKEN_ACTION(result.data.token))
     dispatch(UPDATE_SOURCE_ACTION(data.source))
   } else {
