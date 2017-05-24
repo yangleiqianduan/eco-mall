@@ -1,6 +1,8 @@
 import pathToRegexp from 'path-to-regexp'
 import { stat } from './stat'
 
+export const isAndroid = !!~navigator.userAgent.indexOf('Android')
+
 // 创建一个数组，params: 数组长度{number}；规则{function{i}}
 export const createArray = (length, rule = 1) => {
   let newArray = []

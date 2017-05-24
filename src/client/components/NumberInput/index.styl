@@ -3,18 +3,24 @@
 .wrap
   box()
   width px2rem(90)
-  height px2rem(34)
+  height px2rem(33)
   .number, .btn
     box()
     align-items center
     justify-content center
     height 100%
-  .number
+    text-align center
+  .aNumber, .aBtn
+    vertical-align middle
+    line-height px2rem(33)
+    height px2rem(33)
+    text-align center
+  .number, .aNumber
     flex 1
     border(top)
     border(bottom)
     border-color($color-tag)
-  .btn
+  .btn, .aBtn
     width px2rem(30)
     border(all)
     border-color($color-tag)
