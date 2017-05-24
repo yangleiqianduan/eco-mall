@@ -32,6 +32,15 @@ export default class extends PureComponent {
       return inv[Object.keys(inv)[0]] || 0
     }
   }
+
+  handleSubmit = (type) => {
+    const { skuMapKey, onSubmit } = this.props
+    const canBuy = skuMapKey.filter(str => str).length === skuMapKey.length
+    if (!canBuy) {
+      return this.props.showToast('请选择商品规格')
+    }
+    onSubmit(type)
+  }
   handleChangeNumber = (v) => {
     const {
       showToast,
@@ -123,8 +132,6 @@ export default class extends PureComponent {
     } = this.props
     const data = this.transformData(this.props.data, skuMapKey)
 
-    const canBuy = skuMapKey.filter(str => str).length === skuMapKey.length
-
     const innerShow = this.state.innerShow
 
     return <div styleName={classNames('wrap', {showOuter: show})} onClick={this.handleClick.bind(this)}>
@@ -167,14 +174,14 @@ export default class extends PureComponent {
         </div>
         {
           currentOperate
-          ? <div styleName={classNames('btnArea', {disabled: !canBuy})}>
-            <div styleName='container sure' onClick={canBuy ? () => onSubmit(currentOperate) : null}>
+          ? <div styleName='btnArea'>
+            <div styleName='container sure' onClick={() => this.handleSubmit(currentOperate)}>
               确定
             </div>
           </div>
-          : <div styleName={classNames('btnArea', {disabled: !canBuy})}>
-            <div styleName='add container' onClick={canBuy ? () => onSubmit(1) : null}>加入购物车</div>
-            <div styleName='buy container' onClick={canBuy ? () => onSubmit(2) : null}>立即购买</div>
+          : <div styleName='btnArea'>
+            <div styleName='add container' onClick={() => this.handleSubmit(1)}>加入购物车</div>
+            <div styleName='buy container' onClick={() => this.handleSubmit(2)}>立即购买</div>
           </div>
         }
       </div>
