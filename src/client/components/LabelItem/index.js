@@ -8,6 +8,9 @@ export default CSSModules(({ data = {}, noBorder, onClick }) => <div
   <div styleName='left'><img styleName='img' src={data.url} /></div>
   <div styleName='right'>
     <div styleName='title'><div styleName='long'>{data.title}</div><div><span styleName='x'>x</span>{data.quantity}</div></div>
-    <div styleName='text'>{data.saleAttributes.map(v => v.value).join('，')}<div styleName='price'>￥{data.realPrice}</div></div>
+    <div styleName='text'>
+      <div styleName='long'>{data.saleAttributes.map(v => v.value).join('，')}</div>
+      <div styleName='price'>￥{data.realPrice}</div>
+    </div>
   </div>
 </div>, styles, {allowMultiple: true})
