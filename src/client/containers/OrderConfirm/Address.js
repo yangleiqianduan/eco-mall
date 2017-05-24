@@ -22,7 +22,7 @@ export default CSSModules(({ data }) => <div styleName='address'>
       : <Link to='/address'>
         <div styleName='detail'>
           <div styleName='addressDetail'>暂无收货地址，点击添加</div>
-          <div styleName='next'><Icon icon='right' /></div>
+          <div styleName='next oneLine'><Icon icon='right' /></div>
         </div>
       </Link>
     }
