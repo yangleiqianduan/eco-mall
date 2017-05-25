@@ -83,7 +83,6 @@ export default class extends PureComponent {
     let uploadFile = base64 ? this.base64Upload : this.normalUpload
 
     if (multi) {
-      console.log(files)
       let promiseList = []
       for (let i = 0; i < files.length; i++) {
         promiseList.push(uploadFile(files[i]))
@@ -95,14 +94,16 @@ export default class extends PureComponent {
 
   normalUpload = (file) => {
     const {url, argName, withCredentials, onSuccess} = this.props
-    let formData = new window.FormData()
-    formData.append(argName, file.substr(0, 1000))
-    console.log('before upload', file.substr(0, 1000))
+    // let formData = new window.FormData()
+    // formData.append(argName, file)
+    // 部分机型(iphone7)formdata参数有长度限制，大概在3000000左右
+    const params = {}
+    params[argName] = file
     return fetch(url, {
       method: 'post',
       credentials: withCredentials,
       // headers: headers,
-      body: formData
+      body: JSON.stringify(params)
     })
     .then(res => res.json())
     .then(data => {

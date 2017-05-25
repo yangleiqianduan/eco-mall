@@ -13,6 +13,7 @@ import { getList } from 'actions/voteList'
 export class Vote extends PureComponent {
   componentDidMount () {
     this.props.dispatch(getList())
+    console.log(this.refs)
   }
   render () {
     const { list } = this.props.data.toJS()
@@ -20,12 +21,14 @@ export class Vote extends PureComponent {
       <ul>
         {
           list.map((item, i) => <li key={i} styleName='item'>
-            <img src={item.coverImage} styleName='img' />
-            <Link styleName='content' to={`/vote?vote_id=${item.voteId}`}>
-              <h2><Icon icon='quotes2' width={20} />{item.title}</h2>
-              <hr />
-              <h4>{item.description}</h4>
-            </Link>
+            <div styleName='inner' ref={`inner${i}`}>
+              <div styleName='img' style={{background: `url(${item.coverImage})`}} />
+              <Link styleName='content' to={`/vote?vote_id=${item.voteId}`}>
+                <h2><Icon icon='quotes2' width={20} />{item.title}</h2>
+                <hr />
+                <h4>{item.description}</h4>
+              </Link>
+            </div>
           </li>)
         }
       </ul>
