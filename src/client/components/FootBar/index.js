@@ -54,10 +54,10 @@ export default class extends PureComponent {
       <div styleName='content'>
         <div styleName='icons'>
           <div styleName='item' onClick={(e) => this.props.confirmTel(e)}>
-            <Icon icon='listener' width={18} stroke='#FFF' />
+            <Icon icon='listener' width={18} stroke='#394043' />
           </div>
           <Link styleName={classNames('item', 'cart', {noBoard: status !== 0})} to='/shoppingcart'>
-            <Icon icon='cart' width={18} stroke='#FFF' />
+            <Icon icon='cart' width={18} stroke='#394043' />
             {
               cartCount > 0
               ? <em><span>{cartCount}</span></em>

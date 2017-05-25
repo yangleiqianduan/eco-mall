@@ -62,7 +62,7 @@ export class AddressList extends PureComponent {
           <section styleName='content'>{a.provinceName} {a.cityName} {a.areaName} {a.detailAddress}</section>
           <hr styleName='split' />
           <section styleName='footer'>
-            <div styleName='setDefaultArea'><span onClick={(e) => this.handleSetDefault(e, a.id)}><Icon icon={classNames({checked: a.isDefault, unChecked: !a.isDefault})} width={18} />&nbsp;{a.isDefault ? '默认地址' : '设为默认地址'}</span></div>
+            <div styleName='setDefaultArea'><span onClick={(e) => this.handleSetDefault(e, a.id)} styleName='icon'><Icon icon={classNames({checked: a.isDefault, unChecked: !a.isDefault})} width={18} /></span>&nbsp;{a.isDefault ? '默认地址' : '设为默认地址'}</div>
             <div>
               <a styleName='edit' onClick={(e) => this.handleEditAddress(e, a)}>编辑</a>
               <a styleName='delete' onClick={(e) => this.hadnleDeleteAddress(e, a.id)}>删除</a>

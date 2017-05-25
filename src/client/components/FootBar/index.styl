@@ -4,18 +4,18 @@
   footerStyle()
   .content
     flex 1
-    box-shadow 0 px2rem(2) px2rem(4) 0 rgba(0,0,0,0.2)
     box()
     // width px2rem(355)
     height px2rem(55)
-    color $color-white
+    color $color-dark
     overflow hidden
+    box-shadow(0 px2rem(-2) px2rem(4) rgba(0,0,0,0.075))
     > div
       box()
       align-items center
       justify-content center
     .icons
-      background $color-purple
+      background $color-white
       box()
       .item
         min-width px2rem(50)
@@ -29,7 +29,7 @@
           top px2rem(16)
           width px2rem(1)
           height px2rem(24)
-          background-color $color-white
+          background-color #979797
           opacity 0.3
       .noBoard
         &:after
@@ -64,9 +64,9 @@
         align-items center
       .addCart
         flex 1
-        background $color-purple
-        color $color-white
+        color $color-dark
         font-weight bold
+        background $color-white
       .buy
         flex 1
         background $color-bright
@@ -74,7 +74,7 @@
         font-weight bold
       .disabled
         flex 1
-        background $color-bright
-        color $color-dark
+        background $color-font-light
+        color $color-white + 60%
         span
           opacity 0.5
