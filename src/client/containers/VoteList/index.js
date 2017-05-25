@@ -20,12 +20,14 @@ export class Vote extends PureComponent {
       <ul>
         {
           list.map((item, i) => <li key={i} styleName='item'>
-            <img src={item.coverImage} styleName='img' />
-            <Link styleName='content' to={`/vote?vote_id=${item.voteId}`}>
-              <h2><Icon icon='quotes2' width={20} />{item.title}</h2>
-              <hr />
-              <h4>{item.description}</h4>
-            </Link>
+            <div styleName='inner'>
+              <img src={item.coverImage} styleName='img' />
+              <Link styleName='content' to={`/vote?vote_id=${item.voteId}`}>
+                <h2><Icon icon='quotes2' width={20} />{item.title}</h2>
+                <hr />
+                <h4>{item.description}</h4>
+              </Link>
+            </div>
           </li>)
         }
       </ul>
