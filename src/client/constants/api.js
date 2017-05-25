@@ -15,6 +15,9 @@ export const getItems = '/m/product/search'                          // 获取�
 export const upload = '/m/file/image/upload'                           // 图片上传
 export const submitRequire = '/m/product/want/commit'                     // 提交想要买什么
 
+// 上传
+export const uploadBase64 = '/m/file/image/upload/base64'                 // base64图片上传
+
 // 购物车
 export const getCartCount = '/m/user/cart/count'                          // 获取购物车总数量
 export const addToCart = '/m/user/cart/add'                               // 添加商品到购物车
@@ -61,10 +64,8 @@ export const voteResult = '/m/vote/stats_vote_result'                     // 投
 export const voteSave = '/m/vote/save'                                    // 投票提交
 
 export const host = {
-  // dev: 'http://10.33.69.91:8050',
-  // dev: 'http://10.33.69.182:8050',
-  // dev: 'http://lmall.lianjia.com:8070',
-  dev: 'http://mall.lj-web-30.lianjia.com',
+  // dev: 'http://mall.lj-web-30.lianjia.com',                               // 开发请求测试环境
+  dev: 'http://mall.lj-web-30.lianjia.com:8050',                          // 联调绑host使用
   // dev: 'http://10.33.66.18:8050',
   offline: '',
   preview: '',
