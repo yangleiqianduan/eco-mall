@@ -3,7 +3,6 @@ import CSSModules from 'react-css-modules'
 
 import styles from './FullScreen.styl'
 import Slider from './index.js'
-import Icon from 'components/Icons/'
 
 @CSSModules(styles, {allowMultiple: true})
 export default class extends PureComponent {
@@ -14,6 +13,11 @@ export default class extends PureComponent {
     const { data, onClose, currentImage = 0 } = this.props
     const { current } = this.state
     return <section styleName='showPic' onClick={onClose}>
+      {
+        data.length > 0
+        ? <div styleName='page' />
+        : null
+      }
       <div styleName='sliderWrap' onClick={(e) => e.stopPropagation()}>
         <Slider
           data={data}
