@@ -3,6 +3,7 @@ import CSSModules from 'react-css-modules'
 
 import Preview from './Preview'
 import styles from './index.styl'
+import MegaPixImage from './megapix'
 
 const basicStyle = {
   width: '120px',
@@ -51,6 +52,7 @@ export default class extends PureComponent {
   }
 
   static defaultProps = {
+    url: '',
     argName: 'file',
     limit: 9,
     accept: 'image/*',
@@ -63,7 +65,7 @@ export default class extends PureComponent {
   componentDidMount () {
   }
   upload = (e) => {
-    const { url, argName, onBeforeUpload, onSuccess, multi, withCredentials, headers, handleUpload } = this.props
+    const { onBeforeUpload, multi, handleUpload, base64 } = this.props
     this.setState({status: 1})
     const files = e.target.files
     if (handleUpload) {
@@ -77,22 +79,49 @@ export default class extends PureComponent {
         onBeforeUpload(multi ? files : Object.assign({}, files[0], {preview: path}))
       }
     }
+
+    let uploadFile = base64 ? this.base64Upload : this.normalUpload
+
+    if (multi) {
+      console.log(files)
+      let promiseList = []
+      for (let i = 0; i < files.length; i++) {
+        promiseList.push(uploadFile(files[i]))
+      }
+      return Promise.all(promiseList)
+    }
+    return uploadFile(files[0])
+  }
+
+  normalUpload = (file) => {
+    const {url, argName, withCredentials, onSuccess} = this.props
     let formData = new window.FormData()
-    formData.append(argName, multi ? e.target.files : files[0])
-    fetch(url, {
+    formData.append(argName, file.substr(0, 1000))
+    console.log('before upload', file.substr(0, 1000))
+    return fetch(url, {
       method: 'post',
       credentials: withCredentials,
-      headers: headers,
+      // headers: headers,
       body: formData
-    }).then(res => res.json())
-      .then(data => {
-        this.setState({status: 2})
-        if (onSuccess) {
-          onSuccess(data)
-        }
+    })
+    .then(res => res.json())
+    .then(data => {
+      this.setState({status: 2})
+      if (onSuccess) {
+        onSuccess(data)
       }
-    )
+    })
   }
+
+  base64Upload = (file) => new Promise((resolve, reject) => {
+    let mpImg = new MegaPixImage(file)
+    const imgRes = this.refs.base64Canvas
+    mpImg.render(imgRes, {maxWidth: 2000, maxHeight: 2000, quality: 1}, () => {
+      this.normalUpload(imgRes.toDataURL())
+      .then(data => resolve(data))
+      .catch(reject)
+    })
+  })
 
   handleDeleteImg = (e, i, img) => {
     e.stopPropagation()
@@ -129,6 +158,7 @@ export default class extends PureComponent {
             </a>
           </div>
           : null}
+        <canvas ref='base64Canvas' style={{display: 'none'}} />
       </div>
     )
   }

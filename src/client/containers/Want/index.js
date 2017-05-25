@@ -5,7 +5,7 @@ import { showToast } from 'actions/index'
 import Upload from 'components/Upload/'
 import Button from 'components/Button/'
 
-import { upload, host } from 'constants/api'
+import { uploadBase64, host } from 'constants/api'
 
 import CSSModules from 'react-css-modules'
 import styles from './index.styl'
@@ -20,7 +20,7 @@ export class Want extends PureComponent {
       this.props.dispatch(showToast(data.msg || '图片上传失败！'))
     }
     this.props.dispatch(ADD_IMAGE_ACTION({
-      src: data.data[0]
+      src: data.data
     }))
   }
   handleDelete = (e, i) => this.props.dispatch(DEL_IMAGE_ACTION(i))
@@ -47,7 +47,7 @@ export class Want extends PureComponent {
         <div>
           上传商品截图
           <div styleName='uploadOuter'>
-            <Upload list={imgList.map(item => ({src: item.src}))} onSuccess={this.handleUploaded} onDelete={this.handleDelete} limit={9} url={host[window.ENV] + upload} size={{width: '0.7rem', height: '0.7rem'}} />
+            <Upload base64 multi url={host[window.ENV] + uploadBase64} list={imgList.map(item => ({src: item.src}))} onSuccess={this.handleUploaded} onDelete={this.handleDelete} limit={9} size={{width: '0.7rem', height: '0.7rem'}} />
           </div>
         </div>
         <div styleName='footer'>
