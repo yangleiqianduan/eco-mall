@@ -118,7 +118,7 @@ export default class extends PureComponent {
     let mpImg = new MegaPixImage(file)
     const imgRes = this.refs.base64Canvas
     mpImg.render(imgRes, {maxWidth: 2000, maxHeight: 2000, quality: 1}, () => {
-      this.normalUpload(imgRes.toDataURL())
+      this.normalUpload(imgRes.toDataURL(file.type))
       .then(data => resolve(data))
       .catch(reject)
     })
