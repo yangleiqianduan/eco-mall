@@ -3,6 +3,7 @@
 .wrap
   font-weight 300
   @extend .G-card
+  padding-bottom px2rem(20)
   header
     box()
     margin-bottom px2rem(10)
@@ -27,9 +28,9 @@
   .right
     flex()
     text-align right
-    padding-top px2rem(4)
+    font-weight 400
+    // padding-top px2rem(4)
     .salePrice
-      font-weight normal
       color $color-spc
       font-size $font-size18
       margin-bottom px2rem(5)
@@ -47,7 +48,9 @@
     display inline-block
     height px2rem(20)
     line-height px2rem(18)
-    border(all,1px,$color-tag)
+    height px2rem(18)
+    // border(all,1px,$color-tag-light)
+    background-color $color-tag + 90%
     padding 0 px2rem(5)
     margin-right px2rem(10)
     font-size $font-size12
@@ -79,7 +82,7 @@
       box()
       align-items center
     .itemTag
-      font-size $font-size14
+      font-size px2rem(15)
       display inline-block
       position relative
       text-indent 1em
