@@ -7,7 +7,7 @@ import Slider from './index.js'
 @CSSModules(styles, {allowMultiple: true})
 export default class extends PureComponent {
   state = {
-    current: this.props.currentImage
+    current: this.props.currentImage || 0
   }
   render () {
     const { data, onClose, currentImage = 0 } = this.props
