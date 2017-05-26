@@ -13,7 +13,6 @@ import { getList } from 'actions/voteList'
 export class Vote extends PureComponent {
   componentDidMount () {
     this.props.dispatch(getList())
-    console.log(this.refs)
   }
   render () {
     const { list } = this.props.data.toJS()

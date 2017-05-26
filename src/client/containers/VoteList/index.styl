@@ -34,13 +34,17 @@
       border(none)
       border(bottom, px2rem(2), $color-white)
     h2
+      position relative
       font-size $font-size22
       color $color-white
       >span
-        position relative
+        position absolute
         top px2rem(-18)
-        right px2rem(3)
+        left px2rem(-20)
     h4
       font-size $font-size14
       color $color-white
       font-weight 300
+      max-width 100%
+      G-cut-txt()
+      padding 0 px2rem(20)

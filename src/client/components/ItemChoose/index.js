@@ -20,7 +20,7 @@ export default class extends PureComponent {
         : null
       }
       <div styleName={classNames('label', 'second', {noTop: !canBuy})} onClick={onShowParam}>
-        <div styleName='long'><span styleName='value'>产品参数：</span><span styleName='value'>{params.map(item => item.spu_attribute_key_name + ' ' + item.spu_attribute_value_info.map(item => item.value).join(','))[0]}...</span></div>
+        <div styleName='long'><span styleName='value'>产品参数：</span><span styleName='value'>{params.map(item => item.spu_attribute_key_name + ' ' + item.spu_attribute_value_info.map(item => item.value).join(','))[0]}</span></div>
         <div styleName='dotWrap'><span styleName='dot' /><span styleName='dot' /><span styleName='dot' /></div>
       </div>
     </section>
