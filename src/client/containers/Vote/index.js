@@ -23,6 +23,8 @@ export class Vote extends PureComponent {
     }
   }
   componentDidMount () {
+    // 每次进入 定位在页面顶部
+    window.scrollTo(0, 0)
     const query = this.props.location.query.vote_id
     this.setState({
       vote_id: query
