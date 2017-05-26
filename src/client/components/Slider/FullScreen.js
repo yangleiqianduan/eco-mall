@@ -18,8 +18,9 @@ export default class extends PureComponent {
         ? <div styleName='page' />
         : null
       }
-      <div styleName='sliderWrap' onClick={(e) => e.stopPropagation()}>
+      <div styleName='sliderWrap'>
         <Slider
+          onClick={e => { e.preventDefault(); onClose() }}
           data={data}
           setting={{initialSlide: currentImage, dots: false, autoplay: false, afterChange: (e) => this.setState({current: e})}} />
       </div>
