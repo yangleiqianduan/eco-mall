@@ -18,6 +18,7 @@ export default class extends PureComponent {
   state = {
     index: 0,
     type: '',
+    list: this.props.list,
     status: 0 // 0: 未上传 1: 上传中 2: 上传成功 -1: 上传失败
   }
 
@@ -92,7 +93,7 @@ export default class extends PureComponent {
     return uploadFile(files[0])
   }
 
-  normalUpload = (file) => {
+  normalUpload = (file, current = this.state.index) => {
     const {url, argName, withCredentials, onSuccess} = this.props
     // let formData = new window.FormData()
     // formData.append(argName, file)
@@ -107,7 +108,16 @@ export default class extends PureComponent {
     })
     .then(res => res.json())
     .then(data => {
-      this.setState({status: 2})
+      // 上传完成，改变图片状态，将上传中字样去掉
+      const list = this.state.list.slice()
+      list[current].status = 2
+      this.setState({list})
+
+      if (data.code !== '1' || !data.data.length) {
+        list[current].status = -1
+        return this.setState({})
+      }
+
       if (onSuccess) {
         onSuccess(data)
       }
@@ -118,7 +128,15 @@ export default class extends PureComponent {
     let mpImg = new MegaPixImage(file)
     const imgRes = this.refs.base64Canvas
     mpImg.render(imgRes, {maxWidth: 2000, maxHeight: 2000, quality: 1}, () => {
-      this.normalUpload(imgRes.toDataURL(file.type))
+      // 上传之前预览图片并展示给用户，并将图片状态置为上传中
+      const img = imgRes.toDataURL(file.type)
+      const oldList = this.state.list
+      const current = oldList.length
+      const list = oldList.concat({src: img, status: 1})
+      this.setState({list})
+
+      // 开始上传
+      this.normalUpload(img, current)
       .then(data => resolve(data))
       .catch(reject)
     })
@@ -126,11 +144,18 @@ export default class extends PureComponent {
 
   handleDeleteImg = (e, i, img) => {
     e.stopPropagation()
+    const list = this.state.list.slice()
+    list.splice(i, 1)
+    this.setState({list})
+    if (img.status === -1) {
+      // 由于上传失败的图片没有触发onSuccess函数，所以不必交由外部处理delete函数
+      return false
+    }
     this.props.onDelete(e, i, img)
   }
   render () {
-    const { accept, size, View, list, multi, loadingIcon, onPreviewClick } = this.props
-    const { type, status } = this.state
+    const { accept, size, View, multi, loadingIcon, onPreviewClick } = this.props
+    const { type, status, list } = this.state
     return (
       <div styleName='imgContainer'>
         {
