@@ -12,11 +12,24 @@ export const createArray = (length, rule = 1) => {
   return newArray
 }
 
-// 格式化时间，目前只能YYYY-MM-DD HH:mm:ss
-export const formatTime = (time) => {
+// 格式化时间，默认格式YYYY-MM-DD HH:mm:ss
+export const formatTime = (time, formater = 'YYYY-MM-DD HH:mm:ss') => {
   if (typeof time !== 'number') return '-'
   const Time = new Date(time)
-  return `${Time.getFullYear()}-${Time.getMonth() + 1}-${joinNumber(Time.getDate())} ${joinNumber(Time.getHours())}:${joinNumber(Time.getMinutes())}:${joinNumber(Time.getSeconds())}`
+
+  const year = Time.getFullYear()
+  const month = joinNumber(Time.getMonth() + 1)
+  const day = joinNumber(Time.getDate())
+  const hour = joinNumber(Time.getHours())
+  const minute = joinNumber(Time.getMinutes())
+  const second = joinNumber(Time.getSeconds())
+
+  return formater.replace(/YYYY|yyyy/, year)
+    .replace('MM', month)
+    .replace(/DD|dd/, day)
+    .replace(/hh|HH/, hour)
+    .replace('mm', minute)
+    .replace('ss', second)
 }
 
 export const joinNumber = (numb) => numb < 10 ? '0' + numb : numb
