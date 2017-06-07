@@ -4,7 +4,7 @@ import styles from './index.styl'
 import classNames from 'classnames/bind'
 
 import { Link } from 'react-router-dom'
-import Slider from 'react-slick'
+import Slider from 'react-slick-cong'
 import 'slick-carousel/slick/slick.css'
 import './slider.css'
 
