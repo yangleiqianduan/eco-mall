@@ -13,6 +13,9 @@
     flex 1
     padding px2rem(10) 0
     font-size $font-size24
+    .unObvious
+      font-weight 300
+      padding-top px2rem(5)
   .img
     width px2rem(67)
     height px2rem(67)
@@ -27,16 +30,18 @@
       padding-left 0
       box()
       align-items center
-      .obvious
-        color $color-dark
-        font-size $font-size16
-        flex 1
-      .unObvious
-        font-size $font-size12
-        color $color-font-light
     .last
       border-bottom none
+  .obvious
+    color $color-dark
+    font-size $font-size16
+    flex 1
+  .unObvious
+    font-size $font-size12
+    color $color-font-light
   .nav
     padding 0
     ul
       border-bottom none
+      a
+        font-size $font-size12

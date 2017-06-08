@@ -30,7 +30,10 @@ export class Mine extends PureComponent {
     return <div styleName='wrap'>
       <div styleName='board'>
         <div styleName='header'>
-          <div styleName='name'>{userInfo.displayName}</div>
+          <div styleName='name'>
+            <div>{userInfo.displayName}</div>
+            <div styleName='unObvious'>并不能编辑</div>
+          </div>
           <div><img styleName='img' src={userInfo.avatar === 'https://image1.ljcdn.com' ? defaultAvatar : userInfo.avatar} /></div>
         </div>
         <div styleName='pannel'>
