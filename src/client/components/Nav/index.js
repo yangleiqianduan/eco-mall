@@ -7,7 +7,7 @@ import Icon from 'components/Icons/'
 
 export default CSSModules(({ cartCount }) => <div styleName='wrap'>
   <div>
-    <Link to='/orderList'><Icon icon='personal' width={15} stroke={'#FFF'} /></Link>
+    <Link to='/mine'><Icon icon='personal' width={15} stroke={'#FFF'} /></Link>
   </div>
   <hr />
   <div>

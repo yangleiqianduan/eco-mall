@@ -100,6 +100,12 @@ const routes = ~onlyVoteHost.indexOf(window.location.hostname)
       title: '购物车'
     },
     {
+      path: '/mine',
+      exact: true,
+      chunk: () => System.import('containers/Mine/'),
+      title: '个人中心'
+    },
+    {
       path: '/addressList',
       exact: true,
       // component: AddressList,

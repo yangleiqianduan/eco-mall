@@ -1,5 +1,5 @@
 // 用户信息
-// export const userInfo = '/m/user/buyer/get_info'
+export const userInfo = '/m/user/info'
 export const login = '/m/login'
 
 // 首页
@@ -43,6 +43,7 @@ export const editAddress = '/m/user/deliver_address//modify'              // 编
 export const setDefault = '/m/user/deliver_address/set_default'           // 设为默认地址
 
 // 订单列表
+export const getOrderCount = '/m/order/status_count_list'                 // 获取订单条数
 export const payOrder = '/m/order/pay/redirect'                           // 付款
 export const getOrderList = '/m/order/get'                                // 获取订单列表
 export const cancelOrder = '/m/order/cancel'                              // 取消订单

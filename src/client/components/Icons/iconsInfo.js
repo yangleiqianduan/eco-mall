@@ -94,5 +94,9 @@ export const iconsInfo = {
   mattess: {
     width: 35,
     height: 26
+  },
+  rightArrow: {
+    width: 13,
+    height: 13
   }
 }
