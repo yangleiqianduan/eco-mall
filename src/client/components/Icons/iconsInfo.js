@@ -47,6 +47,14 @@ export const iconsInfo = {
     width: 17,
     height: 17
   },
+  rectChecked: {
+    width: 16,
+    height: 16
+  },
+  rectUnChecked: {
+    width: 16,
+    height: 16
+  },
   quotes: {
     width: 24,
     height: 24
