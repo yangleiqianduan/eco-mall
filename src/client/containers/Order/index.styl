@@ -36,6 +36,8 @@
     .telIcon
       position relative
       top px2rem(-1)
+  .bottomBtnGroup
+    height px2rem(135)
   .service
     padding 0 px2rem(15) px2rem(15)
     // position fixed 
@@ -43,23 +45,27 @@
     width 100%
   .readyPay
     // padding px2rem(15)
+    background-color $color-white
     position fixed 
     bottom 0
     width 100%
+    height px2rem(55)
     box-shadow(0 px2rem(-2) px2rem(4) rgba(0,0,0,0.075))
-    .totalAmount
-      width 65%
-      color $color-dark
-      padding-left px2rem(15)
-    .goPay
-      background-color $color-bright
-      width 35%
+    
+    .btnGroup
+      box()
+      align-items center
+      justify-content flex-end
+      height px2rem(55)
+      padding 0 px2rem(10)
+    .btnArea
+      margin-right px2rem(10)
+      height px2rem(40)
+      line-height px2rem(40)
+      width px2rem(100)
       text-align center
-    .common
-      display inline-block
-      height 55px
-      line-height 55px
+      border(all, px2rem(1), #979797+50%)
       font-size px2rem(16)
-      font-weight bold
+      border-radius px2rem(3)
 
       

@@ -22,3 +22,18 @@ export const getOrderDetail = param => async dispatch => {
     dispatch(showToast(result.msg || '获取订单详情失败'))
   }
 }
+
+export const cancelOrder = (id, str) => async dispatch => {
+  dispatch(UPDATE_LOADING_ACTION(true))
+  let url = ''
+  str === 'afterPay' ? url = api.cancelOrderAfterPay : url = api.cancelOrder
+  debugger
+  const result = await fetch(url, {param: {order_id: id}})
+  if (result.code === '1') {
+    dispatch(UPDATE_LOADING_ACTION(false))
+    dispatch(getOrderDetail({param: {order_id: id}}))
+  } else {
+    dispatch(UPDATE_LOADING_ACTION(false))
+    dispatch(showToast(result.msg || '取消失败'))
+  }
+}

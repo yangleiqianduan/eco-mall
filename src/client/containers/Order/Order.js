@@ -29,14 +29,6 @@ export default class extends PureComponent {
     window.clearTimeout(this.timer)
   }
 
-  renderOperationList = (op, i) => {
-    const { orderId } = this.props.data
-    switch (op.code) {
-      case 3:               // 查看物流
-        return <div key={i} styleName='btnArea light'>追踪物流</div>
-    }
-  }
-
   joinNumber = (numb) => (numb < 10 ? ('0' + numb) : numb)
 
   render () {
@@ -54,15 +46,6 @@ export default class extends PureComponent {
       <section styleName='content'>
         {itemsList.map((item, i) => <LabelItem onClick={() => this.props.changeRouter(`/item?id=${item.productId}`)} vertical={false} data={item} key={i} noBorder={(itemsList.length - 1) === i} />)}
       </section>
-      {
-        operationList.length
-        ? <section styleName='footer'>
-            {
-              operationList.reverse().map(this.renderOperationList)
-            }
-          </section>
-        : null
-      }
     </div>
   }
 }
