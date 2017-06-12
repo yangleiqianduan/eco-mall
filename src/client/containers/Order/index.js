@@ -43,8 +43,11 @@ export class OrderList extends PureComponent {
   handlePay = (id) => {
     window.location = `${payOrder}?order_id=${id}`
   }
-  handleCancel = (id, str) => {
-    if (window.confirm('确认取消该订单？')) this.props.dispatch(actions.cancelOrder(id, str))
+  handleCancel = (id) => {
+    if (window.confirm('确认取消该订单？')) this.props.dispatch(actions.cancelOrder(id))
+  }
+  handleCancelAfterPay = (id) => {
+    this.props.dispatch(changeRouter('/cancelOrder?order_id='+id))
   }
   // handleDelete = (id) => {
 
@@ -80,7 +83,9 @@ export class OrderList extends PureComponent {
       case 8:             
         return <div key={i} styleName='btnArea' onClick={() => this.handleTrace(orderId)} >追踪物流</div>
       case 9:             
-        return <div key={i} styleName='btnArea' onClick={() => this.handleCancel(orderId, 'afterPay')} >取消订单</div>
+        return <div key={i} styleName='btnArea' onClick={() => this.handleCancelAfterPay(orderId)} >取消订单</div>
+      case 10:
+        return <div key={i} styleName='btnArea' onClick={(e) => this.confirmTel(e)}>取消进度</div>
     }
   }
 

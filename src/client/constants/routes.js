@@ -141,6 +141,13 @@ const routes = ~onlyVoteHost.indexOf(window.location.hostname)
       title: '订单详情'
     },
     {
+      path: '/cancelOrder',
+      exact: true,
+      // component: CancelOrder,
+      chunk: () => System.import('containers/CancelOrder/'),
+      title: '取消订单'
+    },
+    {
       path: '/logistics',
       exact: true,
       // component: Logistics,
