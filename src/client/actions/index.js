@@ -125,3 +125,9 @@ export const getOrderCount = () => dispatch => {
     }
   })
 }
+
+// 获取二维码
+export const getQrcode = (str) => fetch(api.getQrcode, {param: str})
+.then(res => {
+  if (res.code === '1') return res.data
+})

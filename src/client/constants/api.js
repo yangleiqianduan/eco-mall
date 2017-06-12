@@ -9,10 +9,10 @@ export const getCategoryList = '/m/category/list'                         // 获
 export const getBanner = '/m/banner/get_list'                             // 获取banner列表
 
 // 商品列表页
-export const getItems = '/m/product/search'                          // 获取商品列表
+export const getItems = '/m/product/search'                               // 获取商品列表
 
 // 需要页面
-export const upload = '/m/file/image/upload'                           // 图片上传
+export const upload = '/m/file/image/upload'                              // 图片上传
 export const submitRequire = '/m/product/want/commit'                     // 提交想要买什么
 
 // 上传
@@ -63,6 +63,10 @@ export const getVoteList = '/m/vote/get_vote_list'                        // 获
 export const voteSelects = '/m/vote/select_vote'                          // 投票选项
 export const voteResult = '/m/vote/stats_vote_result'                     // 投票结果
 export const voteSave = '/m/vote/save'                                    // 投票提交
+
+// 分享相关
+export const getWxToken = '/m/wechat/get_url_sign'                        // 取得微信签名
+export const getQrcode = '/api/qrcode/generate'                           // 获取二维码
 
 export const host = {
   // dev: 'http://mall.lj-web-30.lianjia.com',                               // 开发请求测试环境
