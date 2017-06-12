@@ -47,6 +47,7 @@ export const getOrderCount = '/m/order/status_count_list'                 // 获
 export const payOrder = '/m/order/pay/redirect'                           // 付款
 export const getOrderList = '/m/order/get'                                // 获取订单列表
 export const cancelOrder = '/m/order/cancel'                              // 取消订单
+export const cancelOrderAfterPay = '/m/order/cancel_paid'                 // 支付后取消订单
 export const deleteOrder = '/m/order/delete'                              // 删除订单
 
 // 订单详情
