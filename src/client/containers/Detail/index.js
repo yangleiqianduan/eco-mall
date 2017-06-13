@@ -16,8 +16,9 @@ import { servicePhoneNumber } from 'constants/text'
 import wantPic from 'common/img/want.png'
 
 import { getItemDetail, addToShoppingcart, toBuy, TO_INIT_ACTION } from 'actions/detail'
-import { showToast, getCartCount, getQrcode } from 'actions/index'
+import { showToast, getCartCount } from 'actions/index'
 import { stat } from 'common/stat'
+import { setShare } from 'common/bridge'
 
 @CSSModules(styles, {allowMultiple: true})
 export class Detail extends PureComponent {
@@ -50,18 +51,23 @@ export class Detail extends PureComponent {
     const query = this.props.location.query.id
     this.getItemDetail(query)
     this.props.dispatch(getCartCount())
-    this.setShared()
   }
 
-  // 获取当前域名的二维码并生成分享图
-  setShared () {
-    if ($ljBridge) {
-      getQrcode({content: window.location.href, width: 60, height: 60}).then(console.log)
-    }
+  // 依据请求到的数据设置分享
+  setShared = () => {
+    const { reqData } = this.props.data.toJS()
+    const { product_name: title, brief_desc: description } = reqData
+    const img = reqData.product_image_info[-1][0].img_url
+    setShare({
+      title,
+      description,
+      img,
+      url: window.location.href
+    })
   }
 
   getItemDetail = (query) => {
-    this.props.dispatch(getItemDetail(query))
+    this.props.dispatch(getItemDetail(query, this.setShared))
   }
 
   componentWillReceiveProps (np) {

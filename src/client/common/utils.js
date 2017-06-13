@@ -177,7 +177,7 @@ export const updateBodyScroll = (type) => {
   }
 }
 
-export const createSharedImage = (imgUrl, title, description, qrUrl, cw = 375) => `
+export const createSharedImage = (imgUrl, title, description, qrUrl, cw = document.body.clientWidth * 0.8) => `
   <!DOCTYPE html>
   <html lang="en">
   <head>

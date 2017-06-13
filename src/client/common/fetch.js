@@ -39,7 +39,7 @@ export default function (url, op = {}, mock) {
     })
     .then(data => {
       if (data.code === '403') {                                  // 未登陆
-        if ($ljBridge && $ljBridge.webStatus.isApp) {
+        if (window.IS_APP) {
           // 如果在掌链里面，未登录调起app登录页
           window.nativeBridge.actionLogin(window.location.href)
           return false

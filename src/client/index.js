@@ -14,6 +14,7 @@ const store = makeStore({})
 // 加载完jsBridge后在执行业务代码，保证请求cookie正确
 $ljBridge.ready((bridge, webStatus) => {
   window.nativeBridge = bridge
+  window.IS_APP = webStatus && webStatus.isApp
   // 非链家app时注册微信
   if (!$ljBridge.webStatus.isApp && window.wx) {
     // 获取微信token
