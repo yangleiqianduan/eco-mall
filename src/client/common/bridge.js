@@ -22,14 +22,17 @@ export const setShare = ({title, description, img, url}, isShareImg) => {
       requestUrl: url || window.location.origin
     }))
   } else {
-    // 微信下分享
-    window.wx.onMenuShareTimeline({
+    const shareArgument = {
       title: title || '一站式家居平台-链家家居', // 分享标题
       link: url || window.location.origin, // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
       imgUrl: img || defaultSharedImg, // 分享图标
       success: () => {},
       cancel: () => {}
-    })
+    }
+    // 微信下分享
+    window.wx.onMenuShareTimeline(shareArgument)
+    window.wx.onMenuShareAppMessage(shareArgument)
+    window.wx.onMenuShareQQ(shareArgument)
   }
 }
 
