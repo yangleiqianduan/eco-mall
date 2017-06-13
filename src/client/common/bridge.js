@@ -24,6 +24,7 @@ export const setShare = ({title, description, img, url}, isShareImg) => {
   } else {
     const shareArgument = {
       title: title || '一站式家居平台-链家家居', // 分享标题
+      desc: description || '贵一点，好很多的，链家家居为你工厂直采高质低价家居商品',
       link: url || window.location.origin, // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
       imgUrl: img || defaultSharedImg, // 分享图标
       success: () => {},
