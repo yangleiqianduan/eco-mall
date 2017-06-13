@@ -15,7 +15,7 @@ export const setShare = ({title, description, img, url}, isShareImg) => {
       // 由于移动端没有实现setRightButton2，所以使用setRightButton
       // ios通过html2img来区分是否是分享图片,
       window.nativeBridge.setRightButton(JSON.stringify(['share_image']))
-      return getQrcode({content: 'http://mall.lj-web-30.lianjia.com/item?id=128003001_1494837395356_8888' || url, width: 120, height: 120}).then(qrUrl => {
+      return getQrcode({content: 'http://mall.lj-web-30.lianjia.com/item?id=128003001_1494837395356_8888' || url, width: 330, height: 330}).then(qrUrl => {
         window.nativeBridge.setShareConfigWithString(JSON.stringify({
           html2img: createSharedImage(img, title, description, qrUrl)
         }))
