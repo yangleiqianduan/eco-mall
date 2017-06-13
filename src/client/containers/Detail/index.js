@@ -63,7 +63,7 @@ export class Detail extends PureComponent {
       description,
       img,
       url: window.location.href
-    })
+    }, true)
   }
 
   getItemDetail = (query) => {

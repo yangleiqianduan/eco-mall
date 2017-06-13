@@ -3,19 +3,26 @@ import * as api from 'constants/api'
 import { defaultSharedImg } from 'constants/img'
 
 export const setShare = ({title, description, img, url}, isShareImg) => {
-  console.log({title, description, img, url}, 'set share', defaultSharedImg)
   if (window.IS_APP) {
     // 链家app内分享
+    // setRightButton2 需要提供icon url
     if (isShareImg) {
       // 分享图片
-      return getQrcode({content: 'http://mall.lj-web-30.lianjia.com/item?id=128003001_1494837395356_8888' || url, width: 60, height: 60}).then(qrUrl => {
-        window.nativeBridge.actionShareWithString(JSON.stringify({
-          articleTitle: 'share img',
-          articleDiscription: createSharedImage(img, title, description, qrUrl)
+      // window.nativeBridge.setRightButton2(JSON.stringify({
+      //   clickUrl: 'lianjia://share',
+      //   imageUrl: 'https://image1.ljcdn.com/mall-image/fce06b9c-8158-4376-9efd-232943be82c5.png.60x60.png'
+      // }))
+      // 由于移动端没有实现setRightButton2，所以使用setRightButton
+      // ios通过html2img来区分是否是分享图片,
+      window.nativeBridge.setRightButton(JSON.stringify(['share_image']))
+      return getQrcode({content: 'http://mall.lj-web-30.lianjia.com/item?id=128003001_1494837395356_8888' || url, width: 120, height: 120}).then(qrUrl => {
+        window.nativeBridge.setShareConfigWithString(JSON.stringify({
+          html2img: createSharedImage(img, title, description, qrUrl)
         }))
       })
     }
-    window.nativeBridge.actionShareWithString(JSON.stringify({
+    window.nativeBridge.setRightButton(JSON.stringify(['share']))
+    window.nativeBridge.setShareConfigWithString(JSON.stringify({
       articleTitle: title || '一站式家居平台-链家家居',
       articleDiscription: description || '贵一点，好很多的，链家家居为你工厂直采高质低价家居商品',
       headImageUrl: img || defaultSharedImg,
@@ -64,8 +71,12 @@ export const createSharedImage = (imgUrl, title, description, qrUrl, cw = docume
     <title>Document</title>
   </head>
   <style>
+    ::-webkit-scrollbar {/*隐藏滚轮*/
+      display: none;
+    }
     html, body {
       background: #fff;
+      overflow-y: hidden;
       padding: 0;
       margin: 0;
       font-size: ${cw / 3.75}px;
@@ -80,7 +91,7 @@ export const createSharedImage = (imgUrl, title, description, qrUrl, cw = docume
       border-top: 1px solid transparent;
     }
     .container {
-      padding: 0.45rem 0.2rem 0.2rem;
+      padding: 0.35rem 0.2rem 0.2rem;
       line-height: 0;
       letter-spacing: 0;
     }
@@ -115,7 +126,7 @@ export const createSharedImage = (imgUrl, title, description, qrUrl, cw = docume
       text-align: right;
     }
     .imageContainer {
-      margin: 0.05rem auto 0;
+      margin: 0.1rem auto 0;
       padding: 0.05rem 0.05rem 0.2rem;
       box-shadow: 0 0.04rem 0.12rem 0 rgba(0,0,0,0.08);
     }
@@ -160,8 +171,8 @@ export const createSharedImage = (imgUrl, title, description, qrUrl, cw = docume
       text-align: center;
     }
     .qrContainer img {
-      width: 100%;
-      height: 100%;
+      width: 0.6rem;
+      height: 0.6rem;
     }
     .note {
       font-weight: 200;

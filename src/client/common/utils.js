@@ -91,6 +91,10 @@ export const updateTitle = (location = window.location, routes) => {
     for (let i = 0; i < routes.length; i++) {
       if (comparePath(routes[i].path, location.pathname)) {
         document.title = routes[i].title
+        if (window.IS_APP) {
+          // 在链家app里调用jsbridge的setTitle方法
+          window.nativeBridge.setPageTitle(routes[i].title)
+        }
         stat('pv', routes[i].title)
         return
       } else if (routes[i].routes) {
