@@ -17,7 +17,8 @@ export const setShare = ({title, description, img, url}, isShareImg) => {
       window.nativeBridge.setRightButton(JSON.stringify(['share_image']))
       return getQrcode({content: 'http://mall.lj-web-30.lianjia.com/item?id=128003001_1494837395356_8888' || url, width: 330, height: 330}).then(qrUrl => {
         window.nativeBridge.setShareConfigWithString(JSON.stringify({
-          html2img: createSharedImage(img, title, description, qrUrl)
+          html2img: createSharedImage(img, title, description, qrUrl),
+          requestUrl: url || window.location.href
         }))
       })
     }
