@@ -20,6 +20,7 @@ export const setShare = ({title, description, img, url}, isShareImg) => {
         }))
       })
     }
+    // 默认分享首页
     window.nativeBridge.setShareConfigWithString(JSON.stringify({
       articleTitle: title || '一站式家居平台-链家家居',
       articleDiscription: description || '贵一点，好很多的，链家家居为你工厂直采高质低价家居商品',

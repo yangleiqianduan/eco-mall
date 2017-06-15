@@ -11,6 +11,7 @@ import SelectItems2 from 'components/SelectItems2'
 import Button from 'components/Button/'
 import TelUs from 'components/TelUs'
 
+import { setShare } from 'common/bridge'
 import telUsPic from 'common/img/telUs.png'
 // import whatILikePic from 'common/img/whatILike.png'
 
@@ -29,7 +30,7 @@ export class Vote extends PureComponent {
     this.setState({
       vote_id: query
     }, () => console.log('save_vote_id:', this.state))
-    this.props.dispatch(actions.getVoteOptions(query))
+    this.props.dispatch(actions.getVoteOptions(query, this.setShared))
   }
   componentWillReceiveProps (nextProps) {
     const { list, selected } = nextProps.vote.toJS() || {}
@@ -44,6 +45,17 @@ export class Vote extends PureComponent {
         selected: curSelected
       }, () => console.log('checkCurState:', this.state))
     }
+  }
+
+  // 依据请求到的数据设置分享
+  setShared = () => {
+    const { coverImage: img, title, description } = this.props.vote.toJS()
+    setShare({
+      title,
+      description,
+      img,
+      url: window.location.href
+    })
   }
 
   state = {
