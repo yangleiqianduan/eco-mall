@@ -6,11 +6,11 @@ export const setShare = ({title, description, img, url}, isShareImg) => {
   if (window.IS_APP) {
     // 链家app内分享
     // setRightButton2 需要提供icon url
-    window.nativeBridge.setRightButton2(JSON.stringify({
+    window.nativeBridge.setRightButton2(JSON.stringify([{
       name: '分享',
       clickUrl: isShareImg ? 'lianjia://share_image' : 'lianjia://share',
       imageUrl: appShareIcon
-    }))
+    }]))
     if (isShareImg) {
       // 分享图片
       return getQrcode({content: 'http://mall.lj-web-30.lianjia.com/item?id=128003001_1494837395356_8888' || url, width: 330, height: 330}).then(qrUrl => {
