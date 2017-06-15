@@ -23,3 +23,12 @@
     color #FFF
     width 100%
     text-align center
+
+:global .fade-appear {
+  opacity: 0.01;
+}
+
+:global .fade-appear.fade-appear-active {
+  opacity: 1;
+  transition: opacity .3s ease-in;
+}
