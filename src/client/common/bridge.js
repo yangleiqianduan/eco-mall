@@ -1,20 +1,18 @@
 import fetch from './fetch'
 import * as api from 'constants/api'
-import { defaultSharedImg } from 'constants/img'
+import { defaultSharedImg, appShareIcon } from 'constants/img'
 
 export const setShare = ({title, description, img, url}, isShareImg) => {
   if (window.IS_APP) {
     // 链家app内分享
     // setRightButton2 需要提供icon url
+    window.nativeBridge.setRightButton2(JSON.stringify({
+      name: '分享',
+      clickUrl: isShareImg ? 'lianjia://share_image' : 'lianjia://share',
+      imageUrl: appShareIcon
+    }))
     if (isShareImg) {
       // 分享图片
-      // window.nativeBridge.setRightButton2(JSON.stringify({
-      //   clickUrl: 'lianjia://share',
-      //   imageUrl: 'https://image1.ljcdn.com/mall-image/fce06b9c-8158-4376-9efd-232943be82c5.png.60x60.png'
-      // }))
-      // 由于移动端没有实现setRightButton2，所以使用setRightButton
-      // ios通过html2img来区分是否是分享图片,
-      window.nativeBridge.setRightButton(JSON.stringify(['share_image']))
       return getQrcode({content: 'http://mall.lj-web-30.lianjia.com/item?id=128003001_1494837395356_8888' || url, width: 330, height: 330}).then(qrUrl => {
         window.nativeBridge.setShareConfigWithString(JSON.stringify({
           html2img: createSharedImage(img, title, description, qrUrl),
@@ -22,7 +20,6 @@ export const setShare = ({title, description, img, url}, isShareImg) => {
         }))
       })
     }
-    window.nativeBridge.setRightButton(JSON.stringify(['share']))
     window.nativeBridge.setShareConfigWithString(JSON.stringify({
       articleTitle: title || '一站式家居平台-链家家居',
       articleDiscription: description || '贵一点，好很多的，链家家居为你工厂直采高质低价家居商品',
@@ -62,6 +59,12 @@ export const getQrcode = (str) => fetch(api.getQrcode, {param: str})
 .then(res => {
   if (res.code === '1') return res.data
 })
+
+const textConfig = {
+  logo: '链家家居',
+  description: '让每个家住好一点',
+  qrText: '长按二维码查看美丽价格'
+}
 
 export const createSharedImage = (imgUrl, title, description, qrUrl, cw = document.body.clientWidth * 0.8) => `
   <!DOCTYPE html>
@@ -190,8 +193,8 @@ export const createSharedImage = (imgUrl, title, description, qrUrl, cw = docume
     <div class="container">
       <section>
         <div class="header">
-          <div class="logo">链家家居</div>
-          <div class="headerDescription">让每个家住好一点</div>
+          <div class="logo">${textConfig.logo}</div>
+          <div class="headerDescription">${textConfig.description}</div>
         </div>
         <div class="imageContainer">
           <img class="mainImage" src="${imgUrl}" alt="${title}">
@@ -202,7 +205,7 @@ export const createSharedImage = (imgUrl, title, description, qrUrl, cw = docume
       </section>
       <section>
         <div class="qrContainer"><img src="${qrUrl}" /></div>
-        <div class="note">长按二维码查看美丽价格</div>
+        <div class="note">${textConfig.qrText}</div>
       </section>
     </div>
   </body>
