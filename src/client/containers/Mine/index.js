@@ -24,6 +24,12 @@ export class Mine extends PureComponent {
     return order.map(n => Object.assign(n, {path: `/orderList?status=${n.status}`, count: (counts.filter(c => c.code === parseInt(n.status))[0] || {count: 0}).count}))
   }
 
+  handleCall = () => {
+    if (window.confirm(`是否拨打电话：${servicePhoneNumber}`)) {
+      this.refs.tel.click()
+    }
+  }
+
   render () {
     const { userInfo, orderCount } = this.props.shared.toJS()
     const navData = this.mapCountToOrder(nav, orderCount)
@@ -50,12 +56,13 @@ export class Mine extends PureComponent {
           <div styleName='unObvious'>2<Icon width={14} icon='rightArrow' /></div>
         </Link>
       </div>
-      <a styleName='pannel' href={`tel://${servicePhoneNumber}`}>
+      <div styleName='pannel' onClick={this.handleCall}>
         <div styleName='label last'>
           <div styleName='obvious'>联系客服</div>
           <div styleName='unObvious'>{servicePhoneNumber}<Icon width={14} icon='rightArrow' /></div>
         </div>
-      </a>
+      </div>
+      <a href={`tel://${servicePhoneNumber}`} ref='tel' />
     </div>
   }
 }

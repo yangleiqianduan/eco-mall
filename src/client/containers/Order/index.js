@@ -120,27 +120,21 @@ export class OrderList extends PureComponent {
             : null
           }       
         </div>
-        {
-          isNeedPay
-          ? <div styleName='bottomBtnGroup'>
-              <div styleName="contect bgWhite" onClick={(e) => this.confirmTel(e)}>
-                <Icon icon='listener' width="16"/><span styleName='text'>联系客服</span>
+        <div styleName='bottomBtnGroup'>
+          <div styleName="contect bgWhite" onClick={(e) => this.confirmTel(e)}>
+            <Icon icon='listener' width="16"/><span styleName='text'>联系客服</span>
+          </div>
+          { operationList.length
+            ? <div styleName='readyPay'>
+                <div styleName='btnGroup'>
+                {
+                  operationList.map(this.renderOperationList)
+                }
+                </div>
               </div>
-              { operationList.length
-                ? <div styleName='readyPay'>
-                    <div styleName='btnGroup'>
-                    {
-                      operationList.map(this.renderOperationList)
-                    }
-                    </div>
-                  </div>
-                : null
-              }
-            </div>
-          : <div styleName="contect bgWhite" onClick={(e) => this.confirmTel(e)}>
-              <span styleName='telIcon'><Icon icon='listener' width="16"/></span><span styleName='text'>联系客服</span>
-            </div>
-        }
+            : null
+          }
+        </div>
         <a href={`tel://${servicePhoneNumber}`} ref='tel'></a>
       </div>
   }
