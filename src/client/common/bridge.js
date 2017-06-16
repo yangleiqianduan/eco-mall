@@ -65,7 +65,7 @@ export const getQrcode = (str) => fetch(api.getQrcode, {param: str})
 const textConfig = {
   logo: '链家家居',
   description: '让每个家住好一点',
-  qrText: '长按二维码查看美丽价格'
+  qrText: '长按二维码查看商品详情'
 }
 
 export const createSharedImage = (imgUrl, title, description, qrUrl, cw = document.body.clientWidth * 0.8) => `
