@@ -244,7 +244,7 @@ export class Detail extends PureComponent {
         ? <FullScreen data={banner} currentImage={currentImage} onClose={() => this.setState({showFullscreen: false})} />
         : null
       }
-      <a href={`tel:${servicePhoneNumber}`} ref='tel' />
+      <a href={`tel://${servicePhoneNumber}`} ref='tel' />
     </div>
   }
 

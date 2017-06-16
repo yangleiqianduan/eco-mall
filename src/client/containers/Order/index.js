@@ -141,7 +141,7 @@ export class OrderList extends PureComponent {
               <span styleName='telIcon'><Icon icon='listener' width="16"/></span><span styleName='text'>联系客服</span>
             </div>
         }
-        <a href={`tel:${servicePhoneNumber}`} ref='tel'></a>
+        <a href={`tel://${servicePhoneNumber}`} ref='tel'></a>
       </div>
   }
 }

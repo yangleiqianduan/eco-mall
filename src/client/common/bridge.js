@@ -3,6 +3,7 @@ import * as api from 'constants/api'
 import { defaultSharedImg, appShareIcon } from 'constants/img'
 
 export const setShare = ({title, description, img, url}, isShareImg) => {
+  // 设置分享内容，isShareImg为true的话是在app中分享一张图片出去
   if (window.IS_APP) {
     // 链家app内分享
     // setRightButton2 需要提供icon url
@@ -13,7 +14,7 @@ export const setShare = ({title, description, img, url}, isShareImg) => {
     }]))
     if (isShareImg) {
       // 分享图片
-      return getQrcode({content: 'http://mall.lj-web-30.lianjia.com/item?id=128003001_1494837395356_8888' || url, width: 330, height: 330}).then(qrUrl => {
+      return getQrcode({content: url, width: 330, height: 330}).then(qrUrl => {
         window.nativeBridge.setShareConfigWithString(JSON.stringify({
           html2img: createSharedImage(img, title, description, qrUrl),
           requestUrl: url || window.location.href

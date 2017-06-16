@@ -50,7 +50,7 @@ export class Mine extends PureComponent {
           <div styleName='unObvious'>2<Icon width={14} icon='rightArrow' /></div>
         </Link>
       </div>
-      <a styleName='pannel' href={`tel:${servicePhoneNumber}`}>
+      <a styleName='pannel' href={`tel://${servicePhoneNumber}`}>
         <div styleName='label last'>
           <div styleName='obvious'>联系客服</div>
           <div styleName='unObvious'>{servicePhoneNumber}<Icon width={14} icon='rightArrow' /></div>
