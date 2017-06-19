@@ -32,6 +32,7 @@ export class Mine extends PureComponent {
 
   render () {
     const { userInfo, orderCount } = this.props.shared.toJS()
+    const addressCount = (orderCount.filter(c => c.code === 1000)[0] || {}).count
     const navData = this.mapCountToOrder(nav, orderCount)
     return <div styleName='wrap'>
       <div styleName='board'>
@@ -53,7 +54,7 @@ export class Mine extends PureComponent {
       <div styleName='pannel'>
         <Link styleName='label' to='/addressList'>
           <div styleName='obvious'>地址管理</div>
-          <div styleName='unObvious'>2<Icon width={14} icon='rightArrow' /></div>
+          <div styleName='unObvious'>{addressCount}<Icon width={14} icon='rightArrow' /></div>
         </Link>
       </div>
       <div styleName='pannel' onClick={this.handleCall}>
