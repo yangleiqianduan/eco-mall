@@ -39,7 +39,6 @@ export class Mine extends PureComponent {
         <div styleName='header'>
           <div styleName='name'>
             <div>{userInfo.displayName}</div>
-            <div styleName='unObvious'>并不能编辑</div>
           </div>
           <div><img styleName='img' src={userInfo.avatar === 'https://image1.ljcdn.com' ? defaultAvatar : userInfo.avatar} /></div>
         </div>
