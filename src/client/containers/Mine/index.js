@@ -55,7 +55,7 @@ export class Mine extends PureComponent {
           <div styleName='name'>
             <div>{userInfo.displayName}</div>
             {
-              !userInfo.login ? <div styleName='unObvious' onClick={this.handleLogin}>点击登录</div> : null
+              userInfo.unLogin ? <div styleName='unObvious' onClick={this.handleLogin}>点击登录</div> : null
             }
           </div>
           <div><img styleName='img' src={userInfo.avatar || defaultAvatar} /></div>

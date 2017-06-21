@@ -50,7 +50,6 @@ export default function (url, op = {}, mock) {
           window.nativeBridge.actionLogin(window.location.href)
           return false
         }
-        return false
         window.location.replace(`${host[window.ENV]}${login}?ru=${encodeURIComponent(window.location)}`)
         return false
       } else {
