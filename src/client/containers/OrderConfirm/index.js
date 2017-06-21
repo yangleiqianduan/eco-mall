@@ -35,6 +35,9 @@ export class OrderConfirm extends PureComponent {
   }
   handleCall = () => {
     if (window.confirm(`是否拨打电话：${servicePhoneNumber}`)) {
+      if (window.IS_APP && isAndroid) {
+        return window.nativeBridge.actionWithUrl(`lianjia://phonenum/customerservices?telephone=${servicePhoneNumber}`)
+      }
       this.refs.tel.click()
     }
   }
@@ -85,7 +88,7 @@ export class OrderConfirm extends PureComponent {
       <section styleName='pannel service' onClick={this.handleCall} >
         <div styleName='long'>如何开发票</div>
         <div styleName='light'>{servicePhoneNumber}<Icon icon='right' width={14} /></div>
-        <a href={`${window.IS_APP && isAndroid ? 'tel:' : 'tel://'}${servicePhoneNumber}`} ref='tel' />
+        <a href={`tel://${servicePhoneNumber}`} ref='tel' />
       </section>
       <section styleName='footer'>
         <div styleName='priceArea'>总计：￥{totalAmount}</div>
