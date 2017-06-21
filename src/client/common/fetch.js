@@ -47,7 +47,7 @@ export default function (url, op = {}, mock) {
           }
           REDIRECT_STATUS = window.location.href
           // 如果在掌链里面，未登录调起app登录页
-          window.nativeBridge.actionLogin(window.location.href)
+          window.nativeBridge.actionWithUrl('lianjia://actionlogin')
           return false
         }
         window.location.replace(`${host[window.ENV]}${login}?ru=${encodeURIComponent(window.location)}`)
