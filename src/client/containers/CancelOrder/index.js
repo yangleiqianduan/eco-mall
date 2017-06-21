@@ -7,6 +7,7 @@ import { cancelOrderPhoneNumber } from 'constants/text'
 
 import * as actions from 'actions/cancelOrder'
 import { changeRouter } from 'actions/'
+import { isAndroid } from 'common/utils'
 
 @CSSModules(styles, { allowMultiple: true })
 export class CancelOrder extends PureComponent {
@@ -17,6 +18,9 @@ export class CancelOrder extends PureComponent {
   confirmTel = (e) => {
     e.stopPropagation()
     if (window.confirm(`是否拨打电话：${cancelOrderPhoneNumber}`)) {
+      if (window.IS_APP && isAndroid) {
+        return window.nativeBridge.actionWithUrl(`lianjia://phonenum/customerservices?telephone=${cancelOrderPhoneNumber}`)
+      }
       this.refs.tel.click()
     }
   }

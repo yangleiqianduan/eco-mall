@@ -19,6 +19,7 @@ import { getItemDetail, addToShoppingcart, toBuy, TO_INIT_ACTION } from 'actions
 import { showToast, getCartCount } from 'actions/index'
 import { stat } from 'common/stat'
 import { setShare } from 'common/bridge'
+import { isAndroid } from 'common/utils'
 
 @CSSModules(styles, {allowMultiple: true})
 export class Detail extends PureComponent {
@@ -98,6 +99,9 @@ export class Detail extends PureComponent {
   confirmTel = (e) => {
     e.stopPropagation()
     if (window.confirm(`是否拨打电话：${servicePhoneNumber}`)) {
+      if (window.IS_APP && isAndroid) {
+        return window.nativeBridge.actionWithUrl(`lianjia://phonenum/customerservices?telephone=${servicePhoneNumber}`)
+      }
       this.refs.tel.click()
     }
     // this.props.dispatch(alert({

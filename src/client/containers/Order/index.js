@@ -14,7 +14,7 @@ import { changeRouter } from 'actions/'
 
 import { payOrder } from 'constants/api'
 
-import { formatTime } from 'common/utils'
+import { formatTime, isAndroid } from 'common/utils'
 
 @CSSModules(styles, { allowMultiple: true })
 export class OrderList extends PureComponent {
@@ -25,6 +25,9 @@ export class OrderList extends PureComponent {
   confirmTel = (e) => {
     e.stopPropagation()
     if (window.confirm(`是否拨打电话：${servicePhoneNumber}`)) {
+      if (window.IS_APP && isAndroid) {
+        return window.nativeBridge.actionWithUrl(`lianjia://phonenum/customerservices?telephone=${servicePhoneNumber}`)
+      }
       this.refs.tel.click()
     }
     // this.props.dispatch(alert({
