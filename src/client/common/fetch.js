@@ -41,17 +41,20 @@ export default function (url, op = {}, mock) {
     .then(data => {
       if (data.code === '403') {                                  // 未登陆
         if (window.IS_APP) {
-          if (REDIRECT_STATUS) {
+          if (REDIRECT_STATUS === window.location.href) {
             // 防止多次调起app登录页
             return false
           }
-          REDIRECT_STATUS = true
+          REDIRECT_STATUS = window.location.href
           // 如果在掌链里面，未登录调起app登录页
           window.nativeBridge.actionLogin(window.location.href)
           return false
         }
+        return false
         window.location.replace(`${host[window.ENV]}${login}?ru=${encodeURIComponent(window.location)}`)
         return false
+      } else {
+        REDIRECT_STATUS = false
       }
       return data
     })

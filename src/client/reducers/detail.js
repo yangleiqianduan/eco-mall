@@ -41,6 +41,7 @@ const initState = {
     product_inv_info: {                                 // sku 库存 对应
       sku_inv: {}
     },
+    presell_info: [],                                   // 预售信息
     service_assurance_info: [],
     sale_amount_info: {},
     sku_attribute_mapping_sku_id: {},

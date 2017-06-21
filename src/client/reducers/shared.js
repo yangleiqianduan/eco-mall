@@ -83,7 +83,10 @@ const initState = fromJS({
     text: ''
   },
   orderCount: [],
-  userInfo: {},
+  userInfo: {
+    displayName: '未登录优家',
+    login: false
+  },
   modal: {
     show: false,
     overlap: true,

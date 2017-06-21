@@ -13,6 +13,8 @@ import { defaultAvatar } from 'constants/img'
 
 import { getUserInfo, getOrderCount } from 'actions/'
 
+import { host, login } from 'constants/api'
+
 @CSSModules(styles, { allowMultiple: true })
 export class Mine extends PureComponent {
   componentDidMount () {
@@ -30,6 +32,15 @@ export class Mine extends PureComponent {
     }
   }
 
+  handleLogin = (e) => {
+    if (window.IS_APP) {
+      e.preventDefault()
+      window.nativeBridge.actionLogin(window.location.href)
+    } else {
+      window.location.href = `${host[window.ENV]}${login}?ru=${encodeURIComponent(window.location)}`
+    }
+  }
+
   render () {
     const { userInfo, orderCount } = this.props.shared.toJS()
     const addressCount = (orderCount.filter(c => c.code === 1000)[0] || {}).count
@@ -39,8 +50,11 @@ export class Mine extends PureComponent {
         <div styleName='header'>
           <div styleName='name'>
             <div>{userInfo.displayName}</div>
+            {
+              !userInfo.login ? <div styleName='unObvious' onClick={this.handleLogin}>点击登录</div> : null
+            }
           </div>
-          <div><img styleName='img' src={userInfo.avatar === 'https://image1.ljcdn.com' ? defaultAvatar : userInfo.avatar} /></div>
+          <div><img styleName='img' src={userInfo.avatar || defaultAvatar} /></div>
         </div>
         <div styleName='pannel'>
           <Link styleName='label' to='/orderList'>

@@ -67,7 +67,9 @@ export const UPDATE_USERINFO_ACTION = (payload) => ({
 export const getUserInfo = () => dispatch => {
   fetch(api.userInfo)
   .then(res => {
-    dispatch(UPDATE_USERINFO_ACTION((res || {}).data || {}))
+    if (res) {
+      dispatch(UPDATE_USERINFO_ACTION((res || {}).data || {}))
+    }
   })
 }
 

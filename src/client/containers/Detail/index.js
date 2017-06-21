@@ -198,6 +198,9 @@ export class Detail extends PureComponent {
       return (op.sku_attribute_value_info.filter(o => o.key === skuMapKey[i])[0] || {}).value
     }).filter(item => item).join('，')
 
+    // 预售信息
+    const presellInfo = reqData.presell_info.filter(info => info.sku_id === skuMapStr)[0] || {}
+
     return <div styleName='wrap'>
       <section styleName='banner'>
         {this.renderToastByStatus(status)}
@@ -212,7 +215,7 @@ export class Detail extends PureComponent {
         }
       </section>
       <section><ItemOverview data={reqData} marketPrice={marketPrice} salePrice={salePrice} onShowService={() => this.handleShowInfo(1)} /></section>
-      <section><ItemChoose canBuy={status === 0} skuChoose={skuChoose} params={reqData.product_attribute_info.spu_attribute_info} onShowChoose={status === 0 ? () => this.handleShowBuy(true, 0) : null} onShowParam={() => this.handleShowInfo(2)} /></section>
+      <section><ItemChoose canBuy={status === 0} skuChoose={skuChoose} params={reqData.product_attribute_info.spu_attribute_info} onShowChoose={status === 0 ? () => this.handleShowBuy(true, 0) : null} onShowParam={() => this.handleShowInfo(2)} isPresell={presellInfo.presell_status === 2} /></section>
       <section><ItemDeatil data={reqData} /></section>
       <section><TelUs data={{link: '/want', pic: wantPic}} onClick={this.handleClickNeed} /></section>
       <FootBar status={status} onAdd={() => this.handleShowBuy(true, 1)} onBuy={() => this.handleShowBuy(true, 2)} cartCount={cartCount} confirmTel={this.confirmTel} />
@@ -228,6 +231,7 @@ export class Detail extends PureComponent {
         price={salePrice}
         onClickSkuImage={() => this.setState({showFullscreen: 2})}
         img={skuImage[0]}
+        presellInfo={presellInfo}
         skuChoose={skuChoose}
         data={reqData.product_attribute_info.sku_attribute_info}
         currentOperate={currentOperate}

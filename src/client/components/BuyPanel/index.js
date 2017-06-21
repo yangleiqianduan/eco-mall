@@ -6,7 +6,7 @@ import NumberInput from 'components/NumberInput/'
 import styles from './index.styl'
 import classNames from 'classnames/bind'
 
-import { updateBodyScroll } from 'common/utils'
+import { updateBodyScroll, formatTime } from 'common/utils'
 
 @CSSModules(styles, {allowMultiple: true})
 export default class extends PureComponent {
@@ -128,7 +128,7 @@ export default class extends PureComponent {
       onChangeSku,
       show,
       currentOperate,
-      onSubmit
+      presellInfo
     } = this.props
     const data = this.transformData(this.props.data, skuMapKey)
 
@@ -142,7 +142,7 @@ export default class extends PureComponent {
           </div>
           <div styleName='skuInfo'>
             <div styleName='price'>￥{price}</div>
-            <div styleName='info'>库存:{this.dealInv(inventory)}</div>
+            <div styleName='info'>{presellInfo.presell_status === 2 ? `发货时间:${formatTime(presellInfo.presell_send_time, 'MM月DD日')}` : '七日内发货'}</div>
             <div styleName='info'>已选:{skuChoose}</div>
           </div>
           <div styleName='close' onClick={this.handleClick.bind(this)}><Icon icon='layerClose' width={35} /></div>

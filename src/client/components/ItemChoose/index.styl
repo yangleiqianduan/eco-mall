@@ -20,11 +20,28 @@
     box()
     align-items center
   .long
+    box()
+    vertical-align center
     flex 1
     width 1px
+    align-items center
     G-cut-txt()
   .value
     color $color-dark
+  .sub
+    G-cut-txt()
+  .tag
+    display inline-block
+    margin-left px2rem(5)
+    font-size $font-size12
+    width 0.33rem
+    min-width 0.33rem
+    height 0.19rem
+    line-height 0.18rem
+    text-align center
+    color $color-bright
+    border-radius 2px
+    border(all, 1px, currentColor)
   .dotWrap
     box()
     align-items center
