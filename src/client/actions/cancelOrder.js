@@ -32,7 +32,7 @@ export const getOrderDetail = param => async dispatch => {
 
 export const cancelOrder = (id, dec) => async dispatch => {
   dispatch(UPDATE_LOADING_ACTION(true))
-  const result = await fetch(api.cancelOrderAfterPay, {param: {order_id: id, descr: dec}})
+  const result = await fetch(api.cancelOrderAfterPay, {param: {order_id: id, descr: dec}, method: 'post', formData: true})
   if (result.code === '1') {
     dispatch(changeRouter('/order?order_id='+id))
   } else {
