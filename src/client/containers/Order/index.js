@@ -108,7 +108,7 @@ export class OrderList extends PureComponent {
         </div>
         <div styleName="payInfo bgWhite">
           <div styleName="content">
-            <p>收货&emsp;人：<span>{receiverInfo.receiverName}</span><span styleName="tel">{receiverInfo.phoneNum}</span></p>
+            <p>收&nbsp;&nbsp;货&nbsp;&nbsp;人：<span>{receiverInfo.receiverName}</span><span styleName="tel">{receiverInfo.phoneNum}</span></p>
             <p>收货地址：<span>{receiverInfo.addressDetail}</span></p>
           </div>
           {!isNeedPay
@@ -116,8 +116,8 @@ export class OrderList extends PureComponent {
                 <div styleName="content">
                   <p>支付方式：<span>{payInfo.payMethod}</span></p>
                   <p>商品合计：<span>￥{payInfo.totalProductAmount}</span></p>
-                  <p>运&emsp;&emsp;费：<span>￥{payInfo.totalTmsAmount}</span></p>
-                  <p>实&emsp;&emsp;付：<span styleName="red">￥{payInfo.payAmount}</span></p>
+                  <p>运&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;费：<span>￥{payInfo.totalTmsAmount}</span></p>
+                  <p>实&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;付：<span styleName="red">￥{payInfo.payAmount}</span></p>
                 </div>
               </div>
             : null
