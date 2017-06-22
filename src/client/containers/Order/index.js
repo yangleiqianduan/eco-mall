@@ -14,7 +14,7 @@ import { changeRouter } from 'actions/'
 
 import { payOrder } from 'constants/api'
 
-import { formatTime, isAndroid } from 'common/utils'
+import { formatTime, phoneCall } from 'common/utils'
 
 @CSSModules(styles, { allowMultiple: true })
 export class OrderList extends PureComponent {
@@ -24,12 +24,7 @@ export class OrderList extends PureComponent {
   }
   confirmTel = (e) => {
     e.stopPropagation()
-    if (window.confirm(`是否拨打电话：${servicePhoneNumber}`)) {
-      if (window.IS_APP && isAndroid) {
-        return window.nativeBridge.actionWithUrl(`lianjia://phonenum/customerservices?telephone=${servicePhoneNumber}`)
-      }
-      this.refs.tel.click()
-    }
+    phoneCall(servicePhoneNumber)
     // this.props.dispatch(alert({
     //   text: '是否拨打电话：010-58104869',
     //   type: 'confirm',
@@ -116,8 +111,8 @@ export class OrderList extends PureComponent {
                 <div styleName="content">
                   <p>支付方式：<span>{payInfo.payMethod}</span></p>
                   <p>商品合计：<span>￥{payInfo.totalProductAmount}</span></p>
-                  <p>运&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;费：<span>￥{payInfo.totalTmsAmount}</span></p>
-                  <p>实&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;付：<span styleName="red">￥{payInfo.payAmount}</span></p>
+                  <p>运&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;费：<span>￥{payInfo.totalTmsAmount}</span></p>
+                  <p>实&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;付：<span styleName="red">￥{payInfo.payAmount}</span></p>
                 </div>
               </div>
             : null

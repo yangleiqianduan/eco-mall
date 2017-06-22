@@ -183,6 +183,10 @@ export const updateBodyScroll = (type) => {
 
 // 拨打电话
 export const phoneCall = (tel) => {
+  if (window.IS_APP && isAndroid) {
+    // 在app里，android不需要确认，android会自带确认
+    return window.nativeBridge.actionWithUrl(`lianjia://phonenum/customerservices?telephone=${tel}`)
+  }
   if (window.confirm(`是否拨打电话：${tel}`)) {
     if (window.IS_APP) {
       return window.nativeBridge.actionWithUrl(`lianjia://phonenum/customerservices?telephone=${tel}`)
