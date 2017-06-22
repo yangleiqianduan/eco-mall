@@ -19,7 +19,7 @@ import { getItemDetail, addToShoppingcart, toBuy, TO_INIT_ACTION } from 'actions
 import { showToast, getCartCount } from 'actions/index'
 import { stat } from 'common/stat'
 import { setShare } from 'common/bridge'
-import { isAndroid } from 'common/utils'
+import { phoneCall } from 'common/utils'
 
 @CSSModules(styles, {allowMultiple: true})
 export class Detail extends PureComponent {
@@ -98,12 +98,7 @@ export class Detail extends PureComponent {
 
   confirmTel = (e) => {
     e.stopPropagation()
-    if (window.confirm(`是否拨打电话：${servicePhoneNumber}`)) {
-      if (window.IS_APP && isAndroid) {
-        return window.nativeBridge.actionWithUrl(`lianjia://phonenum/customerservices?telephone=${servicePhoneNumber}`)
-      }
-      this.refs.tel.click()
-    }
+    phoneCall(servicePhoneNumber)
     // this.props.dispatch(alert({
     //   text: '是否拨打电话：010-58104869',
     //   type: 'confirm',
@@ -252,7 +247,6 @@ export class Detail extends PureComponent {
         ? <FullScreen data={banner} currentImage={currentImage} onClose={() => this.setState({showFullscreen: false})} />
         : null
       }
-      <a href={`tel://${servicePhoneNumber}`} ref='tel' />
     </div>
   }
 

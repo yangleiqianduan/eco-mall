@@ -6,8 +6,7 @@ import styles from './index.styl'
 import { cancelOrderPhoneNumber } from 'constants/text'
 
 import * as actions from 'actions/cancelOrder'
-import { changeRouter } from 'actions/'
-import { isAndroid } from 'common/utils'
+import { phoneCall } from 'common/utils'
 
 @CSSModules(styles, { allowMultiple: true })
 export class CancelOrder extends PureComponent {
@@ -16,15 +15,9 @@ export class CancelOrder extends PureComponent {
     this.props.dispatch(actions.getOrderDetail(query))
   }
   confirmTel = (e) => {
-    e.stopPropagation()
-    if (window.confirm(`是否拨打电话：${cancelOrderPhoneNumber}`)) {
-      if (window.IS_APP && isAndroid) {
-        return window.nativeBridge.actionWithUrl(`lianjia://phonenum/customerservices?telephone=${cancelOrderPhoneNumber}`)
-      }
-      this.refs.tel.click()
-    }
+    phoneCall(cancelOrderPhoneNumber)
   }
-  
+
   handleCancel = (id, dec) => {
     this.props.dispatch(actions.cancelOrder(id, dec))
   }
@@ -51,7 +44,7 @@ export class CancelOrder extends PureComponent {
         <p>1.若确认未发货，链家家居商城会在24小时内处理您的退款申请</p>
         <p>2.您的退款将被原路返还至您的账户</p>
         <p>3.不同的银行处理时间不同，预计1-5个工作日到账</p>
-        <p>4.有任何问题都可以拨打<span styleName='tel' onClick={(e) => {this.confirmTel(e)}}>010-2314454</span>在线解答</p>
+        <p>4.有任何问题都可以拨打<span styleName='tel' onClick={(e) => {this.confirmTel(e)}}>{cancelOrderPhoneNumber}</span>在线解答</p>
       </section>
       <section styleName='footer'>
         <div styleName='btn' onClick={() => {this.handleCancel(orderId, data.remark)}}>提交</div>

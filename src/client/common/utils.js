@@ -181,6 +181,16 @@ export const updateBodyScroll = (type) => {
   }
 }
 
+// 拨打电话
+export const phoneCall = (tel) => {
+  if (window.confirm(`是否拨打电话：${tel}`)) {
+    if (window.IS_APP) {
+      return window.nativeBridge.actionWithUrl(`lianjia://phonenum/customerservices?telephone=${tel}`)
+    }
+    window.location.href = `tel://${tel}`
+  }
+}
+
 export const createSharedImage = (imgUrl, title, description, qrUrl, cw = document.body.clientWidth * 0.8) => `
   <!DOCTYPE html>
   <html lang="en">
