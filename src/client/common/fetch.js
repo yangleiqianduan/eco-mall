@@ -40,8 +40,7 @@ export default function (url, op = {}, mock) {
     })
     .then(data => {
       if (data.code === '403') {                                  // 未登陆
-        if (window.IS_APP && 0) {
-          // TODO 先不使用app登录
+        if (window.IS_APP) {
           if (REDIRECT_STATUS === window.location.href) {
             // 防止多次调起app登录页
             return false
