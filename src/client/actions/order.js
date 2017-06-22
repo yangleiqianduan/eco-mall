@@ -28,7 +28,7 @@ export const cancelOrder = (id) => async dispatch => {
   const result = await fetch(api.cancelOrder, {param: {order_id: id}})
   if (result.code === '1') {
     dispatch(UPDATE_LOADING_ACTION(false))
-    dispatch(getOrderDetail({param: {order_id: id}}))
+    dispatch(getOrderDetail({param: {order_id: id}, method: 'post', formData: true}))
   } else {
     dispatch(UPDATE_LOADING_ACTION(false))
     dispatch(showToast(result.msg || '取消失败'))
