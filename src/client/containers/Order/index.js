@@ -41,8 +41,8 @@ export class OrderList extends PureComponent {
   handlePay = (id) => {
     window.location = `${payOrder}?order_id=${id}`
   }
-  handleCancel = (id) => {
-    if (window.confirm('确认取消该订单？')) this.props.dispatch(actions.cancelOrder(id))
+  handleCancel = (id, query) => {
+    if (window.confirm('确认取消该订单？')) this.props.dispatch(actions.cancelOrder(id, query))
   }
   handleCancelAfterPay = (id) => {
     this.props.dispatch(changeRouter('/cancelOrder?order_id='+id))
@@ -67,7 +67,7 @@ export class OrderList extends PureComponent {
       case 1:              
         return <div key={i} styleName='btnArea' onClick={() => this.handlePay(payOrderId)} >立即付款</div>
       case 2:             
-        return <div key={i} styleName='btnArea' onClick={() => this.handleCancel(orderId)} >取消订单</div>
+        return <div key={i} styleName='btnArea' onClick={() => this.handleCancel(orderId, this.props.location.query)} >取消订单</div>
       case 3:             
         return <div key={i} styleName='btnArea' onClick={() => this.handleDelete(orderId)} >删除订单</div>
       case 4:             
