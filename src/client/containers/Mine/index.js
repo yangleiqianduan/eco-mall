@@ -74,8 +74,10 @@ export class Mine extends PureComponent {
           <div styleName='unObvious'>{addressCount}<Icon width={14} icon='rightArrow' /></div>
         </Link>
       </div>
-      <a href={`tel://${servicePhoneNumber}`} ref='tel'>客服1</a>
-      <a href={`tel:${servicePhoneNumber}`} ref='tel'>客服2</a>
+      <div><a href={`tel://${servicePhoneNumber}`} ref='tel'>客服1</a></div>
+      <div><a href={`tel:${servicePhoneNumber}`} ref='tel'>客服2</a></div>
+      <div onClick={() => window.nativeBridge.actionWithUrl(`lianjia://phonenum/customerservices?telephone=${servicePhoneNumber}`)}><a>客服3</a></div>
+      <div onClick={() => window.nativeBridge.actionWithUrl(`lianjia://tel?agent_phone=${servicePhoneNumber}`)}><a>客服4</a></div>
       <div styleName='pannel' onClick={this.handleCall}>
         <div styleName='label last'>
           <div styleName='obvious'>联系客服</div>
