@@ -9,7 +9,7 @@
 #### redskull信息
 
 * redskull文档 http://git.lianjia.com/hydra/redskull
-* redskull是基于webpackde的构建工具
+* redskull是基于webpack的react项目构建及开发的脚手架
 
 
 #### 运行流程
