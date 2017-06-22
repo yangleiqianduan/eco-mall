@@ -14,7 +14,6 @@ import { defaultAvatar } from 'constants/img'
 import { getUserInfo, getOrderCount } from 'actions/'
 
 import { host, login } from 'constants/api'
-import { isAndroid } from 'common/utils'
 
 @CSSModules(styles, { allowMultiple: true })
 export class Mine extends PureComponent {
@@ -29,7 +28,7 @@ export class Mine extends PureComponent {
 
   handleCall = () => {
     if (window.confirm(`是否拨打电话：${servicePhoneNumber}`)) {
-      if (window.IS_APP && isAndroid) {
+      if (window.IS_APP) {
         return window.nativeBridge.actionWithUrl(`lianjia://phonenum/customerservices?telephone=${servicePhoneNumber}`)
       }
       this.refs.tel.click()
@@ -74,10 +73,6 @@ export class Mine extends PureComponent {
           <div styleName='unObvious'>{addressCount}<Icon width={14} icon='rightArrow' /></div>
         </Link>
       </div>
-      <div><a href={`tel://${servicePhoneNumber}`} ref='tel'>客服1</a></div>
-      <div><a href={`tel:${servicePhoneNumber}`} ref='tel'>客服2</a></div>
-      <div onClick={() => window.nativeBridge.actionWithUrl(`lianjia://phonenum/customerservices?telephone=${servicePhoneNumber}`)}><a>客服3</a></div>
-      <div onClick={() => window.nativeBridge.actionWithUrl(`lianjia://tel?agent_phone=${servicePhoneNumber}`)}><a>客服4</a></div>
       <div styleName='pannel' onClick={this.handleCall}>
         <div styleName='label last'>
           <div styleName='obvious'>联系客服</div>
