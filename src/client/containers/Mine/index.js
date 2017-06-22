@@ -74,6 +74,8 @@ export class Mine extends PureComponent {
           <div styleName='unObvious'>{addressCount}<Icon width={14} icon='rightArrow' /></div>
         </Link>
       </div>
+      <a href={`tel://${servicePhoneNumber}`} ref='tel'>客服1</a>
+      <a href={`tel:${servicePhoneNumber}`} ref='tel'>客服2</a>
       <div styleName='pannel' onClick={this.handleCall}>
         <div styleName='label last'>
           <div styleName='obvious'>联系客服</div>
