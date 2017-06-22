@@ -14,7 +14,7 @@ export const setShare = ({title, description, img, url}, isShareImg) => {
     }]))
     if (isShareImg) {
       // 分享图片
-      return getQrcode({content: url, width: 330, height: 330}).then(qrUrl => {
+      return getQrcode({content: url, width: 600, height: 600}).then(qrUrl => {
         window.nativeBridge.setShareConfigWithString(JSON.stringify({
           html2img: createSharedImage(img, title, description, qrUrl),
           requestUrl: url || window.location.href
