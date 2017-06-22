@@ -47,7 +47,8 @@ export default function (url, op = {}, mock) {
           }
           REDIRECT_STATUS = window.location.href
           // 如果在掌链里面，未登录调起app登录页
-          window.nativeBridge.actionWithUrl(window.nativeBridge.getSchemeLink(`actionlogin?param=${encodeURIComponent(window.location.href)}`))
+          // window.nativeBridge.actionWithUrl(window.nativeBridge.getSchemeLink(`actionlogin?param=${encodeURIComponent(window.location.href)}`))
+          window.nativeBridge.actionLogin(window.location.href)
           return false
         }
         window.location.replace(`${host[window.ENV]}${login}?ru=${encodeURIComponent(window.location)}`)
