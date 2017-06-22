@@ -1,5 +1,6 @@
 import fetch from 'common/fetch'
 import * as api from 'constants/api'
+import { changeRouter } from 'actions/'
 
 import {
   showToast,
@@ -32,5 +33,16 @@ export const cancelOrder = (id) => async dispatch => {
   } else {
     dispatch(UPDATE_LOADING_ACTION(false))
     dispatch(showToast(result.msg || '取消失败'))
+  }
+}
+
+export const deleteOrder = (id, status) => async dispatch => {
+  dispatch(UPDATE_LOADING_ACTION(true))
+  const result = await fetch(api.deleteOrder, {param: {order_id: id}})
+  if (result.code === '1') {
+    dispatch(changeRouter('/orderlist'))
+  } else {
+    dispatch(UPDATE_LOADING_ACTION(false))
+    dispatch(showToast(result.msg || '删除失败'))
   }
 }

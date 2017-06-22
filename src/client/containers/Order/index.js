@@ -14,7 +14,7 @@ import { changeRouter } from 'actions/'
 
 import { payOrder } from 'constants/api'
 
-import { formatTime, phoneCall } from 'common/utils'
+import { formatTime, isAndroid } from 'common/utils'
 
 @CSSModules(styles, { allowMultiple: true })
 export class OrderList extends PureComponent {
@@ -24,7 +24,12 @@ export class OrderList extends PureComponent {
   }
   confirmTel = (e) => {
     e.stopPropagation()
-    phoneCall(servicePhoneNumber)
+    if (window.confirm(`是否拨打电话：${servicePhoneNumber}`)) {
+      if (window.IS_APP && isAndroid) {
+        return window.nativeBridge.actionWithUrl(`lianjia://phonenum/customerservices?telephone=${servicePhoneNumber}`)
+      }
+      this.refs.tel.click()
+    }
     // this.props.dispatch(alert({
     //   text: '是否拨打电话：010-58104869',
     //   type: 'confirm',
@@ -47,9 +52,9 @@ export class OrderList extends PureComponent {
   handleCancelAfterPay = (id) => {
     this.props.dispatch(changeRouter('/cancelOrder?order_id='+id))
   }
-  // handleDelete = (id) => {
-
-  // }
+  handleDelete = (id) => {
+    if (window.confirm('确认删除该订单')) this.props.dispatch(actions.deleteOrder(id, this.props.location.query.status || ''))
+  }
   // handleEvaluate = () => {
     
   // }
@@ -68,8 +73,8 @@ export class OrderList extends PureComponent {
         return <div key={i} styleName='btnArea' onClick={() => this.handlePay(payOrderId)} >立即付款</div>
       case 2:             
         return <div key={i} styleName='btnArea' onClick={() => this.handleCancel(orderId)} >取消订单</div>
-      // case 3:             
-      //   return <div key={i} styleName='btnArea' onClick={() => handleDelete(orderId)} >删除订单</div>
+      case 3:             
+        return <div key={i} styleName='btnArea' onClick={() => this.handleDelete(orderId)} >删除订单</div>
       case 4:             
         return <div key={i} styleName='btnArea' onClick={(e) => this.confirmTel(e)} >申请售后</div>
       // case 5:             

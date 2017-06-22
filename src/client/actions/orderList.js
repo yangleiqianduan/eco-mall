@@ -41,7 +41,7 @@ export const DELETE_ORDER_ACTION = (payload) => ({
 
 export const cancelOrder = (id, index, status) => async dispatch => {
   dispatch(UPDATE_LOADING_ACTION(true))
-  const result = await fetch(api.cancelOrder, {param: {order_id: id}})
+  const result = await fetch(api.cancelOrder, {param: {order_id: id}, method: 'post', formData: true})
   if (result.code === '1') {
     dispatch(getOrderList({current_page: 1, status}))
     dispatch(DELETE_ORDER_ACTION(index))
