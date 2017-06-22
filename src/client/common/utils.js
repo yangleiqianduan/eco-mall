@@ -290,8 +290,8 @@ export const createSharedImage = (imgUrl, title, description, qrUrl, cw = docume
       -webkit-line-clamp: 2;
     }
     .qrContainer {
-      width: 0.6rem;
-      height: 0.6rem;
+      width: 1rem;
+      height: 1rem;
       margin: 0.3rem auto 0.1rem;
       text-align: center;
     }
