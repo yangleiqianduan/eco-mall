@@ -171,14 +171,14 @@ export const createSharedImage = (imgUrl, title, description, qrUrl, cw = docume
       -webkit-line-clamp: 2;
     }
     .qrContainer {
-      width: 0.6rem;
-      height: 0.6rem;
-      margin: 0.3rem auto 0.1rem;
+      width: 0.8rem;
+      height: 0.8rem;
+      margin: 0.2rem auto 0.1rem;
       text-align: center;
     }
     .qrContainer img {
-      width: 0.6rem;
-      height: 0.6rem;
+      width: 0.8rem;
+      height: 0.8rem;
     }
     .note {
       font-weight: 200;
