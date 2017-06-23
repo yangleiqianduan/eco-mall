@@ -49,10 +49,12 @@
 #### 关于构建
 构建产出如下
 
+```
 |- dist
 |--- css
 |--- img
 |--- js
 |--- index.html
+```
 
 其中index.html可作为模板放在后端，其余静态资源可部署到cdn(需要再构建是加入publicPath，online.sh中的第三个参数)，js依据各页面被拆成很多包(分包优化)，基础通用库(react, react-redux等)被打包到common.min.js中，打包产出的index.js是入口文件，同时负责引入其余各页面包，各页面js包打出时是带着md5版本号的，index.js和common.min.js没有，后端模板需引入index.js和common.min.js并附带随机版本号(防止缓存)，同时模板需引入其他外部sdk(如微信sdk)，外部sdk没有打在业务包里面。具体打包配置在webpack下(dev是开发环境配置，prod是构建打包配置)。
