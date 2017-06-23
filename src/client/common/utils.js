@@ -191,6 +191,6 @@ export const phoneCall = (tel) => {
     if (window.IS_APP) {
       return window.nativeBridge.actionWithUrl(`lianjia://phonenum/customerservices?telephone=${tel}`)
     }
-    window.location.href = `tel://${tel}`
+    window.location.href = `tel:${tel}`
   }
 }
