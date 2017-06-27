@@ -1,0 +1,11 @@
+{
+  "presets": [
+    "fe"
+  ],
+  "env": {
+    "development": {
+      "sourceMaps": "inline"
+    }
+  },
+  "compact": true
+}
