@@ -15,25 +15,26 @@ export const UPDATE_VOTE_OPTIONS_ACTION = payload => ({
 })
 
 // 获取数据
-export const getVoteOptions = voteId => dispatch => {
+export const getVoteOptions = (voteId, cb) => async dispatch => {
   dispatch(UPDATE_LOADING_ACTION(true))
-  fetch(api.voteSelects, {param: {
+  const res = await fetch(api.voteSelects, {param: {
     vote_id: voteId || 1
-  }}, false)
-  .then(res => {
-    if (!res) return dispatch(UPDATE_LOADING_ACTION(false))
-    if (res.code !== '1') {
-      dispatch(UPDATE_LOADING_ACTION(false))
-      dispatch(changeRouter('/errorPage?error_msg=' + res.msg))
-    } else {
-      if (res.data.title) document.title = res.data.title
-      dispatch(UPDATE_VOTE_OPTIONS_ACTION(res.data || null))
-      dispatch(UPDATE_LOADING_ACTION(false))
-    }
-  }).catch(e => {
+  }}, false).catch(e => {
     console.log('返回数据格式错误')
     dispatch(UPDATE_LOADING_ACTION(false))
   })
+  if (!res) return dispatch(UPDATE_LOADING_ACTION(false))
+  if (res.code !== '1') {
+    dispatch(UPDATE_LOADING_ACTION(false))
+    dispatch(changeRouter('/errorPage?error_msg=' + res.msg))
+  } else {
+    if (res.data.title) document.title = res.data.title
+    await dispatch(UPDATE_VOTE_OPTIONS_ACTION(res.data || null))
+    dispatch(UPDATE_LOADING_ACTION(false))
+  }
+  if (typeof cb === 'function') {
+    cb()
+  }
 }
 
 // 选择项目

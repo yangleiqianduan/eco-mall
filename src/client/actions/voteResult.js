@@ -16,22 +16,23 @@ export const UPDATE_VOTE_RESULT_ACTION = (payload) => ({
 })
 
 // 获取数据
-export const getVoteResult = (vote_id) => dispatch => {
+export const getVoteResult = (vote_id, cb) => async dispatch => {
   dispatch(UPDATE_LOADING_ACTION(true))
-  fetch(api.voteResult, {param: {
+  const res = await fetch(api.voteResult, {param: {
     vote_id: vote_id || 1,
     user_id: Utils.getCookie('lianjia_mall_vote_user_id') || ''
   }})
-  .then(res => {
-    dispatch(UPDATE_LOADING_ACTION(false))
-    if (res.code === '1') {
-      dispatch(UPDATE_VOTE_RESULT_ACTION(res.data || null))
-    } else {
-      dispatch(showToast(res.msg || '接口有误，返回数据格式错误'))
-    }
-  })
   .catch(e => {
     dispatch(showToast('返回数据格式错误'))
     dispatch(UPDATE_LOADING_ACTION(false))
   })
+  dispatch(UPDATE_LOADING_ACTION(false))
+  if (res.code === '1') {
+    await dispatch(UPDATE_VOTE_RESULT_ACTION(res.data || null))
+    if (typeof cb === 'function') {
+      cb()
+    }
+  } else {
+    dispatch(showToast(res.msg || '接口有误，返回数据格式错误'))
+  }
 }

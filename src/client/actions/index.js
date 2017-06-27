@@ -58,6 +58,21 @@ export const getCateoryList = () => dispatch => {
   })
 }
 
+export const UPDATE_USERINFO = 'UPDATE_USERINFO_SHARED'
+export const UPDATE_USERINFO_ACTION = (payload) => ({
+  type: UPDATE_USERINFO,
+  payload
+})
+// 获取用户信息
+export const getUserInfo = () => dispatch => {
+  fetch(api.userInfo)
+  .then(res => {
+    if (res) {
+      dispatch(UPDATE_USERINFO_ACTION((res || {}).data || {}))
+    }
+  })
+}
+
 export const UPDATE_TOAST = 'UPDATE_TOAST_SHARED'
 export const UPDATE_TOAST_ACTION = (payload) => ({
   type: UPDATE_TOAST,
@@ -94,6 +109,21 @@ export const getCartCount = () => dispatch => {
   .then(res => {
     if (res.code === '1') {
       dispatch(UPDATE_CART_COUNT_ACTION(res.data.user_cart_count))
+    }
+  })
+}
+
+export const UPDATE_ORDER_COUNT = 'UPDATE_ORDER_COUNT_SHARED'
+export const UPDATE_ORDER_COUNT_ACTION = (payload) => ({
+  type: UPDATE_ORDER_COUNT,
+  payload
+})
+// 获取订单条数
+export const getOrderCount = () => dispatch => {
+  fetch(api.getOrderCount)
+  .then(res => {
+    if (res.code === '1' && res.data && res.data.length > 0) {
+      dispatch(UPDATE_ORDER_COUNT_ACTION(res.data))
     }
   })
 }

@@ -18,6 +18,8 @@ import wantPic from 'common/img/want.png'
 import { getItemDetail, addToShoppingcart, toBuy, TO_INIT_ACTION } from 'actions/detail'
 import { showToast, getCartCount } from 'actions/index'
 import { stat } from 'common/stat'
+import { setShare } from 'common/bridge'
+import { phoneCall } from 'common/utils'
 
 @CSSModules(styles, {allowMultiple: true})
 export class Detail extends PureComponent {
@@ -52,8 +54,21 @@ export class Detail extends PureComponent {
     this.props.dispatch(getCartCount())
   }
 
+  // 依据请求到的数据设置分享
+  setShared = () => {
+    const { reqData } = this.props.data.toJS()
+    const { product_name: title, brief_desc: description } = reqData
+    const img = reqData.product_image_info[-1][0].img_url
+    setShare({
+      title,
+      description,
+      img,
+      url: window.location.href
+    }, true)
+  }
+
   getItemDetail = (query) => {
-    this.props.dispatch(getItemDetail(query))
+    this.props.dispatch(getItemDetail(query, this.setShared))
   }
 
   componentWillReceiveProps (np) {
@@ -83,9 +98,7 @@ export class Detail extends PureComponent {
 
   confirmTel = (e) => {
     e.stopPropagation()
-    if (window.confirm(`是否拨打电话：${servicePhoneNumber}`)) {
-      this.refs.tel.click()
-    }
+    phoneCall(servicePhoneNumber)
     // this.props.dispatch(alert({
     //   text: '是否拨打电话：010-58104869',
     //   type: 'confirm',
@@ -184,6 +197,9 @@ export class Detail extends PureComponent {
       return (op.sku_attribute_value_info.filter(o => o.key === skuMapKey[i])[0] || {}).value
     }).filter(item => item).join('，')
 
+    // 预售信息
+    const presellInfo = reqData.presell_info.filter(info => info.sku_id === skuMapStr)[0] || {}
+
     return <div styleName='wrap'>
       <section styleName='banner'>
         {this.renderToastByStatus(status)}
@@ -198,7 +214,7 @@ export class Detail extends PureComponent {
         }
       </section>
       <section><ItemOverview data={reqData} marketPrice={marketPrice} salePrice={salePrice} onShowService={() => this.handleShowInfo(1)} /></section>
-      <section><ItemChoose canBuy={status === 0} skuChoose={skuChoose} params={reqData.product_attribute_info.spu_attribute_info} onShowChoose={status === 0 ? () => this.handleShowBuy(true, 0) : null} onShowParam={() => this.handleShowInfo(2)} /></section>
+      <section><ItemChoose canBuy={status === 0} skuChoose={skuChoose} params={reqData.product_attribute_info.spu_attribute_info} onShowChoose={status === 0 ? () => this.handleShowBuy(true, 0) : null} onShowParam={() => this.handleShowInfo(2)} isPresell={presellInfo.presell_status === 2} /></section>
       <section><ItemDeatil data={reqData} /></section>
       <section><TelUs data={{link: '/want', pic: wantPic}} onClick={this.handleClickNeed} /></section>
       <FootBar status={status} onAdd={() => this.handleShowBuy(true, 1)} onBuy={() => this.handleShowBuy(true, 2)} cartCount={cartCount} confirmTel={this.confirmTel} />
@@ -214,6 +230,7 @@ export class Detail extends PureComponent {
         price={salePrice}
         onClickSkuImage={() => this.setState({showFullscreen: 2})}
         img={skuImage[0]}
+        presellInfo={presellInfo}
         skuChoose={skuChoose}
         data={reqData.product_attribute_info.sku_attribute_info}
         currentOperate={currentOperate}
@@ -230,7 +247,6 @@ export class Detail extends PureComponent {
         ? <FullScreen data={banner} currentImage={currentImage} onClose={() => this.setState({showFullscreen: false})} />
         : null
       }
-      <a href={`tel:${servicePhoneNumber}`} ref='tel' />
     </div>
   }
 

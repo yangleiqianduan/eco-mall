@@ -13,6 +13,12 @@ export const UPDATE_ORDER_DETAIL_ACTION = (payload) => ({
   payload
 })
 
+export const UPDATE_REMARK_VALUE = 'UPDATE_REMARK_VALUE'
+export const UPDATE_REMARK_VALUE_ACTION = (payload) => ({
+  type: UPDATE_REMARK_VALUE,
+  payload
+})
+
 export const getOrderDetail = param => async dispatch => {
   dispatch(UPDATE_LOADING_ACTION(true))
   const result = await fetch(api.getOrderDetail, {param})
@@ -20,29 +26,17 @@ export const getOrderDetail = param => async dispatch => {
   if(result.code === '1') {
     dispatch(UPDATE_ORDER_DETAIL_ACTION(result.data || {}))
   } else {
-    dispatch(showToast(result.msg || '获取订单详情失败'))
+    dispatch(showToast(result.msg || '获取退款金额失败'))
   }
 }
 
-export const cancelOrder = (id, query) => async dispatch => {
+export const cancelOrder = (id, dec) => async dispatch => {
   dispatch(UPDATE_LOADING_ACTION(true))
-  const result = await fetch(api.cancelOrder, {param: {order_id: id}, method: 'post', formData: true})
+  const result = await fetch(api.cancelOrderAfterPay, {param: {order_id: id, descr: dec}, method: 'post', formData: true})
   if (result.code === '1') {
-    dispatch(UPDATE_LOADING_ACTION(false))
-    dispatch(getOrderDetail(query))
+    dispatch(changeRouter('/order?order_id='+id))
   } else {
     dispatch(UPDATE_LOADING_ACTION(false))
     dispatch(showToast(result.msg || '取消失败'))
-  }
-}
-
-export const deleteOrder = (id, status) => async dispatch => {
-  dispatch(UPDATE_LOADING_ACTION(true))
-  const result = await fetch(api.deleteOrder, {param: {order_id: id}})
-  if (result.code === '1') {
-    dispatch(changeRouter('/orderlist'))
-  } else {
-    dispatch(UPDATE_LOADING_ACTION(false))
-    dispatch(showToast(result.msg || '删除失败'))
   }
 }

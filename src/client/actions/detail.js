@@ -16,22 +16,22 @@ export const UPDATE_ITEM_DETAIL_ACTION = (payload) => ({
 })
 
 // 按条件获得商品详情信息
-export const getItemDetail = id => dispatch => {
+export const getItemDetail = (id, cb) => async dispatch => {
   dispatch(UPDATE_LOADING_ACTION(true))
-  fetch(api.itemDetail, {param: {
+  const result = await fetch(api.itemDetail, {param: {
     product_id: id
-  }})
-  .then(res => {
-    dispatch(UPDATE_LOADING_ACTION(false))
-    if (!res) return dispatch(showToast('系统繁忙'))
-    if (res.code === '20003') return dispatch(showToast('商品不存在'))
-    if (res.code !== '1') return dispatch(showToast('系统繁忙'))
-    dispatch(UPDATE_ITEM_DETAIL_ACTION(res.data || null))
-  })
-  .catch(e => {
+  }}).catch(e => {
     console.log('返回数据格式错误')
     dispatch(UPDATE_LOADING_ACTION(false))
   })
+  dispatch(UPDATE_LOADING_ACTION(false))
+  if (!result) return dispatch(showToast('系统繁忙'))
+  if (result.code === '20003') return dispatch(showToast('商品不存在'))
+  if (result.code !== '1') return dispatch(showToast('系统繁忙'))
+  await dispatch(UPDATE_ITEM_DETAIL_ACTION(result.data || null))
+  if (typeof cb === 'function') {
+    cb()
+  }
 }
 
 // 添加到购物车

@@ -9,6 +9,10 @@ import { getAddressList } from 'actions/addressList'
 import { getConfirmList, submitOrder } from 'actions/orderConfirm'
 import Address from './Address'
 import LabelItem from 'components/LabelItem/'
+import Icon from 'components/Icons/'
+
+import { servicePhoneNumber } from 'constants/text'
+import { formatTime, phoneCall } from 'common/utils'
 
 @CSSModules(styles, { allowMultiple: true })
 export class OrderConfirm extends PureComponent {
@@ -29,8 +33,23 @@ export class OrderConfirm extends PureComponent {
     }
     return item
   }
+  handleCall = () => {
+    phoneCall(servicePhoneNumber)
+  }
   handleSubmitOrder = (data, currentAddress) => {
     this.props.dispatch(submitOrder(data, currentAddress))
+  }
+  getLastDay = (list) => {
+    let sortList = list.sort((x, y) => {
+      if (x.presellSendDays < y.presellSendDays) {
+        return 1
+      }
+      if (x.presellSendDays > y.presellSendDays) {
+        return -1
+      }
+      return 0
+    })
+    return (sortList[0] || {itemInfo: {}}).itemInfo.presellSendDays
   }
   render () {
     const {
@@ -38,8 +57,13 @@ export class OrderConfirm extends PureComponent {
       addressChoose             // 选择的收货地址, 为地址列表的index，-1表示未选择
     } = this.props.data.toJS()
     const addressList = this.props.addressList.toJS().list      // 收货地址列表
-    console.log(data, 'sss')
     const { itemsList, totalAmount } = data
+
+    // 预售商品
+    const presellItem = itemsList.filter(item => item.itemInfo.presellStatus === 2)
+    const isPresell = presellItem.length
+    const presellTime = this.getLastDay(presellItem)
+
     const currentAddress = this.getCurrentAddress(addressList, addressChoose)
     return <div styleName='wrap'>
       <section styleName='pannel'>
@@ -47,6 +71,18 @@ export class OrderConfirm extends PureComponent {
       </section>
       <section styleName='content pannel'>
         {itemsList.map((item, i) => <LabelItem vertical={false} data={item.itemInfo} key={i} noBorder={i === (itemsList.length - 1)} />)}
+      </section>
+      {
+        isPresell
+        ? <section styleName='pannel sendTime'>
+          <div styleName='preTime'>预计发货时间：{formatTime(presellTime, 'yyyy-MM-DD')}前</div>
+          <div styleName='light'>温馨提示：发货前会与您电话确认送货时间。同一个订单会一起发货，如果想要发货周期短的先发货，可以分开下单</div>
+        </section>
+        : null
+      }
+      <section styleName='pannel service' onClick={this.handleCall} >
+        <div styleName='long'>如何开发票</div>
+        <div styleName='light'>{servicePhoneNumber}<Icon icon='right' width={14} /></div>
       </section>
       <section styleName='footer'>
         <div styleName='priceArea'>总计：￥{totalAmount}</div>

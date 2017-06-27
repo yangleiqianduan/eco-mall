@@ -15,11 +15,11 @@ import { getHotItems, getBanner } from 'actions/home'
 import { getCartCount } from 'actions/'
 
 import { stat } from 'common/stat'
+import { footerImage } from 'constants/img'
 
 @CSSModules(styles, { allowMultiple: true })
 export class Home extends PureComponent {
   state = {
-    footerSrc: 'http://img.ljcdn.com/lmall/b017714a-414c-44e1-b63c-d0e4f4edf4b2.png.616x98.png',
     currentSubject: 0
     // currentCollocation: 0
   }
@@ -58,8 +58,7 @@ export class Home extends PureComponent {
     const { hotItems, banner, wantList } = this.props.data.toJS()
     const {
       // currentCollocation,
-      currentSubject,
-      footerSrc
+      currentSubject
     } = this.state
     const navList = categoryList.slice(0, 4)
     // const collocationList = collocation.map(item => ({img_url: item.picture, title: item.productMixName, desc: item.productMixDescription, redirect_url: `/collocation?id=${item.productMixId}`}))
@@ -105,7 +104,7 @@ export class Home extends PureComponent {
         <HotItems data={hotItems} />
       </div>
       <div styleName='footer'>
-        <img src={footerSrc} />
+        <img src={footerImage} />
       </div>
       <Nav cartCount={cartCount} />
     </div>

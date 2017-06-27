@@ -17,7 +17,12 @@ export default CSSModules(({ data = [], vertical, onClick, style = {} }) => {
           to={route.path}
           style={route.style || {}}>
           {
-            route.icon && <div><Icon icon={route.icon} width='30' height='28' style={{marginBottom: '.08rem', display: 'inline-block'}} /></div>
+            route.icon && <div>
+              <Icon icon={route.icon} width='30' height='28' style={{marginBottom: '.08rem', display: 'inline-block'}} />
+              {
+                !!route.count && <div styleName='mark'><span>{route.count}</span></div>
+              }
+            </div>
           }
           {route.title}
         </NavLink>

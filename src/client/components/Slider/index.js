@@ -4,7 +4,7 @@ import styles from './index.styl'
 import classNames from 'classnames/bind'
 
 import { Link } from 'react-router-dom'
-import Slider from 'react-slick'
+import Slider from 'react-slick-cong'
 import 'slick-carousel/slick/slick.css'
 import './slider.css'
 
@@ -42,7 +42,7 @@ export default class extends PureComponent {
   }
 
   render () {
-    const { data, setting, slideStyle, needDesc, fullScreen, onClose } = this.props
+    const { data, setting, slideStyle, needDesc } = this.props
     const settings = Object.assign({
       dots: true,
       useCSS: true,
@@ -55,32 +55,29 @@ export default class extends PureComponent {
       autoplay: data.length > 1,
       autoplaySpeed: 5000
     }, setting)
-    const bg = classNames({bg: fullScreen})
     return (
-      <div styleName={bg} onClick={onClose}>
-        <div styleName='wrap' onClick={(e) => e.stopPropagation()}>
-          {
-            !data.length
-            ? <div styleName='empty'>loading...</div>
-            : <Slider {...settings}>
-              {
-                data.map((item, i) => <div key={i} style={slideStyle} className={classNames({needMaxWidth: needDesc && !setting.infinite})}>
-                  <Link onClick={(e) => this.handleClick(e, i, item)} to={item.redirect_url ? item.redirect_url : ''}>
-                    <img className='slick-img' src={item.img_url} />
-                    {
-                      needDesc
-                      ? <div>
-                        <h3 styleName='title'>{item.title}</h3>
-                        <p styleName='desc'>{item.desc}</p>
-                      </div>
-                      : null
-                    }
-                  </Link>
-                </div>)
-              }
-            </Slider>
-          }
-        </div>
+      <div styleName='wrap'>
+        {
+          !data.length
+          ? <div styleName='empty'>loading...</div>
+          : <Slider {...settings}>
+            {
+              data.map((item, i) => <div key={i} style={slideStyle} className={classNames({needMaxWidth: needDesc && !setting.infinite})}>
+                <Link onClick={(e) => this.handleClick(e, i, item)} to={item.redirect_url ? item.redirect_url : ''}>
+                  <img className='slick-img' src={item.img_url} />
+                  {
+                    needDesc
+                    ? <div>
+                      <h3 styleName='title'>{item.title}</h3>
+                      <p styleName='desc'>{item.desc}</p>
+                    </div>
+                    : null
+                  }
+                </Link>
+              </div>)
+            }
+          </Slider>
+        }
       </div>
     )
   }

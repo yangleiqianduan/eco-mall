@@ -46,6 +46,17 @@ export default (state = initState, action) => {
         cartCount: action.payload
       })
 
+    case actions.UPDATE_USERINFO:
+      return state.merge({
+        userInfo: action.payload
+      })
+
+    case actions.UPDATE_ORDER_COUNT:
+    // 更新订单条数
+      return state.merge({
+        orderCount: action.payload
+      })
+
     default:
       return state
   }
@@ -71,7 +82,11 @@ const initState = fromJS({
     show: false,
     text: ''
   },
-  userInfo: {},
+  orderCount: [],
+  userInfo: {
+    displayName: '未登录优家',
+    unLogin: true
+  },
   modal: {
     show: false,
     overlap: true,

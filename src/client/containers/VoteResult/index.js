@@ -8,14 +8,25 @@ import styles from './index.styl'
 
 import ResultList from 'components/ResultList'
 // import whatILikePic from 'common/img/whatILike.png'
-
+import { setShare } from 'common/bridge'
 
 @CSSModules(styles, { allowMultiple: true })
 export class VoteResult extends PureComponent {
   componentDidMount () {
     const query = this.props.location.query.vote_id
-    this.props.dispatch(actions.getVoteResult(query))
+    this.props.dispatch(actions.getVoteResult(query, this.setShared))
   }
+  // 依据请求到的数据设置分享
+  setShared = () => {
+    const { coverImage: img, title, description } = this.props.vote.toJS()
+    setShare({
+      title,
+      description,
+      img,
+      url: window.location.href
+    })
+  }
+
   render () {
     const { list, coverImage, title, description } = this.props.vote.toJS() || {}
     // const data = this.props.vote.toJS() || {}

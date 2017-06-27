@@ -1,0 +1,47 @@
+@import "~common/global.styl"
+
+.wrap
+  color $color-dark
+  .board
+    background $color-white
+    margin-bottom px2rem(12)
+  .header
+    padding px2rem(20)
+    padding-bottom px2rem(40)
+    box()
+  .name
+    flex 1
+    padding px2rem(10) 0
+    font-size $font-size24
+    .unObvious
+      font-weight 300
+      padding-top px2rem(5)
+  .img
+    width px2rem(67)
+    height px2rem(67)
+    border-radius 50%
+  .pannel
+    display block
+    padding-left px2rem(20)
+    background $color-white
+    .label
+      border(bottom)
+      padding px2rem(15)
+      padding-left 0
+      box()
+      align-items center
+    .last
+      border-bottom none
+  .obvious
+    color $color-dark
+    font-size $font-size16
+    flex 1
+  .unObvious
+    font-size $font-size12
+    color $color-font-light
+  .nav
+    padding 0
+    ul
+      border-bottom none
+      a
+        font-size $font-size12

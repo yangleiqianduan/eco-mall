@@ -91,6 +91,10 @@ export const updateTitle = (location = window.location, routes) => {
     for (let i = 0; i < routes.length; i++) {
       if (comparePath(routes[i].path, location.pathname)) {
         document.title = routes[i].title
+        if (window.IS_APP) {
+          // 在链家app里调用jsbridge的setTitle方法
+          window.nativeBridge.setPageTitle(routes[i].title)
+        }
         stat('pv', routes[i].title)
         return
       } else if (routes[i].routes) {
@@ -152,7 +156,7 @@ export const checkCookie = () => {
   if (user !== '') {
     alert('Welcome again ' + user)
   } else {
-    user = prompt('Please enter your name:', '')
+    user = window.prompt('Please enter your name:', '')
     if (user !== '' && user != null) {
       setCookie('username', user, 365)
     }
@@ -174,5 +178,19 @@ export const updateBodyScroll = (type) => {
     document.body.style.left = 0
     document.body.style.width = '100%'
     // document.body.style.height = '100%'
+  }
+}
+
+// 拨打电话
+export const phoneCall = (tel) => {
+  if (window.IS_APP && isAndroid) {
+    // 在app里，android不需要确认，android会自带确认
+    return window.nativeBridge.actionWithUrl(`lianjia://phonenum/customerservices?telephone=${tel}`)
+  }
+  if (window.confirm(`是否拨打电话：${tel}`)) {
+    if (window.IS_APP) {
+      return window.nativeBridge.actionWithUrl(`lianjia://phonenum/customerservices?telephone=${tel}`)
+    }
+    window.location.href = `tel:${tel}`
   }
 }

@@ -14,6 +14,7 @@ import Loading from 'components/Loading/'
 import Modal from 'components/Modal/'
 
 import { getCateoryList } from 'actions/'
+import { setShare } from 'common/bridge'
 
 // console.log(Miss, 'check miss')
 
@@ -25,6 +26,14 @@ export class Main extends PureComponent {
   }
   componentWillMount () {
     const { location, routes } = this.props
+    this.routeChange(location, routes)
+  }
+
+  routeChange = (location, routes) => {
+    if (location.pathname !== '/item') {
+      // 商品详情页分享自己处理
+      setShare({})
+    }
     updateTitle(location, routes)
   }
 
@@ -51,7 +60,7 @@ export class Main extends PureComponent {
       <Modal {...modal} />
       {toast.show ? <Toast>{toast.text}</Toast> : null}
       {loading ? <Toast><Loading color='#ccc' /></Toast> : null}
-      <Prompt message={(location) => updateTitle(location, routes)} />
+      <Prompt message={(location) => this.routeChange(location, routes)} />
     </div>
   }
 }

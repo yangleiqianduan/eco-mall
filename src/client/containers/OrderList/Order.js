@@ -45,7 +45,7 @@ export default class extends PureComponent {
     const { onCancel, onDelete } = this.props
     switch (op.code) {
       case 1:               // 待支付
-        return <div key={i} styleName={classNames('btnArea', 'dark', {disabled: !this.state.canPay})} onClick={this.state.canPay ? () => this.handlePay(payOrderId) : null}>
+        return <div key={i} styleName={classNames('btnArea', 'obvious', {disabled: !this.state.canPay})} onClick={this.state.canPay ? () => this.handlePay(payOrderId) : null}>
           付款 {this.state.time}
         </div>
       case 2:               // 取消订单

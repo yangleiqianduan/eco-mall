@@ -8,6 +8,7 @@
     text-align center
     padding px2rem(15) 0
     a
+      position relative
       color $color-normal
       font-size $font-size14
       display block
@@ -30,3 +31,19 @@
 .vertical
   flex-direction column
   border none
+.mark
+  color $color-white
+  position absolute
+  top px2rem(-6)
+  right 0
+  font-size px2rem(12)
+  font-weight 300
+  width px2rem(14)
+  height px2rem(14)
+  box()
+  align-items center
+  justify-content center
+  background-color $color-red
+  border-radius 50%
+  span
+    transform scale(0.8)

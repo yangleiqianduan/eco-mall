@@ -1,5 +1,6 @@
 import { host, login } from 'constants/api'
 
+var REDIRECT_STATUS = false
 export default function (url, op = {}, mock) {
   const isMock = mock === undefined ? false : mock
   let config = {
@@ -39,8 +40,21 @@ export default function (url, op = {}, mock) {
     })
     .then(data => {
       if (data.code === '403') {                                  // 未登陆
-        window.location.href = `${host[window.ENV]}${login}?ru=${encodeURIComponent(window.location)}`
+        if (window.IS_APP) {
+          if (REDIRECT_STATUS === window.location.href) {
+            // 防止多次调起app登录页
+            return false
+          }
+          REDIRECT_STATUS = window.location.href
+          // 如果在掌链里面，未登录调起app登录页
+          window.nativeBridge.actionWithUrl(window.nativeBridge.getSchemeLink(`actionlogin?param=${encodeURIComponent(window.location.href)}`))
+          // window.nativeBridge.actionLogin(window.location.href)
+          return false
+        }
+        window.location.replace(`${host[window.ENV]}${login}?ru=${encodeURIComponent(window.location)}`)
         return false
+      } else {
+        REDIRECT_STATUS = false
       }
       return data
     })

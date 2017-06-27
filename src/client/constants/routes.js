@@ -39,7 +39,7 @@ const routes = ~onlyVoteHost.indexOf(window.location.hostname)
       exact: true,
       // component: Vote,
       chunk: () => System.import('containers/Vote/'),
-      title: '投票'
+      title: '投票详情'
     },
     {
       path: '/voteResult',
@@ -69,7 +69,7 @@ const routes = ~onlyVoteHost.indexOf(window.location.hostname)
       exact: true,
       // component: Result,
       chunk: () => System.import('containers/Result/'),
-      title: '优品目录'
+      title: '商品列表'
     },
     {
       path: '/item',
@@ -98,6 +98,12 @@ const routes = ~onlyVoteHost.indexOf(window.location.hostname)
       // component: Shoppingcart,
       chunk: () => System.import('containers/Shoppingcart/'),
       title: '购物车'
+    },
+    {
+      path: '/mine',
+      exact: true,
+      chunk: () => System.import('containers/Mine/'),
+      title: '我的家居'
     },
     {
       path: '/addressList',
@@ -135,6 +141,13 @@ const routes = ~onlyVoteHost.indexOf(window.location.hostname)
       title: '订单详情'
     },
     {
+      path: '/cancelOrder',
+      exact: true,
+      // component: CancelOrder,
+      chunk: () => System.import('containers/CancelOrder/'),
+      title: '取消订单'
+    },
+    {
       path: '/logistics',
       exact: true,
       // component: Logistics,
@@ -167,7 +180,7 @@ const routes = ~onlyVoteHost.indexOf(window.location.hostname)
       exact: true,
       // component: Vote,
       chunk: () => System.import('containers/Vote/'),
-      title: '投票'
+      title: '投票详情'
     },
     {
       path: '/voteResult',

@@ -8,7 +8,11 @@ import makeStore from './store/configureStore'
 
 const store = makeStore({})
 
-$ljBridge.ready(() => {
+// 加载完jsBridge后在执行业务代码，保证请求cookie正确
+$ljBridge.ready((bridge, webStatus) => {
+  window.nativeBridge = bridge
+  window.IS_APP = webStatus && webStatus.isApp
+
   render(<BrowserRouter>
     <Provider store={store}>
       <Main routes={routes} />
