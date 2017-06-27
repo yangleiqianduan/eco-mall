@@ -51,7 +51,7 @@ module.exports = function (webpackConfig, redSkull) {
     include: internalModules,
     query: {
       'presets': [
-        path.join(redSkull.redSkullRoot, 'node_modules', 'babel-preset-fe')
+        path.join(base,'node_modules','babel-preset-fe')
       ],
       'compact': true,
       cacheDirectory: true
