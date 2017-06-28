@@ -65,7 +65,7 @@ export class OrderList extends PureComponent {
     const { payOrderId, orderId } = data.data
     switch (op.code) {
       case 1:              
-        return <div key={i} styleName='btnArea' onClick={() => this.handlePay(payOrderId)} >立即付款</div>
+        return <div key={i} styleName='btnArea toPay' onClick={() => this.handlePay(payOrderId)} >去支付</div>
       case 2:             
         return <div key={i} styleName='btnArea' onClick={() => this.handleCancel(orderId, this.props.location.query)} >取消订单</div>
       case 3:             

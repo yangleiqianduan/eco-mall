@@ -11,7 +11,7 @@ import NavBar from 'components/NavBar/'
 import { servicePhoneNumber } from 'constants/text'
 import { defaultAvatar } from 'constants/img'
 
-import { getUserInfo, getOrderCount } from 'actions/'
+import { getUserInfo, getOrderCount, changeRouter } from 'actions/'
 
 import { host, login } from 'constants/api'
 import { phoneCall } from 'common/utils'
@@ -38,6 +38,10 @@ export class Mine extends PureComponent {
     } else {
       window.location.href = `${host[window.ENV]}${login}?ru=${encodeURIComponent(window.location)}`
     }
+  }
+
+  handleBack = () => {
+    this.props.dispatch(changeRouter('/'))
   }
 
   render () {
@@ -76,6 +80,7 @@ export class Mine extends PureComponent {
         </div>
       </div>
       <a href={`tel://${servicePhoneNumber}`} ref='tel' />
+      <div styleName='backToHome' onClick={() => this.handleBack()}>返回首页</div>
     </div>
   }
 }

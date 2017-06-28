@@ -134,6 +134,8 @@ export default class extends PureComponent {
 
     const innerShow = this.state.innerShow
 
+    console.log(presellInfo, '√√√√')
+
     return <div styleName={classNames('wrap', {showOuter: show})} onClick={this.handleClick.bind(this)}>
       <div styleName={classNames('infoContainer', {show: innerShow, hide: !innerShow})} onClick={e => e.stopPropagation()}>
         <div styleName='skuContainer'>
@@ -142,7 +144,7 @@ export default class extends PureComponent {
           </div>
           <div styleName='skuInfo'>
             <div styleName='price'>￥{price}</div>
-            <div styleName='info'>{presellInfo.presell_status === 2 ? `发货时间:${formatTime(presellInfo.presell_send_time, 'MM月DD日')}` : '七日内发货'}</div>
+            <div styleName='info'>{presellInfo.presell_status === 2 ? `预计发货时间:${formatTime(presellInfo.presell_send_time, 'MM月DD日')}` : '七日内发货'}</div>
             <div styleName='info'>已选:{skuChoose}</div>
           </div>
           <div styleName='close' onClick={this.handleClick.bind(this)}><Icon icon='layerClose' width={35} /></div>
