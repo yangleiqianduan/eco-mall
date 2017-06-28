@@ -22,9 +22,9 @@ export class OrderList extends PureComponent {
     const query = this.props.location.query
     this.props.dispatch(actions.getOrderDetail(query))
   }
-  confirmTel = (e) => {
+  confirmTel = (e, txt) => {
     e.stopPropagation()
-    phoneCall(servicePhoneNumber)
+    phoneCall(servicePhoneNumber, txt)
     // this.props.dispatch(alert({
     //   text: '是否拨打电话：010-58104869',
     //   type: 'confirm',
@@ -83,7 +83,7 @@ export class OrderList extends PureComponent {
       case 9:             
         return <div key={i} styleName='btnArea' onClick={() => this.handleCancelAfterPay(orderId)} >取消订单</div>
       case 10:
-        return <div key={i} styleName='btnArea' onClick={(e) => this.confirmTel(e)}>取消进度</div>
+        return <div key={i} styleName='btnArea' onClick={(e) => this.confirmTel(e, '联系客服，查看取消进度')}>取消进度</div>
     }
   }
 
