@@ -106,5 +106,17 @@ export const iconsInfo = {
   rightArrow: {
     width: 13,
     height: 13
+  },
+  obligation: {
+    width: 27,
+    height: 23
+  },
+  waitForDeliving: {
+    width: 27,
+    height: 23
+  },
+  waitForReceiving: {
+    width: 36,
+    height: 28
   }
 }

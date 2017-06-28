@@ -18,7 +18,7 @@ export default CSSModules(({ data = [], vertical, onClick, style = {} }) => {
           style={route.style || {}}>
           {
             route.icon && <div>
-              <Icon icon={route.icon} width='30' height='28' style={{marginBottom: '.08rem', display: 'inline-block'}} />
+              <Icon icon={route.icon} width={route.iconWidth || 30} style={{marginBottom: '.08rem', display: 'inline-block'}} />
               {
                 !!route.count && <div styleName='mark'><span>{route.count}</span></div>
               }
