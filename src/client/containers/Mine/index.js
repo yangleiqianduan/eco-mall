@@ -48,6 +48,7 @@ export class Mine extends PureComponent {
     const { userInfo, orderCount } = this.props.shared.toJS()
     const addressCount = (orderCount.filter(c => c.code === 1000)[0] || {}).count
     const navData = this.mapCountToOrder(nav, orderCount)
+    console.log(navData, 'sss')
     return <div styleName='wrap'>
       <div styleName='board'>
         <div styleName='header'>
@@ -91,4 +92,4 @@ const mapStateToProps = state => ({
 
 export default connect(mapStateToProps)(Mine)
 
-const nav = [{status: '100', title: '待付款', icon: 'mattess'}, {status: '230', title: '待发货', icon: 'mattess'}, {status: '250', title: '待收货', icon: 'mattess'}]
+const nav = [{status: '100', title: '待付款', icon: 'obligation'}, {status: '230', title: '待发货', icon: 'waitForDeliving'}, {status: '250', title: '待收货', icon: 'waitForReceiving', iconWidth: 36}]

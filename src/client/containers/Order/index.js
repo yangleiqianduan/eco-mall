@@ -56,9 +56,9 @@ export class OrderList extends PureComponent {
   // handleReceive = () => {
     
   // }
-  handleTrace = (id) => {
-    this.props.dispatch(changeRouter('/logistics?order_id='+id))
-  }
+  // handleTrace = (id) => {
+  //   this.props.dispatch(changeRouter('/logistics?order_id='+id))
+  // }
 
   renderOperationList = (op, i) => {
     const data = this.props.data.toJS() || {}
@@ -79,7 +79,7 @@ export class OrderList extends PureComponent {
       // case 7:             
       //   return <div key={i} styleName='btnArea' onClick={() => this.handleReceive(orderId)} >确认收货</div>
       case 8:             
-        return <div key={i} styleName='btnArea' onClick={() => this.handleTrace(orderId)} >追踪物流</div>
+        return <div key={i} styleName='btnArea' onClick={() => this.confirmTel(e)} >追踪物流</div>
       case 9:             
         return <div key={i} styleName='btnArea' onClick={() => this.handleCancelAfterPay(orderId)} >取消订单</div>
       case 10:
